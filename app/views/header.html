@@ -1,0 +1,30 @@
+<div ng-controller="HeaderCtrl" class="header">
+    <nav class="navbar navbar-default navbar-fixed-top main-nav" role="navigation">
+        <div class="container">
+            <div class="navbar-header responsive-logo">
+                <button class="navbar-toggle collapsed" type="button" collapse-on-click Click data-toggle="collapse"
+                        data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h3 class="text-muted" ng-click="goHome()">Score</h3>
+            </div>
+            <ul one-page-nav class="nav navbar-nav navbar-right navbar-collapse bs-navbar-collapse collapse">
+                <li><a ng-href="#{{sections[0].id}}">{{sections[0].title}}</a></li>
+                <li><a ng-href="#{{sections[1].id}}">{{sections[1].title}}</a></li>
+                <li><a ng-href="#{{sections[2].id}}">{{sections[2].title}}</a></li>
+                <li><a ng-href="#{{sections[3].id}}">{{sections[3].title}}</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <p class="h2">{{$root.messages.headerMainTitle1}}</p>
+        <p class="h2">{{$root.messages.headerMainTitle2}}</p>
+        <br/>
+        <p class="h5">{{$root.messages.headerDescription}}</p>
+        <br/>
+        <a class="btn btn-primary btn-lg">{{$root.messages.headerStartNow}}</a>
+    </div>
+</div>

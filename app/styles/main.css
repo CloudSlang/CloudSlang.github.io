@@ -1,3 +1,94 @@
 body {
+}
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    outline: none;
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    padding:0;
+    margin:0;
+}
+
+/* to avoid angular flickering */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.header {
+    min-height: 450px;
+    overflow: hidden;
+    margin-top: 100px;
+}
+
+.navbar-header {
+    cursor: pointer;
+}
+
+.main-nav {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.main-nav a {
+    font-weight: bold;
+}
+
+.main-nav .current:before {
+    position: absolute;
+    margin: auto;
+    z-index: 1;
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: #5e923c;
+    bottom: 0;
+}
+
+.footer {
+    color: #ffffff;
+    background-color: #425E2F;
+    height: 180px;
+    padding-top: 20px;
+}
+
+.footer .span {
+    display: inline;
+    float: left;
+    width: 140px;
+    margin-right: 70px;
+}
+
+.footer a:hover {
+    color: #cbc9cd;
+}
+
+.footerBullets {
+
+}
+
+.section-wrapper {
+    margin-top: -100px;
+    padding-top: 100px;
+    height: 900px;
+    color: #ffffff;
+}
+
+.section-wrapper.about {
+    background-color: #5e923c;
+}
+
+.section-wrapper.download {
+    background-color: #425E2F;
+}
+
+.section-wrapper.useCases {
+    background-color: #5e923c;
 }

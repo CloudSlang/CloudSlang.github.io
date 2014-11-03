@@ -28,7 +28,7 @@ angular.module('scoreWebsiteApp')
             footerOnlineTutorial: 'Online Tutorial',
             footerHowToBuy: 'How To Buy',
             footerStatus: 'Status',
-            footerScoreTeam: 'Score Team',
+            footerScoreTeam: 'score Team',
 
             // bullets
             mainBulletsContentTitle: 'Content',

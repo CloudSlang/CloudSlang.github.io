@@ -19,15 +19,10 @@ angular.module('scoreWebsiteApp')
             headerStartNow: 'Start Now',
 
             // footer
-            footerAboutTitle: 'About Us',
-            footerDocumentationTitle: 'Documentation',
-            footerUseCasesTitle: 'Use Cases',
-            footerTeam: 'Team',
-            footerNews: 'News',
-            footerContact: 'Contact',
-            footerOnlineTutorial: 'Online Tutorial',
-            footerHowToBuy: 'How To Buy',
-            footerStatus: 'Status',
+            footerPrivacy: 'Privacy',
+            footerDocumentation: 'Documentation',
+            footerTerms: 'Terms',
+            footerTrademarks: 'Trademarks',
             footerScoreTeam: 'score Team',
 
             // bullets

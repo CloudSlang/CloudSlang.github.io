@@ -41,7 +41,9 @@ angular.module('scoreWebsiteApp')
             link: function(scope, element) {
                 element.on('click', function(event) {
                     event.preventDefault();
-                    $('html, body').animate({scrollTop: 0}, 'slow');
+                    $('html, body').animate({scrollTop: 0}, 'slow', function () {
+                        $('.header .nav .current').removeClass('current');
+                    });
                 });
             }
         };

@@ -2,33 +2,23 @@
     <div class="container">
         <div class="row row-centered">
             <div class="col-md-2 col-xs-4 col-centered">
-                <p class="h5"><strong>{{$root.messages.footerAboutTitle}}</strong></p>
-                <ul>
-                    <li><a ng-href="#">{{$root.messages.footerTeam}}</a></li>
-                    <li><a ng-href="#">{{$root.messages.footerNews}}</a></li>
-                    <li><a ng-href="#">{{$root.messages.footerContact}}</a></li>
-                </ul>
+                <p>© {{$root.year}} score</p>
             </div>
             <div class="col-md-2 col-xs-4 col-centered">
-                <p class="h5"><strong>{{$root.messages.footerDocumentationTitle}}</strong></p>
-                <ul>
-                    <li><a ng-href="#">{{$root.messages.footerOnlineTutorial}}</a></li>
-                    <li><a ng-href="#">{{$root.messages.footerHowToBuy}}</a></li>
-                    <li><a ng-href="#">{{$root.messages.footerStatus}}</a></li>
-                </ul>
+                <a ng-href="#">{{$root.messages.footerDocumentation}}</a>
             </div>
             <div class="col-md-2 col-xs-4 col-centered">
-                <p class="h5"><strong>{{$root.messages.footerUseCasesTitle}}</strong></p>
-                <ul>
-                    <li><a ng-href="#">{{$root.messages.footerOnlineTutorial}}</a></li>
-                    <li><a ng-href="#">{{$root.messages.footerHowToBuy}}</a></li>
-                    <li><a ng-href="#">{{$root.messages.footerStatus}}</a></li>
-                </ul>
+                <a ng-href="#">{{$root.messages.footerPrivacy}}</a>
             </div>
-        </div>
-        <div class="copyright text-center">
-            <p>© {{$root.year}} score</p>
-            <p><span class="glyphicon glyphicon-heart"></span> {{$root.messages.footerScoreTeam}}</p>
+            <div class="col-md-2 col-xs-4 col-centered">
+                <a ng-href="#">{{$root.messages.footerTerms}}</a>
+            </div>
+            <div class="col-md-2 col-xs-4 col-centered">
+                <a ng-href="#">{{$root.messages.footerTrademarks}}</a>
+            </div>
+            <div class="col-md-2 col-xs-4 col-centered">
+                <p><span class="glyphicon glyphicon-heart"></span> {{$root.messages.footerScoreTeam}}</p>
+            </div>
         </div>
     </div>
 </div>

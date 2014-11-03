@@ -1,6 +1,11 @@
 <div ng-controller="HeaderCtrl" class="header">
     <nav class="navbar navbar-default navbar-fixed-top main-nav" role="navigation">
         <div class="container">
+            <div class="forkMe">
+                <a href="https://github.com/score" target="_blank">
+                    <img alt="Fork score on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
+                </a>
+            </div>
             <div class="navbar-header responsive-logo">
                 <button class="navbar-toggle collapsed" type="button" collapse-on-click Click data-toggle="collapse"
                         data-target=".bs-navbar-collapse">
@@ -9,7 +14,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <p class="h3 text-muted scroll-top" scroll-top>score</p>
+                <p class="h3 text-muted scroll-top" scroll-top>
+                    <img src="images/scorelogo.png" img-responsive alt="score" width="50px" height="50px"/>
+                    score
+                </p>
             </div>
             <ul one-page-nav class="nav navbar-nav navbar-right navbar-collapse bs-navbar-collapse collapse">
                 <li><a ng-href="#{{sections[0].id}}">{{sections[0].title}}</a></li>
@@ -17,6 +25,7 @@
                 <li><a ng-href="#{{sections[2].id}}">{{sections[2].title}}</a></li>
                 <li><a ng-href="#{{sections[3].id}}">{{sections[3].title}}</a></li>
             </ul>
+
         </div>
     </nav>
     <div class="container">
@@ -27,7 +36,15 @@
                 <br/>
                 <p class="h5">{{$root.messages.headerDescription}}</p>
                 <br/>
-                <a class="btn btn-primary btn-lg">{{$root.messages.headerStartNow}}</a>
+                <div class="row">
+                    <div class="col-md-3 col-xs-3">
+                        <a class="btn btn-primary btn-lg">{{$root.messages.headerStartNow}}</a>
+                    </div>
+                    <div class="col-md-3 col-xs-3 col-xs-offset-2 pull-left fork">
+                        <iframe src="http://ghbtns.com/github-btn.html?user=score&repo=score&type=fork&count=true&size=large"
+                                allowtransparency="true" frameborder="0" scrolling="0" width="200" height="30"></iframe>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6 col-xs-12 videoContainer">
                 <iframe src="//player.vimeo.com/video/71071900?portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>

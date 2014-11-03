@@ -39,6 +39,10 @@ ul {
     margin-top: 100px;
 }
 
+.videoContainer {
+    text-align: right;
+}
+
 @media (max-width: 991px) {
     .header {
         min-height: 750px;
@@ -46,6 +50,7 @@ ul {
 
     .videoContainer {
         margin-top: 50px;
+        text-align: left;
     }
 }
 

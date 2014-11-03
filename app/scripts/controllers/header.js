@@ -1,12 +1,7 @@
 'use strict';
 
 angular.module('scoreWebsiteApp')
-    .controller('HeaderCtrl', function ($scope, $window) {
-        $scope.goHome = function () {
-            $window.location.reload();
-            $window.scrollTo(0, 0);
-        };
-
+    .controller('HeaderCtrl', function () {
         // hide menu bar on click (small resolutions)
         $(document).on('click.nav','.navbar-collapse.in',function(e) {
             if ($(e.target).is('a') || $(e.target).is('button')) {
@@ -37,6 +32,17 @@ angular.module('scoreWebsiteApp')
                 };
 
                 timer(onePageNav, 0); // must be refresh after dom is finished
+            }
+        };
+    }]).directive('scrollTop', [function() {
+        return {
+            restrict: 'A',
+            template: '',
+            link: function(scope, element) {
+                element.on('click', function(event) {
+                    event.preventDefault();
+                    $('html, body').animate({scrollTop: 0}, 'slow');
+                });
             }
         };
     }]);

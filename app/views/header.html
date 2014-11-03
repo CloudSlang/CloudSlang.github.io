@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h3 class="text-muted" ng-click="goHome()">Score</h3>
+                <p class="h3 text-muted scroll-top" scroll-top>Score</p>
             </div>
             <ul one-page-nav class="nav navbar-nav navbar-right navbar-collapse bs-navbar-collapse collapse">
                 <li><a ng-href="#{{sections[0].id}}">{{sections[0].title}}</a></li>
@@ -20,11 +20,18 @@
         </div>
     </nav>
     <div class="container">
-        <p class="h2">{{$root.messages.headerMainTitle1}}</p>
-        <p class="h2">{{$root.messages.headerMainTitle2}}</p>
-        <br/>
-        <p class="h5">{{$root.messages.headerDescription}}</p>
-        <br/>
-        <a class="btn btn-primary btn-lg">{{$root.messages.headerStartNow}}</a>
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <p class="h2">{{$root.messages.headerMainTitle1}}</p>
+                <p class="h2">{{$root.messages.headerMainTitle2}}</p>
+                <br/>
+                <p class="h5">{{$root.messages.headerDescription}}</p>
+                <br/>
+                <a class="btn btn-primary btn-lg">{{$root.messages.headerStartNow}}</a>
+            </div>
+            <div class="col-md-6 col-xs-12 videoContainer">
+                <iframe src="//player.vimeo.com/video/71071900?portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </div>

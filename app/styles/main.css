@@ -22,10 +22,41 @@ ul {
     display: none !important;
 }
 
+/* centered columns styles for bootstrap */
+.row-centered {
+    text-align: center;
+}
+.col-centered {
+    display: inline-block;
+    float: none;
+    text-align: left;
+    margin-right: -4px;
+}
+
 .header {
     min-height: 450px;
     overflow: hidden;
     margin-top: 100px;
+}
+
+@media (max-width: 991px) {
+    .header {
+        min-height: 750px;
+    }
+
+    .videoContainer {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 535px) {
+    .header {
+        min-height: 450px;
+    }
+
+    .videoContainer {
+        display: none;
+    }
 }
 
 .navbar-header {
@@ -55,40 +86,84 @@ ul {
 .footer {
     color: #ffffff;
     background-color: #425E2F;
-    height: 180px;
+    height: 100%;
     padding-top: 20px;
-}
-
-.footer .span {
-    display: inline;
-    float: left;
-    width: 140px;
-    margin-right: 70px;
 }
 
 .footer a:hover {
     color: #cbc9cd;
 }
 
-.footerBullets {
-
+.copyright {
+    margin-top: 35px;
 }
 
 .section-wrapper {
     margin-top: -100px;
-    padding-top: 100px;
-    height: 900px;
+    padding-top: 60px;
+    min-height: 900px;
     color: #ffffff;
 }
 
-.section-wrapper.about {
-    background-color: #5e923c;
+.section-wrapper h1 {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-.section-wrapper.download {
+.section-wrapper.bullets {
+    background-color: #5e923c;
+    min-height: 660px;
+}
+
+.section-wrapper.about {
     background-color: #425E2F;
 }
 
-.section-wrapper.useCases {
+.section-wrapper.download {
     background-color: #5e923c;
+}
+
+.section-wrapper.useCases {
+    background-color: #425E2F;
+}
+
+.section-wrapper.contact-us {
+    background-color: #5e923c;
+    min-height: 600px;
+    padding-bottom: 20px;
+}
+
+.contact-us .input-box,textarea {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.contact-us .custom-button {
+    float: right;
+}
+
+.textarea-box {
+    border: 0;
+    text-align: left;
+    text-transform: none;
+    padding: 9px;
+    min-height: 250px;
+    padding-left: 15px;
+    display: inline-block;
+    border-radius: 4px;
+    background: rgba(255,255,255, 0.95);
+    resize: none;
+}
+
+.input-box {
+    border: 0;
+    width: 274px;
+    text-align: left;
+    text-transform: none;
+    padding: 9px;
+    min-height: 46px;
+    padding-left: 15px;
+    display: inline-block;
+    border-radius: 4px;
+    background: rgba(255,255,255, 0.95);
 }

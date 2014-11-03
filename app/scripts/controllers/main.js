@@ -6,9 +6,9 @@ angular.module('scoreWebsiteApp')
         // App labels
         $rootScope.messages = {
             // nav bar
-            navAboutTitle: 'Who are we?',
-            navDownloadTitle: 'Download',
-            navUseCasesTitle: 'Use cases',
+            navGettingStartedTitle: 'Getting Started',
+            navContributeTitle: 'Contribute',
+            navAboutTitle: 'About Us',
             navContactUsTitle: 'Contact Us',
 
             // header
@@ -40,9 +40,9 @@ angular.module('scoreWebsiteApp')
         };
 
         $rootScope.sections = [
+            { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
+            { id: 'contribute', title: $rootScope.messages.navContributeTitle  },
             { id: 'about', title: $rootScope.messages.navAboutTitle },
-            { id: 'download', title: $rootScope.messages.navDownloadTitle  },
-            { id: 'useCases', title: $rootScope.messages.navUseCasesTitle  },
             { id: 'contactUs', title: $rootScope.messages.navContactUsTitle  }
         ];
 

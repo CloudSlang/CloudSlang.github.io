@@ -120,15 +120,15 @@ ul {
     min-height: 660px;
 }
 
-.section-wrapper.about {
+.section-wrapper.gettingStarted {
     background-color: #425E2F;
 }
 
-.section-wrapper.download {
+.section-wrapper.contribute {
     background-color: #5e923c;
 }
 
-.section-wrapper.useCases {
+.section-wrapper.about {
     background-color: #425E2F;
 }
 

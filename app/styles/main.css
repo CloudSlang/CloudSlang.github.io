@@ -182,8 +182,8 @@ ul {
     color: #ffffff;
 }
 
-.section-wrapper h1 {
-    text-align: center;
+.section-header {
+    text-align: left;
     margin-bottom: 40px;
 }
 
@@ -218,10 +218,35 @@ ul {
 
 .section-wrapper.about {
     background-color: #2c451c;
+    padding-top: 100px;
+    min-height: 700px;
+}
+
+@media (max-width: 767px) {
+    .section-wrapper.about {
+        height: 2300px;
+    }
+}
+
+@media (max-width: 580px) {
+    .section-wrapper.about {
+        height: 2000px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-wrapper.about {
+        height: 1800px;
+    }
+}
+
+.about .hplogo {
+    width: 120px;
+    margin-top: -80px;
 }
 
 .section-wrapper.contact-us {
-    background-color: #5d913a;
+    background-color: #8a9a7c;
     min-height: 725px;
     padding-bottom: 20px;
 }
@@ -233,6 +258,12 @@ ul {
 }
 .contact-us .custom-button {
     float: right;
+    background-color: #2c451c;
+    border-color: #2c451c;
+}
+
+.contact-us .custom-button:active {
+    outline: none;
 }
 
 .textarea-box {

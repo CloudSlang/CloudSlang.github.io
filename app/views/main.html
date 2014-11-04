@@ -4,20 +4,23 @@
     </section>
     <section id="{{sections[0].id}}" class="section-wrapper gettingStarted">
         <div class="container">
-            <h1>{{sections[0].title}}</h1>
+            <p class="h2 section-header">{{sections[0].title}}</p>
         </div>
     </section>
     <section id="{{sections[1].id}}" class="section-wrapper contribute">
         <div class="container">
-            <h1>{{sections[1].title}}</h1>
+            <p class="h2 section-header">{{sections[1].title}}</p>
         </div>
     </section>
     <section id="{{sections[2].id}}" class="section-wrapper about">
+        <div ng-include src="'views/aboutus.html'"></div>
+    </section>
+    <section id="{{sections[3].id}}" class="section-wrapper contribute">
         <div class="container">
-            <h1>{{sections[2].title}}</h1>
+            <p class="h2 section-header">{{sections[3].title}}</p>
         </div>
     </section>
-    <section id="{{sections[3].id}}" class="section-wrapper contact-us">
+    <section id="{{sections[4].id}}" class="section-wrapper contact-us">
         <div ng-include src="'views/contactus.html'"></div>
     </section>
 </div>

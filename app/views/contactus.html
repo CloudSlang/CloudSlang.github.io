@@ -2,28 +2,28 @@
     <h1>{{sections[3].title}}</h1>
     <div class="row">
         <form role="form" class="contact-form">
-            <div class="col-md-12">
-                <div ng-show="submitted" ng-class="{ 'alert-success': submitSuccess, 'alert-danger': !submitSuccess}"
-                     class="col-md-12 alert text-center">
-                    {{ submitMessage }}
-                </div>
-            </div>
             <div>
-                <div class="col-lg-4 col-sm-4">
+                <div class="col-lg-6 col-sm-4">
                     <input ng-model="mailOptions.name" type="text" placeholder="Your Name" class="form-control input-box" required>
                 </div>
-                <div class="col-lg-4 col-sm-4">
+                <div class="col-lg-6 col-sm-4">
                     <input ng-model="mailOptions.email" type="email" placeholder="Your Email" class="form-control input-box" required>
                 </div>
                 <div class="yep hide">
-                    <input type="text" placeholder="URL">
+                    <input ng-model="mailOptions.last" type="text" placeholder="URL">
                 </div>
-                <div class="col-lg-4 col-sm-4">
+                <div class="col-lg-12 col-sm-4">
                     <input ng-model="mailOptions.subject" type="text" placeholder="Subject" class="form-control input-box" required>
                 </div>
             </div>
             <div class="col-md-12">
                 <textarea ng-model="mailOptions.body" class="form-control textarea-box" placeholder="Your Message" required></textarea>
+            </div>
+            <div class="col-md-12">
+                <div ng-show="submitted" ng-class="{ 'alert-success': submitSuccess, 'alert-danger': !submitSuccess}"
+                     class="col-md-12 alert text-center">
+                    {{ submitMessage }}
+                </div>
             </div>
             <div class="col-md-12">
                 <button class="btn btn-primary custom-button" ng-click="submitForm(mailOptions)">Send Message</button>

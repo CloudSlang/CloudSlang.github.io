@@ -18,7 +18,7 @@ app.get('/status',function(req, res){
 
 app.post('/contact',function(req, res){
 
-    if (!req.body.name || !req.body.email || !req.body.subject || !req.body.body) {
+    if (!req.body.name || !req.body.email || !req.body.subject || !req.body.body || req.body.last) {
         res.status(400);
     } else {
         var mailOptions = {

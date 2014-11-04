@@ -29,8 +29,11 @@ ul {
 .col-centered {
     display: inline-block;
     float: none;
-    text-align: left;
     margin-right: -4px;
+}
+
+.col-centered .left {
+    text-align: left;
 }
 
 .header {
@@ -154,6 +157,18 @@ ul {
 .section-wrapper.bullets {
     background-color: #5e923c;
     min-height: 660px;
+}
+
+@media (max-width: 991px) {
+    .section-wrapper.bullets {
+        min-height: 1000px;
+    }
+}
+
+@media (max-width: 670px) {
+    .section-wrapper.bullets {
+        min-height: 1250px;
+    }
 }
 
 .section-wrapper.gettingStarted {

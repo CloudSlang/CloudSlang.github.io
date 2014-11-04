@@ -31,7 +31,11 @@ angular.module('scoreWebsiteApp')
             mainBulletsLightweightTitle: 'Lightweight',
             mainBulletsContentDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
             mainBulletsMultiLingualDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            mainBulletsLightweightDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
+            mainBulletsLightweightDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+
+            // contact us
+            contactSuccess: 'Your message was sent successfully. Thanks!',
+            contactFailure: 'Please fill out all the fields in the form.'
         };
 
         $rootScope.sections = [

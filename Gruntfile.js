@@ -63,6 +63,21 @@ module.exports = function (grunt) {
                     '.tmp/styles/{,*/}*.css',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
+            },
+            express: {
+                files: [
+                    '<%= yeoman.app %>/{,*//*}*.html',
+                    '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
+                    '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
+                    '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
+                    'index.js',
+                    'server/{,*//*}*.{js,json}'
+                ],
+                tasks: ['express:dev'],
+                options: {
+                    livereload: true,
+                    nospawn: true //Without this option specified express won't be reloaded
+                }
             }
         },
 
@@ -348,6 +363,29 @@ module.exports = function (grunt) {
             ]
         },
 
+        open: {
+            server: {
+                url: 'http://localhost:<%= express.options.port %>'
+            }
+        },
+
+        express: {
+            options: {
+                port: process.env.PORT || 9001
+            },
+            dev: {
+                options: {
+                    script: 'index.js'
+                }
+            },
+            prod: {
+                options: {
+                    script: 'index.js'
+                }
+            }
+        },
+
+
         // Test settings
         karma: {
             unit: {
@@ -369,6 +407,22 @@ module.exports = function (grunt) {
             'concurrent:server',
             'autoprefixer',
             'connect:livereload',
+            'watch'
+        ]);
+    });
+
+    grunt.registerTask('serve-express', 'Compile then start an express node', function (target) {
+        if (target === 'dist') {
+            return grunt.task.run(['build', 'connect:dist:keepalive']);
+        }
+
+        grunt.task.run([
+            'clean:server',
+            'wiredep',
+            'concurrent:server',
+            'autoprefixer',
+            'express:dev',
+            'open',
             'watch'
         ]);
     });

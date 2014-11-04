@@ -1,27 +1,33 @@
-<div class="container">
+<div ng-controller="ContactUsCtrl" class="container">
     <h1>{{sections[3].title}}</h1>
     <div class="row">
-        <div role="form" class="contact-form">
+        <form role="form" class="contact-form">
+            <div class="col-md-12">
+                <div ng-show="submitted" ng-class="{ 'alert-success': submitSuccess, 'alert-danger': !submitSuccess}"
+                     class="col-md-12 alert text-center">
+                    {{ submitMessage }}
+                </div>
+            </div>
             <div>
                 <div class="col-lg-4 col-sm-4">
-                    <input type="text" name="name" id="name" placeholder="Your Name" class="form-control input-box" required>
+                    <input ng-model="mailOptions.name" type="text" placeholder="Your Name" class="form-control input-box" required>
                 </div>
                 <div class="col-lg-4 col-sm-4">
-                    <input type="email" name="email" id="contact_email" placeholder="Your Email" class="form-control input-box" required>
+                    <input ng-model="mailOptions.email" type="email" placeholder="Your Email" class="form-control input-box" required>
                 </div>
                 <div class="yep hide">
-                    <input type="text" name="url" id="url" placeholder="URL">
+                    <input type="text" placeholder="URL">
                 </div>
                 <div class="col-lg-4 col-sm-4">
-                    <input type="text" name="subject" id="subject" placeholder="Subject" class="form-control input-box" required>
+                    <input ng-model="mailOptions.subject" type="text" placeholder="Subject" class="form-control input-box" required>
                 </div>
             </div>
             <div class="col-md-12">
-                <textarea name="message" id="message" class="form-control textarea-box" placeholder="Your Message" required></textarea>
+                <textarea ng-model="mailOptions.body" class="form-control textarea-box" placeholder="Your Message" required></textarea>
             </div>
             <div class="col-md-12">
-                <button class="btn btn-primary custom-button" type="submit">Send Message</button>
+                <button class="btn btn-primary custom-button" ng-click="submitForm(mailOptions)">Send Message</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>

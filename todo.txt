@@ -1,7 +1,8 @@
-1. Getting Started - Orit
-2. Logo - DONE
-3. Fork icons - DONE
-4. Footer (terms and so on) - DONE
-5. Fix navigation mark issue - DONE
-6. Fonts - Doron
-7. Contact us - server
+- Getting Started - Orit
+- Logo - DONE
+- Fork icons - DONE
+- Footer (terms and so on) - DONE
+- Fix navigation mark issue - DONE
+- Fonts - Doron
+- Contact us, server - DONE
+- Change email of contact us sender - Doron

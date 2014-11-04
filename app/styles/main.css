@@ -245,6 +245,11 @@ ul {
     margin-top: -80px;
 }
 
+.about .team-member-image {
+    width: 308px;
+    height: 225px;
+}
+
 .section-wrapper.contact-us {
     background-color: #8a9a7c;
     min-height: 725px;

@@ -1,4 +1,4 @@
-<div ng-controller="AboutCtrl" class="container">
+<div class="container">
     <div class="row row-centered">
         <div class="col-md-12 col-xs-12 col-centered">
             <div class="row row-centered">
@@ -9,20 +9,33 @@
         <div class="col-md-8 col-sm-10 col-xs-8 col-centered">
             <div class="row team-members center-block">
                 <div class="team-member col-md-3 col-sm-3 col-xs-10">
-                    <hover-member-image member="meshi" name="Meshi Peer"></hover-member-image>
+                   <div ng-mouseenter="member1Hover = true" ng-mouseleave="member1Hover = false">
+                       <img ng-class="{hide: !member1Hover}" class="img-responsive team-member-image" src="images/team/meshi.jpg">
+                       <img ng-class="{hide: member1Hover}" class="img-responsive team-member-image" src="images/team/hovermeshi.jpg">
+                        <p class="h4 text-center">Meshi Peer</p>
+                    </div>
                 </div>
                 <div class="team-member col-md-3 col-sm-3 col-xs-10">
-                    <hover-member-image member="meir" name="Meir Wahnon"></hover-member-image>
+                    <div ng-mouseenter="member2Hover = true" ng-mouseleave="member2Hover = false">
+                        <img ng-class="{hide: !member2Hover}" class="img-responsive team-member-image" src="images/team/meir.jpg">
+                        <img ng-class="{hide: member2Hover}" class="img-responsive team-member-image" src="images/team/hovermeir.jpg">
+                        <p class="h4 text-center">Meir Whanon</p>
+                    </div>
                 </div>
                 <div class="team-member col-md-3 col-sm-3 col-xs-10">
-                    <hover-member-image member="eliya" name="Eliya Sadan"></hover-member-image>
+                    <div ng-mouseenter="member3Hover = true" ng-mouseleave="member3Hover = false">
+                        <img ng-class="{hide: !member3Hover}" class="img-responsive team-member-image" src="images/team/eliya.jpg">
+                        <img ng-class="{hide: member3Hover}" class="img-responsive team-member-image" src="images/team/hovereliya.jpg">
+                        <p class="h4 text-center">Eliya Sadan</p>
+                    </div>
                 </div>
                 <div class="team-member col-md-3 col-sm-3 col-xs-10">
-                    <hover-member-image member="orit" name="Orit Stone"></hover-member-image>
+                    <div ng-mouseenter="member4Hover = true" ng-mouseleave="member4Hover = false">
+                        <img ng-class="{hide: !member4Hover}" class="img-responsive team-member-image" src="images/team/orit.jpg">
+                        <img ng-class="{hide: member4Hover}" class="img-responsive team-member-image" src="images/team/hoverorit.jpg">
+                        <p class="h4 text-center">Orit Stone</p>
+                    </div>
                 </div>
-                <!--<div class="team-member col-md-4 img-responsive">-->
-                    <!--<hover-member-image member="meshi"></hover-member-image>-->
-                <!--</div>-->
             </div>
         </div>
     </div>

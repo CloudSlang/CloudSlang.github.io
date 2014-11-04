@@ -23,7 +23,7 @@ angular.module('scoreWebsiteApp')
             footerDocumentation: 'Documentation',
             footerTerms: 'Terms',
             footerTrademarks: 'Trademarks',
-            footerScoreTeam: 'score Team',
+            footerScoreTeam: 'score team',
 
             // bullets
             mainBulletsContentTitle: 'Content',

@@ -163,6 +163,10 @@ ul {
     .section-wrapper.bullets {
         min-height: 1000px;
     }
+
+    .section-wrapper.bullets .col-centered .left {
+        text-align: center;
+    }
 }
 
 @media (max-width: 670px) {

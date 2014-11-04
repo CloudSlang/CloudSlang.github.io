@@ -1,11 +1,19 @@
 'use strict';
 
 angular.module('scoreWebsiteApp')
-    .controller('HeaderCtrl', function () {
+    .controller('HeaderCtrl', function ($document) {
         // hide menu bar on click (small resolutions)
-        $(document).on('click.nav','.navbar-collapse.in',function(e) {
+        $document.on('click.nav','.navbar-collapse.in',function(e) {
             if ($(e.target).is('a') || $(e.target).is('button')) {
                 $(this).collapse('hide');
+            }
+        });
+
+        // workaround to remove the current class from the navbar when reaching the header
+        $(window).scroll(function() {
+            var windscroll = $(window).scrollTop();
+            if (windscroll < 800) {
+                $('.header .nav .current').removeClass('current');
             }
         });
     }).directive('onePageNav', ['$timeout', function(timer) {
@@ -18,7 +26,7 @@ angular.module('scoreWebsiteApp')
                         currentClass: 'current',
                         changeHash: false,
                         scrollSpeed: 750,
-                        scrollThreshold: 0.5,
+                        scrollThreshold: 0.2,
                         filter: '',
                         easing: 'swing',
                         scrollOffset: 300,

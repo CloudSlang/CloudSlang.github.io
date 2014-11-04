@@ -18,7 +18,7 @@ angular.module('scoreWebsiteApp')
             },
             link: function(scope, elm, attrs){
                 var imagesPath = 'images/team/';
-                var hoverPrefox = 'yearbook-';
+                var hoverPrefox = 'yearbook';
                 scope.memberName = attrs.name;
                 scope.memberImage = imagesPath + hoverPrefox + attrs.member + ".jpg";
                 elm.bind('mouseenter',function(){

@@ -322,6 +322,8 @@ ul {
 }
 
 .start-now-button.left-side {
+    background-color: #026f9a;
+    border-color: #026f9a;
     margin-right: 5px;
     width: 70px;
 }

@@ -327,11 +327,11 @@ ul {
 
 .gettingStarted .roundedbox {
     position: relative;
-    background: #3D4937;
+    background: #152D07;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    border: 1px solid #555;
+    border: 1px solid #4D5A53;
     color: white;
 }
 

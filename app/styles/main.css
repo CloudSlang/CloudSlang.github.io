@@ -233,6 +233,12 @@ ul {
     min-height: 700px;
 }
 
+@media (max-width: 991px) {
+    .section-wrapper.about {
+        height: 950px;
+    }
+}
+
 @media (max-width: 767px) {
     .section-wrapper.about {
         height: 2300px;
@@ -241,13 +247,7 @@ ul {
 
 @media (max-width: 580px) {
     .section-wrapper.about {
-        height: 2000px;
-    }
-}
-
-@media (max-width: 480px) {
-    .section-wrapper.about {
-        height: 1800px;
+        height: 2100px;
     }
 }
 
@@ -330,8 +330,18 @@ ul {
     width: 70px;
 }
 
+.start-now-button.left-side:hover {
+    background-color: #0299d4;
+    border-color: transparent;
+}
+
 .start-now-button.right-side {
     width: 150px;
+}
+
+.start-now-button.right-side:hover {
+    background-color: #026f9a;
+    border-color: transparent;
 }
 
 .start-now-button img {

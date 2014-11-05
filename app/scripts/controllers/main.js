@@ -40,7 +40,17 @@ angular.module('scoreWebsiteApp')
             contactFailure: 'Please fill out all the fields in the form.',
 
             // about us
-            aboutUsWhoWeAreText: 'HP Operations Orchestration R&D team re-wrote 10.x version, starting 2011. We believe we have a very good orchestration technology, that we want to contribute to the open source developers community. We started the effort of score at 2014.'
+            aboutUsWhoWeAreText: 'HP Operations Orchestration R&D team re-wrote 10.x version, starting 2011. We believe we have a very good orchestration technology, that we want to contribute to the open source developers community. We started the effort of score at 2014.',
+
+            // getting started
+            downloadCliHeader: 'Download and Install score command-line application on your localhost',
+            downloadCliText: 'You can get score CLI installed and running on your own machine',
+            downloadCliDownloadLink: 'Download Now',
+            embedScoreHeader: 'Embed score in your application',
+            embedScoreText: 'You can embed score easily in your Java application',
+            embedScoreLink: 'Press here to see how',
+            orText: 'Or'
+
         };
 
         $rootScope.sections = [

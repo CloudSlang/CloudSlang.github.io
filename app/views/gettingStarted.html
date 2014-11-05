@@ -1,0 +1,37 @@
+<div class="container">
+    <p class="h3">{{sections[0].title}}</p>
+    <br>
+    <div class="row">
+        <div class="roundedbox col-md-12 col-xs-12 col-sm-12 ">
+            <div class="boxcontent col-md-8 col-xs-6 col-sm-8">
+                <p class="h3">{{$root.messages.downloadCliHeader}}</p>
+                <p>{{$root.messages.downloadCliText}}</p>
+                <a ng-href="">{{$root.messages.downloadCliDownloadLink}}</a>
+            </div>
+            <div class="iconBox col-md-4 col-xs-6 text-center" >
+                <img class="img-responsive" src="images/download.png">
+            </div>
+        </div>
+
+        <div style="margin: 15px">
+            <div class="col-md-12">
+                <div class="textseparator h3 text-center">
+                    {{$root.messages.orText}}
+                </div>
+            </div>
+        </div>
+
+        <div class="roundedbox col-md-12 col-xs-12 col-sm-12 ">
+            <div class="iconBox col-md-4 col-xs-6 col-sm-4 text-center">
+                <img class="img-responsive" src="images/download.png">
+            </div>
+            <div class="col-md-8  col-xs-6 col-sm-8">
+                <div class="boxcontent col-md-10 col-xs-10">
+                    <p class="h3">{{$root.messages.embedScoreHeader}}</p>
+                    <p>{{$root.messages.embedScoreText}}</p>
+                    <a ng-href="">{{$root.messages.embedScoreLink}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

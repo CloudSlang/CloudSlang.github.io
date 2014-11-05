@@ -5,6 +5,7 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 a:hover {
@@ -322,4 +323,31 @@ ul {
 
 .start-now-button.right-side {
     width: 150px;
+}
+
+.gettingStarted .roundedbox {
+    position: relative;
+    background: #3D4937;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    color: white;
+}
+
+.gettingStarted .boxcontent {
+    padding: 5px;
+}
+
+.gettingStarted .iconBox {
+    background: #4b5944;
+}
+
+.gettingStarted .iconBox > img {
+    display: inline-block;
+}
+
+.gettingStarted .textseparator {
+    padding-bottom: 20px;
+    padding-top: 20px;
 }

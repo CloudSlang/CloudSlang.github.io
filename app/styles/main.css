@@ -18,6 +18,12 @@ ul {
     margin:0;
 }
 
+.h1, h1 {
+    font-size: 45px;
+    font-weight: lighter;
+    line-height: 0.9;
+}
+
 .h3, h3 {
     font-size: 35px;
     font-weight: normal;
@@ -141,6 +147,12 @@ ul {
     }
 }
 
+@media (max-width: 370px) {
+    .header {
+        min-height: 660px;
+    }
+}
+
 .navbar-header {
     cursor: pointer;
 }
@@ -219,12 +231,29 @@ ul {
     }
 }
 
-.section-wrapper.gettingStarted {
-    background-color: #2c451c;
+@media (max-width: 370px) {
+    .section-wrapper.bullets {
+        min-height: 1700px;
+    }
 }
 
-.section-wrapper.contribute {
-    background-color: #5d913a;
+.section-wrapper.gettingStarted {
+    background-color: #111c0b;
+}
+
+.section-wrapper.use-cases {
+    color: #000000;
+    background-color: #f5f5f5;
+    min-height: 750px;
+}
+
+.use-cases .section-header {
+    text-align: center;
+}
+
+.use-cases .use-case img {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .section-wrapper.about {
@@ -243,11 +272,29 @@ ul {
     .section-wrapper.about {
         height: 2300px;
     }
+    .section-wrapper.use-cases {
+        min-height: 1650px;
+    }
 }
 
 @media (max-width: 580px) {
     .section-wrapper.about {
         height: 2100px;
+    }
+}
+
+@media (max-width: 402px) {
+    .section-wrapper.use-cases {
+        min-height: 1850px;
+    }
+}
+
+@media (max-width: 370px) {
+    .section-wrapper.about {
+        min-height: 2200px;
+    }
+    .section-wrapper.use-cases {
+        min-height: 1950px;
     }
 }
 

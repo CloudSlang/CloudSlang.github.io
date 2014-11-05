@@ -7,7 +7,6 @@ angular.module('scoreWebsiteApp')
         $rootScope.messages = {
             // nav bar
             navGettingStartedTitle: 'Getting Started',
-            navContributeTitle: 'Contribute',
             navAboutTitle: 'About Us',
             navUseCasesTitle: 'Use cases',
             navContactUsTitle: 'Contact Us',
@@ -23,7 +22,7 @@ angular.module('scoreWebsiteApp')
             footerPrivacy: 'Privacy',
             footerDocumentation: 'Documentation',
             footerTerms: 'Terms',
-            footerTrademarks: 'Trademarks',
+            footerContribute: 'Contribute',
             footerScoreTeam: 'score team',
 
             // bullets
@@ -41,12 +40,20 @@ angular.module('scoreWebsiteApp')
             contactSendButton: 'Send Message',
 
             // about us
-            aboutUsWhoWeAreText: 'HP Operations Orchestration R&D team re-wrote 10.x version, starting 2011. We believe we have a very good orchestration technology, that we want to contribute to the open source developers community. We started the effort of score at 2014.'
+            aboutUsWhoWeAreText: 'HP Operations Orchestration R&D team re-wrote 10.x version, starting 2011. We believe we have a very good orchestration technology, that we want to contribute to the open source developers community. We started the effort of score at 2014.',
+
+            // use cases
+            useCasesTitle: 'Powered with score',
+            useCasesCsa: 'Cloud Service Automation',
+            useCasesCodar: 'Project CODAR',
+            useCasesOO: 'Operations Orchestration',
+            useCasesCsaDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+            useCasesCodarDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+            useCasesOODesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
         };
 
         $rootScope.sections = [
             { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
-            { id: 'contribute', title: $rootScope.messages.navContributeTitle  },
             { id: 'about', title: $rootScope.messages.navAboutTitle },
             { id: 'useCases', title: $rootScope.messages.navUseCasesTitle },
             { id: 'contactUs', title: $rootScope.messages.navContactUsTitle  }

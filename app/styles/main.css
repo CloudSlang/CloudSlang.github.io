@@ -277,6 +277,8 @@ ul {
     float: right;
     background-color: #2c451c;
     border-color: #2c451c;
+    border-radius: 0;
+    padding: 10px;
 }
 
 .contact-us .custom-button:active {
@@ -296,7 +298,7 @@ ul {
     min-height: 250px;
     padding-left: 15px;
     display: inline-block;
-    border-radius: 4px;
+    border-radius: 0;
     background: rgba(255,255,255, 0.95);
     resize: none;
 }
@@ -310,7 +312,7 @@ ul {
     min-height: 46px;
     padding-left: 15px;
     display: inline-block;
-    border-radius: 4px;
+    border-radius: 0;
     background: rgba(255,255,255, 0.95);
 }
 

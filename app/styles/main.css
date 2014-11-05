@@ -272,6 +272,7 @@ ul {
     margin: auto;
     margin-bottom: 20px;
 }
+
 .contact-us .custom-button {
     float: right;
     background-color: #2c451c;
@@ -280,6 +281,11 @@ ul {
 
 .contact-us .custom-button:active {
     outline: none;
+}
+
+.contact-us .custom-button img {
+    margin-right: 10px;
+    margin-top: -3px;
 }
 
 .textarea-box {
@@ -322,4 +328,8 @@ ul {
 
 .start-now-button.right-side {
     width: 150px;
+}
+
+.start-now-button img {
+    width: 43px;
 }

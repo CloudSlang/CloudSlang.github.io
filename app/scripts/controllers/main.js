@@ -38,6 +38,7 @@ angular.module('scoreWebsiteApp')
             contactUsHeader: 'You\'d like to reach out to us? Drop us a message!',
             contactSuccess: 'Your message was sent successfully. Thanks!',
             contactFailure: 'Please fill out all the fields in the form.',
+            contactSendButton: 'Send Message',
 
             // about us
             aboutUsWhoWeAreText: 'HP Operations Orchestration R&D team re-wrote 10.x version, starting 2011. We believe we have a very good orchestration technology, that we want to contribute to the open source developers community. We started the effort of score at 2014.'

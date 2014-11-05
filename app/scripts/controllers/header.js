@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('scoreWebsiteApp')
-    .controller('HeaderCtrl', function ($document) {
+    .controller('HeaderCtrl', function ($scope, $rootScope, $document) {
         // hide menu bar on click (small resolutions)
         $document.on('click.nav','.navbar-collapse.in',function(e) {
             if ($(e.target).is('a') || $(e.target).is('button')) {
@@ -16,6 +16,19 @@ angular.module('scoreWebsiteApp')
                 $('.header .nav .current').removeClass('current');
             }
         });
+
+        function animateToElement(elementId) {
+            var element = $('#' + elementId);
+            if (element.length) {
+                $('html, body').animate({
+                    scrollTop: element.offset().top - 50
+                }, 750, 'swing');
+            }
+        }
+
+        $scope.scrollToGettingStarted = function () {
+            animateToElement($rootScope.sections[0].id);
+        };
     }).directive('onePageNav', ['$timeout', function(timer) {
         return {
             restrict: 'A',

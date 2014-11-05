@@ -37,18 +37,21 @@
                 <br/>
                 <p class="h4">{{$root.messages.headerDescription}}</p>
                 <br/>
-                <div class="row">
-                    <div class="col-md-3 col-xs-3">
-                        <a class="btn btn-primary btn-lg">{{$root.messages.headerStartNow}}</a>
-                    </div>
-                    <div class="col-md-3 col-xs-3 col-xs-offset-2 pull-left fork">
-                        <iframe src="http://ghbtns.com/github-btn.html?user=score&repo=score&type=fork&count=true&size=large"
-                                allowtransparency="true" frameborder="0" scrolling="0" width="200" height="30"></iframe>
+                <div class="col-md-12">
+                    <div class="row" ng-click="scrollToGettingStarted()">
+                        <a class="pull-left btn btn-primary btn-lg start-now-button left-side"><p class="h4">-></p></a>
+                        <a class="pull-left btn btn-primary btn-lg start-now-button right-side"><p class="h4">{{$root.messages.headerStartNow}}</p></a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xs-12 videoContainer">
-                <iframe src="//player.vimeo.com/video/710719dfg00?portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <div class="col-md-6 col-xs-12">
+                <div class="videoContainer">
+                    <iframe src="//player.vimeo.com/video/710719dfg00?portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+                <div class="fork">
+                    <iframe src="http://ghbtns.com/github-btn.html?user=score&repo=score&type=fork&count=true&size=large"
+                            allowtransparency="true" frameborder="0" scrolling="0" width="200" height="30"></iframe>
+                </div>
             </div>
         </div>
     </div>

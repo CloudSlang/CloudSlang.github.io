@@ -64,7 +64,7 @@ ul {
 
 .header .fork {
     display: none;
-    margin-top: 6px;
+    margin-top: 20px;
 }
 
 .header .forkMe {
@@ -85,12 +85,19 @@ ul {
 
     .header .fork {
         display: inherit;
+        margin-left: 55px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .header .fork {
+        margin-left: 0;
     }
 }
 
 @media (max-width: 991px) {
     .header {
-        min-height: 770px;
+        min-height: 860px;
     }
 
     .header .forkMe {
@@ -100,6 +107,10 @@ ul {
     .videoContainer {
         margin-top: 30px;
         text-align: left;
+    }
+
+    .header .fork {
+        margin-left: 0;
     }
 }
 
@@ -122,7 +133,7 @@ ul {
 
 @media (max-width: 535px) {
     .header {
-        min-height: 550px;
+        min-height: 570px;
     }
 
     .videoContainer {
@@ -295,4 +306,20 @@ ul {
     display: inline-block;
     border-radius: 4px;
     background: rgba(255,255,255, 0.95);
+}
+
+.start-now-button {
+    border-radius: 0;
+    border-color: #02a9e6;
+    background-color: #0299d4;
+    padding: 10px;
+}
+
+.start-now-button.left-side {
+    margin-right: 5px;
+    width: 70px;
+}
+
+.start-now-button.right-side {
+    width: 150px;
 }

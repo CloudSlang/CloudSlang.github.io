@@ -29,12 +29,14 @@ angular.module('scoreWebsiteApp')
         }
 
         $scope.boxClick = function () {
-            $scope.selected = !$scope.selected || false;
-            $('.box-container').css({ 'padding-top': '35px' });
-            $('.box-image').css({ 'margin-top': '10px' });
-            $('#embedbox').css({ cursor: 'pointer' });
-            $('#downloadbox').css({ cursor: 'pointer' });
-            $('#downloadbox').transition({ x: '-300px', y: '-50px', scale: [0.587, 0.5]}, 1500, 'ease-in-out');
-            $('#embedbox').transition({ x: '298px', y: '-205px', scale: [0.587, 0.5]}, 1500, 'ease-in-out', expandDetailedBox);
+            if (!$scope.selected) {
+                $scope.selected = !$scope.selected || false;
+                $('.box-container').css({ 'padding-top': '35px' });
+                $('.box-image').css({ 'margin-top': '10px' });
+                $('#embedbox').css({ cursor: 'pointer' });
+                $('#downloadbox').css({ cursor: 'pointer' });
+                $('#downloadbox').transition({ x: '-300px', y: '-50px', scale: [0.587, 0.5]}, 1500, 'ease-in-out');
+                $('#embedbox').transition({ x: '298px', y: '-205px', scale: [0.587, 0.5]}, 1500, 'ease-in-out', expandDetailedBox);
+            }
         };
     });

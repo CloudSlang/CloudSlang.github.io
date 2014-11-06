@@ -1,3 +1,24 @@
 <div>
-    embed content here
+    <div class="explantion col-md-7">
+        <p class="h3">{{$root.messages.detailedEmbedPomHeader}}</p>
+        <p class="h4">{{$root.messages.detailedEmbedPomText}}</p>
+    </div>
+    <div class="snippet col-md-8">
+        <div ng-include src="'views/codesnippets/pomcode.html'"></div>
+    </div>
+    <div class="explantion col-md-7">
+        <p class="h3">{{$root.messages.detailedEmbedSpringHeader}}</p>
+        <p class="h4">{{$root.messages.detailedEmbedSpringText}}</p>
+    </div>
+    <div class="snippet col-md-8">
+        <div ng-include src="'views/codesnippets/sprintcontextcode.html'"></div>
+    </div>
+    <div class="explantion col-md-7 col-xs-12">
+        <p class="h3">{{$root.messages.detailedEmbedScoreApiHeader}}</p>
+        <p class="h4">{{$root.messages.detailedEmbedScoreApiText}}</p>
+    </div>
+    <div class="snippet col-md-8">
+        <div ng-include src="'views/codesnippets/javasembedcode.html'"></div>
+        <a ng-href="">{{$root.messages.detailedEmbedScoreApiMore}}</a>
+    </div>
 </div>

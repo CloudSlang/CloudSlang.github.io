@@ -407,6 +407,7 @@ ul {
     background-color: #152d07;
     color: #ffffff;
     height: 150px;
+    cursor: pointer;
 }
 
 .getting-started .box .box-container {

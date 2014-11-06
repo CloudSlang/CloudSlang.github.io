@@ -1,7 +1,7 @@
 <div ng-controller="GettingStartedCtrl" class="container">
     <p class="h1 section-header">{{sections[0].title}}</p>
     <div class="row row-centered">
-        <div id="downloadbox" class="col-md-10 box download-box col-centered" ng-click="selectItem(items[0])"
+        <div id="downloadbox" class="col-md-10 box download-box col-centered" ng-click="selectedItem = items[0]; boxClick(); selectItem(items[0])"
              ng-class="{selected: selected && finishedAnimation && selectedItem === items[0]}">
             <div class="box-container">
                 <div class="row">
@@ -19,7 +19,7 @@
             <p class="h1 boxseparator text-center">{{$root.messages.orText}}</p>
         </div>
 
-        <div id="embedbox" class="col-md-10 box embed-box col-centered" ng-click="selectItem(items[1])"
+        <div id="embedbox" class="col-md-10 box embed-box col-centered" ng-click="selectedItem = items[1]; boxClick(); selectItem(items[1])"
              ng-class="{selected : selected && finishedAnimation && selectedItem === items[1]}">
             <div class="box-container">
                 <div class="row">

@@ -57,6 +57,7 @@ angular.module('scoreWebsiteApp')
             embedScoreHeader: 'Embed score in your application',
             embedScoreLink: 'Press here to see how',
             orText: 'or',
+            // -- download and install sli
             detailedDownloadCliHeader: 'Download score command-line',
             detailedDownloadCliText: 'Download and Unzip score command-line',
             detailedSlangCliHeader: 'Use slang',
@@ -69,7 +70,15 @@ angular.module('scoreWebsiteApp')
             detailedCliPrefix: '>',
             detailedCliClear: 'Clear',
             detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
-            detailedCliTriggerFlow: 'score trigger-flow\n^1000Flow triggered successfully^1200\nthe weather in Tel Aviv is: Hot\n>'
+            detailedCliTriggerFlow: 'score trigger-flow\n^1000Flow triggered successfully^1200\nthe weather in Tel Aviv is: Hot\n>',
+            // -- embed score
+            detailedEmbedPomHeader: 'Score dependencies',
+            detailedEmbedPomText: 'Add score dependencies to your pom.xml',
+            detailedEmbedSpringHeader: 'Spring configuration',
+            detailedEmbedSpringText: 'Add some score configuration to your application context xml',
+            detailedEmbedScoreApiHeader: 'Use score API',
+            detailedEmbedScoreApiText: 'Call score APIs from your java application',
+            detailedEmbedScoreApiMore: 'Press here for more score APIs'
         };
 
         function isApple() {

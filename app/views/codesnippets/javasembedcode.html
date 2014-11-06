@@ -1,0 +1,37 @@
+<pre>
+    <code class="java">
+    package com.hp.oo;
+
+    import com.hp.oo.allow.JavaPolicy1;
+    import com.hp.oo.notallow.JavaPolicy2;
+
+    import java.io.File;
+    import java.io.IOException;
+    import java.security.Policy;
+
+    public class Main {
+
+        public static final String FILE_FOR_TEST = "C:\\Temp\\silent.properties";
+
+        public static void main(String[] args) {
+
+            JavaPolicy1 javaPolicy1 = new JavaPolicy1();
+            JavaPolicy2 javaPolicy2 = new JavaPolicy2();
+
+
+            System.out.println("Checking " + javaPolicy1.getClass().getCanonicalName());
+            System.out.println("=================================================");
+            try {
+                System.out.println("Success? " + javaPolicy1.doSomethingWithFile(FILE_FOR_TEST));
+            } catch (Exception e) {
+                System.out.println("Success? false");
+            }
+
+            System.out.println();
+            System.out.println("Checking " + javaPolicy2.getClass().getCanonicalName());
+            System.out.println("=================================================");
+            System.out.println("Success? " + javaPolicy2.doSomethingWithFile(FILE_FOR_TEST));
+        }
+    }
+    </code>
+</pre>

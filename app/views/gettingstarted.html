@@ -36,75 +36,10 @@
         <div id="detailedBox" class="col-md-12 detailedBox">
             <div>
                 <div ng-show="selectedItem == items[0]" class="download-detailed">
-                    <div class="explantion col-md-7">
-                        <p class="h3">{{$root.messages.detailedDownloadCliHeader}}</p>
-                        <p class="h4">{{$root.messages.detailedDownloadCliText}}</p>
-                    </div>
-                    <div class="explantion col-md-7">
-                        <p class="h3">{{$root.messages.detailedSlangCliHeader}}</p>
-                        <p class="h4">{{$root.messages.detailedSlangCliText}}</p>
-                    </div>
-                    <div class="snippet col-md-7">
-                        <pre>
-                            <code class="yaml">
-    namespace: slang.sample.flows
-
-    imports:
-        - ops: slang.ops.operations
-
-    flow:
-        name: SimpleFlow
-        inputs:
-        - input_1
-        - input_2
-        - input_3
-
-        workflow:
-            CheckWeather:
-                do:
-                    ops.check_Weather:
-                        city: input_1
-                publish:
-                    weather
-
-            PrintWeather:
-                operation:
-                    ops.print:
-                        - text:  "'the weather in' + input_1 + ' is:' + weather
-                            </code>
-                        </pre>
-                    </div>
-                    <div class="explantion col-md-7 col-xs-12">
-                        <p class="h3">{{$root.messages.detailedUseCliHeader}}</p>
-                        <p class="h4">{{$root.messages.detailedUseCliText}}</p>
-                    </div>
-                    <div class="col-md-7 col-xs-12">
-                        <div class="cli">
-                            <div class="cli-header">{{$root.messages.detailedCliHeader}}</div>
-                            <div class="cli-body">{{$root.messages.detailedCliPrefix}}
-                                <span id="cli-open-score" class="typed"></span>
-                                <span id="cli-open-score-cursor" class="typed-cursor">|</span>
-                            </div>
-                            <a ng-href="" ng-click="showCli('cli-open-score', [$root.messages.detailedCliOpenScore])">{{$root.messages.embedScoreLink}}</a>
-                        </div>
-                    </div>
-                    <div class="explantion col-md-7 col-xs-12">
-                        <p class="h3">{{$root.messages.detailedTriggerFlowHeader}}</p>
-                        <p class="h4">{{$root.messages.detailedTriggerFlowText}}</p>
-                    </div>
-                    <div class="col-md-7 col-xs-12">
-                        <div class="cli">
-                            <div class="cli-header">{{$root.messages.detailedCliHeader}}</div>
-                            <div class="cli-body">{{$root.messages.detailedCliPrefix}}
-                                <span id="cli-trigger-flow" class="typed"></span>
-                                <span id="cli-trigger-flow-cursor" class="typed-cursor">|</span>
-                            </div>
-                            <a ng-href="" ng-click="selectedItem = items[1]; showCli('cli-trigger-flow', [$root.messages.detailedCliTriggerFlow])">{{$root.messages.embedScoreLink}}</a>
-                        </div>
-                    </div>
+                    <div ng-include src="'views/downloadclibox.html'"></div>
                 </div>
                 <div ng-show="selectedItem == items[1]" class="embed-detailed">
-                    embed content
+                    <div ng-include src="'views/embedbox.html'"></div>
                 </div>
             </div>
         </div>

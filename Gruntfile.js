@@ -182,7 +182,8 @@ module.exports = function (grunt) {
         wiredep: {
             app: {
                 src: ['<%= yeoman.app %>/index.html'],
-                ignorePath:  /\.\.\//
+                ignorePath:  /\.\.\//,
+                exclude: ['bower_components/highlightjs/styles/default.css']
             }
         },
 

@@ -21,6 +21,7 @@
     "globals": {
         "angular": false,
         "$": false,
-        "_": false
+        "_": false,
+        "hljs": false
     }
 }

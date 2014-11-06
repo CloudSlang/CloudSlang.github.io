@@ -7,8 +7,8 @@ angular.module('scoreWebsiteApp')
         $rootScope.messages = {
             // nav bar
             navGettingStartedTitle: 'Getting Started',
-            navAboutTitle: 'About Us',
             navUseCasesTitle: 'Use cases',
+            navAboutTitle: 'About Us',
             navContactUsTitle: 'Contact Us',
 
             // header
@@ -49,13 +49,44 @@ angular.module('scoreWebsiteApp')
             useCasesOO: 'Operations Orchestration',
             useCasesCsaDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
             useCasesCodarDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            useCasesOODesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
+            useCasesOODesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+
+            // getting started
+            downloadCliHeader: 'Download and use score command-line',
+            downloadCliDownloadLink: 'Download and see how',
+            embedScoreHeader: 'Embed score in your application',
+            embedScoreLink: 'Press here to see how',
+            orText: 'or',
+            detailedDownloadCliHeader: 'Download score command-line',
+            detailedDownloadCliText: 'Download and Unzip score command-line',
+            detailedSlangCliHeader: 'Use slang',
+            detailedSlangCliText: 'Write flow with slang',
+            detailedUseCliHeader: 'Start score command-line',
+            detailedUseCliText: 'Open your console and execute score cli',
+            detailedTriggerFlowHeader: 'Trigger flow',
+            detailedTriggerFlowText: 'Trigger your slang written flow from score command-line',
+            detailedCliHeader: 'console',
+            detailedCliPrefix: '>',
+            detailedCliClear: 'Clear',
+            detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
+            detailedCliTriggerFlow: 'score trigger-flow\n^1000Flow triggered successfully^1200\nthe weather in Tel Aviv is: Hot\n>'
         };
+
+        function isApple() {
+            return !!(navigator.userAgent.match(/webOS/i) ||
+                navigator.userAgent.match(/iPhone/i) ||
+                navigator.userAgent.match(/iPad/i) ||
+                navigator.userAgent.match(/iPod/i));
+        }
+
+        if (isApple()) {
+            $('body').css('font-family', 'Helvetica');
+        }
 
         $rootScope.sections = [
             { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
-            { id: 'about', title: $rootScope.messages.navAboutTitle },
             { id: 'useCases', title: $rootScope.messages.navUseCasesTitle },
+            { id: 'about', title: $rootScope.messages.navAboutTitle },
             { id: 'contactUs', title: $rootScope.messages.navContactUsTitle  }
         ];
 

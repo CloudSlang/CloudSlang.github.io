@@ -61,23 +61,23 @@ angular.module('scoreWebsiteApp')
             detailedDownloadCliHeader: 'Download score command-line',
             detailedDownloadCliText: 'Download and Unzip score command-line',
             detailedSlangCliHeader: 'Use slang',
-            detailedSlangCliText: 'Write flow with slang',
+            detailedSlangCliText: 'Write a flow with slang',
             detailedUseCliHeader: 'Start score command-line',
             detailedUseCliText: 'Open your console and execute score cli',
             detailedTriggerFlowHeader: 'Trigger flow',
             detailedTriggerFlowText: 'Trigger your slang written flow from score command-line',
             detailedCliHeader: 'console',
-            detailedCliPrefix: '>',
+            detailedCliPrefix: '$',
             detailedCliClear: 'Clear',
             detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
-            detailedCliTriggerFlow: 'score trigger-flow\n^1000Flow triggered successfully^1200\nthe weather in Tel Aviv is: Hot\n>',
+            detailedCliTriggerFlow: 'score trigger-flow\n^1000Flow triggered successfully^1200\nthe weather in Tel Aviv is: Hot\n$',
             // -- embed score
             detailedEmbedPomHeader: 'Score dependencies',
             detailedEmbedPomText: 'Add score dependencies to your pom.xml',
             detailedEmbedSpringHeader: 'Spring configuration',
-            detailedEmbedSpringText: 'Add some score configuration to your application context xml',
+            detailedEmbedSpringText: 'Add some score configuration to your Spring application context xml',
             detailedEmbedScoreApiHeader: 'Use score API',
-            detailedEmbedScoreApiText: 'Call score APIs from your java application',
+            detailedEmbedScoreApiText: 'Call score APIs from your java application (Trigger example)',
             detailedEmbedScoreApiMore: 'Press here for more score APIs'
         };
 

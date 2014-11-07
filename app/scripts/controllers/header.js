@@ -17,17 +17,17 @@ angular.module('scoreWebsiteApp')
             }
         });
 
-        function animateToElement(elementId) {
+        $rootScope.animateToElement = function (elementId) {
             var element = $('#' + elementId);
             if (element.length) {
                 $('html, body').animate({
                     scrollTop: element.offset().top - 50
                 }, 750, 'swing');
             }
-        }
+        };
 
         $scope.scrollToGettingStarted = function () {
-            animateToElement($rootScope.sections[0].id);
+            $rootScope.animateToElement($rootScope.sections[0].id);
         };
     }).directive('onePageNav', ['$timeout', function(timer) {
         return {

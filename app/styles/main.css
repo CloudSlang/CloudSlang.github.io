@@ -455,8 +455,22 @@ ul {
     padding-left: 30px;
 }
 
-.getting-started .detailedBox .embed-detailed {
+@media (max-width: 596px) {
+    .getting-started .box .box-container .box-image {
+        width: 60px;
+        margin-top: 30px;
+        margin-right: 10px;
+        margin-left: 30px;
+    }
+    .getting-started .box-container .h3 {
+        font-size: 20px;
+    }
+}
 
+@media (max-width: 480px) {
+    .getting-started .box-container .h3 {
+        font-size: 14px;
+    }
 }
 
 .snippet {

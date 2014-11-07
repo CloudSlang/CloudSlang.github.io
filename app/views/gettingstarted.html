@@ -1,12 +1,12 @@
 <div ng-controller="GettingStartedCtrl" class="container">
     <p class="h1 section-header">{{sections[0].title}}</p>
     <div class="row row-centered">
-        <div id="downloadbox" class="col-md-10 box download-box col-centered" ng-click="selectedItem = items[0]; boxClick(); selectItem(items[0])"
+        <div id="downloadbox" class="col-md-10 col-xs-12 box download-box col-centered" ng-click="selectedItem = items[0]; boxClick(); selectItem(items[0])"
              ng-class="{selected: selected && finishedAnimation && selectedItem === items[0]}">
             <div class="box-container">
                 <div class="row">
-                    <img class="col-md-4 img-responsive box-image" src="images/gettingstarted/icon_download.png">
-                    <div class="box-content col-md-8">
+                    <img class="col-md-4 col-sm-1 col-xs-1 img-responsive box-image" src="images/gettingstarted/icon_download.png">
+                    <div class="box-content col-md-8 col-sm-8 col-xs-7">
                         <p class="h3">{{$root.messages.downloadCliHeader}}</p>
                         <a ng-href="" ng-click="selectedItem = items[0]; boxClick()"
                            ng-class="{hide: selected}">{{$root.messages.downloadCliDownloadLink}}</a>
@@ -19,12 +19,12 @@
             <p class="h1 boxseparator text-center">{{$root.messages.orText}}</p>
         </div>
 
-        <div id="embedbox" class="col-md-10 box embed-box col-centered" ng-click="selectedItem = items[1]; boxClick(); selectItem(items[1])"
+        <div id="embedbox" class="col-md-10 col-xs-12 box embed-box col-centered" ng-click="selectedItem = items[1]; boxClick(); selectItem(items[1])"
              ng-class="{selected : selected && finishedAnimation && selectedItem === items[1]}">
             <div class="box-container">
                 <div class="row">
-                    <img class="col-md-4 img-responsive box-image" src="images/gettingstarted/icon_embed.png">
-                    <div class="box-content col-md-8">
+                    <img class="col-md-4 col-sm-1 col-xs-1 img-responsive box-image" src="images/gettingstarted/icon_embed.png">
+                    <div class="box-content col-md-8 col-xs-6">
                         <p class="h3">{{$root.messages.embedScoreHeader}}</p>
                         <a ng-href="" ng-click="selectedItem = items[1]; boxClick()"
                            ng-class="{hide: selected}">{{$root.messages.embedScoreLink}}</a>

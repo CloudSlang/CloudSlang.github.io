@@ -310,7 +310,13 @@ ul {
 .section-wrapper.contact-us {
     background-color: #8a9a7c;
     min-height: 750px;
-    padding-bottom: 20px;
+}
+
+@media (min-height: 980px) {
+    .section-wrapper.contact-us {
+        min-height: 840px;
+        padding-top: 110px;
+    }
 }
 
 .contact-us .input-box,textarea {

@@ -2,6 +2,15 @@ body {
     font-family: 'HPFutura';
 }
 
+::selection {
+    background: #2f6019;
+    color: #ffffff;
+}
+::-moz-selection {
+    background: #2f6019;
+    color: #ffffff;
+}
+
 a {
     text-decoration: none;
     color: inherit;

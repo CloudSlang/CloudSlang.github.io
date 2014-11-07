@@ -450,6 +450,7 @@ ul {
 
 .getting-started .boxseparator {
     padding-bottom: 20px;
+    text-shadow: 1px 3px 10px #000;
 }
 
 .getting-started .detailedBox {

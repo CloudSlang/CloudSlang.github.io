@@ -59,8 +59,8 @@ function sendMail(mailOptions, success, failure) {
     var transporter = nodemailer.createTransport("SMTP", {
         service: 'Gmail',
         auth: {
-            user: 'ocvideomarketing@gmail.com',
-            pass: 'omer2310'
+            user: 'dorsha.meir',
+            pass: 'meir.dorsha'
         }
     });
 

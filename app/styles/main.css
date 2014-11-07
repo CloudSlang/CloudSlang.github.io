@@ -470,6 +470,11 @@ ul {
     padding-left: 30px;
 }
 
+.getting-started .download {
+    margin-top: -45px;
+    margin-left: 25px;
+}
+
 @media (max-width: 596px) {
     .getting-started .box .box-container .box-image {
         width: 60px;

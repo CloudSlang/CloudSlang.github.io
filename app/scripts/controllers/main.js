@@ -60,6 +60,8 @@ angular.module('scoreWebsiteApp')
             // -- download and install sli
             detailedDownloadCliHeader: 'Download score command-line',
             detailedDownloadCliText: 'Download and Unzip score command-line',
+            detailedDownloadLatest: 'Download latest version',
+            detailedDownloadOldVersions: 'Download old versions',
             detailedSlangCliHeader: 'Use slang',
             detailedSlangCliText: 'Write a flow with slang',
             detailedUseCliHeader: 'Start score command-line',

@@ -40,7 +40,7 @@ angular.module('scoreWebsiteApp')
             contactSendButton: 'Send Message',
 
             // about us
-            aboutUsWhoWeAreText: 'HP Operations Orchestration R&D team re-wrote 10.x version, starting 2011. We believe we have a very good orchestration technology, that we want to contribute to the open source developers community. We started the effort of score at 2014.',
+            aboutUsWhoWeAreText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at dui tellus. Ut tristique hendrerit dui ullamcorper finibus. Donec sagittis mattis efficitur. Vivamus et consectetur tellus. Proin placerat accumsan purus, nec imperdiet erat tristique vel. Ut ligula justo, dignissim vel.',
 
             // use cases
             useCasesTitle: 'Powered with score',

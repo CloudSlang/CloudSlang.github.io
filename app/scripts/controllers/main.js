@@ -44,9 +44,9 @@ angular.module('scoreWebsiteApp')
 
             // use cases
             useCasesTitle: 'Powered with score',
-            useCasesCsa: 'Some Great Product',
-            useCasesCodar: 'Amazing Product',
-            useCasesOO: 'Buzz Word',
+            useCasesCsa: 'Cloud Service Automation',
+            useCasesCodar: 'Project CODAR',
+            useCasesOO: 'Operations Orchestration',
             useCasesCsaDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
             useCasesCodarDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
             useCasesOODesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',

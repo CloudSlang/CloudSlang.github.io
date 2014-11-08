@@ -1,5 +1,5 @@
 body {
-    font-family: 'HPFutura';
+    font-family: 'HPFutura', Helvetica, Arial, sans-serif;;
 }
 
 ::selection {
@@ -523,6 +523,7 @@ ul {
     -ms-transition: all 0.5s ease-out;
     -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
+    cursor: pointer;
 }
 
 .cli > a {

@@ -55,7 +55,7 @@ angular.module('scoreWebsiteApp')
             downloadCliHeader: 'Download and use score command-line',
             downloadCliDownloadLink: 'Download and see how',
             embedScoreHeader: 'Embed score in your application',
-            embedScoreLink: 'Press here to see how',
+            embedScoreLink: 'Press to see how',
             orText: 'or',
             // -- download and install sli
             detailedDownloadCliHeader: 'Download score command-line',
@@ -82,17 +82,6 @@ angular.module('scoreWebsiteApp')
             detailedEmbedScoreApiText: 'Call score APIs from your java application (Trigger example)',
             detailedEmbedScoreApiMore: 'Press here for more score APIs'
         };
-
-        function isApple() {
-            return !!(navigator.userAgent.match(/webOS/i) ||
-                navigator.userAgent.match(/iPhone/i) ||
-                navigator.userAgent.match(/iPad/i) ||
-                navigator.userAgent.match(/iPod/i));
-        }
-
-        if (isApple()) {
-            $('body').css('font-family', 'Helvetica');
-        }
 
         $rootScope.sections = [
             { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },

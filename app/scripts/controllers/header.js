@@ -22,7 +22,7 @@ angular.module('scoreWebsiteApp')
             if (element.length) {
                 $('html, body').animate({
                     scrollTop: element.offset().top - 50
-                }, 750, 'swing');
+                }, 400, 'swing');
             }
         };
 
@@ -38,7 +38,7 @@ angular.module('scoreWebsiteApp')
                     element.onePageNav({
                         currentClass: 'current',
                         changeHash: false,
-                        scrollSpeed: 750,
+                        scrollSpeed: 400,
                         scrollThreshold: 0.2,
                         filter: '',
                         easing: 'swing',

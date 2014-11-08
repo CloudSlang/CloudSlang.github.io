@@ -5,7 +5,7 @@
              ng-class="{selected: selected && finishedAnimation && selectedItem === items[0]}">
             <div class="box-container">
                 <div class="row">
-                    <img class="col-md-4 col-sm-1 col-xs-1 img-responsive box-image" src="images/gettingstarted/icon_download.png">
+                    <img class="col-md-4 col-sm-1 col-xs-1 img-responsive box-image" src="images/gettingstarted/icon_download.png" alt="Download score">
                     <div class="box-content col-md-8 col-sm-8 col-xs-7">
                         <p class="h3">{{$root.messages.downloadCliHeader}}</p>
                         <a ng-href="" ng-click="selectedItem = items[0]; boxClick()"
@@ -23,7 +23,7 @@
              ng-class="{selected : selected && finishedAnimation && selectedItem === items[1]}">
             <div class="box-container">
                 <div class="row">
-                    <img class="col-md-4 col-sm-1 col-xs-1 img-responsive box-image" src="images/gettingstarted/icon_embed.png">
+                    <img class="col-md-4 col-sm-1 col-xs-1 img-responsive box-image" src="images/gettingstarted/icon_embed.png" alt="Embed score">
                     <div class="box-content col-md-8 col-xs-6">
                         <p class="h3">{{$root.messages.embedScoreHeader}}</p>
                         <a ng-href="" ng-click="selectedItem = items[1]; boxClick()"

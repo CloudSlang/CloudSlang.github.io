@@ -38,6 +38,10 @@ angular.module('scoreWebsiteApp')
             contactSuccess: 'Your message was sent successfully. Thanks!',
             contactFailure: 'Please fill out all the fields in the form.',
             contactSendButton: 'Send Message',
+            contactPlaceholderName: 'Your Name',
+            contactPlaceholderEmail: 'Your Email',
+            contactPlaceholderSubject: 'Subject',
+            contactPlaceholderMessage: 'Your Message',
 
             // about us
             aboutUsWhoWeAreText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at dui tellus. Ut tristique hendrerit dui ullamcorper finibus. Donec sagittis mattis efficitur. Vivamus et consectetur tellus. Proin placerat accumsan purus, nec imperdiet erat tristique vel. Ut ligula justo, dignissim vel.',

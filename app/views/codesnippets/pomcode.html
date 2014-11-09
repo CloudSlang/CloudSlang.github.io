@@ -3,26 +3,52 @@
     &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
     &lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-        xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0&gt;
+        xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0
+        http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+
         &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
 
-        &lt;parent&gt;
-            &lt;groupId&gt;com.hp.oo.central&lt;/groupId&gt;
-            &lt;artifactId&gt;audit&lt;/artifactId&gt;
-            &lt;version&gt;10.20.340-SNAPSHOT&lt;/version&gt;
-        &lt;/parent&gt;
+        &lt;groupId&gt;sample&lt;/groupId&gt;
+        &lt;artifactId&gt;embed-score&lt;/artifactId&gt;
+        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
 
-        &lt;artifactId&gt;oo-audit-api&lt;/artifactId&gt;
+        &lt;packaging&gt;jar&lt;/packaging&gt;
 
         &lt;dependencies&gt;
             &lt;dependency&gt;
-                &lt;groupId&gt;${commons.groupId}&lt;/groupId&gt;
-                &lt;artifactId&gt;oo-data&lt;/artifactId&gt;
+                &lt;groupId&gt;com.hp.score&lt;/groupId&gt;
+                &lt;artifactId&gt;score-all&lt;/artifactId&gt;
+                &lt;version&gt;0.1.228&lt;/version&gt;
             &lt;/dependency&gt;
 
             &lt;dependency&gt;
-                &lt;groupId&gt;javax.validation&lt;/groupId&gt;
-                &lt;artifactId&gt;validation-api&lt;/artifactId&gt;
+                &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+                &lt;version&gt;4.1.1.RELEASE&lt;/version&gt;
+            &lt;/dependency&gt;
+
+            &lt;dependency&gt;
+                &lt;groupId&gt;com.hp.score&lt;/groupId&gt;
+                &lt;artifactId&gt;score-lang-runtime&lt;/artifactId&gt;
+                &lt;version&gt;0.1.228&lt;/version&gt;
+            &lt;/dependency&gt;
+
+            &lt;dependency&gt;
+                &lt;groupId&gt;com.hp.score&lt;/groupId&gt;
+                &lt;artifactId&gt;score-lang-compiler&lt;/artifactId&gt;
+                &lt;version&gt;0.1.228&lt;/version&gt;
+            &lt;/dependency&gt;
+
+            &lt;dependency&gt;
+                &lt;groupId&gt;junit&lt;/groupId&gt;
+                &lt;artifactId&gt;junit&lt;/artifactId&gt;
+                &lt;version&gt;4.11&lt;/version&gt;
+            &lt;/dependency&gt;
+
+            &lt;dependency&gt;
+                &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+                &lt;artifactId&gt;h2&lt;/artifactId&gt;
+                &lt;version&gt;1.3.175&lt;/version&gt;
             &lt;/dependency&gt;
         &lt;/dependencies&gt;
     &lt;/project&gt;

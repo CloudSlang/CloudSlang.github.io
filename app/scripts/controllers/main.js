@@ -83,8 +83,14 @@ angular.module('scoreWebsiteApp')
             detailedEmbedSpringHeader: 'Spring configuration',
             detailedEmbedSpringText: 'Add some score configuration to your Spring application context xml',
             detailedEmbedScoreApiHeader: 'Use score API',
-            detailedEmbedScoreApiText: 'Call score APIs from your java application (Trigger example)',
-            detailedEmbedScoreApiMore: 'Press here for more score APIs'
+            detailedEmbedScoreApiText: 'Call score APIs from your Java application (Trigger example)',
+            detailedEmbedScoreApiMore: 'Press here for more score APIs',
+            detailedEmbedScoreCompileHeader: 'Compile',
+            detailedEmbedScoreCompileText: 'Compile your application and create an executable jar using maven',
+            detailedEmbedCompileCli: 'mvn clean install^1000\n[INFO] Scanning for projects...\n ......\n[INFO] BUILD SUCCESS\n$',
+            detailedEmbedScoreRunHeader: 'Run',
+            detailedEmbedScoreRunText: 'Run your application from command line',
+            detailedEmbedRunCli: 'cd /dev/score-app/target\n$ java -jar sample-app.jar\n^1000\nChecking flow status...^1200\nFinished^1000\nthe weather in Tel Aviv is: Hot\n$'
         };
 
         $rootScope.sections = [

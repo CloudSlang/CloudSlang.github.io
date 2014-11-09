@@ -41,7 +41,7 @@
 
         private static void registerHandlers(EventBus eventBus) {
             Set&lt;String&gt; handlerTypes =
-                new HashSet<>(Arrays.asList(EventConstants.SCORE_FINISHED_EVENT,
+                new HashSet&lt;&gt;(Arrays.asList(EventConstants.SCORE_FINISHED_EVENT,
                     EventConstants.SCORE_FAILURE_EVENT));
 
             eventBus.subscribe(new ScoreEventListener() {

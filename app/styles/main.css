@@ -481,6 +481,20 @@ ul {
     margin-left: 25px;
 }
 
+@media (max-width: 766px) {
+    .getting-started .box {
+        cursor: default;
+    }
+
+    .getting-started .box .box-container .box-content {
+        margin-top: 10px;
+    }
+
+    .getting-started .box .box-container .box-content > a {
+        display: none;
+    }
+}
+
 @media (max-width: 596px) {
     .getting-started .box .box-container .box-image {
         width: 60px;

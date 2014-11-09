@@ -29,7 +29,7 @@ angular.module('scoreWebsiteApp')
         }
 
         $scope.boxClick = function () {
-            if (!$scope.selected) {
+            if (!$scope.selected && $(window).width() > 766) {
                 $scope.selected = !$scope.selected || false;
                 $('.box-container').css({ 'padding-top': '35px' });
                 $('.box-image').css({ 'margin-top': '10px' });

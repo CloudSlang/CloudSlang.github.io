@@ -12,9 +12,8 @@ angular.module('scoreWebsiteApp')
             navContactUsTitle: 'Contact Us',
 
             // header
-            headerMainTitle1: 'Process-based, lightweight, scalable',
-            headerMainTitle2: 'open-source orchestration engine',
-            headerDescription: 'score is a java-based open-source generic orchestration engine which is process-based, ' +
+            headerMainTitle: 'Process-based, lightweight, Multi-Lingual open-source orchestration engine',
+            headerDescription: 'score is a generic java-based open-source orchestration engine which is process-based, ' +
                 'embeddable, lightweight, scalable and multi-lingual',
             headerStartNow: 'Start Now',
 
@@ -26,12 +25,12 @@ angular.module('scoreWebsiteApp')
             footerScoreTeam: 'score team',
 
             // bullets
-            mainBulletsContentTitle: 'Content',
+            mainBulletsProcessBasedTitle: 'Process based',
             mainBulletsMultiLingualTitle: 'Multi-lingual',
             mainBulletsLightweightTitle: 'Lightweight',
-            mainBulletsContentDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            mainBulletsMultiLingualDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            mainBulletsLightweightDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+            mainBulletsProcessBasedDesc: 'The score language (slang) is an intuitive language to describe workflows in a re-usable fashion that can run using both the score library or the score CLI.',
+            mainBulletsMultiLingualDesc: 'Small footprint, ootb content and an easy-to-embed approach makes score the perfect choice as the  workflow orchestration solution in your application.',
+            mainBulletsLightweightDesc: 'Designed to support multiple compilers that can generate low level execution instructions, score serves as an orchestration platform for potentially any process language out there.',
 
             // contact us
             contactUsHeader: 'You\'d like to reach out to us? Drop us a message!',
@@ -44,7 +43,7 @@ angular.module('scoreWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsWhoWeAreText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at dui tellus. Ut tristique hendrerit dui ullamcorper finibus. Donec sagittis mattis efficitur. Vivamus et consectetur tellus. Proin placerat accumsan purus, nec imperdiet erat tristique vel. Ut ligula justo, dignissim vel.',
+            aboutUsWhoWeAreText: 'The Eclipse Foundation project \'score\' was contributed to the open source community by the HP Software engineers to create a collaborative effort by the community ti create the best orchestration technology.',
 
             // use cases
             useCasesTitle: 'Powered with score',

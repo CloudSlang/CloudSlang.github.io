@@ -90,6 +90,10 @@ ul {
     border: 0;
 }
 
+.header .header-title {
+    line-height: 1.2;
+}
+
 .videoContainer {
     text-align: right;
 }
@@ -157,9 +161,15 @@ ul {
     }
 }
 
-@media (max-width: 370px) {
+@media (max-width: 451px) {
     .header {
         min-height: 660px;
+    }
+}
+
+@media (max-width: 362px) {
+    .header {
+        min-height: 710px;
     }
 }
 

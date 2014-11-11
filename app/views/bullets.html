@@ -1,19 +1,22 @@
 <div class="container">
     <div class="row row-centered">
-        <div class="col-md-4 col-xs-7 col-centered">
+        <div class="col-md-3 col-xs-7 col-centered">
             <p class="h3">{{$root.messages.mainBulletsProcessBasedTitle}}</p>
             <img class="col-centered" src="images/bullets/icon_content.png" alt="Content"/>
             <p class="h4 left">{{$root.messages.mainBulletsProcessBasedDesc}}</p>
         </div>
-        <div class="col-md-4 col-xs-7 col-centered">
+        <div class="col-md-3 col-xs-7 col-md-offset-1 col-centered">
             <p class="h3">{{$root.messages.mainBulletsMultiLingualTitle}}</p>
             <img class="col-centered" src="images/bullets/icon_multi_lingo.png" alt="Multi Lingual"/>
             <p class="h4 left">{{$root.messages.mainBulletsMultiLingualDesc}}</p>
         </div>
-        <div class="col-md-4 col-xs-7 col-centered">
+        <div class="col-md-3 col-xs-7 col-md-offset-1 col-centered">
             <p class="h3">{{$root.messages.mainBulletsLightweightTitle}}</p>
             <img class="col-centered" src="images/bullets/icon_lightweight.png" alt="Lightweight"/>
-            <p class="h4 left">{{$root.messages.mainBulletsLightweightDesc}}</p>
+            <p class="h4 left">{{$root.messages.mainBulletsLightweightDesc}}
+                <a class="read-more" ng-href="https://wiki.eclipse.org/Score_Project" target="_blank">
+                    {{$root.messages.mainBulletsReadMore}}</a>
+            </p>
         </div>
     </div>
 </div>

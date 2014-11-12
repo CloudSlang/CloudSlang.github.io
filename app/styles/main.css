@@ -448,16 +448,18 @@ ul {
     color: #ffffff;
     height: 150px;
     cursor: pointer;
+    border-radius: 6px;
 }
 
 .getting-started .box .box-container {
     padding-top: 27px;
+    text-align: left;
 }
 
 .getting-started .box .box-container .box-image {
     width: 125px;
     margin-top: 2px;
-    margin-right: 50px;
+    margin-right: 35px;
     margin-left: 50px;
 }
 
@@ -480,13 +482,11 @@ ul {
     padding: 20px;
     min-height: 500px;
     margin-top: 10px;
-}
-
-.getting-started .detailedBox {
+    border-radius: 6px;
     text-align: left;
 }
 
-.getting-started .detailedBox .explantion {
+.getting-started .detailedBox .explanation {
     margin: 40px 0 60px 15px;
     border-left: 8px solid #5d913a;
     padding-left: 30px;

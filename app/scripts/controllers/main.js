@@ -7,7 +7,7 @@ angular.module('scoreWebsiteApp')
         $rootScope.messages = {
             // nav bar
             navGettingStartedTitle: 'Getting Started',
-            navUseCasesTitle: 'Use cases',
+            navUseCasesTitle: 'Use Cases',
             navAboutTitle: 'About Us',
             //navContactUsTitle: 'Contact Us',
             navLearnMoreTitle: 'Learn More',
@@ -54,7 +54,7 @@ angular.module('scoreWebsiteApp')
             aboutUsWhoWeAreText: 'The Eclipse Foundation™ project \'score\' was contributed to the open source community by the HP Software engineers to create a collaborative effort by the community ti create the best orchestration technology.',
 
             // use cases
-            useCasesTitle: 'Powered with score',
+            useCasesTitle: 'Use Cases',
             useCasesCsa: 'Cloud Service Automation',
             useCasesCodar: 'Project CODAR',
             useCasesOO: 'Operations Orchestration',
@@ -97,7 +97,7 @@ angular.module('scoreWebsiteApp')
             detailedEmbedCompileCli: 'mvn clean install^1000\n[INFO] Scanning for projects...\n ......\n[INFO] BUILD SUCCESS\n$',
             detailedEmbedScoreRunHeader: 'Run',
             detailedEmbedScoreRunText: 'Run your application from command line',
-            detailedEmbedRunCli: 'cd /dev/score-app/target\n$ java -jar sample-app.jar\n^1000\nChecking flow status...^1200\nFinished^1000\nthe weather in Tel Aviv is: Hot\n$'
+            detailedEmbedRunCli: 'cd /dev/score-app/target\n$ java -jar sample-app.jar\n^1000Checking flow status...^1200\nFinished^1000\nthe weather in San Fransisco is: Hot\n$'
         };
 
         $rootScope.sections = [

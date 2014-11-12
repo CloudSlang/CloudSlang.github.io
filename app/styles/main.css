@@ -69,6 +69,7 @@ ul {
     margin-right: -4px;
 }
 
+.col-centered.left,
 .col-centered .left {
     text-align: left;
 }

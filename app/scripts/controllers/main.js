@@ -51,7 +51,7 @@ angular.module('scoreWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsWhoWeAreText: 'The Eclipse Foundation project \'score\' was contributed to the open source community by the HP Software engineers to create a collaborative effort by the community ti create the best orchestration technology.',
+            aboutUsWhoWeAreText: 'The Eclipse Foundation™ project \'score\' was contributed to the open source community by the HP Software engineers to create a collaborative effort by the community ti create the best orchestration technology.',
 
             // use cases
             useCasesTitle: 'Powered with score',

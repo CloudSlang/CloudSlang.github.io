@@ -37,6 +37,8 @@ angular.module('scoreWebsiteApp')
             // learn more
             learnMoreDocumentation: 'Documentation',
             learnMoreContribute: 'Contribute',
+            learnMoreDocumentationText: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+            learnMoreContributeText: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
 
             // contact us
             contactUsHeader: 'You\'d like to reach out to us? Drop us a message!',

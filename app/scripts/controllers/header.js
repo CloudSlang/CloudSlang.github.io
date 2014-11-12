@@ -11,9 +11,11 @@ angular.module('scoreWebsiteApp')
 
         // workaround to remove the current class from the navbar when reaching the header
         $(window).scroll(function() {
-            var windscroll = $(window).scrollTop();
-            if (windscroll < 800) {
-                $('.header .nav .current').removeClass('current');
+            if (!$scope.navInProcess) {
+                var windscroll = $(window).scrollTop();
+                if (windscroll < 800) {
+                    $('.header .nav .current').removeClass('current');
+                }
             }
         });
 
@@ -44,10 +46,10 @@ angular.module('scoreWebsiteApp')
                         easing: 'swing',
                         scrollOffset: 300,
                         begin: function() {
-
+                            scope.navInProcess = true;
                         },
                         end: function() {
-
+                            scope.navInProcess = false;
                         }
                     });
                 };

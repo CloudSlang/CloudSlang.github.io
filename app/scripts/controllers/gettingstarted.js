@@ -28,7 +28,7 @@ angular.module('scoreWebsiteApp')
             $scope.$apply();
         }
 
-        $scope.boxClick = function () {
+        $scope.boxClick = function (clickedItem) {
             if (!$scope.selected && $(window).width() > 766) {
                 $scope.selected = !$scope.selected || false;
                 $('.box-container').css({ 'padding-top': '35px' });
@@ -37,6 +37,15 @@ angular.module('scoreWebsiteApp')
                 $('#downloadbox').css({ cursor: 'pointer' });
                 $('#downloadbox').transition({ x: '-300px', y: '-50px', scale: [0.587, 0.5]}, 1200, 'ease-in-out');
                 $('#embedbox').transition({ x: '298px', y: '-205px', scale: [0.587, 0.5]}, 1200, 'ease-in-out', expandDetailedBox);
+            } else if ($scope.selected && $scope.selectedItem === clickedItem) {
+                $scope.selected = !$scope.selected || false;
+                $('#detailedBox').css({ display : 'none' });
+                $('.box-container').css({ 'padding-top': '27px' });
+                $('.box-image').css({ 'margin-top': '20px' });
+                $('#embedbox').css({ cursor: 'pointer' });
+                $('#downloadbox').css({ cursor: 'pointer' });
+                $('#downloadbox').transition({ x: '0px', y: '0px', scale: [1, 1]}, 1200, 'ease-in-out');
+                $('#embedbox').transition({ x: '0px', y: '0px', scale: [1, 1]}, 1200, 'ease-in-out');
             }
         };
     });

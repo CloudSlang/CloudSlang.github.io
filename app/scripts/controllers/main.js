@@ -29,8 +29,8 @@ angular.module('scoreWebsiteApp')
             mainBulletsMultiLingualTitle: 'Multi-lingual',
             mainBulletsLightweightTitle: 'Lightweight',
             mainBulletsProcessBasedDesc: 'The score language (slang) is an intuitive language to describe workflows in a re-usable fashion that can run using both the score library or the score CLI.',
-            mainBulletsMultiLingualDesc: 'Small footprint, ootb content and an easy-to-embed approach makes score the perfect choice as the  workflow orchestration solution in your application.',
-            mainBulletsLightweightDesc: 'Designed to support multiple compilers that can generate low level execution instructions, score serves as an orchestration platform for potentially any process language out there.',
+            mainBulletsMultiLingualDesc: 'Designed to support multiple compilers that can generate low level execution instructions, score serves as an orchestration platform for potentially any process language out there.',
+            mainBulletsLightweightDesc: 'Small footprint, ootb content and an easy-to-embed approach makes score the perfect choice as the  workflow orchestration solution in your application.',
             mainBulletsReadMore: 'Read More',
 
             // contact us

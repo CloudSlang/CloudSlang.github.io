@@ -233,7 +233,7 @@ ul {
 }
 
 .section-header {
-    text-align: left;
+    text-align: center;
     margin-bottom: 40px;
 }
 
@@ -275,11 +275,6 @@ ul {
     color: #000000;
     background-color: #f5f5f5;
     min-height: 750px;
-}
-
-.getting-started .section-header,
-.use-cases .section-header {
-    text-align: center;
 }
 
 .use-cases .use-case img {

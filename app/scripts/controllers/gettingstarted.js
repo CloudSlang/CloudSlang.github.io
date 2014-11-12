@@ -23,10 +23,11 @@ angular.module('scoreWebsiteApp')
 
         function expandDetailedBox() {
             $('#detailedBox').css({ display: 'inline-block' });
-            $('#detailedBox').transition({ y: '-230px' }, 1200, 'ease-in-out');
-            $scope.finishedAnimation = true;
-            $scope.animationInProgress = false;
-            $scope.$apply();
+            $('#detailedBox').transition({ y: '-230px' }, 1200, 'ease-in-out', function () {
+                $scope.finishedAnimation = true;
+                $scope.animationInProgress = false;
+                $scope.$apply();
+            });
         }
 
         $scope.animationInProgress = false;

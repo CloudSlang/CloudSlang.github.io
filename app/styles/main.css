@@ -209,11 +209,20 @@ ul {
 }
 
 .footer {
-    color: #ffffff;
-    background-color: #2c451c;
+    color: #777;
+    background-color: #e4e4e4;
     height: 100%;
     padding-top: 10px;
-    border-top: 4px solid #314c1f;
+    border-top: 4px solid #d7d7d7;
+}
+
+.footer .copyright {
+    margin-top: 20px;
+}
+
+.footer .eclipse-logo {
+    width: 150px;
+    margin-bottom: 10px;
 }
 
 .section-wrapper {
@@ -329,6 +338,18 @@ ul {
 .about .team-member-image {
     width: 308px;
     height: 225px;
+}
+
+.section-wrapper.learn-more {
+    background-color: #8a9a7c;
+    min-height: 750px;
+}
+
+@media (min-height: 980px) {
+    .section-wrapper.learn-more {
+        min-height: 840px;
+        padding-top: 110px;
+    }
 }
 
 .section-wrapper.contact-us {

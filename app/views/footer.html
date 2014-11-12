@@ -1,23 +1,28 @@
 <div ng-controller="FooterCtrl" class="footer">
     <div class="container">
         <div class="row row-centered">
-            <div class="col-md-2 col-xs-4 col-centered">
-                <p>© {{$root.year}} score</p>
-            </div>
-            <div class="col-md-2 col-xs-4 col-centered">
-                <a ng-href="https://wiki.eclipse.org/Score_Project" target="_blank">{{$root.messages.footerDocumentation}}</a>
-            </div>
-            <div class="col-md-2 col-xs-4 col-centered">
-                <a ng-href="https://wiki.eclipse.org/How_to_contribute_code" target="_blank">{{$root.messages.footerContribute}}</a>
-            </div>
-            <div class="col-md-2 col-xs-4 col-centered">
+            <div class="col-md-2 col-xs-12 col-centered">
                 <a ng-href="https://eclipse.org/legal/privacy.php" target="_blank">{{$root.messages.footerPrivacy}}</a>
             </div>
-            <div class="col-md-2 col-xs-4 col-centered">
+            <div class="col-md-2 col-xs-12 col-centered">
                 <a ng-href="https://eclipse.org/legal/termsofuse.php" target="_blank">{{$root.messages.footerTerms}}</a>
             </div>
-            <div class="col-md-2 col-xs-4 col-centered">
-                <p><span class="glyphicon glyphicon-heart"></span><a ng-href="" ng-click="scrollToAbout()"> {{$root.messages.footerScoreTeam}}</a></p>
+            <div class="col-md-2 col-xs-12 col-centered">
+                <a ng-href="http://www.eclipse.org/legal/copyright.php" target="_blank">{{$root.messages.footerCopyrightAgent}}</a>
+            </div>
+            <div class="col-md-2 col-xs-12 col-centered">
+                <a ng-href="http://www.eclipse.org/legal" target="_blank">{{$root.messages.footerLegal}}</a>
+            </div>
+            <div class="col-md-2 col-xs-12 col-centered">
+                <a ng-href="http://www.eclipse.org/org/foundation/contact.php" target="_blank">{{$root.messages.footerContactUs}}</a>
+            </div>
+        </div>
+        <div class="row row-centered">
+            <div class="col-md-12 col-xs-12 copyright">
+                <a ng-href="http://www.eclipse.org" target="_blank">
+                    <img class="eclipse-logo" src="images/logos/eclipse_logo_colour.png"/>
+                </a>
+                <p>Copyright © {{$root.year}} The Eclipse Foundation. All Rights Reserved.</p>
             </div>
         </div>
     </div>

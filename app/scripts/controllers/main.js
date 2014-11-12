@@ -9,7 +9,8 @@ angular.module('scoreWebsiteApp')
             navGettingStartedTitle: 'Getting Started',
             navUseCasesTitle: 'Use cases',
             navAboutTitle: 'About Us',
-            navContactUsTitle: 'Contact Us',
+            //navContactUsTitle: 'Contact Us',
+            navLearnMoreTitle: 'Learn More',
 
             // header
             headerMainTitle: 'Process-based, lightweight, Multi-Lingual open-source orchestration engine',
@@ -18,11 +19,11 @@ angular.module('scoreWebsiteApp')
             headerStartNow: 'Start Now',
 
             // footer
-            footerPrivacy: 'Privacy',
-            footerDocumentation: 'Documentation',
-            footerTerms: 'Terms',
-            footerContribute: 'Contribute',
-            footerScoreTeam: 'score team',
+            footerPrivacy: 'Privacy Policy',
+            footerTerms: 'Terms os Use',
+            footerCopyrightAgent: 'Copyright Agent',
+            footerLegal: 'Legal',
+            footerContactUs: 'Contact Us',
 
             // bullets
             mainBulletsProcessBasedTitle: 'Process based',
@@ -30,8 +31,12 @@ angular.module('scoreWebsiteApp')
             mainBulletsLightweightTitle: 'Lightweight',
             mainBulletsProcessBasedDesc: 'The score language ("slang") is a simple and intuitive language to describe workflows in a re-usable fashion that can run using both the score library or the score command-line.',
             mainBulletsMultiLingualDesc: 'Designed to support multiple compilers that can generate low level execution instructions, score serves as an orchestration platform for potentially any process language out there.',
-            mainBulletsLightweightDesc: 'Small footprint, ootb content and an easy-to-embed approach makes score the perfect choice as the  workflow orchestration solution in your application.',
-            mainBulletsReadMore: 'Read More on Wiki',
+            mainBulletsLightweightDesc: 'Small footprint, out of the box content and an easy-to-embed approach makes score the perfect choice as the  workflow orchestration solution in your application.',
+            mainBulletsReadMore: 'Read More',
+
+            // learn more
+            learnMoreDocumentation: 'Documentation',
+            learnMoreContribute: 'Contribute',
 
             // contact us
             contactUsHeader: 'You\'d like to reach out to us? Drop us a message!',
@@ -97,7 +102,8 @@ angular.module('scoreWebsiteApp')
             { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
             { id: 'useCases', title: $rootScope.messages.navUseCasesTitle },
             { id: 'about', title: $rootScope.messages.navAboutTitle },
-            { id: 'contactUs', title: $rootScope.messages.navContactUsTitle  }
+            { id: 'learnMore', title: $rootScope.messages.navLearnMoreTitle  }
+//            { id: 'contactUs', title: $rootScope.messages.navContactUsTitle  }
         ];
 
         $rootScope.year = new Date().getFullYear();

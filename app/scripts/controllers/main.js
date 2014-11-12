@@ -101,8 +101,8 @@ angular.module('scoreWebsiteApp')
         $rootScope.sections = [
             { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
             { id: 'useCases', title: $rootScope.messages.navUseCasesTitle },
-            { id: 'about', title: $rootScope.messages.navAboutTitle },
-            { id: 'learnMore', title: $rootScope.messages.navLearnMoreTitle  }
+            { id: 'learnMore', title: $rootScope.messages.navLearnMoreTitle  },
+            { id: 'about', title: $rootScope.messages.navAboutTitle }
 //            { id: 'contactUs', title: $rootScope.messages.navContactUsTitle  }
         ];
 

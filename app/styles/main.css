@@ -298,16 +298,14 @@ ul {
 
 @media (max-width: 767px) {
     .section-wrapper.about {
-        height: 2300px;
+        min-height: 400px;
+        height: 400px;
     }
     .section-wrapper.use-cases {
         min-height: 1650px;
     }
-}
-
-@media (max-width: 580px) {
-    .section-wrapper.about {
-        height: 2100px;
+    .about .team-members {
+        display: none;
     }
 }
 
@@ -318,9 +316,6 @@ ul {
 }
 
 @media (max-width: 370px) {
-    .section-wrapper.about {
-        min-height: 2200px;
-    }
     .section-wrapper.use-cases {
         min-height: 1950px;
     }
@@ -523,8 +518,8 @@ ul {
 
 @media (max-width: 596px) {
     .getting-started .box .box-container .box-image {
-        width: 60px;
-        margin-top: 30px;
+        width: 100px;
+        margin-top: 10px;
         margin-right: 10px;
         margin-left: 30px;
     }
@@ -536,6 +531,13 @@ ul {
 @media (max-width: 480px) {
     .getting-started .box-container .h3 {
         font-size: 14px;
+    }
+}
+
+@media (max-width: 372px) {
+    .getting-started .box .box-container .box-image {
+        margin-top: 15px;
+        width: 81px;
     }
 }
 

@@ -42,7 +42,7 @@ angular.module('scoreWebsiteApp')
                         changeHash: false,
                         scrollSpeed: 400,
                         scrollThreshold: 0.2,
-                        filter: '',
+                        filter: ':not(.external)',
                         easing: 'swing',
                         scrollOffset: 300,
                         begin: function() {

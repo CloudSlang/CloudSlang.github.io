@@ -10,7 +10,7 @@ angular.module('scoreWebsiteApp')
             navUseCasesTitle: 'Use Cases',
             navAboutTitle: 'About Us',
             //navContactUsTitle: 'Contact Us',
-            navLearnMoreTitle: 'Learn More',
+            navDocumentationTitle: 'Documentation',
 
             // header
             headerMainTitle: 'Process-based, lightweight, Multi-Lingual open-source orchestration engine',
@@ -24,6 +24,7 @@ angular.module('scoreWebsiteApp')
             footerCopyrightAgent: 'Copyright Agent',
             footerLegal: 'Legal',
             footerContactUs: 'Contact Us',
+            footerContribute: 'Contribute',
 
             // bullets
             mainBulletsProcessBasedTitle: 'Process based',
@@ -33,12 +34,6 @@ angular.module('scoreWebsiteApp')
             mainBulletsMultiLingualDesc: 'Designed to support multiple compilers that can generate low level execution instructions, score serves as an orchestration platform for potentially any process language out there.',
             mainBulletsLightweightDesc: 'Small footprint, out of the box content and an easy-to-embed approach makes score the perfect choice as the  workflow orchestration solution in your application.',
             mainBulletsReadMore: 'Read More',
-
-            // learn more
-            learnMoreDocumentation: 'Documentation',
-            learnMoreContribute: 'Contribute',
-            learnMoreDocumentationText: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            learnMoreContributeText: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
 
             // contact us
             contactUsHeader: 'You\'d like to reach out to us? Drop us a message!',
@@ -103,8 +98,8 @@ angular.module('scoreWebsiteApp')
         $rootScope.sections = [
             { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
             { id: 'useCases', title: $rootScope.messages.navUseCasesTitle },
-            { id: 'learnMore', title: $rootScope.messages.navLearnMoreTitle  },
-            { id: 'about', title: $rootScope.messages.navAboutTitle }
+            { id: 'about', title: $rootScope.messages.navAboutTitle },
+            { id: 'documentation', title: $rootScope.messages.navDocumentationTitle  }
 //            { id: 'contactUs', title: $rootScope.messages.navContactUsTitle  }
         ];
 

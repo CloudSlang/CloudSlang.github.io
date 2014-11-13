@@ -331,23 +331,6 @@ ul {
     height: 225px;
 }
 
-.section-wrapper.learn-more {
-    background-color: #8a9a7c;
-    min-height: 550px;
-}
-
-@media (max-width: 980px) {
-    .section-wrapper.learn-more {
-        min-height: 840px;
-    }
-}
-
-@media (max-width: 433px) {
-    .section-wrapper.learn-more {
-        min-height: 1000px;
-    }
-}
-
 .section-wrapper.contact-us {
     background-color: #8a9a7c;
     min-height: 750px;

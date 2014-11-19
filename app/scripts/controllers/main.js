@@ -50,12 +50,14 @@ angular.module('scoreWebsiteApp')
 
             // use cases
             useCasesTitle: 'Use Cases',
-            useCasesCsa: 'Cloud Service Automation',
-            useCasesCodar: 'Project CODAR',
-            useCasesOO: 'Operations Orchestration',
-            useCasesCsaDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            useCasesCodarDesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-            useCasesOODesc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+            useCasesITTitle: 'IT Process automation',
+            useCasesCloudTitle: 'Cloud orchestration',
+            useCasesAppDeploymentTitle: 'Application Deployment',
+            useCasesDevOpsTitle: 'DevOps',
+            useCasesITDesc: 'Disaster Recovery',
+            useCasesCloudDesc: 'OpenStack Health Check',
+            useCasesAppDeploymentDesc: 'Link Docker Container',
+            useCasesDevOpsDesc: 'CI \\ CD',
 
             // getting started
             downloadCliHeader: 'Download and use score command-line',

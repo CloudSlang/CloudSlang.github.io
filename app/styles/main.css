@@ -278,10 +278,14 @@ ul {
     min-height: 750px;
 }
 
-.use-cases .use-case img {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    width: 280px;
+.use-cases .use-case {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #8a9a7c;
+}
+
+.use-cases .use-case .sm-iamge {
+    margin-top: 40px;
 }
 
 .section-wrapper.about {
@@ -309,15 +313,9 @@ ul {
     }
 }
 
-@media (max-width: 402px) {
-    .section-wrapper.use-cases {
-        min-height: 1850px;
-    }
-}
-
-@media (max-width: 370px) {
-    .section-wrapper.use-cases {
-        min-height: 1950px;
+@media (max-width: 420px) {
+    .use-cases .use-case .h3 {
+        font-size: 24px;
     }
 }
 

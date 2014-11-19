@@ -50,8 +50,8 @@ angular.module('scoreWebsiteApp')
 
             // use cases
             useCasesTitle: 'Use Cases',
-            useCasesITTitle: 'IT Process automation',
-            useCasesCloudTitle: 'Cloud orchestration',
+            useCasesITTitle: 'IT Process Automation',
+            useCasesCloudTitle: 'Cloud Orchestration',
             useCasesAppDeploymentTitle: 'Application Deployment',
             useCasesDevOpsTitle: 'DevOps',
             useCasesITDesc: 'Disaster Recovery',

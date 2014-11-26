@@ -617,3 +617,24 @@ ul {
     50% { opacity:0; }
     100% { opacity:1; }
 }
+
+.section-wrapper.score {
+    background-color: #5d913a;
+    min-height: 2000px;
+}
+.section-wrapper.slang {
+    background-color: #345B1F;
+    min-height: 2200px;
+}
+.section-wrapper.developer {
+    color: #000000;
+    background-color: #f5f5f5;
+    min-height: 600px;
+}
+
+.anchor{
+    display: block;
+    height: 76px; /*5px more than header*/
+    margin-top: -76px; /*5px more than header*/
+    visibility: hidden;
+}

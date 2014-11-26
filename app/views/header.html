@@ -1,55 +1,71 @@
-<div ng-controller="HeaderCtrl" class="header">
-    <nav class="navbar navbar-default navbar-fixed-top main-nav" role="navigation">
+<div ng-controller="HeaderCtrl">
+    <div class="header">
+        <nav class="navbar navbar-default navbar-fixed-top main-nav" role="navigation">
+            <div class="container">
+                <div class="forkMe">
+                    <a href="https://github.com/" target="_blank">
+                        <img alt="Fork score on GitHub"
+                             src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
+                    </a>
+                </div>
+                <div class="navbar-header responsive-logo">
+                    <button class="navbar-toggle collapsed" type="button" collapse-on-click Click data-toggle="collapse"
+                            data-target=".bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <p class="h3 text-muted scroll-top" scroll-top>
+                        <img src="../images/logos/score_logo_50x50.png" img-responsive alt="score" width="50px"
+                             height="50px"/>
+                        score
+                    </p>
+                </div>
+                <ul class="nav navbar-nav navbar-right navbar-collapse bs-navbar-collapse collapse">
+                    <li>
+                        <a href="/#/docs" class="h5">
+                            <strong>{{sections[3].title}}</strong>
+                        </a>
+                    </li>
+                </ul>
+                <ul one-page-nav class="nav navbar-nav navbar-right navbar-collapse bs-navbar-collapse collapse">
+                    <li><a ng-href="#{{sections[0].id}}" class="h5">{{sections[0].title}}</a></li>
+                    <li><a ng-href="#{{sections[1].id}}" class="h5">{{sections[1].title}}</a></li>
+                    <li><a ng-href="#{{sections[2].id}}" class="h5">{{sections[2].title}}</a></li>
+                </ul>
+            </div>
+        </nav>
         <div class="container">
-            <div class="forkMe">
-                <a href="https://github.com/" target="_blank">
-                    <img alt="Fork score on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
-                </a>
-            </div>
-            <div class="navbar-header responsive-logo">
-                <button class="navbar-toggle collapsed" type="button" collapse-on-click Click data-toggle="collapse"
-                        data-target=".bs-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <p class="h3 text-muted scroll-top" scroll-top>
-                    <img src="../images/logos/score_logo_50x50.png" img-responsive alt="score" width="50px" height="50px"/>
-                    score
-                </p>
-            </div>
-            <ul one-page-nav class="nav navbar-nav navbar-right navbar-collapse bs-navbar-collapse collapse">
-                <li><a ng-href="#{{sections[0].id}}" class="h5">{{sections[0].title}}</a></li>
-                <li><a ng-href="#{{sections[1].id}}" class="h5">{{sections[1].title}}</a></li>
-                <li><a ng-href="#{{sections[2].id}}" class="h5">{{sections[2].title}}</a></li>
-                <li><a ng-href="https://wiki.eclipse.org/Score_Project" target="_blank" class="h5 external">{{sections[3].title}}</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-xs-12">
-                <p class="h3 header-title">{{$root.messages.headerMainTitle}}</p>
-                <br/>
-                <p class="h4">{{$root.messages.headerDescription}}</p>
-                <br/>
-                <div class="col-md-12">
-                    <div class="row" ng-click="scrollToGettingStarted()">
-                        <a class="pull-left btn btn-primary btn-lg start-now-button left-side"><img src="images/start_button.png" alt="Start Now"></a>
-                        <a class="pull-left btn btn-primary btn-lg start-now-button right-side"><p class="h4">{{$root.messages.headerStartNow}}</p></a>
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <p class="h3 header-title">{{$root.messages.headerMainTitle}}</p>
+                    <br/>
+
+                    <p class="h4">{{$root.messages.headerDescription}}</p>
+                    <br/>
+
+                    <div class="col-md-12">
+                        <div class="row" ng-click="scrollToGettingStarted()">
+                            <a class="pull-left btn btn-primary btn-lg start-now-button left-side"><img
+                                    src="images/start_button.png" alt="Start Now"></a>
+                            <a class="pull-left btn btn-primary btn-lg start-now-button right-side"><p class="h4">
+                                {{$root.messages.headerStartNow}}</p></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-xs-12">
-                <div class="videoContainer">
-                    <iframe src="//player.vimeo.com/video/710719dfg00?portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-                <div class="fork">
-                    <iframe src="http://ghbtns.com/github-btn.html?user=score&repo=score&type=fork&count=true&size=large"
-                            allowtransparency="true" frameborder="0" scrolling="0" width="200" height="30"></iframe>
+                <div class="col-md-6 col-xs-12">
+                    <div class="videoContainer">
+                        <iframe src="//player.vimeo.com/video/710719dfg00?portrait=0" width="500" height="281"
+                                frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                    <div class="fork">
+                        <iframe src="http://ghbtns.com/github-btn.html?user=score&repo=score&type=fork&count=true&size=large"
+                                allowtransparency="true" frameborder="0" scrolling="0" width="200" height="30"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div ng-include src="'views/main.html'"></div>
 </div>

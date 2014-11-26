@@ -2,11 +2,16 @@
 
 angular.module('scoreWebsiteApp')
     .controller('HeaderCtrl', function ($scope, $rootScope, $document) {
+
+        _.forEach($('.navbar-collapse'), function(target) {
+            $(target).collapse({'toggle': false});
+        });
+
         // hide menu bar on click (small resolutions)
-        $document.on('click.nav','.navbar-collapse.in',function(e) {
-            if ($(e.target).is('a') || $(e.target).is('button')) {
-                $(this).collapse('hide');
-            }
+        $document.on('click.nav','.navbar-collapse.in',function() {
+            _.forEach($('.navbar-collapse'), function(target) {
+                $(target).collapse('hide');
+            });
         });
 
         // workaround to remove the current class from the navbar when reaching the header

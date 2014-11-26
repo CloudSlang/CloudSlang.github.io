@@ -403,7 +403,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: '<%= yeoman.app %>/markdowns',
                         src: '**/*.md',
-                        dest: '<%= yeoman.app %>/views/docs/generated',
+                        dest: '<%= yeoman.dist %>/views/docs/generated',
                         ext: '.html'
                     }
                 ]

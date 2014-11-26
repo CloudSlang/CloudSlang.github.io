@@ -16,7 +16,7 @@ angular
                 controller: 'HeaderCtrl'
             })
             .when('/docs', {
-                templateUrl: 'views/docs/docs.html',
+                templateUrl: 'views/docs.html',
                 controller: 'DocsCtrl'
             })
             .otherwise({

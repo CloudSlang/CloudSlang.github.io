@@ -52,7 +52,7 @@ angular.module('scoreWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsWhoWeAreText: 'The Eclipse Foundation™ project \'score\' was contributed to the open source community by the HP Software engineers to create a collaborative effort by the community it create the best orchestration technology.',
+            aboutUsWhoWeAreText: 'The Eclipse Foundation™ project \'score\' was contributed to the open source community by HP Software engineers to have a collaborative effort to create the best orchestration technology.',
 
             // use cases
             useCasesTitle: 'Use Cases',

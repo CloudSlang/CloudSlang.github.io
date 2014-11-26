@@ -20,13 +20,13 @@ angular.module('scoreWebsiteApp')
 
             // header
             headerMainTitle: 'Process-based, lightweight, Multi-Lingual open-source orchestration engine',
-            headerDescription: 'score is a generic java-based open-source orchestration engine which is process-based, ' +
+            headerDescription: 'score is a general-purpose java-based open-source orchestration engine which is process-based, ' +
                 'embeddable, lightweight, scalable and multi-lingual',
             headerStartNow: 'Start Now',
 
             // footer
             footerPrivacy: 'Privacy Policy',
-            footerTerms: 'Terms os Use',
+            footerTerms: 'Terms of Use',
             footerCopyrightAgent: 'Copyright Agent',
             footerLegal: 'Legal',
             footerContactUs: 'Contact Us',
@@ -34,10 +34,10 @@ angular.module('scoreWebsiteApp')
 
             // bullets
             mainBulletsProcessBasedTitle: 'Process based',
-            mainBulletsMultiLingualTitle: 'Multi-lingual',
+            mainBulletsMultiLingualTitle: 'Multilingual',
             mainBulletsLightweightTitle: 'Lightweight',
-            mainBulletsProcessBasedDesc: 'The score language ("slang") is a simple and intuitive language to describe workflows in a re-usable fashion that can run using both the score library or the score command-line.',
-            mainBulletsMultiLingualDesc: 'Designed to support multiple compilers that can generate low level execution instructions, score serves as an orchestration platform for potentially any process language out there.',
+            mainBulletsProcessBasedDesc: 'Score DSL – slang - is a simple, intuitive way to describe workflows in a re-usable fashion. slang allows you to define the ‘how’ and not just the ‘what’, thus allowing you to better control the actual runtime behavior of the workflow.',
+            mainBulletsMultiLingualDesc: 'slang is only one of the languages you can use to define workflows for score. Take advantage of score pluggable architecture to plug in your compiler to potentially support any process modeling language out there.',
             mainBulletsLightweightDesc: 'Small footprint, out of the box content and an easy-to-embed approach makes score the perfect choice as the  workflow orchestration solution in your application.',
             mainBulletsReadMore: 'Read More',
 
@@ -52,7 +52,7 @@ angular.module('scoreWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsWhoWeAreText: 'The Eclipse Foundation™ project \'score\' was contributed to the open source community by HP Software engineers to have a collaborative effort to create the best orchestration technology.',
+            aboutUsWhoWeAreText: 'The Eclipse Foundation™ project score was contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
 
             // use cases
             useCasesTitle: 'Use Cases',
@@ -66,12 +66,13 @@ angular.module('scoreWebsiteApp')
             useCasesDevOpsDesc: 'CI \\ CD',
 
             // getting started
-            downloadCliHeader: 'Download and use score command-line',
+            downloadCliHeader: 'Download and use score CLI tool',
             downloadCliDownloadLink: 'Download and see how',
-            embedScoreHeader: 'Embed score in your application',
+            embedScoreHeader: 'Embed score library in your application',
             embedScoreLink: 'Press to see how',
             orText: 'or',
-            // -- download and install sli
+
+            // -- download and install cli
             detailedDownloadCliHeader: 'Download score command-line',
             detailedDownloadCliText: 'Download and Unzip score command-line',
             detailedDownloadLatest: 'Download latest version',

@@ -19,9 +19,9 @@ angular.module('scoreWebsiteApp')
             navDocsBackToSiteTitle: 'Back To Site',
 
             // header
-            headerMainTitle: 'Process-based, lightweight, Multi-Lingual open-source orchestration engine',
+            headerMainTitle: 'Process-based, lightweight, multiLingual open-source orchestration engine',
             headerDescription: 'score is a general-purpose java-based open-source orchestration engine which is process-based, ' +
-                'embeddable, lightweight, scalable and multi-lingual',
+                'embeddable, lightweight, scalable and multilingual',
             headerStartNow: 'Start Now',
 
             // footer

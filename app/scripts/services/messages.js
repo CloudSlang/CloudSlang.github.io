@@ -19,7 +19,7 @@ angular.module('scoreWebsiteApp')
             navDocsBackToSiteTitle: 'Back To Site',
 
             // header
-            headerMainTitle: 'Process-based, lightweight, multiLingual open-source orchestration engine',
+            headerMainTitle: 'Process-based, lightweight, multilingual open-source orchestration engine',
             headerDescription: 'score is a general-purpose java-based open-source orchestration engine which is process-based, ' +
                 'embeddable, lightweight, scalable and multilingual',
             headerStartNow: 'Start Now',
@@ -36,7 +36,7 @@ angular.module('scoreWebsiteApp')
             mainBulletsProcessBasedTitle: 'Process based',
             mainBulletsMultiLingualTitle: 'Multilingual',
             mainBulletsLightweightTitle: 'Lightweight',
-            mainBulletsProcessBasedDesc: 'Score DSL – slang - is a simple, intuitive way to describe workflows in a re-usable fashion. slang allows you to define the ‘how’ and not just the ‘what’, thus allowing you to better control the actual runtime behavior of the workflow.',
+            mainBulletsProcessBasedDesc: 'score DSL – slang - is a simple, intuitive way to describe workflows in a re-usable fashion. slang allows you to define the ‘how’ and not just the ‘what’, thus allowing you to better control the actual runtime behavior of the workflow.',
             mainBulletsMultiLingualDesc: 'slang is only one of the languages you can use to define workflows for score. Take advantage of score pluggable architecture to plug in your compiler to potentially support any process modeling language out there.',
             mainBulletsLightweightDesc: 'Small footprint, out of the box content and an easy-to-embed approach makes score the perfect choice as the  workflow orchestration solution in your application.',
             mainBulletsReadMore: 'Read More',
@@ -89,7 +89,7 @@ angular.module('scoreWebsiteApp')
             detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
             detailedCliTriggerFlow: 'score trigger\n^1200the weather in San Fransisco is: Hot\n$',
             // -- embed score
-            detailedEmbedPomHeader: 'Score dependencies',
+            detailedEmbedPomHeader: 'score dependencies',
             detailedEmbedPomText: 'Add score dependencies to your pom.xml',
             detailedEmbedSpringHeader: 'Spring configuration',
             detailedEmbedSpringText: 'Add some score configuration to your Spring application context xml',

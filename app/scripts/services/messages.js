@@ -19,7 +19,7 @@ angular.module('scoreWebsiteApp')
             navDocsBackToSiteTitle: 'Back To Site',
 
             // header
-            headerMainTitle: 'Process-based, lightweight, multiLingual open-source orchestration engine',
+            headerMainTitle: 'Process-based, lightweight, multilingual open-source orchestration engine',
             headerDescription: 'score is a general-purpose java-based open-source orchestration engine which is process-based, ' +
                 'embeddable, lightweight, scalable and multilingual',
             headerStartNow: 'Start Now',
@@ -36,7 +36,7 @@ angular.module('scoreWebsiteApp')
             mainBulletsProcessBasedTitle: 'Process based',
             mainBulletsMultiLingualTitle: 'Multilingual',
             mainBulletsLightweightTitle: 'Lightweight',
-            mainBulletsProcessBasedDesc: 'Score DSL – slang - is a simple, intuitive way to describe workflows in a re-usable fashion. slang allows you to define the ‘how’ and not just the ‘what’, thus allowing you to better control the actual runtime behavior of the workflow.',
+            mainBulletsProcessBasedDesc: 'score DSL – slang - is a simple, intuitive way to describe workflows in a re-usable fashion. slang allows you to define the ‘how’ and not just the ‘what’, thus allowing you to better control the actual runtime behavior of the workflow.',
             mainBulletsMultiLingualDesc: 'slang is only one of the languages you can use to define workflows for score. Take advantage of score pluggable architecture to plug in your compiler to potentially support any process modeling language out there.',
             mainBulletsLightweightDesc: 'Small footprint, out of the box content and an easy-to-embed approach makes score the perfect choice as the  workflow orchestration solution in your application.',
             mainBulletsReadMore: 'Read More',
@@ -66,30 +66,35 @@ angular.module('scoreWebsiteApp')
             useCasesDevOpsDesc: 'CI \\ CD',
 
             // getting started
-            downloadCliHeader: 'Download and use score CLI tool',
+            downloadCliHeader: 'Download and use slang CLI tool',
             downloadCliDownloadLink: 'Download and see how',
             embedScoreHeader: 'Embed score library in your application',
             embedScoreLink: 'Press to see how',
             orText: 'or',
 
             // -- download and install cli
-            detailedDownloadCliHeader: 'Download score command-line',
-            detailedDownloadCliText: 'Download and Unzip score command-line',
+            detailedDownloadCliHeader: 'Download slang command-line',
+            detailedDownloadCliText: 'Download and Unzip slang command-line',
             detailedDownloadLatest: 'Download latest version',
             detailedDownloadOldVersions: 'Download old versions',
             detailedSlangCliHeader: 'Use slang',
             detailedSlangCliText: 'Write a flow with slang',
-            detailedUseCliHeader: 'Start score command-line',
-            detailedUseCliText: 'Open your console and execute score cli',
+            detailedUseCliHeader: 'Start slang command-line',
+            detailedUseCliText: 'Open your console and execute slang cli',
             detailedTriggerFlowHeader: 'Trigger flow',
-            detailedTriggerFlowText: 'Trigger your slang written flow from score command-line',
+            detailedTriggerFlowText: 'Trigger your slang written flow from slang command-line',
             detailedCliHeader: 'console',
             detailedCliPrefix: '$',
             detailedCliClear: 'Clear',
             detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
-            detailedCliTriggerFlow: 'score trigger\n^1200the weather in San Fransisco is: Hot\n$',
+            detailedCliTriggerFlow: 'slang run --f /.../flow.sl --D input1=LA\n' +
+                '^500 CheckWeather\n' +
+                '^250 PrintWeather\n' +
+                ' the weather in LA is: hot\n' +
+                '^250 Flow : SimpleFlow finished with result: SUCCESS\n' +
+                '^250$',
             // -- embed score
-            detailedEmbedPomHeader: 'Score dependencies',
+            detailedEmbedPomHeader: 'score dependencies',
             detailedEmbedPomText: 'Add score dependencies to your pom.xml',
             detailedEmbedSpringHeader: 'Spring configuration',
             detailedEmbedSpringText: 'Add some score configuration to your Spring application context xml',

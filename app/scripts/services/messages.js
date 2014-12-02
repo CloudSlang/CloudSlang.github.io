@@ -66,28 +66,33 @@ angular.module('scoreWebsiteApp')
             useCasesDevOpsDesc: 'CI \\ CD',
 
             // getting started
-            downloadCliHeader: 'Download and use score CLI tool',
+            downloadCliHeader: 'Download and use slang CLI tool',
             downloadCliDownloadLink: 'Download and see how',
             embedScoreHeader: 'Embed score library in your application',
             embedScoreLink: 'Press to see how',
             orText: 'or',
 
             // -- download and install cli
-            detailedDownloadCliHeader: 'Download score command-line',
-            detailedDownloadCliText: 'Download and Unzip score command-line',
+            detailedDownloadCliHeader: 'Download slang command-line',
+            detailedDownloadCliText: 'Download and Unzip slang command-line',
             detailedDownloadLatest: 'Download latest version',
             detailedDownloadOldVersions: 'Download old versions',
             detailedSlangCliHeader: 'Use slang',
             detailedSlangCliText: 'Write a flow with slang',
-            detailedUseCliHeader: 'Start score command-line',
-            detailedUseCliText: 'Open your console and execute score cli',
+            detailedUseCliHeader: 'Start slang command-line',
+            detailedUseCliText: 'Open your console and execute slang cli',
             detailedTriggerFlowHeader: 'Trigger flow',
-            detailedTriggerFlowText: 'Trigger your slang written flow from score command-line',
+            detailedTriggerFlowText: 'Trigger your slang written flow from slang command-line',
             detailedCliHeader: 'console',
             detailedCliPrefix: '$',
             detailedCliClear: 'Clear',
             detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
-            detailedCliTriggerFlow: 'score trigger\n^1200the weather in San Fransisco is: Hot\n$',
+            detailedCliTriggerFlow: 'slang run --f /.../flow.sl --D input1=LA\n' +
+                '^500 CheckWeather\n' +
+                '^250 PrintWeather\n' +
+                ' the weather in LA is: hot\n' +
+                '^250 Flow : SimpleFlow finished with result: SUCCESS\n' +
+                '^250$',
             // -- embed score
             detailedEmbedPomHeader: 'score dependencies',
             detailedEmbedPomText: 'Add score dependencies to your pom.xml',

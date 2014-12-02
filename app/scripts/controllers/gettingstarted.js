@@ -17,7 +17,7 @@ angular.module('scoreWebsiteApp')
             $('#' + elemendId + '-cursor').empty();
             $('#' + elemendId).typed({
                 strings: commands,
-                typeSpeed: 0
+                typeSpeed: 30
             });
         };
 

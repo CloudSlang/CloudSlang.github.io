@@ -2,10 +2,10 @@
 
 ##What is SLANG?
 
-SLANG is a python based language for describing a workflow.
+SLANG is a YAML based language for describing a workflow.
 
-python is a human friendly data serialization standard for all programming languages. The acronym stands for
-"python Ain't Markup Language" suggesting that its purpose is rather data-oriented than document markup. The python
+YAML is a human friendly data serialization standard for all programming languages. The acronym stands for
+"YAML Ain't Markup Language" suggesting that its purpose is rather data-oriented than document markup. The YAML
 (and SLANG) syntax maintains data structure hierarchy by outline indentation (in other words parallel elements should have the same left indentation).
 
 SLANG as a workflow language is used to define processes introducing the concept of flows. See [SLANG DSL](#docs/#slang_dsl).
@@ -286,7 +286,7 @@ uses the following annotations (from `com.hp.oo.sdk.content.annotations`):
 ```
 
 ####Python script
-You can use any traditional python script regardless the version **(2.x and 3.x are also supported)???**.
+You can use any traditional python 2.7 version script.
 
 
 ###Imports
@@ -355,7 +355,7 @@ You can get a list of available commands by typing `help` in the cli console.
 *sample - running a flow*
 
 ```bash
-run --f c:\...\your_flow.python --D input1=root,input2=25
+run --f c:\...\your_flow.sl --D input1=root,input2=25
 ```
 
 *sample - set execution mode to asynchronous (by default the execution mode is synchronous - that means you can run only one flow at a time)*
@@ -367,7 +367,7 @@ env --setAsync true
 *sample - get flow inputs*
 
 ```bash
-inputs --f c:\...\your_flow.python
+inputs --f c:\...\your_flow.sl
 ```
 
 *sample - slang version*

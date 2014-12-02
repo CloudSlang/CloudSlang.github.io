@@ -15,6 +15,7 @@
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/tomorrow-night-bright.css" />
+        <link rel="stylesheet" href="bower_components/pace/themes/orange/pace-theme-center-simple.css" />
         <!-- endbuild -->
     </head>
     <body ng-app="scoreWebsiteApp">
@@ -23,9 +24,12 @@
         <![endif]-->
 
         <!-- Site content -->
-        <div ng-cloak>
-            <div ng-view=""></div>
-            <div ng-include src="'views/footer.html'"></div>
+        <div ng-controller="MainCtrl">
+            <loading-page></loading-page>
+            <div ng-cloak>
+                <div ng-view=""></div>
+                <div ng-include src="'views/footer.html'"></div>
+            </div>
         </div>
 
         <!-- Google Analytics -->
@@ -37,6 +41,12 @@
 
             ga('create', 'UA-XXXXX-X');
             ga('send', 'pageview');
+        </script>
+
+        <script>
+            window.paceOptions = {
+                restartOnPushState : false
+            }
         </script>
 
         <!-- build:js(.) scripts/oldieshim.js -->
@@ -65,6 +75,7 @@
         <script src="bower_components/jquery.transit/jquery.transit.js"></script>
         <script src="bower_components/highlightjs/highlight.pack.js"></script>
         <script src="bower_components/typed.js/js/typed.js"></script>
+        <script src="bower_components/pace/pace.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 

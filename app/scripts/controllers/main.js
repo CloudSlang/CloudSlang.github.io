@@ -9,4 +9,14 @@ angular.module('scoreWebsiteApp')
             { id: 'about', title: $rootScope.messages.navAboutTitle },
             { id: 'documentation', title: $rootScope.messages.navDocumentationTitle  }
         ];
-    });
+    }).directive('loadingPage', [function() {
+    return {
+        restrict: 'E',
+        template: '<div class="loading-page"></div>',
+        link: function() {
+            Pace.on("done", function() {
+                $('div.loading-page').fadeOut('slow');
+            });
+        }
+    };
+}]);

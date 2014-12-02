@@ -19,7 +19,8 @@
         "jQuery-One-Page-Nav": "~3.0.0",
         "jquery.transit": "~0.9.12",
         "highlightjs": "~8.3.0",
-        "typed.js": "*"
+        "typed.js": "*",
+        "pace": "*"
     },
     "devDependencies": {
         "angular-mocks": "~1.2.0",

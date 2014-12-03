@@ -1,76 +1,343 @@
-#Score Project
-##What is score?
+#Score overview 
 
->score is an open-source, generic orchestration engine that can be used in order to automate work flow processes.
-score can be used in a variety of environments and scenarios such as: cloud setup and maintenance, build systems, QA, and many more.
-score is embeddable, lightweight, scalable java-based workflow engine.
+**score **is an open-source, generic orchestration engine that can be used in order to automate work-processes.
 
-##score Roadmap
+**score** can be used in a variety of environments and scenarios such as: cloud setup and maintenance, build systems, QA, and many more.
 
->here we'll describe:
+Score is embeddable, lightweight, scalable java-based workflow engine.
 
->+ vision, timelines, versions(?)
-+ timeline (when we got public)
-+ feature list
-+ future plans
+ 
 
-##How to use score CLI
+The fundamental architecture of the project consists of:
 
-here we'll describe: like in our web site:
++   **Worker** - the unit that actually executes the steps from the execution plan. Execution logic is optimized for high throughput and is horizontally scalable.
 
-+ download
-+ trigger using shell
-+ trigger using cmd line
-+ link to SLANG
++   **Orchestrator** - a queue-based work distribution mechanism. Highly available and horizontally scalable.
+
++   **Persistency for cluster management** - allowing a cluster of orchestrator and worker nodes. Optional for simple single-node deployments.
+
++   **Compiler** - compiles a given flow format into an execution plan that can be executed by the workers. The introduction of a new flow formatting language is achieved by hooking the right compiler. Currently, we have an AFL OOTB compiler (score native flow language).
+
+ 
+
+Note that score deployment has two flavors:
+
++   **Simple** - consists of a single-node deployment of orchestrator and worker in the same runtime container. No external DB is required.
+
++   **Distributed** - a highly available and scalable deployment that requires an external DB schema and a servlet container for hosting the orchestrator node(s).
+
+##Execution
+
+Score is a workflow engine and can execute workflows or *Execution Plans*.
+
+##Execution Plan
+
+An execution plan as the name implies, is a set of steps for score to run. In order to trigger an execution you need to pass the execution plan to score.
+
+The execution plan consists mainly of a set of steps to perform. These steps are called *Execution Steps*. Each execution step has a *position* within the execution plan – the position of the first step in the execution plan is usually zero.
+
+If we were to draw an execution plan it might look something like this:
+
+##Control Action
+
+So what is a control action? And a navigation action? Well, they are both java methods. Score invokes these methods by reflection so there is no API or naming convention for them. There are some recommendations and reserved argument names, we’ll get to that later.
+
+In the diagram above we have three control actions – One that checks if a file exists, another that writes a message to the standard output and a third one that creates files.
+
+A control action method can have input arguments and they will be Injected by the score engine. There are several methods by which score can populate arguments:
+
++  From the execution context.
+
++  From values set during the creation of the execution plan.
+
+### Assigning argument values from the execution context
+
+Let’s take a look at the following method signature:
+
+public void doSomething(String argName) {
+ …
+ …
+}
+
+When score runs this method it will attempt to populate the argument *argName* with a value from the execution context. If the key *argName* exists in the execution context map, then the argument *argName* will be populated with its associated value, otherwise it will be populated with *null*.
+
+### Setting argument values during execution plan compilation
+
+It is also possible to set argument values in the execution plan using
+
+### Reserved argument names
+
+There are some argument names that have a special meaning when used as control action arguments, those are:
+
++  ***executionRuntimeServices*** - score will populate it with the execution’s runtime services object. This means that such arguments have to be of the type ExecutionRuntimeServices.
+
+```java
+public void doWithServices(ExecutionRuntimeServices executionRuntimeServices) {
+    …
+    …
+}
+```
++  ***executionContext*** – score will populate it with the execution’s context. This means that such arguments have to be of the type Map\<String, Serializable\>.
+
+```java
+public void doWithContext(Map\<String, Serializable\> executionContext) {
+    …
+    …
+}
+```
+
+##Navigation Action
+
+There’s no real difference between a control action and a navigation action, except that the navigation action must have a return value of type Long. The return value is the position of the next step to execute.
+
+##Execution Step
+
+An execution step is a building block for the execution plan. It consists of two parts:
+
++  Action – The control action to perform in this step.
+
++  Navigation – The navigation to perform after the action was performed. This control action should determine the position of the next execution step that should be executed.
+
+Each execution step has a position in the execution plan. In the diagram above we have 3 execution steps, each with its own position. A position has to be unique – there cannot be two steps with the same position.
+
+#A Plan in Execution
+
+So what happens when score executes an execution plan? Well, the basic algorithm is this:
+
++  Extract the next step to execute
+
++  Execute the action.
+
++  Execute the navigation action.
+
++  Go back to extract.
+
+The next step to execute is actually the result of the navigation action of the previous step.
+
+##ExecutionRuntimeServices (What used to be the System Context)
+
+The system context provides run-time services for control actions. For backwards compatibility we will have a deprecated inheriting class that will implement the Map\<String, Serializable\> interface called ScoreSystemContext.
+
+##Execution Branches and Merges
 
 
+An execution can branch itself to perform parallel tasks which will merge back to the parent execution once they finish. Each branch is a separate execution.
 
-##How to embed score in your application
-###Add score to your application
+Elaborate on what is done with the execution contexts of branches
 
-here we'll describe: like in our web site:
+#Score Events
 
-+ pom
-+ spring context
-+ sample code usage
-+ We should use slang API for triggering and tracking etc..
-+ Score API for topology and this kind of stuff.
+Score fires events during an execution. An event consists of two members:
 
-####Configure with external DB
++  type – A string that can have one of the following values:
 
-here we'll describe: detailed explanation how to configure us with real DB + liquebase explanation
+    -  FINISHED – Signals a finished execution
 
-####Special configurations
+    -  ERROR – Signals an execution that finished with error
 
-here we'll describe: explanation about the different configurations available using our spring context
+    -  CANCELLED – Signals an execution that was cancelled
 
-###score API
-####Trigger a flow
+    -  PAUSED – Signals an execution that was paused
 
-something to write here
++  data – Serializable data.
+    TBD – explain the event data for every type (JSON)
 
-####Tracking flow run
+Any language running in score can add events freely; this can be done in execution run time using the system context’s API.
 
-something to write here
+#Score APIS
 
-##Use Cases
+All of the score APIs are available through 3 interfaces:
 
-Place for collecting and evolving use cases
+##The ScoreExecution: 
 
-+ IdAS Use Cases
-+ ISS Browser UI Use Cases
-+ ISS RC UI Use Cases
-+ **????? what are this things?**
+### Triggering New Executions
 
-##Content
 
-here we should add:
++ `public Long trigger(ExecutionPlan executionPlan);`
 
-+ content list with explanation
-+ pom for the JARs
-+ about score SDK
+    This method starts an execution with the given execution plan. The first executed step will be the execution plan’s start step, the execution context will be empty.
+    Returns the id of the new execution.
 
-##score - FAQ
++ `public Long trigger(ExecutionPlan executionPlan, Map\<String, Serializable\> executionContext, Map\<String, Serializable\> runtimeValues, Long position);`
 
-TBD - from the web site
-##About us
+    This method starts an execution with the given execution plan and with additional options.
+    
+    The executionC*ontext* argument can be empty. If it isn’t empty the values inside will be added to the execution context.
+    
+    The runtimeValues argument can be empty. If it isn’t empty the values inside will be added to the system context.
+    
+    The *startStep* argument can be used in order to make the plan start from a specific step that is not necessarily the execution plan’s *beginStep*.
+    
+    Returns the id of the new execution.
+
+### Pausing Executions
+
+public void pauseExecution(Long executionId);
+
+This method requests score to pause the execution with the given id. This is only a request since some of the time an execution cannot be paused immediately. Examples for such cases are:
+
++  The execution is currently running a step. In this case, the execution will be paused after the step has finished running.
+
++  The execution is branched. In this case each branch has to be paused before the entire execution can be considered as paused.
+
+The method returns true if the request to pause was recorded successfully. If an execution with the specified id does not exist, or the execution is not currently running (or is already paused) then the method will return false.
+
+### Resuming Executions
+
+public void resumeExecution(Long executionId,
+ Map\<String, Serializable\> context,
+ Long position);
+
+This method resumes the paused execution with the given id.
+
+The *context* argument can be null. If it isn’t the values inside will overwrite existing values with the same keys.
+
+The *position* argument can be null. If it isn’t then the execution will continue from after the last step that was executed.
+
+##The ScoreEvents: 
+
+### Event Listening
+
+Score allows subscribing listeners for events. Such listeners must implement the ScoreEventListener interface which consists of a single method – *onEvent*.
+
+subscribe(ScoreEventListener listener, String type…)
+
+This method subscribes the given listener for the specified event types.
+
+unsubscribe(ScoreEventListener listener)
+
+This method unsubscribes the given listener from all the types it was subscribed to.
+
+##The new “System Context” - ExecutionRuntimeServices
+
+The system context is a way for the language to affect the execution during run time. Several examples for this are:
+
++  If the language wants to pause the execution (In OO – flow inputs)
+
++  If the language wants to throw an event
+
+Currently the system context is a simple Map\<String, Serializable\> and the user writing a language for score (Like AFL) can modify the contents of this map freely. This is bad for two reasons:
+
++  It is very inconvenient for the user to “use” our API this way since the usage is basically adding certain keys with certain values to this map.
+
++  It exposes score’s inner workings to the user.
+
+Because of these two reason we want to convert this to a proper API with declared methods and everything! The methods for this API:
+
++  addEvent(String type, Serializable data)
+
++  pause()
+
++  setError(String error)
+
++  addBranch(String uuid, Long position, Map\<String, Serializable\> runtimeValues) – The runtime values will be added to the values inside system context values
+
++  getBranchesData() - TBD returnValue
+
++  setWorkerGroup() TBD – how we assign ControlAction to worker group
+
+Since OO currently uses the *put* and *get* methods in the systemContext we will also need to have it implement the Map interface.
+
+#Score architecture
+
+![alt text](images/diagrams/score_simple_hld.png "Simple Diagram")
+
+##Engine
+
+Score component responsible for orchestration and administration.
+
+Engine components have access to the DB.
+
+Contains 3 major components:
+
+### Orchestrator
+
+Orchestrates score executions, creates new executions, allow pausing, canceling & resuming existing executions and provides the status of existing executions. In addition it assists the split and join mechanism.
+
+### Queue & Assigner
+
+The Assigner assigns each execution to a specific worker according the workers groups’ configuration.
+
+The queue holds the execution messages in the DB and provides messages to the worker for execution.
+
+### Topology Management
+
+Administrates the workers. Allows registering and unregistering workers, enabling and disabling them and managing the workers’ groups. The Assigner uses it for assigning the messages to workers according to their groups.
+
+Holds the workers administration data in the DB.
+
+##Worker
+
+The component in charge of the actual execution. Does not have DB access.
+
+Contains 3 major components:
+
+### Event bus
+
+Allows registering and un-registering on the events of the specific worker, and is responsible for firing the events.
+
+### Worker Manager
+
++   Polls messages from the engine’s queue using the In-Buffer component.
+
++   Drains messages back to the orchestrator using the Out-Buffer
+
++   Delegates messages to the execution service
+
++   Responsible for updating the worker’s status in the engine’s Topology Management
+
+### Execution Service
+
+Executes a single execution step at a time (single step and navigation). In addition, pauses and cancels executions and dispatches the relevant events.
+
+Using the ExecutionRuntimeServices, the execution service provides services such as request for pause, split the execution, and add events for dispatch
+
+##Scheduled jobs
+
++ QueueCleanerJob – Deletes from the queue all messages of finished executions
+
++ PartitionJob – Manages the rolling table mechanism for the States table
+
++ SplitJoinJob – Handles the split & join mechanism
+
++ outBuffer.drain() – Dispatches messages to the Orchestrator for returning the execution to the queue
+
++ workerManager.workerKeepAlive() – Allows the worker to report keep alive status
+
+##Schema creation + upgradability 
+
+Here we have two options:
+
++  When using h2 in memory, we’ll use hibernate ability to create the schema.
+
++  We’ll provide scripts to create the DB schema when working with external DB. Here we’ll have upgradable scripts between the different versions.
+
+###3rd parties’ dependencies
+
++   Spring
+
++   Hibernate
+
+###Interaction between components
+
+##Recovery mechanism 
+
+TBD
+
+#Code standards (under construction)
+
++  Do we want to add “score” prefix? Only for API classes
+
+#Current state
+
++  The debugger capabilities are in score road map, but currently out of scope
+
++  Score **will** support scan of language beans from class path
+
+#Open issues
+
++  Missing design for security issue
+
++  Error handling (exceptions? Return Boolean?)
+
+

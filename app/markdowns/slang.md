@@ -64,8 +64,7 @@ Describes the workflow of the flow, and contains the different tasks and the nav
 
 The first task in the workflow is the begin task of the flow.
 on_failure is a reserved key.
-As default navigation the result of FAILURE goes to on_failure,
-result of SUCCESS goes to the next step.
+For the default navigation the result of FAILURE goes to on_failure, the result of SUCCESS goes to the next step.
 You can also define custom navigations with targets like: another task or flow results (e.g. SUCCESS / FAILURE).
 Every task can use: predefined operation, inline operation or subflow, see [Task](#docs/#task).
 
@@ -86,7 +85,7 @@ workflow:
     publish:
       flow_var: some_op_output
     navigate: 
-      #how to handle operation that have non-default result
+      #how to handle an operation that has a non-default result
       #we'll use the default navigation as well: FAIL -> on_failure, SUCCESS -> next task (in our case second_task)
       NON_DEFAULT_RESULT: custom_task
       
@@ -126,7 +125,7 @@ The name of the input is the key.
 
 ###Outputs
 
-Outputs defines the possible parameters flow / operation expose to further use (see [Task](#docs/#task) publish property).
+Outputs define the possible parameters flow / operation exposed to further use (see [Task](#docs/#task) publish property).
 
 *sample:*
 
@@ -156,7 +155,7 @@ Task is a single node in the flow workflow. Every task can use: predefined opera
 |----------|----------|---------|-------------|
 |operation | V        |         |Describe the operation or subflow this task will run|
 |publish   |          |         |Choose from the operation outputs what to publish to the flow level|
-|go_to     |FAILURE: on_failure SUCCESS: go to next task| | Describe the navigation for the different results the operation hase. In case of the default results, and their default go_to you don’t need to write it down.|
+|go_to     |FAILURE: on_failure SUCCESS: go to next task| | Describe the navigation for the different results the operation has. In case of the default results, with the default go_to you don’t need to write it down.|
 
 *sample:*
 
@@ -241,7 +240,7 @@ In this case you explicitly define your operation.
 Two kind of actions are supported: java @Actions and python scripts.
 
 ####@Action
-A java action is a valid @Action if respects the method signature `public Map<String, String> doSomething(paramaters)` and
+A java action is a valid @Action that respects the method signature `public Map<String, String> doSomething(paramaters)` and
 uses the following annotations (from `com.hp.oo.sdk.content.annotations`):
 
 + required annotations
@@ -347,7 +346,7 @@ Event types from SLANG and the data each provide:<a name="event_summary"></a>
 ##SLANG CLI
 
 In order to use SLANG CLI you need to build the score-language project (run `mvn clean install` in root directory).
-After buiding the project look up `score-language\score-lang-cli\target\appassembler\bin` folder. You can use the command line interface by running `slang.bat`.
+After building the project look up `score-language\score-lang-cli\target\appassembler\bin` folder. You can use the command line interface by running `slang.bat`.
 
 You can get a list of available commands by typing `help` in the cli console.
 

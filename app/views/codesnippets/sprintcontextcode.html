@@ -4,21 +4,15 @@
     &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
         xmlns:score=&quot;http://www.hp.com/schema/score&quot;
-        xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
         xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.hp.com/schema/score
-        http://www.hp.com/schema/score/score.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+        http://www.hp.com/schema/score/score.xsd&quot;&gt;
 
         &lt;score:engine/&gt;
         &lt;score:worker uuid=&quot;-1&quot;/&gt;
 
-        &lt;context:annotation-config/&gt;
-
-        &lt;bean class=&quot;com.hp.score.lang.compiler.configuration.SpringConfiguration&quot;/&gt;
-        &lt;bean class=&quot;com.hp.score.lang.runtime.configuration.SlangRuntimeSpringConfig&quot;/&gt;
+        &lt;bean class=&quot;com.hp.score.lang.api.configuration.SlangSpringConfiguration&quot;/&gt;
     &lt;/beans&gt;
     </code>
 </pre>

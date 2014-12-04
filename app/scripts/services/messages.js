@@ -9,7 +9,6 @@ angular.module('scoreWebsiteApp')
             navGettingStartedTitle: 'Getting Started',
             navUseCasesTitle: 'Use Cases',
             navAboutTitle: 'About Us',
-            //navContactUsTitle: 'Contact Us',
             navDocumentationTitle: 'Documentation',
 
             //docs nav bar
@@ -87,7 +86,7 @@ angular.module('scoreWebsiteApp')
             detailedCliPrefix: '$',
             detailedCliClear: 'Clear',
             detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
-            detailedCliTriggerFlow: 'slang run --f /.../flow.sl --D input1=LA\n' +
+            detailedCliTriggerFlow: 'slang run --f /.../SimpleFlow.sl --D input1=LA\n' +
                 '^500 CheckWeather\n' +
                 '^250 PrintWeather\n' +
                 ' the weather in LA is: hot\n' +
@@ -106,7 +105,13 @@ angular.module('scoreWebsiteApp')
             detailedEmbedCompileCli: 'mvn clean install^1000\n[INFO] Scanning for projects...\n ......\n[INFO] BUILD SUCCESS\n$',
             detailedEmbedScoreRunHeader: 'Run',
             detailedEmbedScoreRunText: 'Run your application from command line',
-            detailedEmbedRunCli: 'cd /dev/score-app/target\n$ java -jar sample-app.jar\n^1000Checking flow status...^1200\nFinished^1000\nthe weather in San Fransisco is: Hot\n$'
+            detailedEmbedRunCli: 'cd /dev/score-app/target\n' +
+                '$ java -jar sample-app.jar\n' +
+                '^500 CheckWeather\n' +
+                '^250 PrintWeather\n' +
+                ' the weather in LA is: hot\n' +
+                '^250 Flow : SimpleFlow finished with result: SUCCESS\n' +
+                '^250$'
         };
 
         $rootScope.year = new Date().getFullYear();

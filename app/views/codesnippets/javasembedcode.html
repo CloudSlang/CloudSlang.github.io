@@ -20,11 +20,11 @@
 
             slang = applicationContext.getBean(Slang.class);
 
-            Set&lt;String&gt; dependencies = new HashSet&lt;&gt;();
-            dependencies.add("&lt;path&gt;/operations.sl");
+            Set&lt;File&gt; dependencies = new HashSet&lt;&gt;();
+            dependencies.add(new File("&lt;path&gt;/operations.sl"));
 
             slang.subscribeOnAllEvents();
-            slang.launch("&lt;path&gt;/flow.sl", dependencies, null);
+            slang.compileAndRun(new File("&lt;path&gt;/flow.sl"), dependencies, null);
         }
     }
     </code>

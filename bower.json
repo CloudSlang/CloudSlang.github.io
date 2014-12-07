@@ -20,7 +20,8 @@
         "jquery.transit": "~0.9.12",
         "highlightjs": "~8.3.0",
         "typed.js": "*",
-        "pace": "*"
+        "pace": "*",
+        "components-font-awesome" : "*"
     },
     "devDependencies": {
         "angular-mocks": "~1.2.0",

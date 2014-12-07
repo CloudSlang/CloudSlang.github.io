@@ -26,8 +26,8 @@ A flow is the basic executable unit of SLANG. It represents a process that can b
 
 Property    |Required    |Default            |Description
 ------------|-----------|-------------------|-----------
-name	    |V	        |   	            |The name of the flow
-inputs		|	        |                   |List of inputs (see [Inputs](#docs/#inputs))
+name        |V          |                   |The name of the flow
+inputs    	|	        |                   |List of inputs (see [Inputs](#docs/#inputs))
 workflow	|V		    |                   |Describes the flow tasks and navigation (see [Workflow](#docs/#workflow))
 results		|           |SUCCESS/FAILURE    |Possible results of the flow (see [Results](#docs/#results))
 outputs		|   	    |                   |List of outputs (see [Outputs](#docs/#outputs))
@@ -66,7 +66,7 @@ The first task in the workflow is the begin task of the flow.
 on_failure is a reserved key.
 For the default navigation the result of FAILURE goes to on_failure, the result of SUCCESS goes to the next step.
 You can also define custom navigations with targets like: another task or flow results (e.g. SUCCESS / FAILURE).
-Every task can use: predefined operation, inline operation or subflow, see [Task](#docs/#task).
+Every task can use: predefined operation or subflow, (see [Task](#docs/#task)).
 
 Property	|Required	|Default	|Description
 ------------|-----------|-----------|-----------
@@ -111,7 +111,6 @@ The name of the input is the key.
 	- input_with_value_like_name
 	- input_not_required:
 	   required: false
-	- input_use_system_property: "SYSTEM[memory] + system + user"
 	- input_use_expression_inline: "'1' + '6'"
 	- input_with_default_value:
 	   default: "'I'm the default value'"
@@ -149,7 +148,7 @@ Describes the possible results of the flow. By default, the flow has two results
 ```
 
 ###Task
-Task is a single node in the flow workflow. Every task can use: predefined operation, inline operation or subflow.
+Task is a single node in the flow workflow. Every task can use predefined operation or subflow.
 
 | Property | Required | Default | Description |
 |----------|----------|---------|-------------|
@@ -170,7 +169,7 @@ Task is a single node in the flow workflow. Every task can use: predefined opera
 
 ###Operation
 
-Operation is the wrapper of an action. Operation can call predefined operation or inline operation.
+Operation is the wrapper of an action.
 
 Property    |Required    |Default	        |Description
 ------------|-----------|-------------------|-----------
@@ -178,10 +177,6 @@ inputs		|	        |                   |Operation inputs (see [Inputs](#docs/#inp
 action  	|V		    |                   |Logic of the operation. (see [Action](#docs/#action))
 results		|           |SUCCESS/FAILURE    |Possible results of the operation (see [Results](#docs/#results))
 outputs		|   	    |                   |Outputs of the operation (see [Outputs](#docs/#outputs))
-
-####Predefined operation
-
-The recommended way, this way you can reuse this operation.
 
 *sample:*
 
@@ -191,48 +186,6 @@ The recommended way, this way you can reuse this operation.
         - operation_input_1: flow_input_3
         - operation_input_2
         - operation_input_3
-```
-
-####Inline operation
-
-In this case you explicitly define your operation.
-
-*sample:*
-
-```yaml
-    do:
-      OrderVMFlow2:
-        inputs:  
-          - nova_host
-          - nova_port
-          - vm_name
-          - vm_description
-          - cpu_quantity
-          - memory
-          - disk_space
-          - os
-        action:
-          python_script: |
-            # put your script here
-            import os
-            processId = os.getpid()
-            print processId
-            print nova_host
-            print nova_port
-            print vm_name
-            print vm_description
-            print cpu_quantity
-            print memory
-        results:
-          OOPS: statusCode == None
-          SUCCESS: statusCode == 'created!'
-          FAIL: some_output == fromInputs['disk_space']
-        outputs:
-          - ip
-      publish:
-        vm_ip: ip
-      navigation:
-        OOPS: Send_Mail
 ```
 
 ###Action
@@ -287,6 +240,22 @@ uses the following annotations (from `com.hp.oo.sdk.content.annotations`):
 ####Python script
 You can use any traditional python 2.7 version script.
 
+*sample - create custom operation that uses Python script*
+
+```yaml
+      - check_Weather:
+          inputs:
+            - city
+          action:
+            python_script: |
+              weather = "weather thing"
+              print city
+          outputs:
+            - weather
+          results:
+            - SUCCESS: 'weather == "weather thing"'
+```
+
 
 ###Imports
 
@@ -310,6 +279,215 @@ Used at the beginning of a file. Used as the namespace of the flow or operation.
   namespace: user.flows
 ```
 
+###Some more samples
+
+####Sample1 - demonstrates custom navigation and publishing outputs
+
+*operations:*
+
+```yaml
+    namespace: user.ops
+    
+    operations:
+      - check_number:
+          inputs:
+            - number
+          action:
+            python_script: |
+              remainder = number % 2
+              isEven = remainder == 0
+              tooBig = number > 512
+          outputs:
+            - preprocessed_number: str(fromInputs['number'] * 3)
+          results:
+            - EVEN: isEven == 'True' and tooBig == 'False'
+            - ODD: isEven == 'False' and tooBig == 'False'
+            - FAILURE # report failure if the number is too big
+    
+      - process_even_number:
+          inputs:
+            - even_number
+            - offset: 32
+          action:
+            python_script: |
+              processing_result = int(even_number) + offset
+              print 'Even number processed. Result= ' + str(processing_result)
+    
+      - process_odd_number:
+          inputs:
+            - odd_number
+          action:
+            python_script:
+              print 'Odd number processed. Result= ' + str(odd_number)
+```
+
+```yaml
+    namespace: email.ops
+    
+    operations:
+      - send_mail:
+          inputs:
+            - hostname
+            - port
+            - from
+            - to
+            - cc: "''"
+            - bcc: "''"
+            - subject
+            - body
+            - htmlEmail: "'true'"
+            - readReceipt: "'false'"
+            - attachments: "''"
+            - username: "''"
+            - password: "''"
+            - characterSet: "'UTF-8'"
+            - contentTransferEncoding: "'base64'"
+            - delimiter: "''"
+          action:
+            java_action:
+              className: org.eclipse.score.content.mail.actions.SendMailAction
+              methodName: execute
+          results:
+            - SUCCESS: returnCode == '0'
+            - FAILURE
+```
+
+*flow:*
+
+```yaml
+    namespace: user.flows
+    
+    imports:
+     ops: user.ops
+     email: email.ops
+    
+    flow:
+      name: navigation_flow
+      inputs:
+        - userNumber
+        - emailHost
+        - emailPort
+        - emailSender
+        - emailRecipient
+      workflow:
+        check_number:
+          do:
+            ops.check_number:
+              - number: userNumber
+          publish:
+            - new_number: preprocessed_number # publish the output in the flow level so it will be visible for other steps
+          navigate:
+            EVEN: process_even_number
+            ODD: process_odd_number
+            FAILURE: send_error_mail
+    
+        process_even_number:
+          do:
+            ops.process_even_number:
+              - even_number: new_number
+          navigate:
+            SUCCESS: SUCCESS # end flow with success result
+    
+        process_odd_number:
+          do:
+            ops.process_odd_number:
+              - odd_number: new_number
+          navigate:
+            SUCCESS: SUCCESS # end flow with success result
+    
+        on_failure: # you can also use this step for default navigation in failure case
+          send_error_mail: # or refer it by the task name
+            do:
+              email.send_mail:
+                - hostname: emailHost
+                - port: emailPort
+                - from: emailSender
+                - to: emailRecipient
+                - subject: "'Flow failure'"
+                - body: "'Wrong number: ' + str(userNumber)"
+            navigate:
+              SUCCESS: FAILURE # end flow with failure result
+              FAILURE: FAILURE
+```
+
+####Sample2 - demonstrates subflow usage
+
+*operations:*
+
+```yaml
+    namespace: user.ops
+
+    operations:
+      - test_op:
+          action:
+            python_script: 'print "hello world"'
+            
+  - check_Weather:
+      inputs:
+        - city
+      action:
+        python_script: |
+          weather = "weather thing"
+          print city
+      outputs:
+        - weather: weather
+      results:
+        - SUCCESS: 'weather == "weather thing"'
+```
+
+*subflow:*
+
+```yaml
+    namespace: user.flows
+    
+    imports:
+      ops: user.ops
+    
+    flow:
+      name: child_flow
+      inputs:
+        - input1: "'value'"
+      workflow:
+        CheckWeather:
+          do:
+            ops.test_op:
+      outputs:
+        - val_output: fromInputs['input1']
+```
+
+*parent flow:*
+
+```yaml
+    namespace: user.flows
+    
+    imports:
+      ops: user.ops
+      flows: user.flows
+    
+    flow:
+      name: parent_flow
+      inputs:
+        - input1
+        - city:
+            required: false
+      workflow:
+        Task1:
+          do:
+            ops.check_Weather:
+              - city: city if city is not None else input1
+          publish:
+            - kuku: weather
+    
+        Task2:
+          do:
+            flows.child_flow:
+              - input1: kuku
+          publish:
+            - val_output
+      results:
+        - SUCCESS
+        - FAILURE
+```
 
 ##SLANG Events
 
@@ -344,12 +522,29 @@ Event types from SLANG and the data each provide:<a name="event_summary"></a>
 
 
 ##SLANG CLI
+You have two ways to obtain SLANG CLI: either download it directly from score website or build it by yourself.
 
-In order to use SLANG CLI you need to build the score-language project (run `mvn clean install` in root directory).
-After building the project look up `score-language\score-lang-cli\target\appassembler\bin` folder. You can use the command line interface by running `slang.bat`.
+###Running CLI by downloading it
+
++ go to ([Score website](/#/))
++ in the "Getting started section" click "Download an use slang CLI tool"
++ click "Download latest version". This will download an archive with the latest CLI version
++ unzip the archive. It contains a folder called "appassembler" and some sample flows
+    - the "appassembler" folder contains the CLI tool and the necessary dependencies
++ navigate to the folder `appassembler\bin\`
++ start CLI by running `slang.bat`
+
+###Running CLI by building it
+
++ download the project sources from [here](#DOWNLOAD_LINK_HERE)
++ navigate to project root directory
++ build the project: open a command window here and run `mvn clean install`
++ after building the project navigate to `score-language\score-lang-cli\target\appassembler\bin` folder
++ start CLI by running `slang.bat`
+
+###Using the CLI
 
 You can get a list of available commands by typing `help` in the cli console.
-
 
 *sample - running a flow*
 
@@ -376,3 +571,24 @@ slang -version
 ```
 
 The execution log is saved in `score-language\score-lang-cli\target\appassembler\bin` directory under `execution.log` name. All the events are saved in this log so using this file you can easily track your flow execution.
+
+##Sublime integration
+
+In order to write flows or operations in slang, you can use Sublime text editor. We provide a snippet that enables
+slang templates. The files should have the .yaml , .yl or .sl extension. See below how to install / configure Sublime for Windows:
+
++ download and install Sublime editor from [here](http://www.sublimetext.com/2)
++ download Slang.sublime-package file from [here](https://github.com/orius123/slang-sublime)
++ copy the downloaded package file in C:\Users\<User>\AppData\Roaming\Sublime Text 2\Installed Packages
+
+In order to use the templates start typing the template name and press enter when it appears on the screen. See below
+the template types:
+
+  Keyword  |  Description
+------------|------------
+  slang  |  template for a slang file
+  flow  |  template for a flow
+  task  |  template for a task
+  operation  | template for an operation
+  
+*Note*: DSL elements that are not required are marked in the templates as comments (start with # sign).

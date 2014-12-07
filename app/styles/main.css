@@ -637,13 +637,13 @@ a:hover {
 .section-wrapper.score {
     color: #000000;
     background-color: #f5f5f5;
-    min-height: 6400px;
+    min-height: 7070px;
     border-top: 1px solid #939393;
 }
 .section-wrapper.slang {
     color: #000000;
     background-color: #f5f5f5;
-    min-height: 8300px;
+    min-height: 12222px;
     border-top: 1px solid #939393;
 }
 .section-wrapper.developer {
@@ -660,41 +660,29 @@ a:hover {
     visibility: hidden;
 }
 
-.go-to-page-button {
+.go-to-page {
+    color: #639542;
+    margin-left: 25px;
     display: inline-block;
-    text-align: center;
-    border-color: #e7e7e7;
-    background-color: #e7e7e7;
-    height: 61px;
-    border-bottom: none;
-    width: 140px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    padding: 12px;
-    color: #345B1F;
-    margin-left: 35px;
 }
 
-.go-to-page-button:hover {
-    background-color: #345B1F;
-    border-color: transparent;
-    color: #ffffff;
+.go-to-page .button {
+    font-size: 16px;
+}
+
+.go-to-page .arrow {
+    font-size: 25px;
+    margin-top: -5px;
+    padding-left: 1px;
+}
+
+.go-to-page:hover {
+    color: #777;
 }
 
 @media (max-width: 767px) {
-    .go-to-page-button {
-        border: none;
-        height: inherit;
-        width: inherit;
-        background-color: inherit;
+    .go-to-page {
         margin-top: 10px;
-        padding: inherit;
-        border-radius: 0;
-        margin-left: 15px;
-    }
-
-    .go-to-page-button:hover {
-        background-color: inherit;
-        color: #000000;
+        margin-left: -15px;
     }
 }

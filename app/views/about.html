@@ -2,49 +2,73 @@
     <div class="row row-centered">
         <div class="col-md-12 col-xs-12 ">
             <div class="row">
-                <img class="team-logo col-md-4 col-xs-2 col-centered" src="images/team/about_icon.png" />
-                <p class="h4 section-header col-md-6 col-xs-10 col-centered left">{{$root.messages.aboutUsWhoWeAreText}}</p>
+                <img class="team-logo col-md-4 col-xs-2 col-centered" src="images/team/about_icon.png"/>
+
+                <p class="h4 section-header col-md-6 col-xs-10 col-centered left">
+                    {{$root.messages.aboutUsWhoWeAreText}}</p>
             </div>
         </div>
-        <div class="col-md-12 col-sm-12 col-xs-8 col-centered">
-            <div class="row team-members center-block">
-                <div class="team-member col-md-2 col-sm-3 col-xs-10">
-                   <div ng-mouseenter="member1Hover = true" ng-mouseleave="member1Hover = false">
-                       <img class="img-responsive team-member-image" src="images/team/meshi.jpg">
-                        <p class="h4 text-center">Meshi Peer</p>
+        <div class="col-centered">
+            <!--<div class="row team-members center-block">-->
+                <div class="row team-members center-block">
+                    <div class="col-md-3 col-sm-3 team-member">
+                        <div ng-mouseenter="member1Hover = true" ng-mouseleave="member1Hover = false">
+                            <img class="img-responsive team-member-image" src="images/team/meshi.jpg">
+
+                            <p class="h4 text-center">Meshi Peer</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 team-member">
+                        <div ng-mouseenter="member2Hover = true" ng-mouseleave="member2Hover = false">
+                            <img class="img-responsive team-member-image" src="images/team/meir.jpg">
+
+                            <p class="h4 text-center">Meir Whanon</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 team-member">
+                        <div ng-mouseenter="member3Hover = true" ng-mouseleave="member3Hover = false">
+                            <img class="img-responsive team-member-image" src="images/team/eliya.jpg">
+
+                            <p class="h4 text-center">Eliya Sadan</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 team-member">
+                        <div ng-mouseenter="member4Hover = true" ng-mouseleave="member4Hover = false">
+                            <img class="img-responsive team-member-image" src="images/team/orit.jpg">
+
+                            <p class="h4 text-center">Orit Stone</p>
+                        </div>
                     </div>
                 </div>
-                <div class="team-member col-md-2 col-sm-3 col-xs-10">
-                    <div ng-mouseenter="member2Hover = true" ng-mouseleave="member2Hover = false">
-                        <img class="img-responsive team-member-image" src="images/team/meir.jpg">
-                        <p class="h4 text-center">Meir Whanon</p>
+
+                <div class="row team-members center-block">
+                    <div class="col-md-3 col-sm-3 team-member">
+                        <div ng-mouseenter="member5Hover = true" ng-mouseleave="member5Hover = false">
+                            <img class="img-responsive team-member-image" src="images/team/avi.jpg">
+                            <p class="h4 text-center">Avi Moradi</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 team-member">
+                        <div ng-mouseenter="member5Hover = true" ng-mouseleave="member5Hover = false">
+                            <img class="img-responsive team-member-image" src="images/team/levi.jpg">
+                            <p class="h4 text-center">Levente Bonczidai</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 team-member ">
+                        <div ng-mouseenter="member6Hover = true" ng-mouseleave="member6Hover = false">
+                            <img class="img-responsive team-member-image" src="images/team/tudor.jpg">
+                            <p class="h4 text-center">Tudor Lesan</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 team-member">
+                        <div ng-mouseenter="member6Hover = true" ng-mouseleave="member6Hover = false">
+                            <img class="img-responsive team-member-image" src="images/team/harar.jpg">
+                            <p class="h4 text-center">Harar Zafrir</p>
+                        </div>
                     </div>
                 </div>
-                <div class="team-member col-md-2 col-sm-3 col-xs-10">
-                    <div ng-mouseenter="member3Hover = true" ng-mouseleave="member3Hover = false">
-                        <img class="img-responsive team-member-image" src="images/team/eliya.jpg">
-                        <p class="h4 text-center">Eliya Sadan</p>
-                    </div>
-                </div>
-                <div class="team-member col-md-2 col-sm-3 col-xs-10">
-                    <div ng-mouseenter="member4Hover = true" ng-mouseleave="member4Hover = false">
-                        <img class="img-responsive team-member-image" src="images/team/orit.jpg">
-                        <p class="h4 text-center">Orit Stone</p>
-                    </div>
-                </div>
-                <div class="team-member col-md-2 col-sm-3 col-xs-10">
-                    <div ng-mouseenter="member5Hover = true" ng-mouseleave="member5Hover = false">
-                        <img class="img-responsive team-member-image" src="images/team/avi.jpg">
-                        <p class="h4 text-center">Avi Moradi</p>
-                    </div>
-                </div>
-                <div class="team-member col-md-2 col-sm-3 col-xs-10">
-                    <div ng-mouseenter="member6Hover = true" ng-mouseleave="member6Hover = false">
-                        <img class="img-responsive team-member-image" src="images/team/harar.jpg">
-                        <p class="h4 text-center">Harar Zafrir</p>
-                    </div>
-                </div>
-            </div>
+
+            <!--</div>-->
         </div>
     </div>
 </div>

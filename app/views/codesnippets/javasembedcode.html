@@ -23,7 +23,13 @@
             Set&lt;File&gt; dependencies = new HashSet&lt;&gt;();
             dependencies.add(new File("&lt;path&gt;/operations.sl"));
 
-            slang.subscribeOnAllEvents();
+            slang.subscribeOnAllEvents(new ScoreEventListener() {
+                @Override
+                public void onEvent(ScoreEvent event) {
+                    System.out.println(event.getEventType() + " : " + event.getData());
+                }
+            });
+
             slang.compileAndRun(new File("&lt;path&gt;/flow.sl"), dependencies, null);
         }
     }

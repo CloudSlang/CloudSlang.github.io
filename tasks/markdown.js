@@ -21,6 +21,7 @@ module.exports = function (grunt) {
         renderer.heading = anchorHeadings;
         renderer.table = bootstrapTable;
         renderer.link = underLinedLink;
+        renderer.image = responsiveImage;
         options.renderer = renderer;
 
         // install highlight.js
@@ -78,6 +79,11 @@ module.exports = function (grunt) {
         function underLinedLink(href, title, text) {
             var markedLink = new marked.Renderer().link(href, title, text);
             return markedLink.replace("<a ", "<a class=\"docs-link\" ");
+        }
+
+        function responsiveImage(href, title, text) {
+            var markedLink = new marked.Renderer().image(href, title, text);
+            return markedLink.replace("<img ", "<img class=\"img-responsive\" ");
         }
     });
 };

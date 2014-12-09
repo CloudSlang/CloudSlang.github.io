@@ -1,4 +1,4 @@
-##Score overview
+#Score overview
 **score** is an open-source, generic orchestration engine that can be used in order to automate work-processes.
 
 **score** can be used in a variety of environments and scenarios such as: cloud setup and maintenance, build systems, QA, and many more.

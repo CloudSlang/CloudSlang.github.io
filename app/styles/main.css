@@ -32,6 +32,7 @@ a:hover {
 .h2, h2 {
     font-size: 40px;
     font-weight: normal;
+    border-bottom: 1px solid #cccccc;
     line-height: 0.9;
 }
 
@@ -641,7 +642,7 @@ a:hover {
 .section-wrapper.score {
     color: #000000;
     background-color: #f5f5f5;
-    min-height: 6500px;
+    min-height: 6630px;
     border-top: 1px solid #939393;
 }
 

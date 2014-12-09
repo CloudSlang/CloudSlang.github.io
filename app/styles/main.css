@@ -641,20 +641,50 @@ a:hover {
 .section-wrapper.score {
     color: #000000;
     background-color: #f5f5f5;
-    min-height: 7070px;
+    min-height: 6500px;
     border-top: 1px solid #939393;
 }
+
 .section-wrapper.slang {
     color: #000000;
     background-color: #f5f5f5;
     min-height: 12222px;
     border-top: 1px solid #939393;
 }
+
 .section-wrapper.developer {
     color: #000000;
     background-color: #f5f5f5;
-    min-height: 600px;
+    min-height: 815px;
     border-top: 1px solid #939393;
+}
+
+@media (max-width: 991px) {
+    .section-wrapper.score {
+        min-height: 6920px;
+    }
+
+    .section-wrapper.slang {
+        min-height: 12444px;
+    }
+
+    .section-wrapper.developer {
+        min-height: 888px;
+    }
+}
+
+@media (max-width: 767px) {
+    .section-wrapper.score {
+        min-height: 6920px;
+    }
+
+    .section-wrapper.slang {
+        min-height: 12444px;
+    }
+
+    .section-wrapper.developer {
+        min-height: 888px;
+    }
 }
 
 .anchor{

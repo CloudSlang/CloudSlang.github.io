@@ -12,13 +12,6 @@ If we were to draw an execution plan it might look something like this:
 + 1.	From the execution context.
 + 2.	From values set during the creation of the execution plan.
 
-##score - How to add new language
-
-here we'll describe:
-
-+ compiler
-+ execution
-
 #How to contribute code
 
 TBD - instructions for code contribution

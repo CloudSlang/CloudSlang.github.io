@@ -20,6 +20,7 @@ module.exports = function (grunt) {
         var renderer = new marked.Renderer();
         renderer.heading = anchorHeadings;
         renderer.table = bootstrapTable;
+        renderer.link = underLinedLink;
         options.renderer = renderer;
 
         // install highlight.js
@@ -72,6 +73,11 @@ module.exports = function (grunt) {
                             + '</tbody>\n'
                         + '</table>\n' +
                     '</div>'
+        }
+
+        function underLinedLink(href, title, text) {
+            var markedLink = new marked.Renderer().link(href, title, text);
+            return markedLink.replace("<a ", "<a class=\"docs-link\" ");
         }
     });
 };

@@ -664,6 +664,10 @@ a:hover {
     visibility: hidden;
 }
 
+.docs-link{
+    text-decoration: underline;
+}
+
 .go-to-page {
     color: #639542;
     margin-left: 25px;

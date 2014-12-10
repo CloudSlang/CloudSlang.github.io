@@ -499,26 +499,29 @@ SLANG extends the traditional event type set provided by score with its own even
 Event types from score:
 
 + SCORE_FINISHED_EVENT
-+ SCORE_ERROR_EVENT
 + SCORE_FAILURE_EVENT
 
-Event types from SLANG and the data each provide:<a name="event_summary"></a>
+Event types from SLANG and the data each provide:
+- Description [DESCRIPTION] - the event description
+- Timestamp [TIMESTAMP] - the event time-stamp
+- Execution id [EXECUTIONID] - the event execution id
+- Path [PATH] - the event path, the path is increased when entering a subflow / operation
 
-+ in square brackets we provide the keys under the information is put in the event data map
+in square brackets we provide the keys under the information is put in the event data map
 
-| Type [TYPE] | Usage | Description [DESCRIPTION] | Timestamp [TIMESTAMP] | Execution id [EXECUTIONID] | Path [PATH] | Exception [EXCEPTION] | Call arguments [CALL_ARGUMENTS] | Special data |
-|----------|----------|----------|---------|-------------|----------|----------|---------|-------------|
-| EVENT_INPUT_END | Input binding finished for task |  V  |  V  |  V  |  V  |    |    | bound inputs [BOUND_INPUTS], level: task, node name [TASK_NAME]  |
-| EVENT_INPUT_END | Input binding finished for operation |  V  |  V  |  V  |  V  |    |    | bound inputs [BOUND_INPUTS], level: executable, node name [EXECUTABLE_NAME]  |
-| EVENT_OUTPUT_START | Output binding started for task |  V  |  V  |  V  |  V  |    |    | task publish values [taskPublishValues], task navigation values [taskNavigationValues], operation return values [operationReturnValues], level: task, node name [TASK_NAME] |
-| EVENT_OUTPUT_START | Output binding started for operation |  V  |  V  |  V  |  V  |    |    | executable outputs [executableOutputs], executable results [executableResults], action return values [actionReturnValues], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_OUTPUT_END | Output binding finished for task |  V  |  V  |  V  |  V  |    |    | task bound outputs [OUTPUTS], task result [RESULT], next step position [nextPosition], level: task, node name [TASK_NAME] |
-| EVENT_OUTPUT_END | Output binding finished for operation |  V  |  V  |  V  |  V  |    |    | executable bound outputs [OUTPUTS], executable result [RESULT], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_EXECUTION_FINISHED | Execution finished running (in case of subflow) |  V  |  V  |  V  |  V  |    |    | executable bound outputs [OUTPUTS] , executable result [RESULT], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_ACTION_START | Fired before the action invocation |  V  |  V  |  V  |  V  |    |  V  | action type (Java / Python) in description |
-| EVENT_ACTION_END | Fired after a successful action invocation |  V  |  V  |  V  |  V  |    |    | action return values [RETURN_VALUES] |
-| EVENT_ACTION_ERROR | Fired in case of exception in action execution |  V  |  V  |  V  |  V  |  V  |    |    |    |    |    |    |
-| SLANG_EXECUTION_EXCEPTION | Fired in case of exception in the previous step |  V  |  V  |  V  |  V  |  V  |    |    |
+| Type [TYPE] | Usage | Event Data |
+|----------|----------|----------|
+| EVENT_INPUT_END | Input binding finished for task  | bound inputs [BOUND_INPUTS] level: task, node name [TASK_NAME]  |
+| EVENT_INPUT_END | Input binding finished for operation  | bound inputs [BOUND_INPUTS], level: executable, node name [EXECUTABLE_NAME]  |
+| EVENT_OUTPUT_START | Output binding started for task | task publish values [taskPublishValues], task navigation values [taskNavigationValues], operation return values [operationReturnValues], level: task, node name [TASK_NAME] |
+| EVENT_OUTPUT_START | Output binding started for operation | executable outputs [executableOutputs], executable results [executableResults], action return values [actionReturnValues], level: executable, node name [EXECUTABLE_NAME] |
+| EVENT_OUTPUT_END | Output binding finished for task | task bound outputs [OUTPUTS], task result [RESULT], next step position [nextPosition], level: task, node name [TASK_NAME] |
+| EVENT_OUTPUT_END | Output binding finished for operation | executable bound outputs [OUTPUTS], executable result [RESULT], level: executable, node name [EXECUTABLE_NAME] |
+| EVENT_EXECUTION_FINISHED | Execution finished running (in case of subflow) | executable bound outputs [OUTPUTS] , executable result [RESULT], level: executable, node name [EXECUTABLE_NAME] |
+| EVENT_ACTION_START | Fired before the action invocation  | call arguments [CALL_ARGUMENTS], action type (Java / Python) in description |
+| EVENT_ACTION_END | Fired after a successful action invocation  | action return values [RETURN_VALUES] |
+| EVENT_ACTION_ERROR | Fired in case of exception in action execution |  exception [EXCEPTION] |
+| SLANG_EXECUTION_EXCEPTION | Fired in case of exception in the previous step |  exception [EXCEPTION] |
 
 
 ##SLANG CLI

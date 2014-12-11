@@ -53,25 +53,19 @@ By default the first executed step will be the execution plan’s start step.
 Returns the id of the new execution.
 
 *TriggeringProperties* contains the following data:
-+ `executionPlan: ExecutionPlan`
-
++ `executionPlan: ExecutionPlan`<br />
     The *executionPlan* argument contains the compiled execution plan.
-+ `dependencies: Map<String, ExecutionPlan>`
-
++ `dependencies: Map<String, ExecutionPlan>`<br />
     The *dependencies* argument contains a map of all the execution plans of the dependencies.
-+ `context: Map<String, ? extends Serializable>`
-
-    The *context* argument can be empty. If it isn’t empty the values inside will be added to the execution context.
-+ `runtimeValues: Map<String, ? extends Serializable>`
-
++ `context: Map<String, ? extends Serializable>`<br />
+     The *context* argument can be empty. If it isn’t empty the values inside will be added to the execution context.
++ `runtimeValues: Map<String, ? extends Serializable>`<br />
     The *runtimeValues* argument can be empty. If it isn’t empty the values inside will be added to the [ExecutionRuntimeServices](#docs/#executionruntimeservices).
-+ `startStep: Long`
-
++ `startStep: Long`<br />
     The *startStep* argument can be used in order to make the plan start from a specific step that is not necessarily the execution plan’s *beginStep*.
 
 ####Cancelling Executions
-+ `public void cancelExecution(Long executionId);`
-
++ `public void cancelExecution(Long executionId);`<br />
 This method request to cancel (terminate) a given execution, note that the execution will not necessarily be stopped immediately.
 
 *executionId* - the execution to cancel identifier that was retrieved when triggering
@@ -81,12 +75,10 @@ This method request to cancel (terminate) a given execution, note that the execu
 ####Event Listening
 **score** allows subscribing listeners for events. 
 Such listeners must implement the ScoreEventListener interface which consists of a single method – *onEvent*.
-+ `subscribe(ScoreEventListener listener, String type…)`
-
++ `subscribe(ScoreEventListener listener, String type…)`<br />
     This method subscribes the given listener for the specified event types.
 
-+ `unsubscribe(ScoreEventListener listener)`
-
++ `unsubscribe(ScoreEventListener listener)`<br />
     This method un-subscribes the given listener from all the types it was subscribed to.
 
 ####Event Types

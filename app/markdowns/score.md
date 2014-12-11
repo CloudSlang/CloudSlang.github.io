@@ -54,14 +54,19 @@ Returns the id of the new execution.
 
 *TriggeringProperties* contains the following data:
 + `executionPlan: ExecutionPlan`
+
     The *executionPlan* argument contains the compiled execution plan.
 + `dependencies: Map<String, ExecutionPlan>`
+
     The *dependencies* argument contains a map of all the execution plans of the dependencies.
 + `context: Map<String, ? extends Serializable>`
+
     The *context* argument can be empty. If it isn’t empty the values inside will be added to the execution context.
 + `runtimeValues: Map<String, ? extends Serializable>`
+
     The *runtimeValues* argument can be empty. If it isn’t empty the values inside will be added to the [ExecutionRuntimeServices](#docs/#executionruntimeservices).
 + `startStep: Long`
+
     The *startStep* argument can be used in order to make the plan start from a specific step that is not necessarily the execution plan’s *beginStep*.
 
 ####Cancelling Executions
@@ -77,13 +82,15 @@ This method request to cancel (terminate) a given execution, note that the execu
 **score** allows subscribing listeners for events. 
 Such listeners must implement the ScoreEventListener interface which consists of a single method – *onEvent*.
 + `subscribe(ScoreEventListener listener, String type…)`
+
     This method subscribes the given listener for the specified event types.
 
 + `unsubscribe(ScoreEventListener listener)`
+
     This method un-subscribes the given listener from all the types it was subscribed to.
 
 ####Event Types
-Score fires events during an execution. An event consists of two members:
+**score** fires events during an execution. An event consists of two members:
 +  type – A string that can have one of the following values:
     -  Finished 'SCORE_FINISHED_EVENT' – Signals a finished execution
     -  Error 'SCORE_FAILURE_EVENT' – Signals an execution that finished with error

@@ -36,36 +36,33 @@ See [slang](#docs/#slang) as one of the languages you can use to define workflow
 -	Application deployment
 -	DevOps
 -	QA
-and many more..
+    And many more..
 
 You can build your own flows, or just use slang out of the box content. 
 
-##Score APIs
-All of the score APIs are available through 2 interfaces:
+##score APIs
+All of score APIs are available through 2 interfaces:
 
-###Score - Execution API
+###score - Execution API
 
 ####Triggering New Executions
 + `public Long trigger(TriggeringProperties triggeringProperties);`
 
 This method starts an execution with the given [ExecutionPlan](#docs/#execution-plan) and with additional options. 
-By default the first executed step will be the execution plan’s start step, the execution context will be empty.
+By default the first executed step will be the execution plan’s start step.
 Returns the id of the new execution.
 
 *TriggeringProperties* contains the following data:
 + `executionPlan: ExecutionPlan`
+    The *executionPlan* argument contains the compiled execution plan.
 + `dependencies: Map<String, ExecutionPlan>`
+    The *dependencies* argument contains a map of all the execution plans of the dependencies.
 + `context: Map<String, ? extends Serializable>`
+    The *context* argument can be empty. If it isn’t empty the values inside will be added to the execution context.
 + `runtimeValues: Map<String, ? extends Serializable>`
-+ `startStep: long`
-
-The execution *context* argument can be empty. If it isn’t empty the values inside will be added to the execution context.
-    
-The *runtimeValues* argument can be empty. If it isn’t empty the values inside will be 
-added to the [ExecutionRuntimeServices](#docs/#executionruntimeservices).
-    
-The *startStep* argument can be used in order to make the plan start from a specific step that is not necessarily 
-the execution plan’s *beginStep*.
+    The *runtimeValues* argument can be empty. If it isn’t empty the values inside will be added to the [ExecutionRuntimeServices](#docs/#executionruntimeservices).
++ `startStep: Long`
+    The *startStep* argument can be used in order to make the plan start from a specific step that is not necessarily the execution plan’s *beginStep*.
 
 ####Cancelling Executions
 + `public void cancelExecution(Long executionId);`
@@ -80,12 +77,10 @@ This method request to cancel (terminate) a given execution, note that the execu
 **score** allows subscribing listeners for events. 
 Such listeners must implement the ScoreEventListener interface which consists of a single method – *onEvent*.
 + `subscribe(ScoreEventListener listener, String type…)`
-
-This method subscribes the given listener for the specified event types.
+    This method subscribes the given listener for the specified event types.
 
 + `unsubscribe(ScoreEventListener listener)`
-
-This method un-subscribes the given listener from all the types it was subscribed to.
+    This method un-subscribes the given listener from all the types it was subscribed to.
 
 ####Event Types
 Score fires events during an execution. An event consists of two members:

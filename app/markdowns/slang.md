@@ -1,4 +1,4 @@
-#SLANG - score language
+#Slang
 
 ##What is SLANG?
 
@@ -8,10 +8,10 @@ YAML is a human friendly data serialization standard for all programming languag
 "YAML Ain't Markup Language" suggesting that its purpose is rather data-oriented than document markup. The YAML
 (and SLANG) syntax maintains data structure hierarchy by outline indentation (in other words parallel elements should have the same left indentation).
 
-SLANG as a workflow language is used to define processes introducing the concept of flows. See [SLANG DSL](#docs/#slang_dsl).
+SLANG as a workflow language is used to define processes introducing the concept of flows. See [Slang DSL](#docs/#slang-dsl).
 Using SLANG you can easily define your workflow in a structured, easy-to-understand format.
 
-##SLANG DSL
+##Slang DSL
 The SLANG DSL contains the following main entities:
 
 + Flow: A flow is the basic executable unit of SLANG. It represents a process that can perform a job relevant to the end user. For example, a flow that creates a virtual machine. A flow consists of tasks and the navigation between them. Flows have inputs, outputs and possible results.

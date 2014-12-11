@@ -1,4 +1,4 @@
-#Score
+#score
 ##Overview
 **score** is a general-purpose java-based open-source orchestration engine which is process-based, 
 embeddable, lightweight, scalable and multilingual.
@@ -25,8 +25,8 @@ Execution logic and distribution are optimized for high throughput and are horiz
 
 ###Multilingual
 
-Take advantage of its architecture, **score** can support any process modeling language out there.
-The [ExecutionPlan](#docs/#execution-plan) low-level structure enables you to compile multiple languages for **score** to run. 
+Thanks to its architecture, **score** can support any process modeling language out there.
+The [ExecutionPlan](#docs/#execution-plan) generic structure enables you to compile any language describing a workflow to an object that **score** can run.
 See [slang](#docs/#slang) as one of the languages you can use to define workflows for score. 
 
 ###Use Cases

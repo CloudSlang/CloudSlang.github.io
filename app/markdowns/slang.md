@@ -1,4 +1,4 @@
-#Slang
+#SLANG - score language
 
 ##What is SLANG?
 
@@ -65,7 +65,7 @@ Describes the workflow of the flow, and contains the different tasks and the nav
 The first task in the workflow is the begin task of the flow.
 on_failure is a reserved key.
 For the default navigation the result of FAILURE goes to on_failure, the result of SUCCESS goes to the next step.
-You can also define custom navigations with targets like: another task or flow results (e.g. SUCCESS / FAILURE).
+You can also define custom navigations with targets like: another task or flow results (e.g. SUCCESS / FAILURE) - in this case the default navigation rules are ignored.
 Every task can use: predefined operation or subflow, (see [Task](#docs/#task)).
 
 Property	|Required	|Default	|Description
@@ -86,9 +86,7 @@ workflow:
       flow_var: some_op_output
     navigate: 
       #how to handle an operation that has a non-default result
-      #we'll use the default navigation as well: FAIL -> on_failure, SUCCESS -> next task (in our case second_task)
-      NON_DEFAULT_RESULT: custom_task
-      
+      NON_DEFAULT_RESULT: custom_task   
 ```
 
 
@@ -281,7 +279,70 @@ Used at the beginning of a file. Used as the namespace of the flow or operation.
 
 ###Some more samples
 
-####Sample1 - demonstrates custom navigation and publishing outputs
+####Sample1 - demonstrates default navigation
+
+*operations:*
+
+```yaml
+    namespace: user.ops
+    
+    operations:    
+      - produce_default_navigation:
+          inputs:
+            - navigationType
+          action:
+            python_script:
+              print 'Producing default navigation based on input'
+          results:
+            - SUCCESS: navigationType == 'success'
+            - FAILURE: 1 == 1
+```
+
+*flow:*
+
+```yaml
+    namespace: user.flows
+    
+    imports:
+     ops: user.ops
+    
+    flow:
+      name: navigation_flow
+      inputs:
+        - navigationType
+        - emailHost
+        - emailPort
+        - emailSender
+        - emailRecipient
+      workflow:
+        produce_default_navigation:
+          do:
+            ops.produce_default_navigation:
+              - navigationType
+    
+        check_Weather: # default navigation: go to this step on success
+          do:
+            ops.check_Weather:
+              - city: "'AwesomeCity'"
+          navigate:
+            SUCCESS: SUCCESS # end flow with success result
+    
+        on_failure: # default navigation: go to this step on failure
+          send_error_mail:
+            do:
+              ops.send_email_mock:
+                - hostname: emailHost
+                - port: emailPort
+                - sender: emailSender
+                - recipient: emailRecipient
+                - subject: "'Flow failure'"
+                - body: "'Default failure navigation here'"
+            navigate:
+              SUCCESS: FAILURE # end flow with failure result
+              FAILURE: FAILURE
+```
+
+####Sample2 - demonstrates custom navigation and publishing outputs
 
 *operations:*
 
@@ -410,7 +471,7 @@ Used at the beginning of a file. Used as the namespace of the flow or operation.
               FAILURE: FAILURE
 ```
 
-####Sample2 - demonstrates subflow usage
+####Sample3 - demonstrates subflow usage
 
 *operations:*
 
@@ -549,10 +610,17 @@ You have two ways to obtain SLANG CLI: either download it directly from score we
 
 You can get a list of available commands by typing `help` in the cli console.
 
-*sample - running a flow*
+*sample - running a flow with default classpath (flow directory)*
 
 ```bash
-run --f c:\...\your_flow.sl --D input1=root,input2=25
+run --f c:/.../your_flow.sl --i input1=root,input2=25
+```
+
+*sample - running a flow with custom classpath*
+
+```bash
+run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/
+run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/,c:/.../openstack/
 ```
 
 *sample - set execution mode to asynchronous (by default the execution mode is synchronous - that means you can run only one flow at a time)*
@@ -564,7 +632,7 @@ env --setAsync true
 *sample - get flow inputs*
 
 ```bash
-inputs --f c:\...\your_flow.sl
+inputs --f c:/.../your_flow.sl
 ```
 
 *sample - slang version*

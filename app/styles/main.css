@@ -194,12 +194,27 @@ a:hover {
 }
 
 .footer .copyright {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
-.footer .eclipse-logo {
-    width: 150px;
-    margin-bottom: 10px;
+.footer .social-icons {
+    margin-top: 15px;
+}
+
+.footer .social-icon{
+    font-size: 40px;
+}
+
+.footer .social-icon.gplus:hover{
+    color: #dc4a38;
+}
+
+.footer .social-icon.youtube:hover{
+    color: #c0110a;
+}
+
+.footer .social-icon.twitter:hover{
+    color: #55acee;
 }
 
 .section-wrapper {

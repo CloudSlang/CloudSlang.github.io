@@ -77,9 +77,9 @@ a:hover {
 }
 
 .header {
-    min-height: 500px;
     overflow: hidden;
     margin-top: 100px;
+    padding-bottom: 60px;
 }
 
 .header .fork {
@@ -121,10 +121,6 @@ a:hover {
 }
 
 @media (max-width: 991px) {
-    .header {
-        min-height: 860px;
-    }
-
     .header .forkMe {
         display: inherit;
     }
@@ -153,28 +149,6 @@ a:hover {
 
     .navbar-toggle {
         margin-top: 20px;
-    }
-}
-
-@media (max-width: 535px) {
-    .header {
-        min-height: 570px;
-    }
-
-    .videoContainer {
-        display: none;
-    }
-}
-
-@media (max-width: 451px) {
-    .header {
-        min-height: 660px;
-    }
-}
-
-@media (max-width: 362px) {
-    .header {
-        min-height: 710px;
     }
 }
 
@@ -229,9 +203,8 @@ a:hover {
 }
 
 .section-wrapper {
-    margin-top: -100px;
     padding-top: 60px;
-    min-height: 900px;
+    padding-bottom: 60px;
     color: #ffffff;
 }
 
@@ -242,7 +215,6 @@ a:hover {
 
 .section-wrapper.bullets {
     background-color: #5d913a;
-    min-height: 660px;
 }
 
 .bullets .read-more {
@@ -250,34 +222,9 @@ a:hover {
     text-decoration: underline;
 }
 
-@media (max-width: 991px) {
-    .section-wrapper.bullets {
-        min-height: 1300px;
-    }
-}
-
-@media (max-width: 600px) {
-    .section-wrapper.bullets {
-        min-height: 1650px;
-    }
-}
-
-@media (max-width: 391px) {
-    .section-wrapper.bullets {
-        min-height: 1800px;
-    }
-}
-
-@media (max-width: 359px) {
-    .section-wrapper.bullets {
-        min-height: 1920px;
-    }
-}
-
 .section-wrapper.use-cases {
     color: #000000;
     background-color: #f5f5f5;
-    min-height: 750px;
 }
 
 .use-cases .use-case {
@@ -293,7 +240,6 @@ a:hover {
 .section-wrapper.about {
     background-color: #2c451c;
     padding-top: 100px;
-    min-height: 700px;
 }
 
 @media (max-width: 991px) {
@@ -312,11 +258,7 @@ a:hover {
 }
 @media (max-width: 767px) {
     .section-wrapper.about {
-        min-height: 400px;
         height: 400px;
-    }
-    .section-wrapper.use-cases {
-        min-height: 1650px;
     }
     .about .team-members {
         display: none;
@@ -345,7 +287,6 @@ a:hover {
 
 .section-wrapper.contact-us {
     background-color: #8a9a7c;
-    min-height: 750px;
 }
 
 .contact-us .input-box,textarea {
@@ -643,50 +584,19 @@ a:hover {
 .section-wrapper.score {
     color: #000000;
     background-color: #f5f5f5;
-    min-height: 2150px;
     border-top: 1px solid #939393;
 }
 
 .section-wrapper.slang {
     color: #000000;
     background-color: #f5f5f5;
-    min-height: 11444px;
     border-top: 1px solid #939393;
 }
 
 .section-wrapper.developer {
     color: #000000;
     background-color: #f5f5f5;
-    min-height: 815px;
     border-top: 1px solid #939393;
-}
-
-@media (max-width: 991px) {
-    .section-wrapper.score {
-        min-height: 6920px;
-    }
-
-    .section-wrapper.slang {
-        min-height: 12444px;
-    }
-
-    .section-wrapper.developer {
-        min-height: 888px;
-    }
-}
-
-@media (max-width: 767px) {
-    .section-wrapper.score {
-        min-height: 6920px;
-    }
-
-    .section-wrapper.slang {
-        min-height: 12444px;
-    }
-
-    .section-wrapper.developer {
-        min-height: 888px;
-    }
 }
 
 .anchor{

@@ -653,5 +653,5 @@ a:hover {
 }
 
 .borderless {
-    border: none;
+    border: none !important;
 }

@@ -26,8 +26,6 @@ angular.module('scoreWebsiteApp')
             // footer
             footerPrivacy: 'Privacy Policy',
             footerTerms: 'Terms of Use',
-            footerCopyrightAgent: 'Copyright Agent',
-            footerLegal: 'Legal',
             footerContactUs: 'Contact Us',
             footerContribute: 'Contribute',
 
@@ -51,7 +49,7 @@ angular.module('scoreWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsWhoWeAreText: 'The Eclipse Foundation™ project score was contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
+            aboutUsWhoWeAreText: 'The project score was contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
 
             // use cases
             useCasesTitle: 'Use Cases',

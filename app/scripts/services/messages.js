@@ -29,6 +29,9 @@ angular.module('scoreWebsiteApp')
             footerLicense: 'Code licensed under the ',
             footerLicenseHref: 'Apache License, Version 2.0',
             footerContactUs: 'Contact Us',
+            footerGooglePlus: 'Google Plus',
+            footerYoutube: 'YouTube',
+            footerTwitter: 'Twitter',
             footerContribute: 'Contribute',
 
             // bullets

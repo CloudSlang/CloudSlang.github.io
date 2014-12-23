@@ -197,6 +197,14 @@ a:hover {
     margin-top: 15px;
 }
 
+.footer .license {
+    margin-top: 15px;
+}
+
+.footer .license > a {
+    text-decoration: underline;
+}
+
 .footer .social-icons {
     margin-top: 15px;
 }

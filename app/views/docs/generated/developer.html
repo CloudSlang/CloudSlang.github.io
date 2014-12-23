@@ -1,0 +1,116 @@
+<div class="container"><div><h1><a id="developer-contributor-guide" class="anchor" href="#/docs/developer-contributor-guide"><span class="header-link"></span></a>Developer (Contributor) Guide</h1><h2><a id="score-execution" class="anchor" href="#/docs/score-execution"><span class="header-link"></span></a>score - Execution</h2><p>Score is a workflow engine and can execute Execution Plans.</p>
+<h3><a id="execution-plan" class="anchor" href="#/docs/execution-plan"><span class="header-link"></span></a>Execution Plan</h3><p>An execution plan as the name implies, is a set of steps for score to run. 
+In order to trigger an execution you need to pass the execution plan to score.</p>
+<p>The execution plan consists mainly of a set of steps to perform. 
+These steps are called <em>Execution Steps</em>. 
+Each execution step has a <em>position</em> within the execution plan – the position of the first step in the execution plan is usually zero.</p>
+<h3><a id="execution-step" class="anchor" href="#/docs/execution-step"><span class="header-link"></span></a>Execution Step</h3><p>An execution step is a building block for the execution plan. It consists of two parts:</p>
+<ul>
+<li>Control Action – The control action to perform in this step.</li>
+<li>Navigation Action – The navigation to perform after the action was performed. 
+ This control action should determine the position of the next execution step that should be executed.</li>
+</ul>
+<p>Each execution step has a position in the execution plan. 
+In the diagram above we have 3 execution steps, each with its own position. 
+A position has to be unique – there cannot be two steps with the same position.</p>
+<h3><a id="control-action" class="anchor" href="#/docs/control-action"><span class="header-link"></span></a>Control Action</h3><p>Both control action and navigation action are java methods. 
+Score invokes these methods by reflection so there is no API or naming convention for them. 
+There are some recommendations and reserved argument names, we’ll get to that later.</p>
+<p>A control action method can have input arguments and they will be Injected by the score engine. 
+There are several methods by which score can populate arguments:</p>
+<ul>
+<li>From the execution context.</li>
+<li>From values set during the creation of the execution plan.</li>
+</ul>
+<h4><a id="assigning-argument-values-from-the-execution-context" class="anchor" href="#/docs/assigning-argument-values-from-the-execution-context"><span class="header-link"></span></a>Assigning argument values from the execution context</h4><p>Let’s take a look at the following method signature:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">doSomething</span><span class="hljs-params">(String argName)</span> </span>{
+ …
+ …
+}
+</code></pre>
+<p>When score runs this method it will attempt to populate the argument <em>argName</em> with a value from the execution context. If the key <em>argName</em> exists in the execution context map, then the argument <em>argName</em> will be populated with its associated value, otherwise it will be populated with <em>null</em>.</p>
+<h4><a id="setting-argument-values-during-execution-plan-compilation" class="anchor" href="#/docs/setting-argument-values-during-execution-plan-compilation"><span class="header-link"></span></a>Setting argument values during execution plan compilation</h4><p>It is also possible to set argument values in the execution plan using</p>
+<h4><a id="reserved-argument-names" class="anchor" href="#/docs/reserved-argument-names"><span class="header-link"></span></a>Reserved argument names</h4><p>There are some argument names that have a special meaning when used as control action arguments, those are:</p>
+<ul>
+<li><strong><em>executionRuntimeServices</em></strong> - score will populate it with the execution’s runtime services object. 
+ This means that such arguments have to be of the type ExecutionRuntimeServices.<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">doWithServices</span><span class="hljs-params">(ExecutionRuntimeServices executionRuntimeServices)</span> </span>{
+ …
+ …
+}
+</code></pre>
+</li>
+<li><strong><em>executionContext</em></strong> – score will populate it with the execution’s context. 
+ This means that such arguments have to be of the type <code>Map&lt;String, Serializable&gt;</code>.<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-literal">void</span> doWithContext(<span class="hljs-built_in">Map</span><span class="hljs-subst">&lt;</span><span class="hljs-built_in">String</span>, Serializable<span class="hljs-subst">&gt;</span> executionContext) {
+ …
+ …
+}
+</code></pre>
+</li>
+</ul>
+<h3><a id="navigation-action" class="anchor" href="#/docs/navigation-action"><span class="header-link"></span></a>Navigation Action</h3><p>There’s no real difference between a control action and a navigation action, 
+except that the navigation action must have a return value of type Long. 
+The return value is the position of the next step to execute.
+An execution is finished when the navigation returns null as the next step.</p>
+<pre><code class="lang-java">public Long navigation(<span class="hljs-keyword">...</span>) {
+    …
+    …
+    <span class="hljs-keyword">return</span> <span class="hljs-number">2L</span>;
+}
+</code></pre>
+<h3><a id="runtime" class="anchor" href="#/docs/runtime"><span class="header-link"></span></a>Runtime</h3><p>So what happens when score executes an execution plan? Well, the basic algorithm is this:</p>
+<ul>
+<li>Extract the next step to execute</li>
+<li>Execute the action.</li>
+<li>Execute the navigation action.</li>
+<li>Go back to extract.</li>
+</ul>
+<p>The next step to execute is actually the result of the navigation action of the previous step.</p>
+<h3><a id="executionruntimeservices" class="anchor" href="#/docs/executionruntimeservices"><span class="header-link"></span></a>ExecutionRuntimeServices</h3><p>ExecutionRuntimeServices is a way for the language to affect the execution during run time. Several examples for this are:</p>
+<ul>
+<li>If the language wants to set an error</li>
+<li>If the language wants to throw an event</li>
+</ul>
+<p>ExecutionRuntimeServices is a simple <code>Map&lt;String, Serializable&gt;</code> and the user writing a language for score (like slang) can modify the contents of this map freely. This is bad for two reasons:</p>
+<ul>
+<li>It is very inconvenient for the user to “use” our API this way since the usage is basically adding certain keys with certain values to this map.</li>
+<li>It exposes score’s inner workings to the user.</li>
+</ul>
+<p>Because of these two reason we want to convert this to a proper API with declared methods and everything! The methods for this API:</p>
+<ul>
+<li><code>addEvent(String type, Serializable data)</code></li>
+<li><code>pause()</code></li>
+<li><code>setStepErrorKey(String error)</code></li>
+<li><code>addBranch(String uuid, Long position, Map&lt;String, Serializable&gt; runtimeValues)</code> – The runtime values will be added to the values inside ExecutionRuntimeServices values</li>
+<li><code>getBranchId()</code></li>
+<li><code>requestToChangeExecutionPlan(Long executionPlanId)</code></li>
+</ul>
+<h3><a id="splitting-and-joining-executions" class="anchor" href="#/docs/splitting-and-joining-executions"><span class="header-link"></span></a>Splitting and Joining Executions</h3><p>Coming soon :)</p>
+<h2><a id="score-architecture-overview" class="anchor" href="#/docs/score-architecture-overview"><span class="header-link"></span></a>score - Architecture Overview</h2><h3><a id="engine" class="anchor" href="#/docs/engine"><span class="header-link"></span></a>Engine</h3><p>Score component responsible for orchestration and administration.
+Engine components have access to the DB.
+Contains 3 major components:</p>
+<h4><a id="orchestrator" class="anchor" href="#/docs/orchestrator"><span class="header-link"></span></a>Orchestrator</h4><p>Orchestrates score executions, creates new executions, canceling existing executions 
+and provides the status of existing executions. 
+In addition it also responsible for the split and join mechanism.</p>
+<h4><a id="queue-amp-assigner" class="anchor" href="#/docs/queue-amp-assigner"><span class="header-link"></span></a>Queue &amp; Assigner</h4><p>The Assigner assigns each execution to a specific worker.</p>
+<p>The queue holds the execution messages in the DB, and provides messages to the worker for execution.</p>
+<h4><a id="topology-management" class="anchor" href="#/docs/topology-management"><span class="header-link"></span></a>Topology Management</h4><p>Administrates the workers. 
+Allows registering and un-registering workers, enabling, disabling and managing them. 
+The Assigner uses it for assigning the messages to workers.</p>
+<p>Holds the workers administration data in the DB.</p>
+<h3><a id="worker" class="anchor" href="#/docs/worker"><span class="header-link"></span></a>Worker</h3><p>The component in charge of the actual execution. 
+Does not have DB access.</p>
+<p>Contains 3 major components:</p>
+<h4><a id="event-bus" class="anchor" href="#/docs/event-bus"><span class="header-link"></span></a>Event bus</h4><p>Allows registering and un-registering on the events of the specific worker, and is responsible for firing the events.</p>
+<h4><a id="worker-manager" class="anchor" href="#/docs/worker-manager"><span class="header-link"></span></a>Worker Manager</h4><ul>
+<li>Polls messages from the engine’s queue using the In-Buffer component.</li>
+<li>Drains messages back to the orchestrator using the Out-Buffer</li>
+<li>Delegates messages to the execution service</li>
+<li>Responsible for updating the worker’s status in the engine’s Topology Management</li>
+</ul>
+<h4><a id="execution-service" class="anchor" href="#/docs/execution-service"><span class="header-link"></span></a>Execution Service</h4><p>Executes a single execution step at a time (single step and navigation). 
+In addition, pauses and cancels executions and dispatches the relevant events.</p>
+<p>Using the ExecutionRuntimeServices, the execution service provides services such as split the execution and add events for dispatch</p>
+<h3><a id="interaction-between-components" class="anchor" href="#/docs/interaction-between-components"><span class="header-link"></span></a>Interaction between components</h3><p>The following diagram describes the relations between score components:</p>
+<p><img class="img-responsive" src="images/diagrams/score_full.png" alt="Full Diagram" title="Full Diagram"></p>
+<h2><a id="how-to-contribute-code" class="anchor" href="#/docs/how-to-contribute-code"><span class="header-link"></span></a>How to contribute code</h2><p>Coming soon ;)</p>
+</div></div>

@@ -406,7 +406,7 @@ Used at the beginning of a file. Used as the namespace of the flow or operation.
             - delimiter: "''"
           action:
             java_action:
-              className: org.eclipse.score.content.mail.actions.SendMailAction
+              className: org.openscore.content.mail.actions.SendMailAction
               methodName: execute
           results:
             - SUCCESS: returnCode == '0'

@@ -80,16 +80,17 @@ angular.module('scoreWebsiteApp')
             detailedDownloadLatest: 'Download latest version',
             detailedDownloadOldVersions: 'Download old versions',
             detailedSlangCliHeader: 'Use slang',
-            detailedSlangCliText: 'Write a flow with slang',
+            detailedSlangCliText: 'Write a flow with slang using your favorite text editor and save it as YAML file',
             detailedUseCliHeader: 'Start slang command-line',
             detailedUseCliText: 'Open your console and execute slang cli',
             detailedTriggerFlowHeader: 'Trigger flow',
-            detailedTriggerFlowText: 'Trigger your slang written flow from slang command-line',
+            detailedTriggerFlowText1: '1. Open your console and execute slang cli. The cli is located at <path>/slang/appassembler/bin.',
+            detailedTriggerFlowText2: '2. Trigger your slang written flow from slang command-line',
             detailedCliHeader: 'console',
             detailedCliPrefix: '$',
             detailedCliClear: 'Clear',
             detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
-            detailedCliTriggerFlow: 'slang run --f /.../SimpleFlow.sl --D input1=LA\n' +
+            detailedCliTriggerFlow: 'slang run --f /.../SimpleFlow.sl --i input1=LA\n' +
                 '^500 CheckWeather\n' +
                 '^250 PrintWeather\n' +
                 ' the weather in LA is: hot\n' +

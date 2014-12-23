@@ -554,7 +554,7 @@ Used at the beginning of a file. Used as the namespace of the flow or operation.
 
 SLANG uses score events. An event is represented by event type (a String value) and event data (Serializable object).
 In case of SLANG the event data is a map that contains all the relevant information under certain keys defined in 
-`com.hp.score.lang.runtime.events.LanguageEventData` class (See [table](#docs/#event_summary) below).
+`org.openscore.lang.runtime.events.LanguageEventData` class (See [table](#docs/#event_summary) below).
 SLANG extends the traditional event type set provided by score with its own event types.
 
 Event types from score:

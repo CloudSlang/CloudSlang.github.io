@@ -57,7 +57,7 @@ Using SLANG you can easily define your workflow in a structured, easy-to-underst
 </table>
 </div><p><em>sample:</em></p>
 <pre><code class="lang-yaml"><span class="hljs-attribute">namespace</span>: slang.sample.flows
-<span class="hljs-attribute">imports</span>: 
+<span class="hljs-attribute">imports</span>:
 - <span class="hljs-attribute">ops</span>: slang.ops.operations
 <span class="hljs-attribute">flow</span>:
   <span class="hljs-attribute">name</span>: SimpleFlow
@@ -67,7 +67,7 @@ Using SLANG you can easily define your workflow in a structured, easy-to-underst
   - input_3
   <span class="hljs-attribute">workflow</span>:
     <span class="hljs-attribute">CheckWeather</span>:
-      <span class="hljs-attribute">do</span>: 
+      <span class="hljs-attribute">do</span>:
         ops.<span class="hljs-attribute">check_Weather</span>:
           <span class="hljs-attribute">city</span>: input_1
       <span class="hljs-attribute">publish</span>:
@@ -104,14 +104,14 @@ Every task can use: predefined operation or subflow, (see <a class="docs-link" h
 </div><p><em>sample:</em></p>
 <pre><code class="lang-yaml"><span class="hljs-attribute">workflow</span>:
   <span class="hljs-attribute">first_task</span>:
-    <span class="hljs-attribute">do</span>: 
+    <span class="hljs-attribute">do</span>:
       <span class="hljs-attribute">some_operation</span>:
       - <span class="hljs-attribute">operation_input_1</span>: flow_input_3
       - operation_input_2
       - operation_input_3
     <span class="hljs-attribute">publish</span>:
       <span class="hljs-attribute">flow_var</span>: some_op_output
-    <span class="hljs-attribute">navigate</span>: 
+    <span class="hljs-attribute">navigate</span>:
       #how to handle an operation that has a non-default result
       <span class="hljs-attribute">NON_DEFAULT_RESULT</span>: custom_task
 </code></pre>
@@ -257,7 +257,7 @@ The name of the input is the key.</p>
 </tbody>
 </table>
 </div><p><em>sample:</em></p>
-<pre><code class="lang-yaml">    do: 
+<pre><code class="lang-yaml">    do:
       some_operation:
         -<span class="ruby"> <span class="hljs-symbol">operation_input_1:</span> flow_input_3
 </span>        -<span class="ruby"> operation_input_2
@@ -320,21 +320,21 @@ uses the following annotations (from <code>com.hp.oo.sdk.content.annotations</co
 </span>          results:
             -<span class="ruby"> <span class="hljs-constant">SUCCESS</span><span class="hljs-symbol">:</span> <span class="hljs-string">'weather == "weather thing"'</span></span>
 </code></pre>
-<h3><a id="imports" class="anchor" href="#/docs/imports"><span class="header-link"></span></a>Imports</h3><p>Written at the beginning of the file, after the namespace, used to specify the dependencies the file is using and the name it will be referenced within the file. 
+<h3><a id="imports" class="anchor" href="#/docs/imports"><span class="header-link"></span></a>Imports</h3><p>Written at the beginning of the file, after the namespace, used to specify the dependencies the file is using and the name it will be referenced within the file.
 <em>sample:</em></p>
 <pre><code class="lang-yaml">   imports:
      - ops: user<span class="hljs-class">.ops</span><span class="hljs-class">.OpenstackOperations</span>
      - order_vm_flow: user<span class="hljs-class">.flows</span><span class="hljs-class">.OrderVmFlow</span>
      - script_file: some_script_file.py
 </code></pre>
-<h3><a id="namespace" class="anchor" href="#/docs/namespace"><span class="header-link"></span></a>Namespace</h3><p>Used at the beginning of a file. Used as the namespace of the flow or operation. 
+<h3><a id="namespace" class="anchor" href="#/docs/namespace"><span class="header-link"></span></a>Namespace</h3><p>Used at the beginning of a file. Used as the namespace of the flow or operation.
 <em>sample:</em></p>
 <pre><code class="lang-yaml">  <span class="hljs-attribute">namespace</span>: <span class="hljs-string">user.flows</span>
 </code></pre>
 <h3><a id="some-more-samples" class="anchor" href="#/docs/some-more-samples"><span class="header-link"></span></a>Some more samples</h3><h4><a id="sample1-demonstrates-default-navigation" class="anchor" href="#/docs/sample1-demonstrates-default-navigation"><span class="header-link"></span></a>Sample1 - demonstrates default navigation</h4><p><em>operations:</em></p>
 <pre><code class="lang-yaml">    <span class="hljs-attribute">namespace</span>: <span class="hljs-string">user.ops</span>
 
-<span class="haml">    operations:    
+<span class="haml">    operations:
       -<span class="ruby"> <span class="hljs-symbol">produce_default_navigation:</span>
 </span>          inputs:
             -<span class="ruby"> navigationType
@@ -574,8 +574,8 @@ uses the following annotations (from <code>com.hp.oo.sdk.content.annotations</co
         - FAILURE</span>
 </code></pre>
 <h2><a id="slang-events" class="anchor" href="#/docs/slang-events"><span class="header-link"></span></a>SLANG Events</h2><p>SLANG uses score events. An event is represented by event type (a String value) and event data (Serializable object).
-In case of SLANG the event data is a map that contains all the relevant information under certain keys defined in 
-<code>com.hp.score.lang.runtime.events.LanguageEventData</code> class (See <a class="docs-link" href="#docs/#event_summary">table</a> below).
+In case of SLANG the event data is a map that contains all the relevant information under certain keys defined in
+<code>org.openscore.lang.runtime.events.LanguageEventData</code> class (See <a class="docs-link" href="#docs/#event_summary">table</a> below).
 SLANG extends the traditional event type set provided by score with its own event types.</p>
 <p>Event types from score:</p>
 <ul>

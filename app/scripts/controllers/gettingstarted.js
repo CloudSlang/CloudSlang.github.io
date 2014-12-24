@@ -13,14 +13,6 @@ angular.module('scoreWebsiteApp')
             }
         };
 
-        $scope.showCli = function (elemendId, commands) {
-            $('#' + elemendId + '-cursor').empty();
-            $('#' + elemendId).typed({
-                strings: commands,
-                typeSpeed: 30
-            });
-        };
-
         function expandDetailedBox() {
             $('#detailedBox').css({ display: 'inline-block' });
             $('#detailedBox').transition({ y: '-230px' }, 1200, 'ease-in-out', function () {

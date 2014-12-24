@@ -9,6 +9,16 @@ angular.module('scoreWebsiteApp')
             { id: 'about', title: $rootScope.messages.navAboutTitle },
             { id: 'documentation', title: $rootScope.messages.navDocumentationTitle  }
         ];
+
+        $rootScope.showCli = function (elemendId, commands, loop, typeSpeed) {
+            $('#' + elemendId + '-cursor').empty();
+            $('#' + elemendId).typed({
+                strings: commands,
+                typeSpeed: typeSpeed || 30,
+                loop: loop || false
+            });
+        };
+
     }).directive('loadingPage', [function () {
         return {
             restrict: 'E',

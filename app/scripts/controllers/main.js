@@ -15,7 +15,8 @@ angular.module('scoreWebsiteApp')
             $('#' + elemendId).typed({
                 strings: commands,
                 typeSpeed: typeSpeed || 30,
-                loop: loop || false
+                loop: loop || false,
+                backSpeed: -20
             });
         };
 

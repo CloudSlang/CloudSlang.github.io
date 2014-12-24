@@ -97,6 +97,7 @@ angular.module('scoreWebsiteApp')
                 ' the weather in LA is: hot\n' +
                 '^250 Flow : SimpleFlow finished with result: SUCCESS\n' +
                 '^250$',
+            
             // -- embed score
             detailedEmbedPomHeader: 'score dependencies',
             detailedEmbedPomText: 'Add score dependencies to your pom.xml',

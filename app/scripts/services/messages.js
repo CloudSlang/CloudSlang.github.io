@@ -18,8 +18,8 @@ angular.module('scoreWebsiteApp')
             navDocsBackToSiteTitle: 'Back To Site',
 
             // header
-            headerMainTitle: 'open-source orchestration engine',
-            headerMainTitleBullets: ['^2500Heavy-weight', 'Lightweight,^1300\nProcess-based,^1300\nMultilingual'],
+            headerMainTitle: 'orchestration engine',
+            headerMainTitleBullets: ['^2500Heavy-weight', 'Lightweight,^1300 Process-based,^1300\nMultilingual'],
             headerDescription: 'score is a general-purpose java-based open-source orchestration engine which is process-based, ' +
                 'embeddable, lightweight, scalable and multilingual',
             headerStartNow: 'Start Now',
@@ -97,7 +97,7 @@ angular.module('scoreWebsiteApp')
                 ' the weather in LA is: hot\n' +
                 '^250 Flow : SimpleFlow finished with result: SUCCESS\n' +
                 '^250$',
-            
+
             // -- embed score
             detailedEmbedPomHeader: 'score dependencies',
             detailedEmbedPomText: 'Add score dependencies to your pom.xml',

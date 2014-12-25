@@ -2,7 +2,12 @@
 
 angular.module('scoreWebsiteApp')
     .factory('MessagesService', function ($rootScope) {
-
+        var small = $(window).width() < 482;
+        var verySmall = $(window).width() < 384;
+        var headerMainTitleBullets = small ?
+            verySmall ? ['^2500Heavy-weight', 'Lightweight,^1300\nProcess-based^300\norchestration\nengine'] :
+                ['^2500Heavy-weight', 'Lightweight,^1300\nProcess-based^300\norchestration engine'] :
+            ['^2500Heavy-weight', 'Lightweight,^1300 Process-based^300\norchestration engine'];
         // App labels
         $rootScope.messages = {
             // nav bar
@@ -19,7 +24,7 @@ angular.module('scoreWebsiteApp')
 
             // header
             headerMainTitle: 'orchestration engine',
-            headerMainTitleBullets: ['^2500Heavy-weight', 'Lightweight,^1300 Process-based^1300\norchestration engine'],
+            headerMainTitleBullets: headerMainTitleBullets,
             headerDescription: 'score is a general-purpose java-based open-source orchestration engine which is process-based, ' +
                 'embeddable, lightweight, scalable and multilingual',
             headerStartNow: 'Start Now',

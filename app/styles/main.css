@@ -674,3 +674,36 @@ a:hover {
     -ms-transform: translateY(-50%) translateX(-50%);
     transform: translateY(-50%) translateX(-50%);
 }
+
+.download-now-button {
+    margin-left: 15px;
+    border-radius: 0;
+    border-color: #8caa7f;
+    background-color: #6c925e;
+    padding: 10px;
+}
+
+.download-now-button.left-side {
+    background-color: #445c3a;
+    border-color: #607658;
+    margin-right: -10px;
+    width: 70px;
+}
+
+.download-now-button.left-side:hover {
+    background-color: #6c925e;
+    border-color: transparent;
+}
+
+.download-now-button.right-side {
+    width: auto;
+}
+
+.download-now-button.right-side:hover {
+    background-color: #445c3a;
+    border-color: transparent;
+}
+
+.download-now-button img {
+    width: 43px;
+}

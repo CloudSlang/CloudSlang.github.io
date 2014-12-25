@@ -19,7 +19,7 @@ angular.module('scoreWebsiteApp')
 
             // header
             headerMainTitle: 'orchestration engine',
-            headerMainTitleBullets: ['^2500Heavy-weight', 'Lightweight,^1300 Process-based,^1300\nMultilingual'],
+            headerMainTitleBullets: ['^2500Heavy-weight', 'Lightweight,^1300 Process-based^1300\norchestration engine'],
             headerDescription: 'score is a general-purpose java-based open-source orchestration engine which is process-based, ' +
                 'embeddable, lightweight, scalable and multilingual',
             headerStartNow: 'Start Now',

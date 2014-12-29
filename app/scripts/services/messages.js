@@ -38,6 +38,7 @@ angular.module('scoreWebsiteApp')
             footerGooglePlus: 'Google Plus',
             footerYoutube: 'YouTube',
             footerTwitter: 'Twitter',
+            footerGitHub: 'GitHub',
             footerContribute: 'Contribute',
 
             // bullets

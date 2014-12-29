@@ -224,6 +224,14 @@ a:hover {
     color: #55acee;
 }
 
+.footer .social-icon.github:hover{
+    color: #242424;
+}
+
+.footer .social-icon.contact:hover{
+    color: #616161;
+}
+
 .section-wrapper {
     padding-top: 60px;
     padding-bottom: 60px;

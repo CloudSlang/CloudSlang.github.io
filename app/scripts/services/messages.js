@@ -23,7 +23,7 @@ angular.module('scoreWebsiteApp')
             navDocsBackToSiteTitle: 'Back To Site',
 
             // header
-            headerMainTitle: 'orchestration engine',
+            headerMainTitle: 'Lightweight, Process-based orchestration engine',
             headerMainTitleBullets: headerMainTitleBullets,
             headerDescription: 'score is a general-purpose java-based open-source orchestration engine which is process-based, ' +
                 'embeddable, lightweight, scalable and multilingual',

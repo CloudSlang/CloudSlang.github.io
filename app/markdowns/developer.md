@@ -108,7 +108,7 @@ Because of these two reason we want to convert this to a proper API with declare
 
 ###Splitting and Joining Executions
 
-Coming soon :)
+Coming soon ;)
 
 ##score - Architecture Overview
 

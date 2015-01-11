@@ -197,10 +197,18 @@ a:hover {
 }
 
 .footer .license {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .footer .license > a {
+    text-decoration: underline;
+}
+
+.footer .privacy {
+    margin-top: 10px;
+}
+
+.footer .privacy > a {
     text-decoration: underline;
 }
 

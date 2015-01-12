@@ -33,7 +33,7 @@ angular.module('scoreWebsiteApp')
             footerPrivacy: 'Privacy Policy',
             footerTerms: 'Terms of Use',
             footerLicense: 'Code licensed under the ',
-            footerLicenseHref: 'Apache License, Version 2.0',
+            footerLicenseHref: 'Apache License, Version 2.0.',
             footerContactUs: 'Contact Us',
             footerGooglePlus: 'Google Plus',
             footerYoutube: 'YouTube',

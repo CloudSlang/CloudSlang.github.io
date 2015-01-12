@@ -11,7 +11,7 @@ YAML is a human friendly data serialization standard for all programming languag
 SLANG as a workflow language is used to define processes introducing the concept of flows. See [Slang DSL](#docs/#slang-dsl).
 Using SLANG you can easily define your workflow in a structured, easy-to-understand format.
 
-##Slang DSL
+##SLANG DSL
 The SLANG DSL contains the following main entities:
 
 + Flow: A flow is the basic executable unit of SLANG. It represents a process that can perform a job relevant to the end user. For example, a flow that creates a virtual machine. A flow consists of tasks and the navigation between them. Flows have inputs, outputs and possible results.

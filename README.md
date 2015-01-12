@@ -1,4 +1,2 @@
-openscore.github.io
-===================
-
-openscore pages
+# openscore.github.io
+openscore website [http://openscore.io](http://openscore.io)

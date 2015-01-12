@@ -1,0 +1,11 @@
+- Getting Started - Orit - In progress
+- Logo - DONE
+- Fork icons - DONE
+- Footer (terms and so on) - DONE
+- Fix navigation mark issue - DONE
+- Fonts - DONE
+- Contact us, server - DONE
+- All icons (logo, arrow, favicon, header image, bullets) - Doron - In progress
+- About us - Doron - In progress
+- Use cases - Doron
+- Change email of contact us sender - Doron

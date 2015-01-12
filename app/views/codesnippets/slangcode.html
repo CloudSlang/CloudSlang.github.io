@@ -1,0 +1,23 @@
+<pre>
+    <code class="yaml">
+    namespace: slang.sample.flows
+    imports:
+      - ops: slang.sample.operations
+    flow:
+      name: SimpleFlow
+      inputs:
+        - input_1
+        - input_2
+      workflow:
+        CheckWeather:
+          do:
+            ops.check_Weather:
+              - city: input_1
+          publish:
+              - weather
+        PrintWeather:
+          do:
+            ops.print:
+              - text:  "'the weather in ' + input_1 + ' is: ' + weather"
+        </code>
+</pre>

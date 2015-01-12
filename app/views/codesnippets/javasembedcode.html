@@ -1,0 +1,37 @@
+<pre>
+    <code class="java">
+    package demo.app;
+
+    import org.openscore.lang.api.Slang;
+    import org.springframework.context.ApplicationContext;
+    import org.springframework.context.support.ClassPathXmlApplicationContext;
+    import java.util.HashMap;
+    import java.util.HashSet;
+    import java.util.Set;
+
+    public class Test {
+
+        private static Slang slang;
+
+        public static void main(String[] args) {
+
+            ApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("/context.xml");
+
+            slang = applicationContext.getBean(Slang.class);
+
+            Set&lt;File&gt; dependencies = new HashSet&lt;&gt;();
+            dependencies.add(new File("&lt;path&gt;/operations.sl"));
+
+            slang.subscribeOnAllEvents(new ScoreEventListener() {
+                @Override
+                public void onEvent(ScoreEvent event) {
+                    System.out.println(event.getEventType() + " : " + event.getData());
+                }
+            });
+
+            slang.compileAndRun(new File("&lt;path&gt;/flow.sl"), dependencies, null);
+        }
+    }
+    </code>
+</pre>

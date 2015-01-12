@@ -1,0 +1,40 @@
+<div ng-controller="ContactUsCtrl" class="container">
+    <p class="h2 section-header">{{sections[3].title}}</p>
+    <p class="h4">{{$root.messages.contactUsHeader}}</p>
+    <div class="row">
+        <form role="form" class="contact-form">
+            <div>
+                <div class="col-lg-6 col-sm-4">
+                    <input ng-model="mailOptions.name" type="text" placeholder="{{$root.messages.contactPlaceholderName}}"
+                           class="form-control input-box" required>
+                </div>
+                <div class="col-lg-6 col-sm-4">
+                    <input ng-model="mailOptions.email" type="email" placeholder="{{$root.messages.contactPlaceholderEmail}}"
+                           class="form-control input-box" required>
+                </div>
+                <div class="yep hide">
+                    <input ng-model="mailOptions.last" type="text" placeholder="URL">
+                </div>
+                <div class="col-lg-12 col-sm-4">
+                    <input ng-model="mailOptions.subject" type="text" placeholder={{$root.messages.contactPlaceholderSubject}}
+                           class="form-control input-box" required>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <textarea ng-model="mailOptions.body" class="form-control textarea-box"
+                          placeholder="{{$root.messages.contactPlaceholderMessage}}" required></textarea>
+            </div>
+            <div class="col-md-12">
+                <div ng-show="submitted" ng-class="{ 'alert-success': submitSuccess, 'alert-danger': !submitSuccess}"
+                     class="col-md-12 alert text-center">
+                    {{ submitMessage }}
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-primary custom-button" ng-click="submitForm(mailOptions)">
+                    <img src="images/send_button_small.png">{{$root.messages.contactSendButton}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

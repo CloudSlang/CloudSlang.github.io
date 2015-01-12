@@ -1,0 +1,41 @@
+<div>
+    <div class="explanation col-md-7">
+        <p class="h3">{{$root.messages.detailedEmbedPomHeader}}</p>
+        <p class="h4">{{$root.messages.detailedEmbedPomText}}</p>
+    </div>
+    <div class="snippet col-md-8">
+        <div ng-include src="'views/codesnippets/pomcode.html'"></div>
+    </div>
+    <div class="explanation col-md-7">
+        <p class="h3">{{$root.messages.detailedEmbedSpringHeader}}</p>
+        <p class="h4">{{$root.messages.detailedEmbedSpringText}}</p>
+    </div>
+    <div class="snippet col-md-8">
+        <div ng-include src="'views/codesnippets/sprintcontextcode.html'"></div>
+    </div>
+    <div class="explanation col-md-7 col-xs-12">
+        <p class="h3">{{$root.messages.detailedEmbedScoreApiHeader}}</p>
+        <p class="h4">{{$root.messages.detailedEmbedScoreApiText}}</p>
+    </div>
+    <div class="snippet col-md-8">
+        <div ng-include src="'views/codesnippets/javasembedcode.html'"></div>
+    </div>
+    <div class="explanation col-md-7 col-xs-12">
+        <p class="h3">{{$root.messages.detailedEmbedScoreCompileHeader}}</p>
+        <p class="h4">{{$root.messages.detailedEmbedScoreCompileText}}</p>
+    </div>
+    <div class="explanation col-md-7 col-xs-12">
+        <p class="h3">{{$root.messages.detailedEmbedScoreRunHeader}}</p>
+        <p class="h4">{{$root.messages.detailedEmbedScoreRunText}}</p>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <div class="cli" ng-click="showCli('cli-run-app', [$root.messages.detailedEmbedRunCli])">
+            <div class="cli-header">{{$root.messages.detailedCliHeader}}</div>
+            <div class="cli-body">{{$root.messages.detailedCliPrefix}}
+                <span id="cli-run-app" class="typed"></span>
+                <span id="cli-run-app-cursor" class="typed-cursor">|</span>
+            </div>
+            <a ng-href="">{{$root.messages.embedScoreLink}}</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="container"><div><h1><a id="score" class="anchor" href="#/docs/score"><span class="header-link"></span></a>Score</h1><h2><a id="overview" class="anchor" href="#/docs/overview"><span class="header-link"></span></a>Overview</h2><p><strong>score</strong> is a general-purpose java-based open-source orchestration engine which is process-based, 
+embeddable, lightweight, scalable and multilingual.</p>
+<h3><a id="process-based" class="anchor" href="#/docs/process-based"><span class="header-link"></span></a>Process Based</h3><p>Unlike many orchestration solutions that describe the desired model, 
+<strong>score</strong> aims to provide a process-based approach, that allows you to define the ‘how’ and not just the ‘what’, 
+therefore providing the ability to better control the actual runtime behavior of the workflow.</p>
+<h3><a id="embeddable" class="anchor" href="#/docs/embeddable"><span class="header-link"></span></a>Embeddable</h3><p><strong>score</strong> is distributed as a standard java library, allowing you to embedded score in your application, 
+and use java <a class="docs-link" href="#docs/#score-apis">APIs</a>.</p>
+<h3><a id="scalable" class="anchor" href="#/docs/scalable"><span class="header-link"></span></a>Scalable</h3><p>The fundamental architecture of <strong>score</strong> consists of:</p>
+<ul>
+<li><a class="docs-link" href="#docs/#worker">Worker</a> - the unit that actually executes the steps from the execution plan. </li>
+<li><a class="docs-link" href="#docs/#engine">Engine</a> - a queue-based work distribution mechanism. </li>
+</ul>
+<p>Execution logic and distribution are optimized for high throughput and are horizontally scalable.</p>
+<h3><a id="multilingual" class="anchor" href="#/docs/multilingual"><span class="header-link"></span></a>Multilingual</h3><p><strong>score</strong> architecture allows you to use any process modelling language.
+The <a class="docs-link" href="#docs/#execution-plan">ExecutionPlan</a> low-level structure enables you to compile multiple languages for <strong>score</strong> to run. 
+See <a class="docs-link" href="#docs/#slang">slang</a> as one of the languages you can use to define workflows for score. </p>
+<h3><a id="use-cases" class="anchor" href="#/docs/use-cases"><span class="header-link"></span></a>Use Cases</h3><p><strong>score</strong>  can be used in a variety of environments and scenarios such as: </p>
+<ul>
+<li>Day 2 operations</li>
+<li>Cloud orchestration</li>
+<li>Application deployment</li>
+<li>DevOps</li>
+<li>QA
+and many more..</li>
+</ul>
+<p>You can build your own flows, or just use slang out-of-the-box content. </p>
+<h2><a id="score-apis" class="anchor" href="#/docs/score-apis"><span class="header-link"></span></a>Score APIs</h2><p>All of the score APIs are available through two interfaces:</p>
+<h3><a id="score-execution-api" class="anchor" href="#/docs/score-execution-api"><span class="header-link"></span></a>Score - Execution API</h3><h4><a id="triggering-new-executions" class="anchor" href="#/docs/triggering-new-executions"><span class="header-link"></span></a>Triggering New Executions</h4><ul>
+<li><code>public Long trigger(TriggeringProperties triggeringProperties);</code></li>
+</ul>
+<p>This method starts an execution with the given <a class="docs-link" href="#docs/#execution-plan">ExecutionPlan</a> and with additional options. 
+By default the first executed step will be the execution plan’s start step, and the execution context will be empty.
+Returns the id of the new execution.</p>
+<p><em>TriggeringProperties</em> contains the following data:</p>
+<ul>
+<li><code>executionPlan: ExecutionPlan</code></li>
+<li><code>dependencies: Map&lt;String, ExecutionPlan&gt;</code></li>
+<li><code>context: Map&lt;String, ? extends Serializable&gt;</code></li>
+<li><code>runtimeValues: Map&lt;String, ? extends Serializable&gt;</code></li>
+<li><code>startStep: long</code></li>
+</ul>
+<p>The execution <em>context</em> argument can be empty. If it is not empty the values inside will be added to the execution context.</p>
+<p>The <em>runtimeValues</em> argument can be empty. If it is not empty the values inside will be 
+added to the <a class="docs-link" href="#docs/#executionruntimeservices">ExecutionRuntimeServices</a>.</p>
+<p>The <em>startStep</em> argument can be used in order to make the plan start from a specific step that is not necessarily 
+the execution plan’s <em>beginStep</em>.</p>
+<h4><a id="cancelling-executions" class="anchor" href="#/docs/cancelling-executions"><span class="header-link"></span></a>Cancelling Executions</h4><ul>
+<li><code>public void cancelExecution(Long executionId);</code></li>
+</ul>
+<p>This method request to cancel (terminate) a given execution, note that the execution will not necessarily be stopped immediately.</p>
+<p><em>executionId</em> - the execution to cancel the identifier that was retrieved when triggering.</p>
+<h3><a id="eventbus-events-api" class="anchor" href="#/docs/eventbus-events-api"><span class="header-link"></span></a>EventBus - Events API</h3><h4><a id="event-listening" class="anchor" href="#/docs/event-listening"><span class="header-link"></span></a>Event Listening</h4><p><strong>score</strong> allows you to subscribe listeners for events. 
+These listeners must implement the ScoreEventListener interface which consists of a single method – <em>onEvent</em>.</p>
+<ul>
+<li><code>subscribe(ScoreEventListener listener, String type…)</code></li>
+</ul>
+<p>This method subscribes the given listener for the specified event types.</p>
+<ul>
+<li><code>unsubscribe(ScoreEventListener listener)</code></li>
+</ul>
+<p>This method un-subscribes the given listener from all the types it was subscribed to.</p>
+<h4><a id="event-types" class="anchor" href="#/docs/event-types"><span class="header-link"></span></a>Event Types</h4><p>Score fires events during an execution. An event consists of two members:</p>
+<ul>
+<li><p>type – A string that can have one of the following values:</p>
+<ul>
+<li>Finished &#39;SCORE_FINISHED_EVENT&#39; – Signals a finished execution</li>
+<li>Error &#39;SCORE_FAILURE_EVENT&#39; – Signals an execution that finished with error</li>
+</ul>
+</li>
+<li><p>data – Serializable data.</p>
+</li>
+</ul>
+<p>Any language running in score can add events freely. 
+This can be done in execution run time using the <a class="docs-link" href="#docs/#executionruntimeservices">ExecutionRuntimeServices’s</a> API.</p>
+</div></div>

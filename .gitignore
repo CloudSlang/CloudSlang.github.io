@@ -1,0 +1,12 @@
+node_modules
+dist
+public
+.tmp
+.sass-cache
+bower_components
+logs/*
+!.gitkeep
+tmp
+.DS_Store
+.idea
+*.log

@@ -1,0 +1,45 @@
+<div ng-controller="GettingStartedCtrl" class="container">
+    <p class="h1 section-header">{{sections[0].title}}</p>
+    <div class="row row-centered">
+        <div id="downloadbox" class="col-md-10 col-xs-12 box download-box col-centered" ng-click="boxClick(items[0]); selectItem(items[0])"
+             ng-class="{selected: selected && finishedAnimation && selectedItem === items[0]}">
+            <div class="box-container">
+                <div class="row">
+                    <img class="col-md-4 col-sm-1 col-xs-1 img-responsive box-image" src="images/gettingstarted/icon_download.png" alt="Download score">
+                    <div class="box-content col-md-8 col-sm-8 col-xs-7">
+                        <p class="h3">{{$root.messages.downloadCliHeader}}</p>
+                        <a ng-href="" ng-class="{hide: selected}">{{$root.messages.downloadCliDownloadLink}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12" ng-class="{hide: selected}">
+            <p class="h1 boxseparator text-center">{{$root.messages.orText}}</p>
+        </div>
+
+        <div id="embedbox" class="col-md-10 col-xs-12 box embed-box col-centered" ng-click="boxClick(items[1]); selectItem(items[1])"
+             ng-class="{selected : selected && finishedAnimation && selectedItem === items[1]}">
+            <div class="box-container">
+                <div class="row">
+                    <img class="col-md-4 col-sm-1 col-xs-1 img-responsive box-image" src="images/gettingstarted/icon_embed.png" alt="Embed score">
+                    <div class="box-content col-md-8 col-xs-6">
+                        <p class="h3">{{$root.messages.embedScoreHeader}}</p>
+                        <a ng-href="" ng-class="{hide: selected}">{{$root.messages.embedScoreLink}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="detailedBox" class="col-md-12 detailedBox">
+            <div>
+                <div ng-show="selectedItem == items[0]" class="download-detailed">
+                    <div ng-include src="'views/downloadclibox.html'"></div>
+                </div>
+                <div ng-show="selectedItem == items[1]" class="embed-detailed">
+                    <div ng-include src="'views/embedbox.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

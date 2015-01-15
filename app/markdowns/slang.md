@@ -8,19 +8,19 @@ SLANG is a [YAML](http://www.yaml.org) based language for describing a workflow.
 The following is a simple example to give you an idea of how SLANG is structured and can be used to ensure your environment is set up properly to run flows. 
 
 ####Prerequisites
-This example uses the SLANG CLI to run a flow. See the [SLANG DSL Reference](#docs/#slang_dsl_reference) for instructions on how to download and run the CLI.
+This example uses the SLANG CLI to run a flow. See the [SLANG CLI](#docs/#slang-cli) section for instructions on how to download and run the CLI.
 
-Although SLANG files can be edited in any text editor, we recommend using a modern code editor with support for YAML syntax highlighting. See [Sublime Integration](#docs/#sublime_integration) for instructions on how to download, install and use the SLANG snippets for [Sublime Text](http://www.sublimetext.com/).    
+Although SLANG files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. See [Sublime Integration](#docs/#sublime-integration) for instructions on how to download, install and use the SLANG snippets for [Sublime Text](http://www.sublimetext.com/).    
 
 ####Code files
 In a new folder create two new SLANG files, flow.sl and ops.sl, and copy the code below.
 
 **flow.sl**
 ```yaml
-namespace: examples.flows
+namespace: user.flows.hello_world
 
 imports:
-  ops: examples.operations
+  ops: user.operations.utils
 
 flow:
   name: helloWorld
@@ -32,7 +32,7 @@ flow:
 ```
 **ops.sl**
 ```yaml
-namespace: examples.operations
+namespace: user.operations.utils
 
 operations:
   - print:
@@ -56,7 +56,7 @@ Flow execution time took  0:00:00.790 , with execution id : 101600001
 ```
 
 ####Explanation
-The CLI runs the flow in the file we have passed to it, namely **flow.sl**. The flow begins with an [import](#docs/#imports) of the operations file, **ops.sl**, using its [namespace](#docs/#namespace) as the value for the `imports` key. Next, we enter the [flow](#docs/#flow) named `helloworld` and begin its [workflow](#docs/#workflow). The workflow has one [task](#docs/#task) named `sayHi` which calls the `print` [operation](#docs/#operation) from the operations file that was imported. The flow passes the string `"'Hello, World'"` to the `print` operation's `text` [input](#docs/#inputs). The print operation performs its [action](#docs/#action), which is a simple Python script that prints the input, and then returns a [result](#docs/#results) of `SUCCESS`. Since the flow does not contain any more tasks the flow finishes with a result of `SUCCESS`.
+The CLI runs the [flow](#docs/#flow) in the file we have passed to it, namely **flow.sl**. The flow begins with an [import](#docs/#imports) of the operations file, **ops.sl**, using its [namespace](#docs/#namespace) as the value for the [imports](#docs/#imports) key. Next, we enter the [flow](#docs/#flow) named `helloworld` and begin its [workflow](#docs/#workflow). The [workflow](#docs/#workflow) has one [task](#docs/#task) named `sayHi` which calls the `print` [operation](#docs/#operation) from the operations file that was imported. The [flow](#docs/#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#docs/#operation) `text` [input](#docs/#inputs). The print [operation](#docs/#operation) performs its [action](#docs/#action), which is a simple Python script that prints the [input](#docs/#inputs), and then returns a [result](#docs/#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#docs/#tasks) the [flow](#docs/#flow) finishes with a [result](#docs/#results) of `SUCCESS`.
 
 ##SLANG DSL
 The SLANG DSL contains the following main entities:

@@ -1,15 +1,62 @@
-#SLANG - score language
+#SLANG - score Language
 
 ##What is SLANG?
 
-SLANG is a YAML based language for describing a workflow.
+SLANG is a [YAML](http://www.yaml.org) based language for describing a workflow. Using SLANG you can easily define a workflow in a structured, easy-to-understand format that can be run by **score**.
 
-YAML is a human friendly data serialization standard for all programming languages. The acronym stands for
-"YAML Ain't Markup Language" suggesting that its purpose is rather data-oriented than document markup. The YAML
-(and SLANG) syntax maintains data structure hierarchy by outline indentation (in other words parallel elements should have the same left indentation).
+### Hello World Example
+The following is a simple example to give you an idea of how SLANG is structured and can be used to ensure your environment is set up properly to run flows. 
 
-SLANG as a workflow language is used to define processes introducing the concept of flows. See [Slang DSL](#docs/#slang-dsl).
-Using SLANG you can easily define your workflow in a structured, easy-to-understand format.
+####Prerequisites
+This example uses the SLANG CLI to run a flow. See the [SLANG CLI](#docs/#slang-cli) section for instructions on how to download and run the CLI.
+
+Although SLANG files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. See [Sublime Integration](#docs/#sublime-integration) for instructions on how to download, install and use the SLANG snippets for [Sublime Text](http://www.sublimetext.com/).    
+
+####Code files
+In a new folder create two new SLANG files, flow.sl and ops.sl, and copy the code below.
+
+**flow.sl**
+```yaml
+namespace: user.flows.hello_world
+
+imports:
+  ops: user.operations.utils
+
+flow:
+  name: helloWorld
+  workflow:
+    sayHi:
+      do:
+        ops.print:
+          - text: "'Hello, World'"
+```
+**ops.sl**
+```yaml
+namespace: user.operations.utils
+
+operations:
+  - print:
+      inputs:
+        - text
+      action:
+        python_script: print text
+      results:
+        - SUCCESS
+```
+
+####Run
+Start the CLI from the folder in which your SLANG files reside and then enter the following at the `slang>` prompt: `run flow.sl`
+
+The output will look similar to this:
+```
+- sayHi
+Hello, World
+Flow : helloWorld finished with result : SUCCESS
+Flow execution time took  0:00:00.790 , with execution id : 101600001
+```
+
+####Explanation
+The CLI runs the [flow](#docs/#flow) in the file we have passed to it, namely **flow.sl**. The [flow](#docs/#flow) begins with an [import](#docs/#imports) of the operations file, **ops.sl**, using its [namespace](#docs/#namespace) as the value for the [imports](#docs/#imports) key. Next, we enter the [flow](#docs/#flow) named `helloworld` and begin its [workflow](#docs/#workflow). The [workflow](#docs/#workflow) has one [task](#docs/#task) named `sayHi` which calls the `print` [operation](#docs/#operation) from the operations file that was imported. The [flow](#docs/#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#docs/#operation) `text` [input](#docs/#inputs). The print [operation](#docs/#operation) performs its [action](#docs/#action), which is a simple Python script that prints the [input](#docs/#inputs), and then returns a [result](#docs/#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#docs/#tasks) the [flow](#docs/#flow) finishes with a [result](#docs/#results) of `SUCCESS`.
 
 ##SLANG DSL
 The SLANG DSL contains the following main entities:
@@ -643,23 +690,29 @@ slang -version
 
 The execution log is saved in `score-language\score-lang-cli\target\appassembler\bin` directory under `execution.log` name. All the events are saved in this log so using this file you can easily track your flow execution.
 
-##Sublime integration
+##Sublime Integration
 
-In order to write flows or operations in slang, you can use Sublime text editor. We provide a snippet that enables
-slang templates. The files should have the .yaml , .yl or .sl extension. See below how to install / configure Sublime for Windows:
+Although SLANG files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. 
 
-+ download and install Sublime editor from [here](http://www.sublimetext.com/2)
-+ download Slang.sublime-package file from [here](https://github.com/orius123/slang-sublime)
-+ copy the downloaded package file in C:\Users\<User>\AppData\Roaming\Sublime Text 2\Installed Packages
+To ease the SLANG coding process you can use our Sublime Text snippets. 
 
-In order to use the templates start typing the template name and press enter when it appears on the screen. See below
-the template types:
+###Download, Install and Configure Sublime Text for Windows:
 
-  Keyword  |  Description
-------------|------------
-  slang  |  template for a slang file
-  flow  |  template for a flow
-  task  |  template for a task
-  operation  | template for an operation
++ Download and install [Sublime Text](http://www.sublimetext.com/).
++ Download the [slang-sublime package](https://github.com/orius123/slang-sublime/releases/download/0.1.0/slang-sublime-0.1.0.sublime-package). 
++ Copy the downloaded package file into C:\Users\&lt;User&gt;\AppData\Roaming\Sublime Text 2\Installed Packages
++ Restart Sublime Text.
++ New files with the .sl extension will be recognized as SLANG files. For existing files you may have to change the language manually.
+
+To use the templates start typing the template name and press enter when it appears on the screen. 
+
+The following templates are provided:
+
+Keyword|Description
+---|---
+slang|template for a slang file
+flow|template for a flow
+task|template for a task
+operation|template for an operation
   
-*Note*: DSL elements that are not required are marked in the templates as comments (start with # sign).
+**Note:** Optional SLANG elements are marked as comments (begin with #).

@@ -1,4 +1,43 @@
 <div ng-controller="MainCtrl">
+    <div class="header">
+        <div ng-include src="'views/navbar.html'"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <!--<p class="h3 header-title">{{$root.messages.headerMainTitle}}</p>-->
+                    <div data-ng-init="showCli('cli-header', $root.messages.headerMainTitleBullets, false, 30)">
+                        <p class="h3 header-title">
+                            <span id="cli-header" class="typed"></span>
+                            <span id="cli-header-cursor" class="typed-cursor">|</span>
+                        </p>
+                    </div>
+                    <br/>
+
+                    <p class="h4">{{$root.messages.headerDescription}}</p>
+                    <br/>
+
+                    <div class="col-md-12">
+                        <div class="row" ng-click="scrollToGettingStarted()">
+                            <a class="pull-left btn btn-primary btn-lg start-now-button left-side"><img
+                                    src="images/start_button.png" alt="Start Now"></a>
+                            <a class="pull-left btn btn-primary btn-lg start-now-button right-side"><p class="h4">
+                                {{$root.messages.headerStartNow}}</p></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div youtube-embed class="videoContainer">
+                        <img src="images/site_movie_img.png" class="hide"/>
+                        <iframe src="//www.youtube.com/embed/HT8J_z24hvE"></iframe>
+                    </div>
+                    <div class="fork">
+                        <iframe src="http://ghbtns.com/github-btn.html?user=openscore&repo=&type=fork&count=false&size=large"
+                            allowtransparency="true" frameborder="0" scrolling="0" width="200" height="30"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="section-wrapper bullets">
         <div ng-include src="'views/bullets.html'"></div>
     </section>
@@ -11,7 +50,4 @@
     <section id="{{sections[2].id}}" class="section-wrapper about">
         <div ng-include src="'views/about.html'"></div>
     </section>
-    <!--<section id="{{sections[3].id}}" class="section-wrapper contact-us">-->
-        <!--<div ng-include src="'views/contactus.html'"></div>-->
-    <!--</section>-->
 </div>

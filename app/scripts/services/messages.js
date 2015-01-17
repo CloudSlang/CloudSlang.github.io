@@ -15,12 +15,13 @@ angular.module('scoreWebsiteApp')
             navUseCasesTitle: 'Use Cases',
             navAboutTitle: 'About Us',
             navDocumentationTitle: 'Documentation',
+            navBlogTitle: 'Blog',
+            navBackToSiteTitle: 'Back To Site',
 
             //docs nav bar
             navDocsScoreTitle: 'Score',
             navDocsSlangTitle: 'Slang',
             navDocsDeveloperTitle: 'Developer',
-            navDocsBackToSiteTitle: 'Back To Site',
 
             // header
             headerMainTitle: 'Lightweight, process-based orchestration engine',

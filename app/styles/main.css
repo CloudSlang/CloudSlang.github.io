@@ -11,6 +11,28 @@ body {
     color: #ffffff;
 }
 
+::-webkit-scrollbar-track-piece {
+    background-color: #F5F5F5;
+    -webkit-border-radius: 0;
+}
+::-webkit-scrollbar-thumb {
+    height: 20px;
+    background-color: #cbcbcb;
+    -webkit-border-radius: 4px;
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    border: 0.1px solid #b7b7b7;
+}
+::-webkit-scrollbar-thumb:hover {
+    height: 50px;
+    background-color: #909090;
+    -webkit-border-radius: 4px;
+}
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -722,4 +744,16 @@ a:hover {
 
 .download-now-button img {
     width: 43px;
+}
+
+.blog.header {
+    margin-top: 71px;
+    padding-bottom: 0;
+}
+
+.blog .blog-frame {
+    z-index: 0;
+    height: 800px;
+    border-left: 1px solid #d7d7d7;
+    border-right: 1px solid #d7d7d7;
 }

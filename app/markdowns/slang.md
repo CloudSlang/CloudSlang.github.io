@@ -8,9 +8,9 @@ SLANG is a [YAML](http://www.yaml.org) based language for describing a workflow.
 The following is a simple example to give you an idea of how SLANG is structured and can be used to ensure your environment is set up properly to run flows. 
 
 ####Prerequisites
-This example uses the SLANG CLI to run a flow. See the [SLANG CLI](#docs/#slang-cli) section for instructions on how to download and run the CLI.
+This example uses the SLANG CLI to run a flow. See the [SLANG CLI](#/docs#slang-cli) section for instructions on how to download and run the CLI.
 
-Although SLANG files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. See [Sublime Integration](#docs/#sublime-integration) for instructions on how to download, install and use the SLANG snippets for [Sublime Text](http://www.sublimetext.com/).    
+Although SLANG files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. See [Sublime Integration](#/docs#sublime-integration) for instructions on how to download, install and use the SLANG snippets for [Sublime Text](http://www.sublimetext.com/).    
 
 ####Code files
 In a new folder, create two new SLANG files, flow.sl and ops.sl, and copy the code below.
@@ -56,7 +56,7 @@ Flow execution time took  0:00:00.790 , with execution id : 101600001
 ```
 
 ####Explanation
-The CLI runs the [flow](#docs/#flow) in the file we have passed to it, namely **flow.sl**. The [flow](#docs/#flow) begins with an [import](#docs/#imports) of the operations file, **ops.sl**, using its [namespace](#docs/#namespace) as the value for the [imports](#docs/#imports) key. Next, we enter the [flow](#docs/#flow) named `helloworld` and begin its [workflow](#docs/#workflow). The [workflow](#docs/#workflow) has one [task](#docs/#task) named `sayHi` which calls the `print` [operation](#docs/#operation) from the operations file that was imported. The [flow](#docs/#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#docs/#operation) `text` [input](#docs/#inputs). The print [operation](#docs/#operation) performs its [action](#docs/#action), which is a simple Python script that prints the [input](#docs/#inputs), and then returns a [result](#docs/#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#docs/#task) the [flow](#docs/#flow) finishes with a [result](#docs/#results) of `SUCCESS`.
+The CLI runs the [flow](#/docs#flow) in the file we have passed to it, namely **flow.sl**. The [flow](#/docs#flow) begins with an [import](#/docs#imports) of the operations file, **ops.sl**, using its [namespace](#/docs#namespace) as the value for the [imports](#/docs#imports) key. Next, we enter the [flow](#/docs#flow) named `helloworld` and begin its [workflow](#/docs#workflow). The [workflow](#/docs#workflow) has one [task](#/docs#task) named `sayHi` which calls the `print` [operation](#/docs#operation) from the operations file that was imported. The [flow](#/docs#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#/docs#operation) `text` [input](#/docs#inputs). The print [operation](#/docs#operation) performs its [action](#/docs#action), which is a simple Python script that prints the [input](#/docs#inputs), and then returns a [result](#/docs#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#/docs#task) the [flow](#/docs#flow) finishes with a [result](#/docs#results) of `SUCCESS`.
 
 ##SLANG DSL Reference
 This reference begins with a brief introduction to SLANG files and their structure followed by an alphabetical list of SLANG keywords and concepts. 
@@ -70,12 +70,12 @@ There are two types of SLANG files:
 + operations
 
 
-The following properties are for all types of SLANG files. For properties specific to [flows](#docs/#flow) or [operations](#docs/#operations), see their respective sections below.  
+The following properties are for all types of SLANG files. For properties specific to [flows](#/docs#flow) or [operations](#/docs#operations), see their respective sections below.  
 
 Property|Required|Default|Value Type|Description|More Info
 ---|---|---|---|---
-`namespace`|no|-|string|namespace of the flow|[namespace](#docs/#namespace)
-`imports`|no|-|list of key:value pairs|files to import|[imports](#docs/#imports)
+`namespace`|no|-|string|namespace of the flow|[namespace](#/docs#namespace)
+`imports`|no|-|list of key:value pairs|files to import|[imports](#/docs#imports)
 
 
 ####File Structure
@@ -83,38 +83,38 @@ The general structure of SLANG files is outlined here. Some of the properties th
 
 **Flow file**
 
-+ [namespace](#docs/#namespace)
-+ [imports](#docs/#imports)
-+ [flow](#/docs/#flow)
-  + [name](#docs/#name)
-  + [inputs](#docs/#inputs)
-  + [workflow](#docs/#workflow)
-    + [task(s)](#docs/#task)
-      + [do](#docs/#do)
-      + [publish](#docs/#publish)
-      + [navigate](#docs/#navigate) 
-  + [outputs](#docs/#outputs)
-  + [results](#docs/#results)   
++ [namespace](#/docs#namespace)
++ [imports](#/docs#imports)
++ [flow](#/docs#flow)
+  + [name](#/docs#name)
+  + [inputs](#/docs#inputs)
+  + [workflow](#/docs#workflow)
+    + [task(s)](#/docs#task)
+      + [do](#/docs#do)
+      + [publish](#/docs#publish)
+      + [navigate](#/docs#navigate) 
+  + [outputs](#/docs#outputs)
+  + [results](#/docs#results)   
 
 **Operations file**
 
-+ [namespace](#docs/#namespace)
-+ [imports](#docs/#imports)
-+ [operations](#/docs/#operations)
-    + [operation(s)](#docs/#operation)
-        + [inputs](#docs/#inputs)
-        + [action](#docs/#action)
-        + [outputs](#docs/#outputs)
-        + [results](#docs/#results)   
++ [namespace](#/docs#namespace)
++ [imports](#/docs#imports)
++ [operations](#/docs#operations)
+    + [operation(s)](#/docs#operation)
+        + [inputs](#/docs#inputs)
+        + [action](#/docs#action)
+        + [outputs](#/docs#outputs)
+        + [results](#/docs#results)   
 
 ---
 
 ###action
-The key `action` is a property of an [operation](#docs/#operation).
-It is mapped to a property that defines the type of action, which can be a [java_action](#docs/#java_action) or [python_script](#docs/#python_script).
+The key `action` is a property of an [operation](#/docs#operation).
+It is mapped to a property that defines the type of action, which can be a [java_action](#/docs#java_action) or [python_script](#/docs#python_script).
 
 ####java_action
-The key `java_action` is a property of [action](#docs/#action).  
+The key `java_action` is a property of [action](#/docs#action).  
 It is mapped to the properties that define the class and method where the @Action resides.
 
 A `java_action` is a valid @Action that conforms to the method signature: `public Map<String, String> doSomething(paramaters)` and uses the following annotations from `com.hp.oo.sdk.content.annotations`:
@@ -156,7 +156,7 @@ A `java_action` is a valid @Action that conforms to the method signature: `publi
 ```
 
 ####python_script
-The key `python_script` is a property of [action](#docs/#action).  
+The key `python_script` is a property of [action](#/docs#action).  
 It is mapped to a value containing a Python version 2.7 script.
 
 **Example - action with Python script that divides two numbers**
@@ -182,10 +182,10 @@ It is mapped to a value containing a Python version 2.7 script.
  
 
 ###default
-The key `default` is a property of an [input](#docs/#inputs) name.
+The key `default` is a property of an [input](#/docs#inputs) name.
 It is mapped to an expression value.
 
-The expression's value will be passed to the [flow](#docs/#flow) or [operation](#docs/#operation) if no other value for that [input](#docs/#inputs) parameter is explicitly passed.  
+The expression's value will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed.  
 
 **Example - default values **
 
@@ -199,7 +199,7 @@ inputs:
 	  default: variable_name
 ```
 
-A default value can also be defined inline by entering it as the value to the [input](#docs/#inputs) parameter's key.
+A default value can also be defined inline by entering it as the value to the [input](#/docs#inputs) parameter's key.
 
 **Example - inline default values**
 ```yaml
@@ -210,10 +210,10 @@ inputs:
 ```
 
 ###do
-The key `do` is a property of a [task](#docs/#task) name.
-It is mapped to a property that references an [operation](#docs/#operation) or [flow](#docs/#flow).
+The key `do` is a property of a [task](#/docs#task) name.
+It is mapped to a property that references an [operation](#/docs#operation) or [flow](#/docs#flow).
 
-Calls an [operation](#docs/#operation) or [flow](#docs/#flow) and passes in relevant [input](#docs/#inputs). The [operation](#docs/#operation) or [flow](#docs/#flow) is called by its qualified name using an alias created in the [imports](#docs/#imports) parameter.
+Calls an [operation](#/docs#operation) or [flow](#/docs#flow) and passes in relevant [input](#/docs#inputs). The [operation](#/docs#operation) or [flow](#/docs#flow) is called by its qualified name using an alias created in the [imports](#/docs#imports) parameter.
 
 **Example - call to a divide operation with inputs**
 ```yaml
@@ -226,16 +226,16 @@ do:
 ###flow
 The key `flow` is mapped to the properties which make up the flow contents.
 
-A flow is the basic executable unit of SLANG. A flow can run on its own or it can be used by another flow in the [do](#docs/#do) property of a [task](#docs/#task).
+A flow is the basic executable unit of SLANG. A flow can run on its own or it can be used by another flow in the [do](#/docs#do) property of a [task](#/docs#task).
 
 
 Property|Required|Default|Value Type|Description|More Info
 ---|---|---|---|---|---
-`name`|yes|-|string|name of the flow|[name](#docs/#name)
-`inputs`|no|-|list|inputs for the flow|[inputs](#docs/#inputs)
-`workflow`|yes|-|map of tasks|container for set of tasks|[workflow](#docs/#workflow)
-`outputs`|no|-|list|list of outputs|[outputs](#docs/#outputs)
-`results`|no|(`SUCCESS`/`FAILURE`)|list|possible results of the flow|[results](#docs/#results)
+`name`|yes|-|string|name of the flow|[name](#/docs#name)
+`inputs`|no|-|list|inputs for the flow|[inputs](#/docs#inputs)
+`workflow`|yes|-|map of tasks|container for set of tasks|[workflow](#/docs#workflow)
+`outputs`|no|-|list|list of outputs|[outputs](#/docs#outputs)
+`results`|no|(`SUCCESS`/`FAILURE`)|list|possible results of the flow|[results](#/docs#results)
 
 **Example - a flow that performs a division of two numbers**
 
@@ -274,9 +274,9 @@ flow:
 ```
 
 ###fromInputs
-May appear in the value of an [operation's](#docs/#operation) [output](#doc/#outputs).
+May appear in the value of an [operation's](#/docs#operation) [output](#doc/#outputs).
 
-Special syntax to [output](#docs/#outputs) an [input](#docs/#inputs) parameter as it was passed in.
+Special syntax to [output](#/docs#outputs) an [input](#/docs#inputs) parameter as it was passed in.
 
 **Example - output "input1" as it was passed in**
 
@@ -301,16 +301,16 @@ imports:
 ```
 
 ###inputs
-The key `inputs` is a property of a [flow](#docs/#flow) or [operation](#docs/#operation).
+The key `inputs` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation).
 It is mapped to a list of input names. Each input name may in turn be mapped to its properties.   
 
-Inputs are used to pass parameters to [flows](#docs/#flow) or [operations](#docs/#operation).
+Inputs are used to pass parameters to [flows](#/docs#flow) or [operations](#/docs#operation).
 
 Property|Required|Default|Value Type|Description|More info
 ---|
-`required`|no|true|boolean|is the input required|[required](#docs/#required)
-`default`|no|-|expression|default value of the input|[default](#docs/#default)
-`override`|no|false|boolean|will the default value override values passed in|[override](#docs/#override)
+`required`|no|true|boolean|is the input required|[required](#/docs#required)
+`default`|no|-|expression|default value of the input|[default](#/docs#default)
+`override`|no|false|boolean|will the default value override values passed in|[override](#/docs#override)
 
 **Example - two inputs**
 
@@ -324,10 +324,10 @@ inputs:
 
 
 ###name
-The key `name` is a property of [flow](#docs/#flow) .
+The key `name` is a property of [flow](#/docs#flow) .
 It is mapped to a value that is used as the name of the flow.
 
-The name of a [flow](#docs/#flow) may be used when calling the [flow](#docs/#flow) as a subflow by a [task](#docs/#task) in another [flow](#docs/#flow). 
+The name of a [flow](#/docs#flow) may be used when calling the [flow](#/docs#flow) as a subflow by a [task](#/docs#task) in another [flow](#/docs#flow). 
 
 **Example - naming the flow "simple_flow"**
 
@@ -338,7 +338,7 @@ name: simple_flow
 ###namespace
 The key `namespace` is mapped to a string value that defines the file's namespace.
 
-The namespace  may be used by other SLANG files for [importing](#docs/#imports) purposes.
+The namespace  may be used by other SLANG files for [importing](#/docs#imports) purposes.
 
 **Example - definition a namespace**
 
@@ -347,10 +347,10 @@ namespace: user.operations.utils
 ```
 
 ###navigate
-The key `navigate` is a property of a [task](#docs/#task) name.
-It is mapped to key:value pairs where the key is the received [result](#docs/#results) and the value is the target [task](#docs/#task) or [flow](#doc/#flow) [result](#docs/#results).
+The key `navigate` is a property of a [task](#/docs#task) name.
+It is mapped to key:value pairs where the key is the received [result](#/docs#results) and the value is the target [task](#/docs#task) or [flow](#doc/#flow) [result](#/docs#results).
 
-Defines the navigation logic for a [task](#docs/#task). The flow will continue with the [task](#docs/#task) or [flow](#docs/#flow) [result](#docs/#results) whose value is mapped to the [result](#docs/#results) returned by the called [operation](#docs/#operation) or subflow when the [task](#docs/#task) is completed. The default navigation is `SUCCESS` except for the [on_failure](#docs/#on_failure) [task](#docs/#task) whose default navigation is `FAILURE`.
+Defines the navigation logic for a [task](#/docs#task). The flow will continue with the [task](#/docs#task) or [flow](#/docs#flow) [result](#/docs#results) whose value is mapped to the [result](#/docs#results) returned by the called [operation](#/docs#operation) or subflow when the [task](#/docs#task) is completed. The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`.
 
 **Example - ILLEGAL result will navigate to flow's FAILURE result and SUCCESS result will navigate to task named "printer"**
 ```yaml
@@ -360,10 +360,10 @@ navigate:
 ```
 
 ###on_failure
-The key `on_failure` is a property of a [workflow](#docs/#workflow).
-It is mapped to a [task](#docs/#task).
+The key `on_failure` is a property of a [workflow](#/docs#workflow).
+It is mapped to a [task](#/docs#task).
 
-Defines the [task](#docs/#task), which when using default [navigation](#docs/#navigation), is the target of a `FAILURE` [result](#docs/#result) returned from an [operation](#docs/#operations) or [flow](#docs/flow). The `on_failure` [task's](#docs/#task) [navigation](#docs/#navigate) defaults to `FAILURE`.
+Defines the [task](#/docs#task), which when using default [navigation](#/docs#navigation), is the target of a `FAILURE` [result](#/docs#result) returned from an [operation](#/docs#operations) or [flow](#docs/flow). The `on_failure` [task's](#/docs#task) [navigation](#/docs#navigate) defaults to `FAILURE`.
 
 **Example - faliure task which call a print operation to print an error message**
 ```yaml
@@ -375,15 +375,15 @@ on_failure:
 ```
 
 ###operation
-A name of an operation which is a list item of [operations](#docs/#operations).
+A name of an operation which is a list item of [operations](#/docs#operations).
 It is mapped to the operation's properties.
 
 Property|Required|Default|Value Type|Description|More Info
 ---|
-inputs|no|-|list|operation inputs|[inputs](#docs/#inputs)
-action|yes|-|`python_script` or `java_action`|operation logic|[action](#docs/#action)
-outputs|no|-|list|operation outputs|[outputs](#docs/#outputs)
-results|no|`SUCCESS`|list|possible operation results|[results](#docs/#results)
+inputs|no|-|list|operation inputs|[inputs](#/docs#inputs)
+action|yes|-|`python_script` or `java_action`|operation logic|[action](#/docs#action)
+outputs|no|-|list|operation outputs|[outputs](#/docs#outputs)
+results|no|`SUCCESS`|list|possible operation results|[results](#/docs#results)
 
 
 **Example - operation that adds two inputs and outputs the answer**
@@ -415,14 +415,14 @@ operations:
 ```
 
 ###outputs
-The key `outputs` is a property of a [flow](#docs/#flow) or [operation](#docs/#operation) name.
+The key `outputs` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation) name.
 It is mapped to a list of output variable names which may also contain expression values. Output expressions must evaluate to strings. 
 
-Defines the parameters a  [flow](#docs/#flow) or [operation](#docs/#operation) exposes to possible [publication](#docs/#publish) by a [task](#docs/#task). The calling [task](#docs/#task) refers to an output by its name.
+Defines the parameters a  [flow](#/docs#flow) or [operation](#/docs#operation) exposes to possible [publication](#/docs#publish) by a [task](#/docs#task). The calling [task](#/docs#task) refers to an output by its name.
 
 Note:  all variable values are converted to string before being used in an output's boolean expression.
 
-See also [fromInputs](#docs/#fromInputs).
+See also [fromInputs](#/docs#fromInputs).
 
 **Example - various types of outputs**
 
@@ -436,10 +436,10 @@ outputs:
 
 
 ###override
-The key `override` is a property of an [input](#docs/#inputs) name.
+The key `override` is a property of an [input](#/docs#inputs) name.
 It is mapped to a boolean value.
 
-A value of `true` will always override the [input](#docs/#inputs) parameter sent to the [flow](#docs/#flow) or [operation](#docs/#operation) with the [default](#docs/#default) value. If `override` is not defined, the [default](#docs/#default) value will not override the value passed to the [input](#docs/#inputs) parameter. 
+A value of `true` will always override the [input](#/docs#inputs) parameter sent to the [flow](#/docs#flow) or [operation](#/docs#operation) with the [default](#/docs#default) value. If `override` is not defined, the [default](#/docs#default) value will not override the value passed to the [input](#/docs#inputs) parameter. 
 
 **Example - default value of text input parameter will override values passed in**
 
@@ -451,10 +451,10 @@ inputs:
 ```
 
 ###publish
-The key `publish` is a property of a [task](#docs/#task) name.
-It is mapped to a list of key:value pairs where the key is the published variable name and the value is the name of the [output](#docs/#outputs) received from an [operation](#docs/#operation) or [flow](#docs/#flow).
+The key `publish` is a property of a [task](#/docs#task) name.
+It is mapped to a list of key:value pairs where the key is the published variable name and the value is the name of the [output](#/docs#outputs) received from an [operation](#/docs#operation) or [flow](#/docs#flow).
 
-Binds the [output](#docs/#outputs) from an [operation](#docs/#operation) or [flow](#docs/#flow) to a variable whose scope is the current [flow](#docs/#flow) and can therefore be used by other [tasks](#docs/#task) or as the [flow's](#docs/#flow) own [output](#docs/#outputs).
+Binds the [output](#/docs#outputs) from an [operation](#/docs#operation) or [flow](#/docs#flow) to a variable whose scope is the current [flow](#/docs#flow) and can therefore be used by other [tasks](#/docs#task) or as the [flow's](#/docs#flow) own [output](#/docs#outputs).
 
 **Example - publish the quotient output as answer**
 ```yaml
@@ -463,14 +463,14 @@ publish:
 ```
 
 ###results
-The key `results` is a property of a [flow](#docs/#flow) or [operation](#docs/#operation).
+The key `results` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation).
 
-The results of a [flow](#docs/#flow) or [operation](#docs/#operation) can be used by the calling [task](#docs/#task) for [navigation](#docs/#navigate) purposes.
+The results of a [flow](#/docs#flow) or [operation](#/docs#operation) can be used by the calling [task](#/docs#task) for [navigation](#/docs#navigate) purposes.
 
 ####Flow results
-In a [flow](#docs/#flow), the key `results` is mapped to a list of result names. 
+In a [flow](#/docs#flow), the key `results` is mapped to a list of result names. 
 
-Defines the possible results of the [flow](#docs/#flow). By default a [flow](#docs/#flow) has two results, `SUCCESS` and `FAILURE`.  The defaults can be overridden with any number of user-defined results. When overriding, the defaults are lost and must be redefined if they are to be used. 
+Defines the possible results of the [flow](#/docs#flow). By default a [flow](#/docs#flow) has two results, `SUCCESS` and `FAILURE`.  The defaults can be overridden with any number of user-defined results. When overriding, the defaults are lost and must be redefined if they are to be used. 
 
 **Example - a user-defined result**
 
@@ -482,9 +482,9 @@ results:
 ```
 
 ####Operation results
-In a [operation](#docs/#operation) the key `results` is mapped to a list of key:value pairs of result names and boolean expressions. 
+In a [operation](#/docs#operation) the key `results` is mapped to a list of key:value pairs of result names and boolean expressions. 
 
-Defines the possible results of the [operation](#docs/#operation). By default, if no results exist, the result is `SUCCESS`.  The first result in the list whose expression evaluates to true, or does not have an expression at all, will be passed back to the calling [task](#docs/#task) to be used for [navigation](#docs/#navigate) purposes.  
+Defines the possible results of the [operation](#/docs#operation). By default, if no results exist, the result is `SUCCESS`.  The first result in the list whose expression evaluates to true, or does not have an expression at all, will be passed back to the calling [task](#/docs#task) to be used for [navigation](#/docs#navigate) purposes.  
 
 Note:  all variable values are converted to string before being used in a result's boolean expression.
 
@@ -497,10 +497,10 @@ results:
 ```
 
 ###required
-The key `required` is a property of an [input](#docs/#inputs) name.
+The key `required` is a property of an [input](#/docs#inputs) name.
 It is mapped to a boolean value.
 
-A value of `false` will allow the [flow](#docs/#flow) or [operation](#docs/#operation) to be called without passing the [input](#docs/#inputs) parameter. If `required` is not defined, the [input](#docs/#inputs) parameter defaults to being required. 
+A value of `false` will allow the [flow](#/docs#flow) or [operation](#/docs#operation) to be called without passing the [input](#/docs#inputs) parameter. If `required` is not defined, the [input](#/docs#inputs) parameter defaults to being required. 
 
 **Example - input2 is optional**
 
@@ -512,14 +512,14 @@ inputs:
 ```
 
 ###task
-A name of a task which is a property of [workflow](#docs/#workflow) or [on_failure](#docs/#on_failure).
+A name of a task which is a property of [workflow](#/docs#workflow) or [on_failure](#/docs#on_failure).
 It is mapped to the task's properties.
 
 Property|Required|Default|Value Type|Description|More Info
 ---|
-`do`|yes|-|operation or subflow call|the operation or subflow this task will run|[do](#docs/#do) [operation](#docs/#operation) [flow](#docs/#flow)
-`publish`|no|-|list of key:value pairs|operation outputs to publish to the flow level|[publish](#docs/#publish) [outputs](#docs/#outputs)
-`navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic from operation or flow results|[navigation](#docs/#navigate) [results](#docs/#results)
+`do`|yes|-|operation or subflow call|the operation or subflow this task will run|[do](#/docs#do) [operation](#/docs#operation) [flow](#/docs#flow)
+`publish`|no|-|list of key:value pairs|operation outputs to publish to the flow level|[publish](#/docs#publish) [outputs](#/docs#outputs)
+`navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic from operation or flow results|[navigation](#/docs#navigate) [results](#/docs#results)
 
 **Example - task that performs a division of two inputs, publishes the answer and navigates accordingly**
 
@@ -537,16 +537,16 @@ divider:
 ```
 
 ###workflow
-The key `workflow` is a property of a [flow](#docs/#flow).
-It is mapped to a the workflow's [tasks](#/docs/#task).
+The key `workflow` is a property of a [flow](#/docs#flow).
+It is mapped to a the workflow's [tasks](#/docs#task).
 
-Defines a container for the [tasks](#/docs/#task), their [published variables](#docs/#publish) and [navigation](#docs/#navigate) logic.
+Defines a container for the [tasks](#/docs#task), their [published variables](#/docs#publish) and [navigation](#/docs#navigate) logic.
 
-The first [task](#/docs/#task) in the workflow is the starting [task](#/docs/#task) of the flow. From there the flow continues sequentially by default upon receiving [results](#docs/#results) of `SUCCESS`, to the flow finish or to [on_failure](#docs/#on_failure) upon a [result](#docs/#results) of `FAILURE`, or following whatever overriding [navigation](#docs/#navigate) logic that is present.
+The first [task](#/docs#task) in the workflow is the starting [task](#/docs#task) of the flow. From there the flow continues sequentially by default upon receiving [results](#/docs#results) of `SUCCESS`, to the flow finish or to [on_failure](#/docs#on_failure) upon a [result](#/docs#results) of `FAILURE`, or following whatever overriding [navigation](#/docs#navigate) logic that is present.
 
 Propery|Required|Default|Value Type|Description|More Info
 ---|
-`on_failure`|no|-|task|default navigation target for `FAILURE`|[on_failure](#docs/#on_failure) [task](#docs/#task)
+`on_failure`|no|-|task|default navigation target for `FAILURE`|[on_failure](#/docs#on_failure) [task](#/docs#task)
 
 **Example - workflow that divides two numbers and prints them out if the division was legal**
 
@@ -845,7 +845,7 @@ workflow:
 
 SLANG uses score events. An event is represented by event type (a String value) and event data (Serializable object).
 In case of SLANG the event data is a map that contains all the relevant information under certain keys defined in 
-`org.openscore.lang.runtime.events.LanguageEventData` class (See [table](#docs/#event_summary) below).
+`org.openscore.lang.runtime.events.LanguageEventData` class (See [table](#/docs#event_summary) below).
 SLANG extends the traditional event type set provided by score with its own event types.
 
 Event types from score:

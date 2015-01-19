@@ -25,7 +25,7 @@
                 <a href="/#/{{navSwitch.uri}}">
                     <span class="row go-to-page">
                         <span class="col-lg-9 button">{{navSwitch.title}}</span>
-                        <i class="col-lg-1 fa fa-arrow-circle-o-right arrow"></i>
+                        <i class="col-lg-1 fa arrow" ng-class="navSwitch.title === $root.messages.navBackToSiteTitle ? 'fa-arrow-circle-o-left' : 'fa-arrow-circle-o-right'"></i>
                     </span>
                 </a>
             </li>

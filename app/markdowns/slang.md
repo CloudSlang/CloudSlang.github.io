@@ -13,7 +13,7 @@ This example uses the SLANG CLI to run a flow. See the [SLANG CLI](#docs/#slang-
 Although SLANG files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. See [Sublime Integration](#docs/#sublime-integration) for instructions on how to download, install and use the SLANG snippets for [Sublime Text](http://www.sublimetext.com/).    
 
 ####Code files
-In a new folder create two new SLANG files, flow.sl and ops.sl, and copy the code below.
+In a new folder, create two new SLANG files, flow.sl and ops.sl, and copy the code below.
 
 **flow.sl**
 ```yaml
@@ -56,204 +56,98 @@ Flow execution time took  0:00:00.790 , with execution id : 101600001
 ```
 
 ####Explanation
-The CLI runs the [flow](#docs/#flow) in the file we have passed to it, namely **flow.sl**. The [flow](#docs/#flow) begins with an [import](#docs/#imports) of the operations file, **ops.sl**, using its [namespace](#docs/#namespace) as the value for the [imports](#docs/#imports) key. Next, we enter the [flow](#docs/#flow) named `helloworld` and begin its [workflow](#docs/#workflow). The [workflow](#docs/#workflow) has one [task](#docs/#task) named `sayHi` which calls the `print` [operation](#docs/#operation) from the operations file that was imported. The [flow](#docs/#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#docs/#operation) `text` [input](#docs/#inputs). The print [operation](#docs/#operation) performs its [action](#docs/#action), which is a simple Python script that prints the [input](#docs/#inputs), and then returns a [result](#docs/#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#docs/#tasks) the [flow](#docs/#flow) finishes with a [result](#docs/#results) of `SUCCESS`.
+The CLI runs the [flow](#docs/#flow) in the file we have passed to it, namely **flow.sl**. The [flow](#docs/#flow) begins with an [import](#docs/#imports) of the operations file, **ops.sl**, using its [namespace](#docs/#namespace) as the value for the [imports](#docs/#imports) key. Next, we enter the [flow](#docs/#flow) named `helloworld` and begin its [workflow](#docs/#workflow). The [workflow](#docs/#workflow) has one [task](#docs/#task) named `sayHi` which calls the `print` [operation](#docs/#operation) from the operations file that was imported. The [flow](#docs/#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#docs/#operation) `text` [input](#docs/#inputs). The print [operation](#docs/#operation) performs its [action](#docs/#action), which is a simple Python script that prints the [input](#docs/#inputs), and then returns a [result](#docs/#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#docs/#task) the [flow](#docs/#flow) finishes with a [result](#docs/#results) of `SUCCESS`.
 
-##SLANG DSL
-The SLANG DSL contains the following main entities:
+##SLANG DSL Reference
+This reference is organized with a brief introduction to SLANG files and their structure followed by an alphabetical list of SLANG keyword and concepts. 
 
-+ Flow: A flow is the basic executable unit of SLANG. It represents a process that can perform a job relevant to the end user. For example, a flow that creates a virtual machine. A flow consists of tasks and the navigation between them. Flows have inputs, outputs and possible results.
-+ Task: One step in a flow. It can point to an operation or to another flow (which in this context is called subflow).
-+ Operation: A wrapper unit of an action. The operation handles the action inputs, defines relevant outputs, and returns a result.
-+ Action: A method, written pragmatically. This can be a java method or a type of script.
-+ Result: The returned status of a flow or operation, for example: SUCCESS or FAILURE.
+###SLANG File 
+SLANG files are written using [YAML](http://www.yaml.org). The recommended extension for SLANG files is .sl, but .yaml  and .yl will work as well. 
 
-###Flow
+There are two types of SLANG files:
 
-A flow is the basic executable unit of SLANG. It represents a process that can be described in a number of ways and that can perform a job relevant to the end user. Each flow consists of a workflow describing the exact tasks (one or more) that are performed during the execution a flow. A flow can be used by other flows as a single task.
-
-Property    |Required    |Default            |Description
-------------|-----------|-------------------|-----------
-name        |V          |                   |The name of the flow
-inputs    	|	        |                   |List of inputs (see [Inputs](#docs/#inputs))
-workflow	|V		    |                   |Describes the flow tasks and navigation (see [Workflow](#docs/#workflow))
-results		|           |SUCCESS/FAILURE    |Possible results of the flow (see [Results](#docs/#results))
-outputs		|   	    |                   |List of outputs (see [Outputs](#docs/#outputs))
-
-*sample:*
-
-```yaml
-namespace: slang.sample.flows
-imports: 
-- ops: slang.ops.operations
-flow:
-  name: SimpleFlow
-  inputs:
-  - input_1
-  - input_2
-  - input_3
-  workflow:
-    CheckWeather:
-      do: 
-        ops.check_Weather:
-          city: input_1
-      publish:
-        weather
-    PrintWeather:
-      operation:
-        ops.print:
-         - text:  "'the weather in' + input_1 + ' is:' + weather"
-```
++ flow files
++ operations files
 
 
-###Workflow
+The following properties are for all types of SLANG files. For properties specific to flows, see [flows](#docs#/flow). For properties specific to operations see [operations](#docs#/operations). 
 
-Describes the workflow of the flow, and contains the different tasks and the navigations between them.
-
-The first task in the workflow is the begin task of the flow.
-on_failure is a reserved key.
-For the default navigation the result of FAILURE goes to on_failure, the result of SUCCESS goes to the next step.
-You can also define custom navigations with targets like: another task or flow results (e.g. SUCCESS / FAILURE) - in this case the default navigation rules are ignored.
-Every task can use: predefined operation or subflow, (see [Task](#docs/#task)).
-
-Property	|Required	|Default	|Description
-------------|-----------|-----------|-----------
-on_failure	|		    |           |the default task FAILURE result should navigate to
-
-*sample:*
-
-```yaml
-workflow:
-  first_task:
-    do: 
-      some_operation:
-      - operation_input_1: flow_input_3
-      - operation_input_2
-      - operation_input_3
-    publish:
-      flow_var: some_op_output
-    navigate: 
-      #how to handle an operation that has a non-default result
-      NON_DEFAULT_RESULT: custom_task   
-```
+Property|Required|Default|Value Type|Description|More Info
+---|---|---|---|---
+`namespace`|no|-|string|namespace of the flow|[namespace](#docs/#namespace)
+`imports`|no|-|list of key:value pairs|files to import|[imports](#docs/#imports)
 
 
-###Inputs
+####File Structure
+The general structure of SLANG files is outlined here. Some of the properties that appear are optional and some detailed properties do not appear. All SLANG keywords, properties and concepts are explained in detail below.
 
-Inputs are used to pass and manipulate parameters in flows, operations and tasks.
-The name of the input is the key.
+**Flow file**
 
-| Property | Required | Default | Description |
-|----------|----------|---------|-------------|
-|required  |          |true     |If the input must have a value|
-|default|||The default value of the input (constant value or expression) in case no other value passed|
-|encrypted||false|If the value is true, the input will be encrypted|
-|override||false|In case it is marked as true, the default value is always the value - even if the parent task/flow declared the input with given value |
++ [namespace](#docs/#namespace)
++ [imports](#docs/#imports)
++ [flow](#/docs/#flow)
+  + [name](#docs/#name)
+  + [inputs](#docs/#inputs)
+  + [workflow](#docs/#workflow)
+    + [task(s)](#docs/#task)
+      + [do](#docs/#do)
+      + [publish](#docs/#publish)
+      + [navigate](#docs/#navigate) 
+  + [outputs](#docs/#outputs)
+  + [results](#docs/#results)   
 
-*sample:*
+**Operations file**
 
-```yaml
-	inputs:
-	- input_with_value_like_name
-	- input_not_required:
-	   required: false
-	- input_use_expression_inline: "'1' + '6'"
-	- input_with_default_value:
-	   default: "'I'm the default value'"
-	- input_with_default_expression_value:
-	   default: "'1' + '5'"
-	- input_mix:
-	   default: "'some value'"
-	   required: false
-```
++ [namespace](#docs/#namespace)
++ [imports](#docs/#imports)
++ [operations](#/docs/#operations)
+    + [operation(s)](#docs/#operation)
+        + [inputs](#docs/#inputs)
+        + [action](#docs/#action)
+        + [outputs](#docs/#outputs)
+        + [results](#docs/#results)   
 
+---
 
-###Outputs
+###action
+The key `action` is a property of an [operation](#docs/#operation).
+It is mapped to a property that defines the type of action, which can be [java_action](#docs/#java_action) or [python_script](#docs/#python_script).
 
-Outputs define the possible parameters flow / operation exposed to further use (see [Task](#docs/#task) publish property).
+####java_action
+The key `java_action` is a property of [action](#docs/#action).  
+It is mapped to the properties that define the class and method where the @Action resides.
 
-*sample:*
+A `java_action` is a valid @Action that conforms to the method signature: `public Map<String, String> doSomething(paramaters)` and uses the following annotations from `com.hp.oo.sdk.content.annotations`:
 
-```yaml
-	outputs:
-	- output_from_return_value: processId
-	- output_from_input_value: fromInputs ['input1']
-```
-
-
-###Results
-
-Describes the possible results of the flow. By default, the flow has two results: SUCCESS and FAILURE. You can override them, with an unlimited number of results. The result on runtime will be used to navigate when using this flow as sub-flow in a different flow.
-*sample:*
-
-```yaml
-	results:
-	 - SUCCESS
-	 - FAILURE
-	 - NO_SPACE
-```
-
-###Task
-Task is a single node in the flow workflow. Every task can use predefined operation or subflow.
-
-| Property | Required | Default | Description |
-|----------|----------|---------|-------------|
-|operation | V        |         |Describe the operation or subflow this task will run|
-|publish   |          |         |Choose from the operation outputs what to publish to the flow level|
-|go_to     |FAILURE: on_failure SUCCESS: go to next task| | Describe the navigation for the different results the operation has. In case of the default results, with the default go_to you don’t need to write it down.|
-
-*sample:*
-
-```yaml
-    Task2:
-          do:
-            ops.compute_daylight_time_zone:
-              - time_zone_as_string: flow_input
-          publish:
-            - daylight_time_zone
-```
-
-###Operation
-
-Operation is the wrapper of an action.
-
-Property    |Required    |Default	        |Description
-------------|-----------|-------------------|-----------
-inputs		|	        |                   |Operation inputs (see [Inputs](#docs/#inputs))
-action  	|V		    |                   |Logic of the operation. (see [Action](#docs/#action))
-results		|           |SUCCESS/FAILURE    |Possible results of the operation (see [Results](#docs/#results))
-outputs		|   	    |                   |Outputs of the operation (see [Outputs](#docs/#outputs))
-
-*sample:*
-
-```yaml
-    do: 
-      some_operation:
-        - operation_input_1: flow_input_3
-        - operation_input_2
-        - operation_input_3
-```
-
-###Action
-
-Two kind of actions are supported: java @Actions and python scripts.
-
-####@Action
-A java action is a valid @Action that respects the method signature `public Map<String, String> doSomething(paramaters)` and
-uses the following annotations (from `com.hp.oo.sdk.content.annotations`):
-
-+ required annotations
-    - @Param: for action parameters
-+ optional annotations
++ required annotations:
+    - @Param: action parameter
++ optional annotations:
     - @Action: specify action information
-    - @Output: denotes action output
-    - @Response: denotes action response
+    - @Output: action output
+    - @Response: action response
 
-*sample - java @Action*
+**Example - SLANG call to  a Java @Action**
+
+```yaml
+- pull_image:
+    inputs:
+      - input1
+      - input2
+    action:
+      java_action:
+        className: org.mypackage.MyClass
+        methodName: doMyAction
+    outputs:
+      - returnResult
+    results:
+      - SUCCESS : someActionOutput == '0'
+      - FAILURE
+```
 
 ```java
-    public Map<String, String> doJavaAction(
-            @Param("name") String name,
-            @Param("role") String role) {
+    public Map<String, String> doMyAction(
+            @Param("input1") String input1,
+            @Param("input2") String input2) {
         //logic here
         Map<String, String> returnValues = new HashMap<>();
         //prepare return values map
@@ -261,67 +155,417 @@ uses the following annotations (from `com.hp.oo.sdk.content.annotations`):
     }
 ```
 
-*sample - create custom operation that uses @Action*
+####python_script
+The key `python_script` is a property of [action](#docs/#action).  
+It is mapped to a value containing a Python version 2.7 script.
+
+**Example - action with Python script that divides two numbers**
 
 ```yaml
-    - pull_image:
-            inputs:
-              - imageName
-              - host
-              - port
-              - username
-              - password
-            action:
-              java_action:
-                className: org.mypackage.MyClass
-                methodName: doMyAction
-            outputs:
-              - returnResult
-            results:
-              - SUCCESS : someActionOutput == '0'
-              - FAILURE
+- divide:
+    inputs:
+      - dividend
+      - divisor
+    action:
+      python_script: |
+        if divisor == '0':
+          quotient = 'division by zero error'
+        else:
+          quotient = float(dividend) / float(divisor)
+    outputs:
+      - quotient
+    results:
+      - ILLEGAL: quotient == 'division by zero error'
+      - SUCCESS
 ```
 
-####Python script
-You can use any traditional python 2.7 version script.
+ 
 
-*sample - create custom operation that uses Python script*
+###default
+The key `default` is a property of an [input](#docs/#inputs) name.
+It is mapped to an expression value.
+
+The expression's value will be passed to the [flow](#docs/#flow) or [operation](#docs/#operation) if no other value for that [input](#docs/#inputs) parameter is explicitly passed.  
+
+**Example - default values **
 
 ```yaml
-      - check_Weather:
-          inputs:
-            - city
-          action:
-            python_script: |
-              weather = "weather thing"
-              print city
-          outputs:
-            - weather
-          results:
-            - SUCCESS: 'weather == "weather thing"'
+inputs:
+  - str_literal:
+	  default: "'default value'"
+  - int_exp:
+      default: '5 + 6'
+  - from_variable:
+	  default: variable_name
+```
+
+A default value can also be defined inline by entering it as the value to the [input](#docs/#inputs) parameter's key.
+
+**Example - inline default values**
+```yaml
+inputs:
+  - str_literal: "'default value'"
+  - int_exp: '5 + 6'
+  - from_variable: variable_name
+```
+
+###do
+The key `do` is a property of a [task](#docs/#task) name.
+It is mapped to a property that references an [operation](#docs/#operation) or [flow](#docs/#flow).
+
+Calls an [operation](#docs/#operation) or [flow](#docs/#flow) and passes in relevant [input](#docs/#inputs). The [operation](#docs/#operation) or [flow](#docs/#flow) is called by its qualified name using an alias created in the [imports](#docs/#imports) parameter.
+
+**Example - call to a divide operation with inputs**
+```yaml
+do:
+  ops.divide:
+    - dividend: input1
+    - divisor: input2
+```
+
+###flow
+The key `flow` is mapped to the properties which make up the flow contents.
+
+A flow is the basic executable unit of SLANG. A flow can run on its own or it can be used by another flow in the [do](#docs/#do) property of a [task](#docs/#task).
+
+
+Property|Required|Default|Value Type|Description|More Info
+---|---|---|---|---|---
+`name`|yes|-|string|name of the flow|[name](#docs/#name)
+`inputs`|no|-|list|inputs for the flow|[inputs](#docs/#inputs)
+`workflow`|yes|-|map of tasks|container for set of tasks|[workflow](#docs/#workflow)
+`outputs`|no|-|list|list of outputs|[outputs](#docs/#outputs)
+`results`|no|(`SUCCESS`/`FAILURE`)|list|possible results of the flow|[results](#docs/#results)
+
+**Example - a flow that performs a division of two numbers**
+
+```yaml
+flow:
+  name: simple_flow
+
+  inputs:
+    - input1
+    - input2
+  
+  workflow:
+    divider:
+      do:
+        ops.divide:
+          - dividend: input1
+          - divisor: input2
+      publish:
+        - answer: ans
+      navigate:
+        ILLEGAL: ILLEGAL
+        SUCCESS: printer
+    printer:
+      do:
+        ops.print:
+          - text: input1 + "/" + input2 + " = " + answer
+      navigate:
+        SUCCESS: SUCCESS
+  
+  outputs:
+    - quotient: answer
+  
+  results:
+    - ILLEGAL
+    - SUCCESS
+```
+
+###fromInputs
+May appear in the value of an [operation's](#doc/#operation) [output](#doc/#outputs).
+
+Special syntax to [output](#doc/#outputs) an [input](#docs/#inputs) parameter as it was passed in.
+
+**Example - output "input1" as it was passed in**
+
+```yaml
+outputs:
+  - output1: fromInputs['input1']
+```
+
+###imports
+The key `imports` is mapped to the files to import as follows:  
+
++ key - alias 
++ value - namespace of file to be imported
+
+Specifies the file's dependencies and the aliases they will be referenced by in the file.
+
+**Example - import operations and sublflow into flow**
+```yaml
+imports:
+  ops: user.operations.utils
+  sub_flows: user.subflows.asubflow
+```
+
+###inputs
+The key `inputs` is a property of a [flow](#docs/#flow) or [operation](#docs/#operation).
+It is mapped to a list of input names. Each input name may in turn be mapped to its properties.   
+
+Inputs are used to pass parameters to [flows](#docs/#flow) or [operations](#docs/#operation).
+
+Property|Required|Default|Value Type|Description|More info
+---|
+`required`|no|true|boolean|is the input required|[required](#docs/#required)
+`default`|no|-|expression|default value of the input|[default](#docs/#default)
+`override`|no|false|boolean|will the default value override values passed in|[override](#docs/#override)
+
+**Example - two inputs**
+
+```yaml
+inputs:
+  - input1:
+      default: "'default value'"
+      override: true
+  - input2
 ```
 
 
-###Imports
+###name
+The key `name` is a property of [flow](#docs/#flow) .
+It is mapped to a value that is used as the name of the flow.
 
-Written at the beginning of the file, after the namespace, used to specify the dependencies the file is using and the name it will be referenced within the file. 
-*sample:*
+The name of a [flow](#docs/#flow) may be used when calling the [flow](#docs/#flow) as a subflow by a [task](#docs/#task) in another [flow](#docs/#flow). 
+
+**Example - naming the flow "simple_flow"**
 
 ```yaml
-   imports:
-     - ops: user.ops.OpenstackOperations
-     - order_vm_flow: user.flows.OrderVmFlow
-     - script_file: some_script_file.py
+name: simple_flow
+```
+
+###namespace
+The key `namespace` is mapped to a string value that defines the file's namespace.
+
+The namespace  may be used by other SLANG files for [importing](#docs/#imports) purposes.
+
+**Example - definition a namespace**
+
+```yaml
+namespace: user.operations.utils
+```
+
+###navigate
+The key `navigate` is a property of a [task](#docs/#task) name.
+It is mapped to key:value pairs where the key is the received [result](#docs/#results) and the value is the target [task](#docs/#task) or [flow](#doc/#flow) [result](#docs/#results).
+
+Defines the navigation logic for a [task](#docs/#task). The flow will continue with the [task](#docs/#task) or [flow](#doc/#flow) [result](#docs/#results) whose value is mapped to the [result](#docs/#results) returned by the called [operation](#docs/#operation) or subflow when the [task](#docs/#task) is completed. The default navigation is `SUCCESS` except for the [on_failure](#docs/#on_failure) [task](#docs/#task) whose default navigation is `FAILURE`.
+
+**Example - ILLEGAL result will navigate to flow's FAILURE result and SUCCESS result will navigate to task named "printer"**
+```yaml
+navigate:
+  ILLEGAL: FAILURE
+  SUCCESS: printer
+```
+
+###on_failure
+The key `on_failure` is a property of a [workflow](#docs/#workflow).
+It is mapped to a [task](#doc/#task).
+
+Defines the [task](#docs/#task), which when using default [navigation](#docs/#navigation), is the target of a `FAILURE` [result](#docs/#result) returned from an [operation](#docs/#operations) or [flow](#docs/flow). The `on_failure` [task's](#docs/#task) [navigation](#docs/#navigation) defaults to `FAILURE`.
+
+**Example - faliure task which call a print operation to print an error message**
+```yaml
+on_failure:
+  failure:
+    do:
+      ops.print:
+        - text: error_msg
+```
+
+###operation
+A name of an operation which list item of [operations](#docs/#operations).
+It is mapped to the operation's properties.
+
+Property|Required|Default|Value Type|Description|More Info
+---|
+inputs|no|-|list|operation inputs|[inputs](#docs/#inputs)
+action|yes|-|`python_script` or `java_action`|operation logic|[action](#docs/#action)
+outputs|no|-|list|operation outputs|[outputs](#docs/#outputs)
+results|no|`SUCCESS`|list|possible operation results|[results](#docs/#results)
+
+
+**Example - operation that adds two inputs and outputs the answer**
+
+```yaml
+- add:
+   inputs:
+     - left
+     - right
+   action:
+     python_script: ans = left + right
+   outputs:
+     - out: ans
+   results:
+     - SUCCESS
+```
+
+###operations
+The key `operations` is mapped to a list of [operation](operation) definitions.
+
+
+
+**Example - operations key with one operation**
+```yaml
+operations:
+  - print_done:
+      action:
+        python_script: print 'Done'
+```
+
+###outputs
+The key `outputs` is a property of an [operation](#docs/#operation) name.
+It is mapped to a list of output variable names which may also contain an expression value. Output expressions must evaluate to strings. 
+
+Defines the parameters a  [flow](#docs/#flow) or [operation](#docs/#operation) exposes to possible [publication](#docs/#publish) by a [task](#docs/#task). The calling [task](#docs/#task) refers to an output by its name.
+
+Note:  all variable values are converted to string before being used in an output's boolean expression.
+
+See also [fromInputs](#docs/#fromInputs).
+
+**Example - various types of outputs**
+
+```yaml
+outputs:
+  - existing_variable
+  - output2: some_variable
+  - output3: str(5 + 6)
+  - output4: fromInputs['input1']
 ```
 
 
-###Namespace
+###override
+The key `override` is a property of an [input](#docs/#inputs) name.
+It is mapped to a boolean value.
 
-Used at the beginning of a file. Used as the namespace of the flow or operation. 
-*sample:*
+A value of `true` will always override the [input](#docs/#inputs) parameter sent to the [flow](#docs/#flow),  [task](#docs/#task) or [operation](#docs/#operation) with the [default](#doc/#default) value. If `override` is not defined, the [default](#doc/#default) value will not override the value passed to the [input](#docs/#inputs) parameter. 
+
+**Example - default value of text input parameter will override values passed in**
 
 ```yaml
-  namespace: user.flows
+inputs:
+  - text:
+      default: "'default text'"
+      override: true
+```
+
+###publish
+The key `publish` is a property of a [task](#docs/#task) name.
+It is mapped to a list of key:value pairs where the key is the published variable name and the value is the name of the [output](#docs/#outputs) received from the [operation](#docs/#operation) or [flow](#docs/#flow).
+
+Binds the [output](#docs/#outputs) from an [operation](#docs/#operation) or [flow](#docs/#flow) to a variable whose scope is the current flow and can therefore be used by other tasks or as the [flow's](#docs/#flow) own [output](#docs/#outputs).
+
+**Example - publish the quotient output as answer**
+```yaml
+publish:
+  - answer: quotient
+```
+
+###results
+The key `results` is a property of a [flow](#docs/#flows) or [operation](#docs/#operation).
+
+The results of a [flow](#docs/#flows) or [operation](#docs/#operation) can be used by the calling [task](#docs/#task) for [navigation](#docs/#navigate) purposes.
+
+####Flow results
+In a [flow](#docs/#flow), the key `results` is mapped to a list of result names. 
+
+Defines the possible results of the [flow](#docs/#flow). By default, a [flow](#docs/#flow) has two results, `SUCCESS` and `FAILURE`.  The defaults can be overridden with any number of user-defined results. When overriding, the defaults are lost and must be redefined if they are to be used. 
+
+**Example - a user-defined result**
+
+```yaml
+results:
+  - SUCCESS
+  - ILLEGAL
+  - FAILURE
+```
+
+####Operation results
+In a operation the key `results` is mapped to a list of key:value pairs of result names and boolean expressions. 
+
+Defines the possible results of the [operation](#docs/#operation). By default, if no results exist, the result is `SUCCESS`.  The first result in the list whose expression evaluates to true, or does not have an expression at all, will be passed back to the calling [task](#docs/#task) to be used for [navigation](#docs/#navigation) purposes.  
+
+Note:  all variable values are converted to string before being used in a result's boolean expression.
+
+**Example - three user-defined results**
+```yaml
+results:
+  - POSITIVE: polarity == '+'
+  - NEGATIVE: polarity == '-'
+  - NEUTRAL
+```
+
+###required
+The key `required` is a property of an [input](#docs/#inputs) name.
+It is mapped to a boolean value.
+
+A value of `false` will allow the [flow](#docs/#flow),  [task](#docs/#task) or [operation](#docs/#operation) to be called without passing the [input](#docs/#inputs) parameter. If `required` is not defined, the [input](#docs/#inputs) parameter defaults to being required. 
+
+**Example - input2 is optional**
+
+```yaml
+inputs:
+  - input1
+  - input2:
+      required: false
+```
+
+###task
+A name of a task which is a property of [workflow](#docs/#workflow) or [on_failure](#docs/#on_failure).
+It is mapped to the task's properties.
+
+Property|Required|Default|Value Type|Description|More Info
+---|
+`do`|yes|-|operation or subflow call|the operation or subflow this task will run|[do](#docs/#do) [operation](#docs/#operation) [flow](#docs/#flow)
+`publish`|no|-|list of key:value pairs|operation outputs to publish to the flow level|[publish](#docs/#publish) [outputs](#docs/#outputs)
+|`navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic from operation or flow results|[navigation](#docs/#navigation) [results](#docs/#results)
+
+**Example - task that performs a division of two inputs, publishes the answer and navigates accordingly**
+
+```yaml
+divider:
+  do:
+    ops.divide:
+      - dividend: input1
+      - divisor: input2
+  publish:
+    - answer: ans
+  navigate:
+    ILLEGAL: FAILURE
+    SUCCESS: printer
+```
+
+###workflow
+The key `workflow` is a property of a [flow](#docs/#flow).
+It is mapped to a the workflow's [tasks](#/docs/#task).
+
+Defines a container for the [tasks](#/docs/#task), their [published variables](#docs/#publish) and [navigation](#docs/#navigation) logic.
+
+The first [task](#/docs/#task) in the workflow is the starting [task](#/docs/#task) of the flow. From there the flow continues sequentially by default upon receiving [results](#docs/#results) of `SUCCESS`, to the flow finish or to [on_failure](#docs/#on_failure) upon a [result](#docs/#results) of `FAILURE`, or following whatever overriding [navigation](#docs/#navigation) logic that is present.
+
+Propery|Required|Default|Value Type|Description|More Info
+---|
+`on_failure`|no|-|[task](#/docs/#task)|default navigation target for `FAILURE`|[on_failure](#docs/#on_failure)
+
+**Example - workflow that divides two numbers and prints them out if the division was legal**
+
+```yaml
+workflow:
+  divider:
+    do:
+      ops.divide:
+        - dividend: input1
+        - divisor: input2
+    publish:
+      - answer: ans
+    navigate:
+      ILLEGAL: FAILURE
+      SUCCESS: printer
+  printer:
+    do:
+      ops.print:
+        - text: input1 + "/" + input2 + " = " + answer
 ```
 
 ###Some more samples
@@ -710,7 +954,7 @@ The following templates are provided:
 
 Keyword|Description
 ---|---
-slang|template for a slang file
+slang|template for a SLANG file
 flow|template for a flow
 task|template for a task
 operation|template for an operation

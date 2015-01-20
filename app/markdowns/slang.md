@@ -62,7 +62,7 @@ The CLI runs the [flow](#/docs#flow) in the file we have passed to it, namely **
 This reference begins with a brief introduction to SLANG files and their structure followed by an alphabetical list of SLANG keywords and concepts. 
 
 ###SLANG Files 
-SLANG files are written using [YAML](http://www.yaml.org). The recommended extension for SLANG files is .sl, but .yaml  and .yl will work as well. 
+SLANG files are written using [YAML](http://www.yaml.org). The recommended extension for SLANG files is .sl, but .yaml  and .yml will work as well. 
 
 There are two types of SLANG files:
 

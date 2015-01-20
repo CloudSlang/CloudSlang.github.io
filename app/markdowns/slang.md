@@ -79,21 +79,26 @@ Property|Required|Default|Value Type|Description|More Info
 
 
 ####File Structure
-The general structure of SLANG files is outlined here. Some of the properties that appear are optional and some detailed properties do not appear. All SLANG keywords, properties and concepts are explained in detail below.
+The general structure of SLANG files is outlined here. Some of the properties that appear are optional. All SLANG keywords, properties and concepts are explained in detail below.
 
 **Flow file**
 
 + [namespace](#/docs#namespace)
 + [imports](#/docs#imports)
 + [flow](#/docs#flow)
-  + [name](#/docs#name)
-  + [inputs](#/docs#inputs)
+    + [name](#/docs#name)
+    + [inputs](#/docs#inputs)
+	    + [required](#/docs#required)
+	    + [default](#/docs#default)
+	    + [override](#/docs#override)
   + [workflow](#/docs#workflow)
-    + [task(s)](#/docs#task)
-      + [do](#/docs#do)
-      + [publish](#/docs#publish)
-      + [navigate](#/docs#navigate) 
+      + [task(s)](#/docs#task)
+          + [do](#/docs#do)
+          + [publish](#/docs#publish)
+          + [navigate](#/docs#navigate) 
+      + [on_failure](#/docs#on_failure) 
   + [outputs](#/docs#outputs)
+      + [fromInputs](#/docs#fromInputs)
   + [results](#/docs#results)   
 
 **Operations file**
@@ -103,8 +108,12 @@ The general structure of SLANG files is outlined here. Some of the properties th
 + [operations](#/docs#operations)
     + [operation(s)](#/docs#operation)
         + [inputs](#/docs#inputs)
+	        + [required](#/docs#required)
+			+ [default](#/docs#default)
+			+ [override](#/docs#override)
         + [action](#/docs#action)
         + [outputs](#/docs#outputs)
+	        + [fromInputs](#/docs#fromInputs)
         + [results](#/docs#results)   
 
 ---

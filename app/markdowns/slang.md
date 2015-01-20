@@ -48,7 +48,7 @@ operations:
 Start the CLI from the folder in which your SLANG files reside and enter `run flow.sl` at the `slang>` prompt. 
 
 The output will look similar to this:
-```
+```bash
 - sayHi
 Hello, World
 Flow : helloWorld finished with result : SUCCESS
@@ -877,62 +877,75 @@ in square brackets we provide the keys under the information is put in the event
 
 
 ##SLANG CLI
-You have two ways to obtain SLANG CLI: either download it directly from score website or build it by yourself.
+There two ways to get started with the SLANG CLI. You can either download it pre-built from the **score** website or build it yourself. 
 
-###Running CLI by downloading it
+###Prerequisites
++ To run the SLANG CLI, Java JRE version 7 or higher is required.
++ To build the SLANG CLI, Java JDK version 7 or higher and Maven version 3.0.3 or higher are required.
 
-+ go to ([Score website](/#/))
-+ in the "Getting started section" click "Download an use slang CLI tool"
-+ click "Download latest version". This will download an archive with the latest CLI version
-+ unzip the archive. It contains a folder called "appassembler" and some sample flows
-    - the "appassembler" folder contains the CLI tool and the necessary dependencies
-+ navigate to the folder `appassembler\bin\`
-+ start CLI by running `slang.bat`
 
-###Running CLI by building it
+###Download and Run Pre-built CLI
 
-+ download the project sources from [here](#DOWNLOAD_LINK_HERE)
-+ navigate to project root directory
-+ build the project: open a command window here and run `mvn clean install`
-+ after building the project navigate to `score-language\score-lang-cli\target\appassembler\bin` folder
-+ start CLI by running `slang.bat`
+1. Go to the **score** [website](/#/) and scroll to the **Getting Started** section.
+2. Click **Download an use slang CLI tool**.
+3. Click **Download latest version**. 
+4. Locate the downloaded file and unzip the archive.  
+    The decompressed file contains:
+    + a folder called **appassembler** with the CLI tool and its necessary dependencies.
+    + some other folders with sample flows.
+5. Navigate to the folder `appassembler\bin\`.
+6. Start the CLI by running `slang.bat`.
 
-###Using the CLI
+###Download, Build and Run CLI
 
-You can get a list of available commands by typing `help` in the cli console.
+1. Git clone (or GitHub fork and then clone) the [source code](https://github.com/openscore/score-language).
+2. Using the Command Prompt, navigate to the project root directory.
+3. Build the project by running `mvn clean install`.
+4. After the build finishes, navigate to the `score-language\score-lang-cli\target\appassembler\bin` folder.
+5. Start the CLI by running `slang.bat`.
 
-*sample - running a flow with default classpath (flow directory)*
+###Use the CLI
 
+####Run a Flow
+To run a flow located at `c:/.../your_flow.sl`, enter the following at the `slang>` prompt:
 ```bash
-run --f c:/.../your_flow.sl --i input1=root,input2=25
+slang>run --f c:/.../your_flow.sl
 ```
 
-*sample - running a flow with custom classpath*
-
+If the flow takes in input parameters, use the `--i` flag and a comma-separated list of key=value pairs:
 ```bash
-run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/
-run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/,c:/.../openstack/
+slang>run --f c:/.../your_flow.sl --i input1=root,input2=25
+```
+If the flow requires dependencies from another location, use the `--cp` flag: 
+```bash
+slang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/
 ```
 
-*sample - set execution mode to asynchronous (by default the execution mode is synchronous - that means you can run only one flow at a time)*
+####Other Commands
+Some of the available commands are:
 
-```bash
-env --setAsync true
-```
++ `env --setAsync` - Sets the execution mode to be synchronous or asynchronous. By default the execution mode is synchronous, meaning only one flow can run at a time.
 
-*sample - get flow inputs*
+	```bash
+	slang>env --setAsync true
+	```
++ `inputs` - Lists the inputs of a given flow.
 
-```bash
-inputs --f c:/.../your_flow.sl
-```
+	```bash
+	slang>inputs --f c:/.../your_flow.sl
+	```
 
-*sample - slang version*
++ `slang --version` - Displays the version of **score** being used.
 
-```bash
-slang -version
-```
+	```bash
+	slang -version
+	```
 
-The execution log is saved in `score-language\score-lang-cli\target\appassembler\bin` directory under `execution.log` name. All the events are saved in this log so using this file you can easily track your flow execution.
+####Execution Log
+The execution log is saved in the directory in which the CLI was started in a file named `execution.log`. The log file stores all the events that have been fired, and therefore it allows for tracking a flow's execution.
+
+####Help
+To get a list of available commands, enter `help` at the CLI `slang>` prompt. For further help, enter `help` and the name of the command.
 
 ##Sublime Integration
 
@@ -942,11 +955,11 @@ To ease the SLANG coding process you can use our Sublime Text snippets.
 
 ###Download, Install and Configure Sublime Text for Windows:
 
-+ Download and install [Sublime Text](http://www.sublimetext.com/).
-+ Download the [slang-sublime package](https://github.com/orius123/slang-sublime/releases/download/0.1.0/slang-sublime-0.1.0.sublime-package). 
-+ Copy the downloaded package file into C:\Users\&lt;User&gt;\AppData\Roaming\Sublime Text 2\Installed Packages
-+ Restart Sublime Text.
-+ New files with the .sl extension will be recognized as SLANG files. For existing files you may have to change the language manually.
+1. Download and install [Sublime Text](http://www.sublimetext.com/).
+2. Download the [slang-sublime package](https://github.com/orius123/slang-sublime/releases/download/0.1.0/slang-sublime-0.1.0.sublime-package). 
+3. Copy the downloaded package file into C:\Users\&lt;User&gt;\AppData\Roaming\Sublime Text 2\Installed Packages
+4. Restart Sublime Text.
+5. New files with the .sl extension will be recognized as SLANG files. For existing files you may have to change the language manually.
 
 To use the templates start typing the template name and press enter when it appears on the screen. 
 

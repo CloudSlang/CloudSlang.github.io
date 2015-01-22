@@ -662,7 +662,7 @@ operations:
 In this example the flow takes in two inputs, one of which determines the success of it's first task. 
 
 + If the first task succeeds, the flow continues with the default navigation sequentially by performing the next task. That task returns a default result of `SUCCESS` and therefore skips the `on_failure` task, ending the flow with a result of `SUCCESS`.
-+ If the first task fails, the flow moves to the `on_failure` task by default navigation. When the on_failure task is done, the flow ends with a default result of `FAILURE`.
++ If the first task fails, the flow moves to the `on_failure` task by default navigation. When the `on_failure` task is done, the flow ends with a default result of `FAILURE`.
 
 **Flow**
 
@@ -685,12 +685,12 @@ flow:
         ops.produce_default_navigation:
           - navigationType
 
-    # default navigation: go to this task on success
+    # default navigation - go to this task on success
     do_something:
       do:
         ops.something:
 
-    # default navigation: go to this task on failure
+    # default navigation - go to this task on failure
     on_failure:
       send_error_mail:
         do:
@@ -730,9 +730,9 @@ operations:
 ```
 
 ####Example3 - Subflow
-This example uses the flow from **Example 1** as a subflow. It takes in four numbers (or uses default ones) to call `division_flow` twice. If either division returns the `ILLEGAL` result, navigation is routed to the `on_failure` task and the flow end with a result of `FAILURE`. If both divisions are successful, the `on_failure` task is skipped and the flow ends with a result of `SUCCESS`.
+This example uses the flow from **Example 1** as a subflow. It takes in four numbers (or uses default ones) to call `division_flow` twice. If either division returns the `ILLEGAL` result, navigation is routed to the `on_failure` task and the flow ends with a result of `FAILURE`. If both divisions are successful, the `on_failure` task is skipped and the flow ends with a result of `SUCCESS`.
 
-**Note:** To run this flow the files from **Example 1** should be placed in the same folder as this flow file or use the `--cp` flag at the command line.
+**Note:** To run this flow, the files from **Example 1** should be placed in the same folder as this flow file or use the `--cp` flag at the command line.
 
 **Flow**
 
@@ -785,37 +785,37 @@ flow:
 
 ##SLANG Events
 
-SLANG uses score events. An event is represented by event type (a String value) and event data (Serializable object).
-In case of SLANG the event data is a map that contains all the relevant information under certain keys defined in 
-`org.openscore.lang.runtime.events.LanguageEventData` class (See [table](#/docs#event_summary) below).
-SLANG extends the traditional event type set provided by score with its own event types.
+SLANG uses **score** events and its own extended set of events. SLANG events are comprised of an event type string and a map of event data that contains all the relevant event information mapped to keys defined in the 
+`org.openscore.lang.runtime.events.LanguageEventData` class. All fired events are logged in the [execution log](#/docs#execution-log) file.
+
 
 Event types from score:
 
 + SCORE_FINISHED_EVENT
 + SCORE_FAILURE_EVENT
 
-Event types from SLANG and the data each provide:
-- Description [DESCRIPTION] - the event description
-- Timestamp [TIMESTAMP] - the event time-stamp
-- Execution id [EXECUTIONID] - the event execution id
-- Path [PATH] - the event path, the path is increased when entering a subflow / operation
+Event types from SLANG are listed in the table below along with the event data each event contains. 
 
-in square brackets we provide the keys under the information is put in the event data map
+All SLANG events contain the data in the following list. Additional event data is listed in the table below alongside the event type. The event data map keys are enclosed in square brackets - [KEYNAME].
 
-| Type [TYPE] | Usage | Event Data |
-|----------|----------|----------|
-| EVENT_INPUT_END | Input binding finished for task  | bound inputs [BOUND_INPUTS] level: task, node name [TASK_NAME]  |
-| EVENT_INPUT_END | Input binding finished for operation  | bound inputs [BOUND_INPUTS], level: executable, node name [EXECUTABLE_NAME]  |
-| EVENT_OUTPUT_START | Output binding started for task | task publish values [taskPublishValues], task navigation values [taskNavigationValues], operation return values [operationReturnValues], level: task, node name [TASK_NAME] |
-| EVENT_OUTPUT_START | Output binding started for operation | executable outputs [executableOutputs], executable results [executableResults], action return values [actionReturnValues], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_OUTPUT_END | Output binding finished for task | task bound outputs [OUTPUTS], task result [RESULT], next step position [nextPosition], level: task, node name [TASK_NAME] |
-| EVENT_OUTPUT_END | Output binding finished for operation | executable bound outputs [OUTPUTS], executable result [RESULT], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_EXECUTION_FINISHED | Execution finished running (in case of subflow) | executable bound outputs [OUTPUTS] , executable result [RESULT], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_ACTION_START | Fired before the action invocation  | call arguments [CALL_ARGUMENTS], action type (Java / Python) in description |
-| EVENT_ACTION_END | Fired after a successful action invocation  | action return values [RETURN_VALUES] |
-| EVENT_ACTION_ERROR | Fired in case of exception in action execution |  exception [EXCEPTION] |
-| SLANG_EXECUTION_EXCEPTION | Fired in case of exception in the previous step |  exception [EXCEPTION] |
+- [DESCRIPTION] - event description
+- [TIMESTAMP] - event time-stamp
+- [EXECUTIONID] - event execution id
+- [PATH] - event path: increased when entering a subflow or operation
+
+Type [TYPE]|Usage|Event Data
+---|---
+EVENT_INPUT_END|Input binding finished for task|[BOUND_INPUTS], [TASK_NAME]
+EVENT_INPUT_END|Input binding finished for flow or operation|[BOUND_INPUTS], [EXECUTABLE_NAME]
+EVENT_OUTPUT_START|Output binding started for task|[taskPublishValues], [taskNavigationValues], [operationReturnValues], [TASK_NAME]
+EVENT_OUTPUT_START|Output binding started for flow or operation|[executableOutputs],  [executableResults], [actionReturnValues], [EXECUTABLE_NAME]
+EVENT_OUTPUT_END|Output binding finished for task|[OUTPUTS], [RESULT], [nextPosition],  [TASK_NAME]
+EVENT_OUTPUT_END|Output binding finished for flow or operation|[OUTPUTS], [RESULT],  [EXECUTABLE_NAME]
+EVENT_EXECUTION_FINISHED|Execution finished running (in case of subflow)|[OUTPUTS],  [RESULT], [EXECUTABLE_NAME]
+EVENT_ACTION_START|Before action invocation|[CALL_ARGUMENTS], action type (Java or Python) in description
+EVENT_ACTION_END|After successful action invocation|[RETURN_VALUES]
+EVENT_ACTION_ERROR|Exception in action execution|[EXCEPTION]
+SLANG_EXECUTION_EXCEPTION|Exception in previous step|[EXCEPTION]
 
 
 ##SLANG CLI
@@ -884,7 +884,7 @@ Some of the available commands are:
 	```
 
 ####Execution Log
-The execution log is saved in the directory in which the CLI was started in a file named `execution.log`. The log file stores all the events that have been fired, and therefore it allows for tracking a flow's execution.
+The execution log is saved in the directory in which the CLI was started in a file named `execution.log`. The log file stores all the [events](#/docs#slang-events) that have been fired, and therefore it allows for tracking a flow's execution.
 
 ####Help
 To get a list of available commands, enter `help` at the CLI `slang>` prompt. For further help, enter `help` and the name of the command.

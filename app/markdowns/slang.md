@@ -79,7 +79,7 @@ Property|Required|Default|Value Type|Description|More Info
 
 
 ####File Structure
-The general structure of SLANG files is outlined here. Some of the properties that appear are optional. All SLANG keywords, properties and concepts are explained in detail below.
+The general structure of SLANG files is outlined here. Some of the properties that appear are optional. All SLANG keywords, properties and concepts are explained in detail below. Lastly, several examples are presented, including one from which many of the code snippets below are taken.
 
 **Flow file**
 
@@ -250,7 +250,7 @@ Property|Required|Default|Value Type|Description|More Info
 
 ```yaml
 flow:
-  name: simple_flow
+  name: division_flow
 
   inputs:
     - input1
@@ -263,7 +263,7 @@ flow:
           - dividend: input1
           - divisor: input2
       publish:
-        - answer: ans
+        - answer: quotient
       navigate:
         ILLEGAL: ILLEGAL
         SUCCESS: printer
@@ -338,10 +338,10 @@ It is mapped to a value that is used as the name of the flow.
 
 The name of a [flow](#/docs#flow) may be used when calling the [flow](#/docs#flow) as a subflow by a [task](#/docs#task) in another [flow](#/docs#flow). 
 
-**Example - naming the flow "simple_flow"**
+**Example - naming the flow "division_flow"**
 
 ```yaml
-name: simple_flow
+name: division_flow
 ```
 
 ###namespace
@@ -539,7 +539,7 @@ divider:
       - dividend: input1
       - divisor: input2
   publish:
-    - answer: ans
+    - answer: quotient
   navigate:
     ILLEGAL: FAILURE
     SUCCESS: printer
@@ -567,7 +567,7 @@ workflow:
         - dividend: input1
         - divisor: input2
     publish:
-      - answer: ans
+      - answer: quotient
     navigate:
       ILLEGAL: FAILURE
       SUCCESS: printer
@@ -577,312 +577,245 @@ workflow:
         - text: input1 + "/" + input2 + " = " + answer
 ```
 
-###Some more samples
+###Examples
+The following simplified examples demonstrate some of the key SLANG concepts. Each of the examples below can be run by doing the following:
 
-####Sample1 - demonstrates default navigation
+1. Create a new folder.
+2. Create new SLANG (.sl) files and copy the code into them.
+3. [Use the CLI](#/docs#use-the-cli) to run the flow. 
 
-*operations:*
+For more information on getting set up to run flows, see the [SLANG CLI](#/docs#slang-cli) and [Hello World Example](#/docs#hello-world-example) sections.
 
+####Example 1 - User-defined Navigation and Publishing Outputs
+This example is a full working version from which many of the example snippets above have been taken. The flow takes in two inputs, divides them and prints the answer. In case of a division by zero, the flow does not print the output of the division, but instead ends with a user-defined result of `ILLEGAL`.
+
+**Flow**
 ```yaml
-    namespace: user.ops
-    
-    operations:    
-      - produce_default_navigation:
-          inputs:
-            - navigationType
-          action:
-            python_script:
-              print 'Producing default navigation based on input'
-          results:
-            - SUCCESS: navigationType == 'success'
-            - FAILURE: 1 == 1
+namespace: examples.divide.flow
+
+imports:
+  ops: examples.divide.ops
+
+flow:
+  name: division_flow
+
+  inputs:
+    - input1
+    - input2
+
+  workflow:
+    divider:
+      do:
+        ops.divide:
+          - dividend: input1
+          - divisor: input2
+      publish:
+        - answer: quotient
+      navigate:
+        ILLEGAL: ILLEGAL
+        SUCCESS: printer
+    printer:
+      do:
+        ops.print:
+          - text: input1 + "/" + input2 + " = " + answer
+      navigate:
+        SUCCESS: SUCCESS
+
+  outputs:
+    - quotient: answer
+
+  results:
+    - ILLEGAL
+    - SUCCESS
 ```
-
-*flow:*
-
+**Operations**
 ```yaml
-    namespace: user.flows
-    
-    imports:
-     ops: user.ops
-    
-    flow:
-      name: navigation_flow
+namespace: examples.divide.ops
+
+operations:
+  - divide:
       inputs:
-        - navigationType
-        - emailHost
-        - emailPort
-        - emailSender
-        - emailRecipient
-      workflow:
-        produce_default_navigation:
-          do:
-            ops.produce_default_navigation:
-              - navigationType
-    
-        check_Weather: # default navigation: go to this step on success
-          do:
-            ops.check_Weather:
-              - city: "'AwesomeCity'"
-          navigate:
-            SUCCESS: SUCCESS # end flow with success result
-    
-        on_failure: # default navigation: go to this step on failure
-          send_error_mail:
-            do:
-              ops.send_email_mock:
-                - hostname: emailHost
-                - port: emailPort
-                - sender: emailSender
-                - recipient: emailRecipient
-                - subject: "'Flow failure'"
-                - body: "'Default failure navigation here'"
-            navigate:
-              SUCCESS: FAILURE # end flow with failure result
-              FAILURE: FAILURE
-```
-
-####Sample2 - demonstrates custom navigation and publishing outputs
-
-*operations:*
-
-```yaml
-    namespace: user.ops
-    
-    operations:
-      - check_number:
-          inputs:
-            - number
-          action:
-            python_script: |
-              remainder = number % 2
-              isEven = remainder == 0
-              tooBig = number > 512
-          outputs:
-            - preprocessed_number: str(fromInputs['number'] * 3)
-          results:
-            - EVEN: isEven == 'True' and tooBig == 'False'
-            - ODD: isEven == 'False' and tooBig == 'False'
-            - FAILURE # report failure if the number is too big
-    
-      - process_even_number:
-          inputs:
-            - even_number
-            - offset: 32
-          action:
-            python_script: |
-              processing_result = int(even_number) + offset
-              print 'Even number processed. Result= ' + str(processing_result)
-    
-      - process_odd_number:
-          inputs:
-            - odd_number
-          action:
-            python_script:
-              print 'Odd number processed. Result= ' + str(odd_number)
-```
-
-```yaml
-    namespace: email.ops
-    
-    operations:
-      - send_mail:
-          inputs:
-            - hostname
-            - port
-            - from
-            - to
-            - cc: "''"
-            - bcc: "''"
-            - subject
-            - body
-            - htmlEmail: "'true'"
-            - readReceipt: "'false'"
-            - attachments: "''"
-            - username: "''"
-            - password: "''"
-            - characterSet: "'UTF-8'"
-            - contentTransferEncoding: "'base64'"
-            - delimiter: "''"
-          action:
-            java_action:
-              className: org.openscore.content.mail.actions.SendMailAction
-              methodName: execute
-          results:
-            - SUCCESS: returnCode == '0'
-            - FAILURE
-```
-
-*flow:*
-
-```yaml
-    namespace: user.flows
-    
-    imports:
-     ops: user.ops
-     email: email.ops
-    
-    flow:
-      name: navigation_flow
-      inputs:
-        - userNumber
-        - emailHost
-        - emailPort
-        - emailSender
-        - emailRecipient
-      workflow:
-        check_number:
-          do:
-            ops.check_number:
-              - number: userNumber
-          publish:
-            - new_number: preprocessed_number # publish the output in the flow level so it will be visible for other steps
-          navigate:
-            EVEN: process_even_number
-            ODD: process_odd_number
-            FAILURE: send_error_mail
-    
-        process_even_number:
-          do:
-            ops.process_even_number:
-              - even_number: new_number
-          navigate:
-            SUCCESS: SUCCESS # end flow with success result
-    
-        process_odd_number:
-          do:
-            ops.process_odd_number:
-              - odd_number: new_number
-          navigate:
-            SUCCESS: SUCCESS # end flow with success result
-    
-        on_failure: # you can also use this step for default navigation in failure case
-          send_error_mail: # or refer it by the task name
-            do:
-              email.send_mail:
-                - hostname: emailHost
-                - port: emailPort
-                - from: emailSender
-                - to: emailRecipient
-                - subject: "'Flow failure'"
-                - body: "'Wrong number: ' + str(userNumber)"
-            navigate:
-              SUCCESS: FAILURE # end flow with failure result
-              FAILURE: FAILURE
-```
-
-####Sample3 - demonstrates subflow usage
-
-*operations:*
-
-```yaml
-    namespace: user.ops
-
-    operations:
-      - test_op:
-          action:
-            python_script: 'print "hello world"'
-            
-  - check_Weather:
-      inputs:
-        - city
+        - dividend
+        - divisor
       action:
         python_script: |
-          weather = "weather thing"
-          print city
+          if divisor == '0':
+            quotient = 'division by zero error'
+          else:
+            quotient = float(dividend) / float(divisor)
       outputs:
-        - weather: weather
+        - quotient
       results:
-        - SUCCESS: 'weather == "weather thing"'
-```
+        - ILLEGAL: quotient == 'division by zero error'
+        - SUCCESS
 
-*subflow:*
-
-```yaml
-    namespace: user.flows
-    
-    imports:
-      ops: user.ops
-    
-    flow:
-      name: child_flow
+  - print:
       inputs:
-        - input1: "'value'"
-      workflow:
-        CheckWeather:
-          do:
-            ops.test_op:
-      outputs:
-        - val_output: fromInputs['input1']
-```
-
-*parent flow:*
-
-```yaml
-    namespace: user.flows
-    
-    imports:
-      ops: user.ops
-      flows: user.flows
-    
-    flow:
-      name: parent_flow
-      inputs:
-        - input1
-        - city:
-            required: false
-      workflow:
-        Task1:
-          do:
-            ops.check_Weather:
-              - city: city if city is not None else input1
-          publish:
-            - kuku: weather
-    
-        Task2:
-          do:
-            flows.child_flow:
-              - input1: kuku
-          publish:
-            - val_output
+        - text
+      action:
+        python_script: print text
       results:
         - SUCCESS
+```
+
+####Example 2 - Default Navigation
+In this example the flow takes in two inputs, one of which determines the success of it's first task. 
+
++ If the first task succeeds, the flow continues with the default navigation sequentially by performing the next task. That task returns a default result of `SUCCESS` and therefore skips the `on_failure` task, ending the flow with a result of `SUCCESS`.
++ If the first task fails, the flow moves to the `on_failure` task by default navigation. When the `on_failure` task is done, the flow ends with a default result of `FAILURE`.
+
+**Flow**
+
+```yaml
+namespace: examples.defualtnav.flow
+
+imports:
+  ops: examples.defualtnav.ops
+
+flow:
+  name: navigation_flow
+
+  inputs:
+    - navigationType
+    - emailRecipient
+
+  workflow:
+    produce_default_navigation:
+      do:
+        ops.produce_default_navigation:
+          - navigationType
+
+    # default navigation - go to this task on success
+    do_something:
+      do:
+        ops.something:
+
+    # default navigation - go to this task on failure
+    on_failure:
+      send_error_mail:
+        do:
+          ops.send_email_mock:
+            - recipient: emailRecipient
+            - subject: "'Flow failure'"
+```
+
+**Operations**
+
+```yaml
+namespace: examples.defualtnav.ops
+
+operations:
+  - produce_default_navigation:
+      inputs:
+        - navigationType
+      action:
+        python_script:
+          print 'Default navigation based on input of - ' + navigationType
+      results:
+        - SUCCESS: navigationType == 'success'
         - FAILURE
+
+  - something:
+      action:
+        python_script:
+          print 'Doing something important'
+
+  - send_email_mock:
+      inputs:
+        - recipient
+        - subject
+      action:
+        python_script:
+          print 'Email sent to ' + recipient + ' with subject - ' + subject
+```
+
+####Example3 - Subflow
+This example uses the flow from **Example 1** as a subflow. It takes in four numbers (or uses default ones) to call `division_flow` twice. If either division returns the `ILLEGAL` result, navigation is routed to the `on_failure` task and the flow ends with a result of `FAILURE`. If both divisions are successful, the `on_failure` task is skipped and the flow ends with a result of `SUCCESS`.
+
+**Note:** To run this flow, the files from **Example 1** should be placed in the same folder as this flow file or use the `--cp` flag at the command line.
+
+**Flow**
+
+```yaml
+namespace: examples.divide.
+
+imports:
+  ops: examples.divide.ops
+  sub: examples.divide.flow
+
+flow:
+  name: master_divider
+
+  inputs:
+    - dividend1: "'3'"
+    - divisor1: "'2'"
+    - dividend2: "'1'"
+    - divisor2: "'0'"
+
+  workflow:
+
+    division1:
+      do:
+        sub.division_flow:
+          - input1: dividend1
+          - input2: divisor1
+      publish:
+        - ans: quotient
+      navigate:
+        SUCCESS: division2
+        ILLEGAL: failure_task
+
+    division2:
+      do:
+        sub.division_flow:
+          - input1: dividend2
+          - input2: divisor2
+      publish:
+        - ans: quotient
+      navigate:
+        SUCCESS: SUCCESS
+        ILLEGAL: failure_task
+    
+    on_failure:
+      failure_task:
+        do:
+          ops.print:
+            - text: ans
 ```
 
 ##SLANG Events
 
-SLANG uses score events. An event is represented by event type (a String value) and event data (Serializable object).
-In case of SLANG the event data is a map that contains all the relevant information under certain keys defined in 
-`org.openscore.lang.runtime.events.LanguageEventData` class (See [table](#/docs#event_summary) below).
-SLANG extends the traditional event type set provided by score with its own event types.
+SLANG uses **score** events and its own extended set of events. SLANG events are comprised of an event type string and a map of event data that contains all the relevant event information mapped to keys defined in the 
+`org.openscore.lang.runtime.events.LanguageEventData` class. All fired events are logged in the [execution log](#/docs#execution-log) file.
+
 
 Event types from score:
 
 + SCORE_FINISHED_EVENT
 + SCORE_FAILURE_EVENT
 
-Event types from SLANG and the data each provide:
-- Description [DESCRIPTION] - the event description
-- Timestamp [TIMESTAMP] - the event time-stamp
-- Execution id [EXECUTIONID] - the event execution id
-- Path [PATH] - the event path, the path is increased when entering a subflow / operation
+Event types from SLANG are listed in the table below along with the event data each event contains. 
 
-in square brackets we provide the keys under the information is put in the event data map
+All SLANG events contain the data in the following list. Additional event data is listed in the table below alongside the event type. The event data map keys are enclosed in square brackets - [KEYNAME].
 
-| Type [TYPE] | Usage | Event Data |
-|----------|----------|----------|
-| EVENT_INPUT_END | Input binding finished for task  | bound inputs [BOUND_INPUTS] level: task, node name [TASK_NAME]  |
-| EVENT_INPUT_END | Input binding finished for operation  | bound inputs [BOUND_INPUTS], level: executable, node name [EXECUTABLE_NAME]  |
-| EVENT_OUTPUT_START | Output binding started for task | task publish values [taskPublishValues], task navigation values [taskNavigationValues], operation return values [operationReturnValues], level: task, node name [TASK_NAME] |
-| EVENT_OUTPUT_START | Output binding started for operation | executable outputs [executableOutputs], executable results [executableResults], action return values [actionReturnValues], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_OUTPUT_END | Output binding finished for task | task bound outputs [OUTPUTS], task result [RESULT], next step position [nextPosition], level: task, node name [TASK_NAME] |
-| EVENT_OUTPUT_END | Output binding finished for operation | executable bound outputs [OUTPUTS], executable result [RESULT], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_EXECUTION_FINISHED | Execution finished running (in case of subflow) | executable bound outputs [OUTPUTS] , executable result [RESULT], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_ACTION_START | Fired before the action invocation  | call arguments [CALL_ARGUMENTS], action type (Java / Python) in description |
-| EVENT_ACTION_END | Fired after a successful action invocation  | action return values [RETURN_VALUES] |
-| EVENT_ACTION_ERROR | Fired in case of exception in action execution |  exception [EXCEPTION] |
-| SLANG_EXECUTION_EXCEPTION | Fired in case of exception in the previous step |  exception [EXCEPTION] |
+- [DESCRIPTION] - event description
+- [TIMESTAMP] - event time-stamp
+- [EXECUTIONID] - event execution id
+- [PATH] - event path: increased when entering a subflow or operation
+
+Type [TYPE]|Usage|Event Data
+---|---
+EVENT_INPUT_END|Input binding finished for task|[BOUND_INPUTS], [TASK_NAME]
+EVENT_INPUT_END|Input binding finished for flow or operation|[BOUND_INPUTS], [EXECUTABLE_NAME]
+EVENT_OUTPUT_START|Output binding started for task|[taskPublishValues], [taskNavigationValues], [operationReturnValues], [TASK_NAME]
+EVENT_OUTPUT_START|Output binding started for flow or operation|[executableOutputs],  [executableResults], [actionReturnValues], [EXECUTABLE_NAME]
+EVENT_OUTPUT_END|Output binding finished for task|[OUTPUTS], [RESULT], [nextPosition],  [TASK_NAME]
+EVENT_OUTPUT_END|Output binding finished for flow or operation|[OUTPUTS], [RESULT],  [EXECUTABLE_NAME]
+EVENT_EXECUTION_FINISHED|Execution finished running (in case of subflow)|[OUTPUTS],  [RESULT], [EXECUTABLE_NAME]
+EVENT_ACTION_START|Before action invocation|[CALL_ARGUMENTS], action type (Java or Python) in description
+EVENT_ACTION_END|After successful action invocation|[RETURN_VALUES]
+EVENT_ACTION_ERROR|Exception in action execution|[EXCEPTION]
+SLANG_EXECUTION_EXCEPTION|Exception in previous step|[EXCEPTION]
 
 
 ##SLANG CLI
@@ -951,7 +884,7 @@ Some of the available commands are:
 	```
 
 ####Execution Log
-The execution log is saved in the directory in which the CLI was started in a file named `execution.log`. The log file stores all the events that have been fired, and therefore it allows for tracking a flow's execution.
+The execution log is saved in the directory in which the CLI was started in a file named `execution.log`. The log file stores all the [events](#/docs#slang-events) that have been fired, and therefore it allows for tracking a flow's execution.
 
 ####Help
 To get a list of available commands, enter `help` at the CLI `slang>` prompt. For further help, enter `help` and the name of the command.

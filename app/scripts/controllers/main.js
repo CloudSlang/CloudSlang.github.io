@@ -6,8 +6,8 @@ angular.module('scoreWebsiteApp')
         $rootScope.sections = [
             { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
             { id: 'useCases', title: $rootScope.messages.navUseCasesTitle },
-            { id: 'about', title: $rootScope.messages.navAboutTitle }//,
-//            { id: 'blog', title: $rootScope.messages.navBlogTitle  }
+            { id: 'about', title: $rootScope.messages.navAboutTitle },
+            { id: 'blog', title: $rootScope.messages.navBlogTitle  }
         ];
         $rootScope.navSwitch = { uri: 'docs', title: $rootScope.messages.navDocumentationTitle };
 

@@ -8,31 +8,31 @@ SLANG is a [YAML](http://www.yaml.org) based language for describing a workflow.
 The following is a simple example to give you an idea of how SLANG is structured and can be used to ensure your environment is set up properly to run flows. 
 
 ####Prerequisites
-This example uses the SLANG CLI to run a flow. See the [SLANG CLI](#docs/#slang-cli) section for instructions on how to download and run the CLI.
+This example uses the SLANG CLI to run a flow. See the [SLANG CLI](#/docs#slang-cli) section for instructions on how to download and run the CLI.
 
-Although SLANG files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. See [Sublime Integration](#docs/#sublime-integration) for instructions on how to download, install and use the SLANG snippets for [Sublime Text](http://www.sublimetext.com/).    
+Although SLANG files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. See [Sublime Integration](#/docs#sublime-integration) for instructions on how to download, install and use the SLANG snippets for [Sublime Text](http://www.sublimetext.com/).    
 
 ####Code files
-In a new folder create two new SLANG files, flow.sl and ops.sl, and copy the code below.
+In a new folder, create two new SLANG files, hello_world.sl and print.sl, and copy the code below.
 
-**flow.sl**
+**hello_world.sl**
 ```yaml
-namespace: user.flows.hello_world
+namespace: user.examples.hello_world
 
 imports:
-  ops: user.operations.utils
+  ops: user.examples.hello_world
 
 flow:
-  name: helloWorld
+  name: hello_world
   workflow:
     sayHi:
       do:
         ops.print:
           - text: "'Hello, World'"
 ```
-**ops.sl**
+**print.sl**
 ```yaml
-namespace: user.operations.utils
+namespace: user.examples.hello_world
 
 operations:
   - print:
@@ -45,215 +45,118 @@ operations:
 ```
 
 ####Run
-Start the CLI from the folder in which your SLANG files reside and then enter the following at the `slang>` prompt: `run flow.sl`
+Start the CLI from the folder in which your SLANG files reside and enter `run hello_world.sl` at the `slang>` prompt. 
 
 The output will look similar to this:
-```
+```bash
 - sayHi
 Hello, World
-Flow : helloWorld finished with result : SUCCESS
+Flow : hello_world finished with result : SUCCESS
 Flow execution time took  0:00:00.790 , with execution id : 101600001
 ```
 
 ####Explanation
-The CLI runs the [flow](#docs/#flow) in the file we have passed to it, namely **flow.sl**. The [flow](#docs/#flow) begins with an [import](#docs/#imports) of the operations file, **ops.sl**, using its [namespace](#docs/#namespace) as the value for the [imports](#docs/#imports) key. Next, we enter the [flow](#docs/#flow) named `helloworld` and begin its [workflow](#docs/#workflow). The [workflow](#docs/#workflow) has one [task](#docs/#task) named `sayHi` which calls the `print` [operation](#docs/#operation) from the operations file that was imported. The [flow](#docs/#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#docs/#operation) `text` [input](#docs/#inputs). The print [operation](#docs/#operation) performs its [action](#docs/#action), which is a simple Python script that prints the [input](#docs/#inputs), and then returns a [result](#docs/#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#docs/#tasks) the [flow](#docs/#flow) finishes with a [result](#docs/#results) of `SUCCESS`.
+The CLI runs the [flow](#/docs#flow) in the file we have passed to it, namely **hello_world.sl**. The [flow](#/docs#flow) begins with an [import](#/docs#imports) of the operations file, **print.sl**, using its [namespace](#/docs#namespace) as the value for the [imports](#/docs#imports) key. Next, we enter the [flow](#/docs#flow) named `hello_world` and begin its [workflow](#/docs#workflow). The [workflow](#/docs#workflow) has one [task](#/docs#task) named `sayHi` which calls the `print` [operation](#/docs#operation) from the operations file that was imported. The [flow](#/docs#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#/docs#operation) `text` [input](#/docs#inputs). The print [operation](#/docs#operation) performs its [action](#/docs#action), which is a simple Python script that prints the [input](#/docs#inputs), and then returns a [result](#/docs#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#/docs#task) the [flow](#/docs#flow) finishes with a [result](#/docs#results) of `SUCCESS`.
 
-##SLANG DSL
-The SLANG DSL contains the following main entities:
+##SLANG DSL Reference
+This reference begins with a brief introduction to SLANG files and their structure followed by an alphabetical list of SLANG keywords and concepts. 
 
-+ Flow: A flow is the basic executable unit of SLANG. It represents a process that can perform a job relevant to the end user. For example, a flow that creates a virtual machine. A flow consists of tasks and the navigation between them. Flows have inputs, outputs and possible results.
-+ Task: One step in a flow. It can point to an operation or to another flow (which in this context is called subflow).
-+ Operation: A wrapper unit of an action. The operation handles the action inputs, defines relevant outputs, and returns a result.
-+ Action: A method, written pragmatically. This can be a java method or a type of script.
-+ Result: The returned status of a flow or operation, for example: SUCCESS or FAILURE.
+###SLANG Files 
+SLANG files are written using [YAML](http://www.yaml.org). The recommended extension for SLANG files is .sl, but .yaml  and .yl will work as well. 
 
-###Flow
+There are two types of SLANG files:
 
-A flow is the basic executable unit of SLANG. It represents a process that can be described in a number of ways and that can perform a job relevant to the end user. Each flow consists of a workflow describing the exact tasks (one or more) that are performed during the execution a flow. A flow can be used by other flows as a single task.
-
-Property    |Required    |Default            |Description
-------------|-----------|-------------------|-----------
-name        |V          |                   |The name of the flow
-inputs    	|	        |                   |List of inputs (see [Inputs](#docs/#inputs))
-workflow	|V		    |                   |Describes the flow tasks and navigation (see [Workflow](#docs/#workflow))
-results		|           |SUCCESS/FAILURE    |Possible results of the flow (see [Results](#docs/#results))
-outputs		|   	    |                   |List of outputs (see [Outputs](#docs/#outputs))
-
-*sample:*
-
-```yaml
-namespace: slang.sample.flows
-imports: 
-- ops: slang.ops.operations
-flow:
-  name: SimpleFlow
-  inputs:
-  - input_1
-  - input_2
-  - input_3
-  workflow:
-    CheckWeather:
-      do: 
-        ops.check_Weather:
-          city: input_1
-      publish:
-        weather
-    PrintWeather:
-      operation:
-        ops.print:
-         - text:  "'the weather in' + input_1 + ' is:' + weather"
-```
++ flow
++ operations
 
 
-###Workflow
+The following properties are for all types of SLANG files. For properties specific to [flows](#/docs#flow) or [operations](#/docs#operations), see their respective sections below.  
 
-Describes the workflow of the flow, and contains the different tasks and the navigations between them.
-
-The first task in the workflow is the begin task of the flow.
-on_failure is a reserved key.
-For the default navigation the result of FAILURE goes to on_failure, the result of SUCCESS goes to the next step.
-You can also define custom navigations with targets like: another task or flow results (e.g. SUCCESS / FAILURE) - in this case the default navigation rules are ignored.
-Every task can use: predefined operation or subflow, (see [Task](#docs/#task)).
-
-Property	|Required	|Default	|Description
-------------|-----------|-----------|-----------
-on_failure	|		    |           |the default task FAILURE result should navigate to
-
-*sample:*
-
-```yaml
-workflow:
-  first_task:
-    do: 
-      some_operation:
-      - operation_input_1: flow_input_3
-      - operation_input_2
-      - operation_input_3
-    publish:
-      flow_var: some_op_output
-    navigate: 
-      #how to handle an operation that has a non-default result
-      NON_DEFAULT_RESULT: custom_task   
-```
+Property|Required|Default|Value Type|Description|More Info
+---|---|---|---|---
+`namespace`|no|-|string|namespace of the flow|[namespace](#/docs#namespace)
+`imports`|no|-|list of key:value pairs|files to import|[imports](#/docs#imports)
 
 
-###Inputs
+####File Structure
+The general structure of SLANG files is outlined here. Some of the properties that appear are optional. All SLANG keywords, properties and concepts are explained in detail below. Lastly, several examples are presented, including one from which many of the code snippets below are taken.
 
-Inputs are used to pass and manipulate parameters in flows, operations and tasks.
-The name of the input is the key.
+**Flow file**
 
-| Property | Required | Default | Description |
-|----------|----------|---------|-------------|
-|required  |          |true     |If the input must have a value|
-|default|||The default value of the input (constant value or expression) in case no other value passed|
-|encrypted||false|If the value is true, the input will be encrypted|
-|override||false|In case it is marked as true, the default value is always the value - even if the parent task/flow declared the input with given value |
++ [namespace](#/docs#namespace)
++ [imports](#/docs#imports)
++ [flow](#/docs#flow)
+  + [name](#/docs#name)
+  + [inputs](#/docs#inputs)
+	  + [required](#/docs#required)
+	  + [default](#/docs#default)
+	  + [override](#/docs#override)
+  + [workflow](#/docs#workflow)
+    + [task(s)](#/docs#task)
+      + [do](#/docs#do)
+      + [publish](#/docs#publish)
+      + [navigate](#/docs#navigate) 
+    + [on_failure](#/docs#on_failure) 
+  + [outputs](#/docs#outputs)
+    + [fromInputs](#/docs#fromInputs)
+  + [results](#/docs#results)   
 
-*sample:*
+**Operations file**
 
-```yaml
-	inputs:
-	- input_with_value_like_name
-	- input_not_required:
-	   required: false
-	- input_use_expression_inline: "'1' + '6'"
-	- input_with_default_value:
-	   default: "'I'm the default value'"
-	- input_with_default_expression_value:
-	   default: "'1' + '5'"
-	- input_mix:
-	   default: "'some value'"
-	   required: false
-```
++ [namespace](#/docs#namespace)
++ [imports](#/docs#imports)
++ [operations](#/docs#operations)
+  + [operation(s)](#/docs#operation)
+    + [inputs](#/docs#inputs)
+      + [required](#/docs#required)
+	  + [default](#/docs#default)
+	  + [override](#/docs#override)
+    + [action](#/docs#action)
+    + [outputs](#/docs#outputs)
+	  + [fromInputs](#/docs#fromInputs)
+    + [results](#/docs#results)   
 
+---
 
-###Outputs
+###action
+The key `action` is a property of an [operation](#/docs#operation).
+It is mapped to a property that defines the type of action, which can be a [java_action](#/docs#java_action) or [python_script](#/docs#python_script).
 
-Outputs define the possible parameters flow / operation exposed to further use (see [Task](#docs/#task) publish property).
+####java_action
+The key `java_action` is a property of [action](#/docs#action).  
+It is mapped to the properties that define the class and method where the @Action resides.
 
-*sample:*
+A `java_action` is a valid @Action that conforms to the method signature: `public Map<String, String> doSomething(paramaters)` and uses the following annotations from `com.hp.oo.sdk.content.annotations`:
 
-```yaml
-	outputs:
-	- output_from_return_value: processId
-	- output_from_input_value: fromInputs ['input1']
-```
-
-
-###Results
-
-Describes the possible results of the flow. By default, the flow has two results: SUCCESS and FAILURE. You can override them, with an unlimited number of results. The result on runtime will be used to navigate when using this flow as sub-flow in a different flow.
-*sample:*
-
-```yaml
-	results:
-	 - SUCCESS
-	 - FAILURE
-	 - NO_SPACE
-```
-
-###Task
-Task is a single node in the flow workflow. Every task can use predefined operation or subflow.
-
-| Property | Required | Default | Description |
-|----------|----------|---------|-------------|
-|operation | V        |         |Describe the operation or subflow this task will run|
-|publish   |          |         |Choose from the operation outputs what to publish to the flow level|
-|go_to     |FAILURE: on_failure SUCCESS: go to next task| | Describe the navigation for the different results the operation has. In case of the default results, with the default go_to you don’t need to write it down.|
-
-*sample:*
-
-```yaml
-    Task2:
-          do:
-            ops.compute_daylight_time_zone:
-              - time_zone_as_string: flow_input
-          publish:
-            - daylight_time_zone
-```
-
-###Operation
-
-Operation is the wrapper of an action.
-
-Property    |Required    |Default	        |Description
-------------|-----------|-------------------|-----------
-inputs		|	        |                   |Operation inputs (see [Inputs](#docs/#inputs))
-action  	|V		    |                   |Logic of the operation. (see [Action](#docs/#action))
-results		|           |SUCCESS/FAILURE    |Possible results of the operation (see [Results](#docs/#results))
-outputs		|   	    |                   |Outputs of the operation (see [Outputs](#docs/#outputs))
-
-*sample:*
-
-```yaml
-    do: 
-      some_operation:
-        - operation_input_1: flow_input_3
-        - operation_input_2
-        - operation_input_3
-```
-
-###Action
-
-Two kind of actions are supported: java @Actions and python scripts.
-
-####@Action
-A java action is a valid @Action that respects the method signature `public Map<String, String> doSomething(paramaters)` and
-uses the following annotations (from `com.hp.oo.sdk.content.annotations`):
-
-+ required annotations
-    - @Param: for action parameters
-+ optional annotations
++ required annotations:
+    - @Param: action parameter
++ optional annotations:
     - @Action: specify action information
-    - @Output: denotes action output
-    - @Response: denotes action response
+    - @Output: action output
+    - @Response: action response
 
-*sample - java @Action*
+**Example - SLANG call to  a Java @Action**
+
+```yaml
+- pull_image:
+    inputs:
+      - input1
+      - input2
+    action:
+      java_action:
+        className: org.mypackage.MyClass
+        methodName: doMyAction
+    outputs:
+      - returnResult
+    results:
+      - SUCCESS : someActionOutput == '0'
+      - FAILURE
+```
 
 ```java
-    public Map<String, String> doJavaAction(
-            @Param("name") String name,
-            @Param("role") String role) {
+    public Map<String, String> doMyAction(
+            @Param("input1") String input1,
+            @Param("input2") String input2) {
         //logic here
         Map<String, String> returnValues = new HashMap<>();
         //prepare return values map
@@ -261,434 +164,757 @@ uses the following annotations (from `com.hp.oo.sdk.content.annotations`):
     }
 ```
 
-*sample - create custom operation that uses @Action*
+####python_script
+The key `python_script` is a property of [action](#/docs#action).  
+It is mapped to a value containing a Python version 2.7 script.
+
+**Example - action with Python script that divides two numbers**
 
 ```yaml
-    - pull_image:
-            inputs:
-              - imageName
-              - host
-              - port
-              - username
-              - password
-            action:
-              java_action:
-                className: org.mypackage.MyClass
-                methodName: doMyAction
-            outputs:
-              - returnResult
-            results:
-              - SUCCESS : someActionOutput == '0'
-              - FAILURE
+- divide:
+    inputs:
+      - dividend
+      - divisor
+    action:
+      python_script: |
+        if divisor == '0':
+          quotient = 'division by zero error'
+        else:
+          quotient = float(dividend) / float(divisor)
+    outputs:
+      - quotient
+    results:
+      - ILLEGAL: quotient == 'division by zero error'
+      - SUCCESS
 ```
 
-####Python script
-You can use any traditional python 2.7 version script.
+ 
 
-*sample - create custom operation that uses Python script*
+###default
+The key `default` is a property of an [input](#/docs#inputs) name.
+It is mapped to an expression value.
+
+The expression's value will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed.  
+
+**Example - default values **
 
 ```yaml
-      - check_Weather:
-          inputs:
-            - city
-          action:
-            python_script: |
-              weather = "weather thing"
-              print city
-          outputs:
-            - weather
-          results:
-            - SUCCESS: 'weather == "weather thing"'
+inputs:
+  - str_literal:
+	  default: "'default value'"
+  - int_exp:
+      default: '5 + 6'
+  - from_variable:
+	  default: variable_name
+```
+
+A default value can also be defined inline by entering it as the value to the [input](#/docs#inputs) parameter's key.
+
+**Example - inline default values**
+```yaml
+inputs:
+  - str_literal: "'default value'"
+  - int_exp: '5 + 6'
+  - from_variable: variable_name
+```
+
+###do
+The key `do` is a property of a [task](#/docs#task) name.
+It is mapped to a property that references an [operation](#/docs#operation) or [flow](#/docs#flow).
+
+Calls an [operation](#/docs#operation) or [flow](#/docs#flow) and passes in relevant [input](#/docs#inputs). The [operation](#/docs#operation) or [flow](#/docs#flow) is called by its qualified name using an alias created in the [imports](#/docs#imports) parameter.
+
+**Example - call to a divide operation with inputs**
+```yaml
+do:
+  ops.divide:
+    - dividend: input1
+    - divisor: input2
+```
+
+###flow
+The key `flow` is mapped to the properties which make up the flow contents.
+
+A flow is the basic executable unit of SLANG. A flow can run on its own or it can be used by another flow in the [do](#/docs#do) property of a [task](#/docs#task).
+
+
+Property|Required|Default|Value Type|Description|More Info
+---|---|---|---|---|---
+`name`|yes|-|string|name of the flow|[name](#/docs#name)
+`inputs`|no|-|list|inputs for the flow|[inputs](#/docs#inputs)
+`workflow`|yes|-|map of tasks|container for set of tasks|[workflow](#/docs#workflow)
+`outputs`|no|-|list|list of outputs|[outputs](#/docs#outputs)
+`results`|no|(`SUCCESS`/`FAILURE`)|list|possible results of the flow|[results](#/docs#results)
+
+**Example - a flow that performs a division of two numbers**
+
+```yaml
+flow:
+  name: division_flow
+
+  inputs:
+    - input1
+    - input2
+  
+  workflow:
+    divider:
+      do:
+        ops.divide:
+          - dividend: input1
+          - divisor: input2
+      publish:
+        - answer: quotient
+      navigate:
+        ILLEGAL: ILLEGAL
+        SUCCESS: printer
+    printer:
+      do:
+        ops.print:
+          - text: input1 + "/" + input2 + " = " + answer
+      navigate:
+        SUCCESS: SUCCESS
+  
+  outputs:
+    - quotient: answer
+  
+  results:
+    - ILLEGAL
+    - SUCCESS
+```
+
+###fromInputs
+May appear in the value of an [operation's](#/docs#operation) [output](#doc/#outputs).
+
+Special syntax to [output](#/docs#outputs) an [input](#/docs#inputs) parameter as it was passed in.
+
+**Example - output "input1" as it was passed in**
+
+```yaml
+outputs:
+  - output1: fromInputs['input1']
+```
+
+###imports
+The key `imports` is mapped to the files to import as follows:  
+
++ key - alias 
++ value - namespace of file to be imported
+
+Specifies the file's dependencies and the aliases they will be referenced by in the file.
+
+**Example - import operations and sublflow into flow**
+```yaml
+imports:
+  ops: user.examples.utils
+  sub_flows: user.examples.subflows
+```
+
+###inputs
+The key `inputs` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation).
+It is mapped to a list of input names. Each input name may in turn be mapped to its properties.   
+
+Inputs are used to pass parameters to [flows](#/docs#flow) or [operations](#/docs#operation).
+
+Property|Required|Default|Value Type|Description|More info
+---|
+`required`|no|true|boolean|is the input required|[required](#/docs#required)
+`default`|no|-|expression|default value of the input|[default](#/docs#default)
+`override`|no|false|boolean|will the default value override values passed in|[override](#/docs#override)
+
+**Example - two inputs**
+
+```yaml
+inputs:
+  - input1:
+      default: "'default value'"
+      override: true
+  - input2
 ```
 
 
-###Imports
+###name
+The key `name` is a property of [flow](#/docs#flow) .
+It is mapped to a value that is used as the name of the flow.
 
-Written at the beginning of the file, after the namespace, used to specify the dependencies the file is using and the name it will be referenced within the file. 
-*sample:*
+The name of a [flow](#/docs#flow) may be used when calling the [flow](#/docs#flow) as a subflow by a [task](#/docs#task) in another [flow](#/docs#flow). 
+
+**Example - naming the flow "division_flow"**
 
 ```yaml
-   imports:
-     - ops: user.ops.OpenstackOperations
-     - order_vm_flow: user.flows.OrderVmFlow
-     - script_file: some_script_file.py
+name: division_flow
+```
+
+###namespace
+The key `namespace` is mapped to a string value that defines the file's namespace.
+
+The namespace  may be used by other SLANG files for [importing](#/docs#imports) purposes.
+
+**Example - definition a namespace**
+
+```yaml
+namespace: user.examples
+```
+
+###navigate
+The key `navigate` is a property of a [task](#/docs#task) name.
+It is mapped to key:value pairs where the key is the received [result](#/docs#results) and the value is the target [task](#/docs#task) or [flow](#doc/#flow) [result](#/docs#results).
+
+Defines the navigation logic for a [task](#/docs#task). The flow will continue with the [task](#/docs#task) or [flow](#/docs#flow) [result](#/docs#results) whose value is mapped to the [result](#/docs#results) returned by the called [operation](#/docs#operation) or subflow when the [task](#/docs#task) is completed. The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`.
+
+**Example - ILLEGAL result will navigate to flow's FAILURE result and SUCCESS result will navigate to task named "printer"**
+```yaml
+navigate:
+  ILLEGAL: FAILURE
+  SUCCESS: printer
+```
+
+###on_failure
+The key `on_failure` is a property of a [workflow](#/docs#workflow).
+It is mapped to a [task](#/docs#task).
+
+Defines the [task](#/docs#task), which when using default [navigation](#/docs#navigation), is the target of a `FAILURE` [result](#/docs#result) returned from an [operation](#/docs#operations) or [flow](#docs/flow). The `on_failure` [task's](#/docs#task) [navigation](#/docs#navigate) defaults to `FAILURE`.
+
+**Example - faliure task which call a print operation to print an error message**
+```yaml
+on_failure:
+  failure:
+    do:
+      ops.print:
+        - text: error_msg
+```
+
+###operation
+A name of an operation which is a list item of [operations](#/docs#operations).
+It is mapped to the operation's properties.
+
+Property|Required|Default|Value Type|Description|More Info
+---|
+inputs|no|-|list|operation inputs|[inputs](#/docs#inputs)
+action|yes|-|`python_script` or `java_action`|operation logic|[action](#/docs#action)
+outputs|no|-|list|operation outputs|[outputs](#/docs#outputs)
+results|no|`SUCCESS`|list|possible operation results|[results](#/docs#results)
+
+
+**Example - operation that adds two inputs and outputs the answer**
+
+```yaml
+- add:
+   inputs:
+     - left
+     - right
+   action:
+     python_script: ans = left + right
+   outputs:
+     - out: ans
+   results:
+     - SUCCESS
+```
+
+###operations
+The key `operations` is mapped to a list of [operation](operation) definitions.
+
+
+
+**Example - operations key with one operation**
+```yaml
+operations:
+  - print_done:
+      action:
+        python_script: print 'Done'
+```
+
+###outputs
+The key `outputs` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation) name.
+It is mapped to a list of output variable names which may also contain expression values. Output expressions must evaluate to strings. 
+
+Defines the parameters a  [flow](#/docs#flow) or [operation](#/docs#operation) exposes to possible [publication](#/docs#publish) by a [task](#/docs#task). The calling [task](#/docs#task) refers to an output by its name.
+
+Note:  all variable values are converted to string before being used in an output's boolean expression.
+
+See also [fromInputs](#/docs#fromInputs).
+
+**Example - various types of outputs**
+
+```yaml
+outputs:
+  - existing_variable
+  - output2: some_variable
+  - output3: str(5 + 6)
+  - output4: fromInputs['input1']
 ```
 
 
-###Namespace
+###override
+The key `override` is a property of an [input](#/docs#inputs) name.
+It is mapped to a boolean value.
 
-Used at the beginning of a file. Used as the namespace of the flow or operation. 
-*sample:*
+A value of `true` will always override the [input](#/docs#inputs) parameter sent to the [flow](#/docs#flow) or [operation](#/docs#operation) with the [default](#/docs#default) value. If `override` is not defined, the [default](#/docs#default) value will not override the value passed to the [input](#/docs#inputs) parameter. 
+
+**Example - default value of text input parameter will override values passed in**
 
 ```yaml
-  namespace: user.flows
+inputs:
+  - text:
+      default: "'default text'"
+      override: true
 ```
 
-###Some more samples
+###publish
+The key `publish` is a property of a [task](#/docs#task) name.
+It is mapped to a list of key:value pairs where the key is the published variable name and the value is the name of the [output](#/docs#outputs) received from an [operation](#/docs#operation) or [flow](#/docs#flow).
 
-####Sample1 - demonstrates default navigation
+Binds the [output](#/docs#outputs) from an [operation](#/docs#operation) or [flow](#/docs#flow) to a variable whose scope is the current [flow](#/docs#flow) and can therefore be used by other [tasks](#/docs#task) or as the [flow's](#/docs#flow) own [output](#/docs#outputs).
 
-*operations:*
-
+**Example - publish the quotient output as answer**
 ```yaml
-    namespace: user.ops
-    
-    operations:    
-      - produce_default_navigation:
-          inputs:
-            - navigationType
-          action:
-            python_script:
-              print 'Producing default navigation based on input'
-          results:
-            - SUCCESS: navigationType == 'success'
-            - FAILURE: 1 == 1
+publish:
+  - answer: quotient
 ```
 
-*flow:*
+###results
+The key `results` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation).
+
+The results of a [flow](#/docs#flow) or [operation](#/docs#operation) can be used by the calling [task](#/docs#task) for [navigation](#/docs#navigate) purposes.
+
+####Flow results
+In a [flow](#/docs#flow), the key `results` is mapped to a list of result names. 
+
+Defines the possible results of the [flow](#/docs#flow). By default a [flow](#/docs#flow) has two results, `SUCCESS` and `FAILURE`.  The defaults can be overridden with any number of user-defined results. When overriding, the defaults are lost and must be redefined if they are to be used. 
+
+**Example - a user-defined result**
 
 ```yaml
-    namespace: user.flows
-    
-    imports:
-     ops: user.ops
-    
-    flow:
-      name: navigation_flow
+results:
+  - SUCCESS
+  - ILLEGAL
+  - FAILURE
+```
+
+####Operation results
+In a [operation](#/docs#operation) the key `results` is mapped to a list of key:value pairs of result names and boolean expressions. 
+
+Defines the possible results of the [operation](#/docs#operation). By default, if no results exist, the result is `SUCCESS`.  The first result in the list whose expression evaluates to true, or does not have an expression at all, will be passed back to the calling [task](#/docs#task) to be used for [navigation](#/docs#navigate) purposes.  
+
+Note:  all variable values are converted to string before being used in a result's boolean expression.
+
+**Example - three user-defined results**
+```yaml
+results:
+  - POSITIVE: polarity == '+'
+  - NEGATIVE: polarity == '-'
+  - NEUTRAL
+```
+
+###required
+The key `required` is a property of an [input](#/docs#inputs) name.
+It is mapped to a boolean value.
+
+A value of `false` will allow the [flow](#/docs#flow) or [operation](#/docs#operation) to be called without passing the [input](#/docs#inputs) parameter. If `required` is not defined, the [input](#/docs#inputs) parameter defaults to being required. 
+
+**Example - input2 is optional**
+
+```yaml
+inputs:
+  - input1
+  - input2:
+      required: false
+```
+
+###task
+A name of a task which is a property of [workflow](#/docs#workflow) or [on_failure](#/docs#on_failure).
+It is mapped to the task's properties.
+
+Property|Required|Default|Value Type|Description|More Info
+---|
+`do`|yes|-|operation or subflow call|the operation or subflow this task will run|[do](#/docs#do) [operation](#/docs#operation) [flow](#/docs#flow)
+`publish`|no|-|list of key:value pairs|operation outputs to publish to the flow level|[publish](#/docs#publish) [outputs](#/docs#outputs)
+`navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic from operation or flow results|[navigation](#/docs#navigate) [results](#/docs#results)
+
+**Example - task that performs a division of two inputs, publishes the answer and navigates accordingly**
+
+```yaml
+divider:
+  do:
+    ops.divide:
+      - dividend: input1
+      - divisor: input2
+  publish:
+    - answer: quotient
+  navigate:
+    ILLEGAL: FAILURE
+    SUCCESS: printer
+```
+
+###workflow
+The key `workflow` is a property of a [flow](#/docs#flow).
+It is mapped to a the workflow's [tasks](#/docs#task).
+
+Defines a container for the [tasks](#/docs#task), their [published variables](#/docs#publish) and [navigation](#/docs#navigate) logic.
+
+The first [task](#/docs#task) in the workflow is the starting [task](#/docs#task) of the flow. From there the flow continues sequentially by default upon receiving [results](#/docs#results) of `SUCCESS`, to the flow finish or to [on_failure](#/docs#on_failure) upon a [result](#/docs#results) of `FAILURE`, or following whatever overriding [navigation](#/docs#navigate) logic that is present.
+
+Propery|Required|Default|Value Type|Description|More Info
+---|
+`on_failure`|no|-|task|default navigation target for `FAILURE`|[on_failure](#/docs#on_failure) [task](#/docs#task)
+
+**Example - workflow that divides two numbers and prints them out if the division was legal**
+
+```yaml
+workflow:
+  divider:
+    do:
+      ops.divide:
+        - dividend: input1
+        - divisor: input2
+    publish:
+      - answer: quotient
+    navigate:
+      ILLEGAL: FAILURE
+      SUCCESS: printer
+  printer:
+    do:
+      ops.print:
+        - text: input1 + "/" + input2 + " = " + answer
+```
+
+###Examples
+The following simplified examples demonstrate some of the key SLANG concepts. Each of the examples below can be run by doing the following:
+
+1. Create a new folder.
+2. Create new SLANG (.sl) files and copy the code into them.
+3. [Use the CLI](#/docs#use-the-cli) to run the flow. 
+
+For more information on getting set up to run flows, see the [SLANG CLI](#/docs#slang-cli) and [Hello World Example](#/docs#hello-world-example) sections.
+
+####Example 1 - User-defined Navigation and Publishing Outputs
+This example is a full working version from which many of the example snippets above have been taken. The flow takes in two inputs, divides them and prints the answer. In case of a division by zero, the flow does not print the output of the division, but instead ends with a user-defined result of `ILLEGAL`.
+
+**Flow - division.sl**
+```yaml
+namespace: examples.divide
+
+imports:
+  ops: examples.divide
+
+flow:
+  name: division
+
+  inputs:
+    - input1
+    - input2
+
+  workflow:
+    divider:
+      do:
+        ops.divide:
+          - dividend: input1
+          - divisor: input2
+      publish:
+        - answer: quotient
+      navigate:
+        ILLEGAL: ILLEGAL
+        SUCCESS: printer
+    printer:
+      do:
+        ops.print:
+          - text: input1 + "/" + input2 + " = " + answer
+      navigate:
+        SUCCESS: SUCCESS
+
+  outputs:
+    - quotient: answer
+
+  results:
+    - ILLEGAL
+    - SUCCESS
+```
+**Operations - divide.sl**
+```yaml
+namespace: examples.divide
+
+operations:
+  - divide:
       inputs:
-        - navigationType
-        - emailHost
-        - emailPort
-        - emailSender
-        - emailRecipient
-      workflow:
-        produce_default_navigation:
-          do:
-            ops.produce_default_navigation:
-              - navigationType
-    
-        check_Weather: # default navigation: go to this step on success
-          do:
-            ops.check_Weather:
-              - city: "'AwesomeCity'"
-          navigate:
-            SUCCESS: SUCCESS # end flow with success result
-    
-        on_failure: # default navigation: go to this step on failure
-          send_error_mail:
-            do:
-              ops.send_email_mock:
-                - hostname: emailHost
-                - port: emailPort
-                - sender: emailSender
-                - recipient: emailRecipient
-                - subject: "'Flow failure'"
-                - body: "'Default failure navigation here'"
-            navigate:
-              SUCCESS: FAILURE # end flow with failure result
-              FAILURE: FAILURE
-```
-
-####Sample2 - demonstrates custom navigation and publishing outputs
-
-*operations:*
-
-```yaml
-    namespace: user.ops
-    
-    operations:
-      - check_number:
-          inputs:
-            - number
-          action:
-            python_script: |
-              remainder = number % 2
-              isEven = remainder == 0
-              tooBig = number > 512
-          outputs:
-            - preprocessed_number: str(fromInputs['number'] * 3)
-          results:
-            - EVEN: isEven == 'True' and tooBig == 'False'
-            - ODD: isEven == 'False' and tooBig == 'False'
-            - FAILURE # report failure if the number is too big
-    
-      - process_even_number:
-          inputs:
-            - even_number
-            - offset: 32
-          action:
-            python_script: |
-              processing_result = int(even_number) + offset
-              print 'Even number processed. Result= ' + str(processing_result)
-    
-      - process_odd_number:
-          inputs:
-            - odd_number
-          action:
-            python_script:
-              print 'Odd number processed. Result= ' + str(odd_number)
-```
-
-```yaml
-    namespace: email.ops
-    
-    operations:
-      - send_mail:
-          inputs:
-            - hostname
-            - port
-            - from
-            - to
-            - cc: "''"
-            - bcc: "''"
-            - subject
-            - body
-            - htmlEmail: "'true'"
-            - readReceipt: "'false'"
-            - attachments: "''"
-            - username: "''"
-            - password: "''"
-            - characterSet: "'UTF-8'"
-            - contentTransferEncoding: "'base64'"
-            - delimiter: "''"
-          action:
-            java_action:
-              className: org.openscore.content.mail.actions.SendMailAction
-              methodName: execute
-          results:
-            - SUCCESS: returnCode == '0'
-            - FAILURE
-```
-
-*flow:*
-
-```yaml
-    namespace: user.flows
-    
-    imports:
-     ops: user.ops
-     email: email.ops
-    
-    flow:
-      name: navigation_flow
-      inputs:
-        - userNumber
-        - emailHost
-        - emailPort
-        - emailSender
-        - emailRecipient
-      workflow:
-        check_number:
-          do:
-            ops.check_number:
-              - number: userNumber
-          publish:
-            - new_number: preprocessed_number # publish the output in the flow level so it will be visible for other steps
-          navigate:
-            EVEN: process_even_number
-            ODD: process_odd_number
-            FAILURE: send_error_mail
-    
-        process_even_number:
-          do:
-            ops.process_even_number:
-              - even_number: new_number
-          navigate:
-            SUCCESS: SUCCESS # end flow with success result
-    
-        process_odd_number:
-          do:
-            ops.process_odd_number:
-              - odd_number: new_number
-          navigate:
-            SUCCESS: SUCCESS # end flow with success result
-    
-        on_failure: # you can also use this step for default navigation in failure case
-          send_error_mail: # or refer it by the task name
-            do:
-              email.send_mail:
-                - hostname: emailHost
-                - port: emailPort
-                - from: emailSender
-                - to: emailRecipient
-                - subject: "'Flow failure'"
-                - body: "'Wrong number: ' + str(userNumber)"
-            navigate:
-              SUCCESS: FAILURE # end flow with failure result
-              FAILURE: FAILURE
-```
-
-####Sample3 - demonstrates subflow usage
-
-*operations:*
-
-```yaml
-    namespace: user.ops
-
-    operations:
-      - test_op:
-          action:
-            python_script: 'print "hello world"'
-            
-  - check_Weather:
-      inputs:
-        - city
+        - dividend
+        - divisor
       action:
         python_script: |
-          weather = "weather thing"
-          print city
+          if divisor == '0':
+            quotient = 'division by zero error'
+          else:
+            quotient = float(dividend) / float(divisor)
       outputs:
-        - weather: weather
+        - quotient
       results:
-        - SUCCESS: 'weather == "weather thing"'
+        - ILLEGAL: quotient == 'division by zero error'
+        - SUCCESS
 ```
-
-*subflow:*
-
+**Operations - print.sl**
 ```yaml
-    namespace: user.flows
-    
-    imports:
-      ops: user.ops
-    
-    flow:
-      name: child_flow
+  - print:
       inputs:
-        - input1: "'value'"
-      workflow:
-        CheckWeather:
-          do:
-            ops.test_op:
-      outputs:
-        - val_output: fromInputs['input1']
-```
-
-*parent flow:*
-
-```yaml
-    namespace: user.flows
-    
-    imports:
-      ops: user.ops
-      flows: user.flows
-    
-    flow:
-      name: parent_flow
-      inputs:
-        - input1
-        - city:
-            required: false
-      workflow:
-        Task1:
-          do:
-            ops.check_Weather:
-              - city: city if city is not None else input1
-          publish:
-            - kuku: weather
-    
-        Task2:
-          do:
-            flows.child_flow:
-              - input1: kuku
-          publish:
-            - val_output
+        - text
+      action:
+        python_script: print text
       results:
         - SUCCESS
+```
+
+####Example 2 - Default Navigation
+In this example the flow takes in two inputs, one of which determines the success of it's first task. 
+
++ If the first task succeeds, the flow continues with the default navigation sequentially by performing the next task. That task returns a default result of `SUCCESS` and therefore skips the `on_failure` task, ending the flow with a result of `SUCCESS`.
++ If the first task fails, the flow moves to the `on_failure` task by default navigation. When the `on_failure` task is done, the flow ends with a default result of `FAILURE`.
+
+**Flow - nav_flow.sl**
+
+```yaml
+namespace: examples.defualtnav
+
+imports:
+  ops: examples.defualtnav
+
+flow:
+  name: nav_flow
+
+  inputs:
+    - navigationType
+    - emailRecipient
+
+  workflow:
+    produce_default_navigation:
+      do:
+        ops.produce_default_navigation:
+          - navigationType
+
+    # default navigation - go to this task on success
+    do_something:
+      do:
+        ops.something:
+
+    # default navigation - go to this task on failure
+    on_failure:
+      send_error_mail:
+        do:
+          ops.send_email_mock:
+            - recipient: emailRecipient
+            - subject: "'Flow failure'"
+```
+
+**Operations - produce_default_navigation.sl**
+
+```yaml
+namespace: examples.defualtnav
+
+operations:
+  - produce_default_navigation:
+      inputs:
+        - navigationType
+      action:
+        python_script:
+          print 'Default navigation based on input of - ' + navigationType
+      results:
+        - SUCCESS: navigationType == 'success'
         - FAILURE
+```
+
+**Operations - something.sl**
+
+```yaml
+namespace: examples.defualtnav
+
+operations:
+  - something:
+      action:
+        python_script:
+          print 'Doing something important'
+```
+
+**Operations - send_email_mock.sl**
+```yaml
+namespace: examples.defualtnav
+
+operations:
+  - send_email_mock:
+      inputs:
+        - recipient
+        - subject
+      action:
+        python_script:
+          print 'Email sent to ' + recipient + ' with subject - ' + subject
+```
+
+####Example3 - Subflow
+This example uses the flow from **Example 1** as a subflow. It takes in four numbers (or uses default ones) to call `division_flow` twice. If either division returns the `ILLEGAL` result, navigation is routed to the `on_failure` task and the flow ends with a result of `FAILURE`. If both divisions are successful, the `on_failure` task is skipped and the flow ends with a result of `SUCCESS`.
+
+Note: To run this flow, the files from **Example 1** should be placed in the same folder as this flow file or use the `--cp` flag at the command line.
+
+**Flow - master_divider.sl**
+
+```yaml
+namespace: examples.divide
+
+imports:
+  ops: examples.divide
+
+flow:
+  name: master_divider
+
+  inputs:
+    - dividend1: "'3'"
+    - divisor1: "'2'"
+    - dividend2: "'1'"
+    - divisor2: "'0'"
+
+  workflow:
+
+    division1:
+      do:
+        ops.division:
+          - input1: dividend1
+          - input2: divisor1
+      publish:
+        - ans: quotient
+      navigate:
+        SUCCESS: division2
+        ILLEGAL: failure_task
+
+    division2:
+      do:
+        ops.division:
+          - input1: dividend2
+          - input2: divisor2
+      publish:
+        - ans: quotient
+      navigate:
+        SUCCESS: SUCCESS
+        ILLEGAL: failure_task
+    on_failure:
+      failure_task:
+        do:
+          ops.print:
+            - text: ans
 ```
 
 ##SLANG Events
 
-SLANG uses score events. An event is represented by event type (a String value) and event data (Serializable object).
-In case of SLANG the event data is a map that contains all the relevant information under certain keys defined in 
-`org.openscore.lang.runtime.events.LanguageEventData` class (See [table](#docs/#event_summary) below).
-SLANG extends the traditional event type set provided by score with its own event types.
+SLANG uses **score** events and its own extended set of events. SLANG events are comprised of an event type string and a map of event data that contains all the relevant event information mapped to keys defined in the 
+`org.openscore.lang.runtime.events.LanguageEventData` class. All fired events are logged in the [execution log](#/docs#execution-log) file.
+
 
 Event types from score:
 
 + SCORE_FINISHED_EVENT
 + SCORE_FAILURE_EVENT
 
-Event types from SLANG and the data each provide:
-- Description [DESCRIPTION] - the event description
-- Timestamp [TIMESTAMP] - the event time-stamp
-- Execution id [EXECUTIONID] - the event execution id
-- Path [PATH] - the event path, the path is increased when entering a subflow / operation
+Event types from SLANG are listed in the table below along with the event data each event contains. 
 
-in square brackets we provide the keys under the information is put in the event data map
+All SLANG events contain the data in the following list. Additional event data is listed in the table below alongside the event type. The event data map keys are enclosed in square brackets - [KEYNAME].
 
-| Type [TYPE] | Usage | Event Data |
-|----------|----------|----------|
-| EVENT_INPUT_END | Input binding finished for task  | bound inputs [BOUND_INPUTS] level: task, node name [TASK_NAME]  |
-| EVENT_INPUT_END | Input binding finished for operation  | bound inputs [BOUND_INPUTS], level: executable, node name [EXECUTABLE_NAME]  |
-| EVENT_OUTPUT_START | Output binding started for task | task publish values [taskPublishValues], task navigation values [taskNavigationValues], operation return values [operationReturnValues], level: task, node name [TASK_NAME] |
-| EVENT_OUTPUT_START | Output binding started for operation | executable outputs [executableOutputs], executable results [executableResults], action return values [actionReturnValues], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_OUTPUT_END | Output binding finished for task | task bound outputs [OUTPUTS], task result [RESULT], next step position [nextPosition], level: task, node name [TASK_NAME] |
-| EVENT_OUTPUT_END | Output binding finished for operation | executable bound outputs [OUTPUTS], executable result [RESULT], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_EXECUTION_FINISHED | Execution finished running (in case of subflow) | executable bound outputs [OUTPUTS] , executable result [RESULT], level: executable, node name [EXECUTABLE_NAME] |
-| EVENT_ACTION_START | Fired before the action invocation  | call arguments [CALL_ARGUMENTS], action type (Java / Python) in description |
-| EVENT_ACTION_END | Fired after a successful action invocation  | action return values [RETURN_VALUES] |
-| EVENT_ACTION_ERROR | Fired in case of exception in action execution |  exception [EXCEPTION] |
-| SLANG_EXECUTION_EXCEPTION | Fired in case of exception in the previous step |  exception [EXCEPTION] |
+- [DESCRIPTION] - event description
+- [TIMESTAMP] - event time-stamp
+- [EXECUTIONID] - event execution id
+- [PATH] - event path: increased when entering a subflow or operation
 
+Type [TYPE]|Usage|Event Data
+---|---
+EVENT_INPUT_END|Input binding finished for task|[BOUND_INPUTS], [TASK_NAME]
+EVENT_INPUT_END|Input binding finished for flow or operation|[BOUND_INPUTS], [EXECUTABLE_NAME]
+EVENT_OUTPUT_START|Output binding started for task|[taskPublishValues], [taskNavigationValues], [operationReturnValues], [TASK_NAME]
+EVENT_OUTPUT_START|Output binding started for flow or operation|[executableOutputs],  [executableResults], [actionReturnValues], [EXECUTABLE_NAME]
+EVENT_OUTPUT_END|Output binding finished for task|[OUTPUTS], [RESULT], [nextPosition],  [TASK_NAME]
+EVENT_OUTPUT_END|Output binding finished for flow or operation|[OUTPUTS], [RESULT],  [EXECUTABLE_NAME]
+EVENT_EXECUTION_FINISHED|Execution finished running (in case of subflow)|[OUTPUTS],  [RESULT], [EXECUTABLE_NAME]
+EVENT_ACTION_START|Before action invocation|[CALL_ARGUMENTS], action type (Java or Python) in description
+EVENT_ACTION_END|After successful action invocation|[RETURN_VALUES]
+EVENT_ACTION_ERROR|Exception in action execution|[EXCEPTION]
+SLANG_EXECUTION_EXCEPTION|Exception in previous step|[EXCEPTION]
+
+
+##SLANG Best Practices
+The following is a list of best practices for authoring SLANG files. 
+
+-	The namespace for a file is identical to the folder structure in which the file resides in the project.
+-	File names are all lowercase with words separated by an underscore (_).
+-	A flow or operation has the same name as the file it is in.
+-	Each file has one flow, one operation or a map of system variables. 
+-	Flows and operations reside together in the same folders.
+-	System variables reside in separate folders.
+-	Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
+  - Optional parameters and default values are noted.	
+ 
+Note: In future releases some of the above best practices may be required by the SLANG compiler.
 
 ##SLANG CLI
-You have two ways to obtain SLANG CLI: either download it directly from score website or build it by yourself.
+There two ways to get started with the SLANG CLI. You can either download it pre-built from the **score** website or build it yourself. 
 
-###Running CLI by downloading it
+###Prerequisites
++ To run the SLANG CLI, Java JRE version 7 or higher is required.
++ To build the SLANG CLI, Java JDK version 7 or higher and Maven version 3.0.3 or higher are required.
 
-+ go to ([Score website](/#/))
-+ in the "Getting started section" click "Download an use slang CLI tool"
-+ click "Download latest version". This will download an archive with the latest CLI version
-+ unzip the archive. It contains a folder called "appassembler" and some sample flows
-    - the "appassembler" folder contains the CLI tool and the necessary dependencies
-+ navigate to the folder `appassembler\bin\`
-+ start CLI by running `slang.bat`
 
-###Running CLI by building it
+###Download and Run Pre-built CLI
 
-+ download the project sources from [here](#DOWNLOAD_LINK_HERE)
-+ navigate to project root directory
-+ build the project: open a command window here and run `mvn clean install`
-+ after building the project navigate to `score-language\score-lang-cli\target\appassembler\bin` folder
-+ start CLI by running `slang.bat`
+1. Go to the **score** [website](/#/) and scroll to the **Getting Started** section.
+2. Click **Download an use slang CLI tool**.
+3. Click **Download latest version**. 
+4. Locate the downloaded file and unzip the archive.  
+    The decompressed file contains:
+    + a folder called **appassembler** with the CLI tool and its necessary dependencies.
+    + some other folders with sample flows.
+5. Navigate to the folder `appassembler\bin\`.
+6. Start the CLI by running `slang.bat`.
 
-###Using the CLI
+###Download, Build and Run CLI
 
-You can get a list of available commands by typing `help` in the cli console.
+1. Git clone (or GitHub fork and then clone) the [source code](https://github.com/openscore/score-language).
+2. Using the Command Prompt, navigate to the project root directory.
+3. Build the project by running `mvn clean install`.
+4. After the build finishes, navigate to the `score-language\score-lang-cli\target\appassembler\bin` folder.
+5. Start the CLI by running `slang.bat`.
 
-*sample - running a flow with default classpath (flow directory)*
+###Use the CLI
 
+####Run a Flow
+To run a flow located at `c:/.../your_flow.sl`, enter the following at the `slang>` prompt:
 ```bash
-run --f c:/.../your_flow.sl --i input1=root,input2=25
+slang>run --f c:/.../your_flow.sl
 ```
 
-*sample - running a flow with custom classpath*
-
+If the flow takes in input parameters, use the `--i` flag and a comma-separated list of key=value pairs:
 ```bash
-run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/
-run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/,c:/.../openstack/
+slang>run --f c:/.../your_flow.sl --i input1=root,input2=25
+```
+If the flow requires dependencies from another location, use the `--cp` flag: 
+```bash
+slang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/
 ```
 
-*sample - set execution mode to asynchronous (by default the execution mode is synchronous - that means you can run only one flow at a time)*
+####Other Commands
+Some of the available commands are:
 
-```bash
-env --setAsync true
-```
++ `env --setAsync` - Sets the execution mode to be synchronous or asynchronous. By default the execution mode is synchronous, meaning only one flow can run at a time.
 
-*sample - get flow inputs*
+	```bash
+	slang>env --setAsync true
+	```
++ `inputs` - Lists the inputs of a given flow.
 
-```bash
-inputs --f c:/.../your_flow.sl
-```
+	```bash
+	slang>inputs --f c:/.../your_flow.sl
+	```
 
-*sample - slang version*
++ `slang --version` - Displays the version of **score** being used.
 
-```bash
-slang -version
-```
+	```bash
+	slang>slang --version
+	```
 
-The execution log is saved in `score-language\score-lang-cli\target\appassembler\bin` directory under `execution.log` name. All the events are saved in this log so using this file you can easily track your flow execution.
+####Execution Log
+The execution log is saved in the directory in which the CLI was started in a file named `execution.log`. The log file stores all the [events](#/docs#slang-events) that have been fired, and therefore it allows for tracking a flow's execution.
+
+####Help
+To get a list of available commands, enter `help` at the CLI `slang>` prompt. For further help, enter `help` and the name of the command.
 
 ##Sublime Integration
 
@@ -698,11 +924,11 @@ To ease the SLANG coding process you can use our Sublime Text snippets.
 
 ###Download, Install and Configure Sublime Text for Windows:
 
-+ Download and install [Sublime Text](http://www.sublimetext.com/).
-+ Download the [slang-sublime package](https://github.com/orius123/slang-sublime/releases/download/0.1.0/slang-sublime-0.1.0.sublime-package). 
-+ Copy the downloaded package file into C:\Users\&lt;User&gt;\AppData\Roaming\Sublime Text 2\Installed Packages
-+ Restart Sublime Text.
-+ New files with the .sl extension will be recognized as SLANG files. For existing files you may have to change the language manually.
+1. Download and install [Sublime Text](http://www.sublimetext.com/).
+2. Download the [slang-sublime package](https://github.com/orius123/slang-sublime/releases/download/0.1.0/slang-sublime-0.1.0.sublime-package). 
+3. Copy the downloaded package file into C:\Users\&lt;User&gt;\AppData\Roaming\Sublime Text 2\Installed Packages
+4. Restart Sublime Text.
+5. New files with the .sl extension will be recognized as SLANG files. For existing files you may have to change the language manually.
 
 To use the templates start typing the template name and press enter when it appears on the screen. 
 
@@ -710,9 +936,9 @@ The following templates are provided:
 
 Keyword|Description
 ---|---
-slang|template for a slang file
+slang|template for a SLANG file
 flow|template for a flow
 task|template for a task
 operation|template for an operation
   
-**Note:** Optional SLANG elements are marked as comments (begin with #).
+Note: Optional SLANG elements are marked as comments (begin with #).

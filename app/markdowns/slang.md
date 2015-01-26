@@ -13,26 +13,26 @@ This example uses the SLANG CLI to run a flow. See the [SLANG CLI](#/docs#slang-
 Although SLANG files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. See [Sublime Integration](#/docs#sublime-integration) for instructions on how to download, install and use the SLANG snippets for [Sublime Text](http://www.sublimetext.com/).    
 
 ####Code files
-In a new folder, create two new SLANG files, flow.sl and ops.sl, and copy the code below.
+In a new folder, create two new SLANG files, hello_world.sl and print.sl, and copy the code below.
 
-**flow.sl**
+**hello_world.sl**
 ```yaml
-namespace: user.flows.hello_world
+namespace: user.examples.hello_world
 
 imports:
-  ops: user.operations.utils
+  ops: user.examples.hello_world
 
 flow:
-  name: helloWorld
+  name: hello_world
   workflow:
     sayHi:
       do:
         ops.print:
           - text: "'Hello, World'"
 ```
-**ops.sl**
+**print.sl**
 ```yaml
-namespace: user.operations.utils
+namespace: user.examples.hello_world
 
 operations:
   - print:
@@ -45,18 +45,18 @@ operations:
 ```
 
 ####Run
-Start the CLI from the folder in which your SLANG files reside and enter `run flow.sl` at the `slang>` prompt. 
+Start the CLI from the folder in which your SLANG files reside and enter `run hello_world.sl` at the `slang>` prompt. 
 
 The output will look similar to this:
 ```bash
 - sayHi
 Hello, World
-Flow : helloWorld finished with result : SUCCESS
+Flow : hello_world finished with result : SUCCESS
 Flow execution time took  0:00:00.790 , with execution id : 101600001
 ```
 
 ####Explanation
-The CLI runs the [flow](#/docs#flow) in the file we have passed to it, namely **flow.sl**. The [flow](#/docs#flow) begins with an [import](#/docs#imports) of the operations file, **ops.sl**, using its [namespace](#/docs#namespace) as the value for the [imports](#/docs#imports) key. Next, we enter the [flow](#/docs#flow) named `helloworld` and begin its [workflow](#/docs#workflow). The [workflow](#/docs#workflow) has one [task](#/docs#task) named `sayHi` which calls the `print` [operation](#/docs#operation) from the operations file that was imported. The [flow](#/docs#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#/docs#operation) `text` [input](#/docs#inputs). The print [operation](#/docs#operation) performs its [action](#/docs#action), which is a simple Python script that prints the [input](#/docs#inputs), and then returns a [result](#/docs#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#/docs#task) the [flow](#/docs#flow) finishes with a [result](#/docs#results) of `SUCCESS`.
+The CLI runs the [flow](#/docs#flow) in the file we have passed to it, namely **hello_world.sl**. The [flow](#/docs#flow) begins with an [import](#/docs#imports) of the operations file, **print.sl**, using its [namespace](#/docs#namespace) as the value for the [imports](#/docs#imports) key. Next, we enter the [flow](#/docs#flow) named `hello_world` and begin its [workflow](#/docs#workflow). The [workflow](#/docs#workflow) has one [task](#/docs#task) named `sayHi` which calls the `print` [operation](#/docs#operation) from the operations file that was imported. The [flow](#/docs#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#/docs#operation) `text` [input](#/docs#inputs). The print [operation](#/docs#operation) performs its [action](#/docs#action), which is a simple Python script that prints the [input](#/docs#inputs), and then returns a [result](#/docs#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#/docs#task) the [flow](#/docs#flow) finishes with a [result](#/docs#results) of `SUCCESS`.
 
 ##SLANG DSL Reference
 This reference begins with a brief introduction to SLANG files and their structure followed by an alphabetical list of SLANG keywords and concepts. 
@@ -305,8 +305,8 @@ Specifies the file's dependencies and the aliases they will be referenced by in 
 **Example - import operations and sublflow into flow**
 ```yaml
 imports:
-  ops: user.operations.utils
-  sub_flows: user.subflows.asubflow
+  ops: user.examples.utils
+  sub_flows: user.examples.subflows
 ```
 
 ###inputs
@@ -352,7 +352,7 @@ The namespace  may be used by other SLANG files for [importing](#/docs#imports) 
 **Example - definition a namespace**
 
 ```yaml
-namespace: user.operations.utils
+namespace: user.examples
 ```
 
 ###navigate
@@ -589,15 +589,15 @@ For more information on getting set up to run flows, see the [SLANG CLI](#/docs#
 ####Example 1 - User-defined Navigation and Publishing Outputs
 This example is a full working version from which many of the example snippets above have been taken. The flow takes in two inputs, divides them and prints the answer. In case of a division by zero, the flow does not print the output of the division, but instead ends with a user-defined result of `ILLEGAL`.
 
-**Flow**
+**Flow - division.sl**
 ```yaml
-namespace: examples.divide.flow
+namespace: examples.divide
 
 imports:
-  ops: examples.divide.ops
+  ops: examples.divide
 
 flow:
-  name: division_flow
+  name: division
 
   inputs:
     - input1
@@ -628,9 +628,9 @@ flow:
     - ILLEGAL
     - SUCCESS
 ```
-**Operations**
+**Operations - divide.sl**
 ```yaml
-namespace: examples.divide.ops
+namespace: examples.divide
 
 operations:
   - divide:
@@ -648,7 +648,9 @@ operations:
       results:
         - ILLEGAL: quotient == 'division by zero error'
         - SUCCESS
-
+```
+**Operations - print.sl**
+```yaml
   - print:
       inputs:
         - text
@@ -664,16 +666,16 @@ In this example the flow takes in two inputs, one of which determines the succes
 + If the first task succeeds, the flow continues with the default navigation sequentially by performing the next task. That task returns a default result of `SUCCESS` and therefore skips the `on_failure` task, ending the flow with a result of `SUCCESS`.
 + If the first task fails, the flow moves to the `on_failure` task by default navigation. When the `on_failure` task is done, the flow ends with a default result of `FAILURE`.
 
-**Flow**
+**Flow - nav_flow.sl**
 
 ```yaml
-namespace: examples.defualtnav.flow
+namespace: examples.defualtnav
 
 imports:
-  ops: examples.defualtnav.ops
+  ops: examples.defualtnav
 
 flow:
-  name: navigation_flow
+  name: nav_flow
 
   inputs:
     - navigationType
@@ -699,10 +701,10 @@ flow:
             - subject: "'Flow failure'"
 ```
 
-**Operations**
+**Operations - produce_default_navigation.sl**
 
 ```yaml
-namespace: examples.defualtnav.ops
+namespace: examples.defualtnav
 
 operations:
   - produce_default_navigation:
@@ -714,12 +716,25 @@ operations:
       results:
         - SUCCESS: navigationType == 'success'
         - FAILURE
+```
 
+**Operations - something.sl**
+
+```yaml
+namespace: examples.defualtnav
+
+operations:
   - something:
       action:
         python_script:
           print 'Doing something important'
+```
 
+**Operations - send_email_mock.sl**
+```yaml
+namespace: examples.defualtnav
+
+operations:
   - send_email_mock:
       inputs:
         - recipient
@@ -732,16 +747,15 @@ operations:
 ####Example3 - Subflow
 This example uses the flow from **Example 1** as a subflow. It takes in four numbers (or uses default ones) to call `division_flow` twice. If either division returns the `ILLEGAL` result, navigation is routed to the `on_failure` task and the flow ends with a result of `FAILURE`. If both divisions are successful, the `on_failure` task is skipped and the flow ends with a result of `SUCCESS`.
 
-**Note:** To run this flow, the files from **Example 1** should be placed in the same folder as this flow file or use the `--cp` flag at the command line.
+Note: To run this flow, the files from **Example 1** should be placed in the same folder as this flow file or use the `--cp` flag at the command line.
 
-**Flow**
+**Flow - master_divider.sl**
 
 ```yaml
-namespace: examples.divide.
+namespace: examples.divide
 
 imports:
-  ops: examples.divide.ops
-  sub: examples.divide.flow
+  ops: examples.divide
 
 flow:
   name: master_divider
@@ -756,7 +770,7 @@ flow:
 
     division1:
       do:
-        sub.division_flow:
+        ops.division:
           - input1: dividend1
           - input2: divisor1
       publish:
@@ -767,7 +781,7 @@ flow:
 
     division2:
       do:
-        sub.division_flow:
+        ops.division:
           - input1: dividend2
           - input2: divisor2
       publish:
@@ -775,7 +789,6 @@ flow:
       navigate:
         SUCCESS: SUCCESS
         ILLEGAL: failure_task
-    
     on_failure:
       failure_task:
         do:
@@ -817,6 +830,20 @@ EVENT_ACTION_END|After successful action invocation|[RETURN_VALUES]
 EVENT_ACTION_ERROR|Exception in action execution|[EXCEPTION]
 SLANG_EXECUTION_EXCEPTION|Exception in previous step|[EXCEPTION]
 
+
+##SLANG Best Practices
+The following is a list of best practices for authoring SLANG files. 
+
+-	The namespace for a file is identical to the folder structure in which the file resides in the project.
+-	File names are all lowercase with words separated by an underscore (_).
+-	A flow or operation has the same name as the file it is in.
+-	Each file has one flow, one operation or a map of system variables. 
+-	Flows and operations reside together in the same folders.
+-	System variables reside in separate folders.
+-	Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
+  - Optional parameters and default values are noted.	
+ 
+Note: In future releases some of the above best practices may be required by the SLANG compiler.
 
 ##SLANG CLI
 There two ways to get started with the SLANG CLI. You can either download it pre-built from the **score** website or build it yourself. 
@@ -914,4 +941,4 @@ flow|template for a flow
 task|template for a task
 operation|template for an operation
   
-**Note:** Optional SLANG elements are marked as comments (begin with #).
+Note: Optional SLANG elements are marked as comments (begin with #).

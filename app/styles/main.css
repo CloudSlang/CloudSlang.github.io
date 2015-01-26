@@ -492,9 +492,9 @@ a:hover {
     padding-left: 30px;
 }
 
-.getting-started .detailedBox a {
+.getting-started .example-project {
     font-size: 18px;
-    margin-bottom: 10px;
+    text-decoration: underline;
 }
 
 .getting-started .download {

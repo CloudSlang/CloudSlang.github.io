@@ -3,8 +3,10 @@ var bodyParser = require('body-parser')
 var express = require('express');
 var morgan = require('morgan');
 var nodemailer = require('nodemailer');
+var compress = require('compression');
 var app = express();
 
+app.use(compress());
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());

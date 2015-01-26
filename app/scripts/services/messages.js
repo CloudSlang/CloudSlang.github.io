@@ -113,18 +113,21 @@ angular.module('scoreWebsiteApp')
             detailedEmbedScoreApiHeader: 'Use score API',
             detailedEmbedScoreApiText: 'Call score APIs from your Java application (Trigger example)',
             detailedEmbedScoreApiMore: 'Press here for more score APIs',
-            detailedEmbedScoreCompileHeader: 'Compile',
-            detailedEmbedScoreCompileText: 'Compile your application and create an executable jar using maven',
-            detailedEmbedCompileCli: 'mvn clean install^1000\n[INFO] Scanning for projects...\n ......\n[INFO] BUILD SUCCESS\n$',
-            detailedEmbedScoreRunHeader: 'Run',
-            detailedEmbedScoreRunText: 'Run your application from command line',
-            detailedEmbedRunCli: 'cd /dev/score-app/target\n' +
-                '$ java -jar sample-app.jar\n' +
-                '^500 CheckWeather\n' +
-                '^250 PrintWeather\n' +
-                ' the weather in LA is: hot\n' +
-                '^250 Flow : SimpleFlow finished with result: SUCCESS\n' +
-                '^250$'
+            detailedEmbedScoreCompileHeader: 'Compile & Run',
+            detailedEmbedScoreCompileText: 'Compile your application and create an executable jar using maven and run',
+//            detailedEmbedCompileCli: 'mvn clean install^1000\n[INFO] Scanning for projects...\n ......\n[INFO] BUILD SUCCESS\n$',
+//            detailedEmbedScoreRunHeader: 'Run',
+//            detailedEmbedScoreRunText: 'Run your application from command line',
+//            detailedEmbedRunCli: 'cd /dev/score-app/target\n' +
+//                '$ java -jar sample-app.jar\n' +
+//                '^500 CheckWeather\n' +
+//                '^250 PrintWeather\n' +
+//                ' the weather in LA is: hot\n' +
+//                '^250 Flow : SimpleFlow finished with result: SUCCESS\n' +
+//                '^250$'
+            goAheadAndTry: 'Go ahead and try',
+            goAheadAndTryLink: 'https://github.com/meirwah/test-slang-embedded',
+            goAheadAndTryLinkMessage: 'Example project'
         };
 
         $rootScope.year = new Date().getFullYear();

@@ -337,12 +337,10 @@ a:hover {
 }
 
 .about .team-member-image {
-    width: 145px;
-    height: 180px;
+    border-radius: 20px;
 }
 
 .about .team-member {
-    /*padding: 3px;*/
 }
 
 .section-wrapper.contact-us {

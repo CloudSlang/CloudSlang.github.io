@@ -860,9 +860,9 @@ There two ways to get started with the SLANG CLI. You can either download it pre
 3. Click **Download latest version**. 
 4. Locate the downloaded file and unzip the archive.  
     The decompressed file contains:
-    + a folder called **appassembler** with the CLI tool and its necessary dependencies.
+    + a folder called **slang** with the CLI tool and its necessary dependencies.
     + some other folders with sample flows.
-5. Navigate to the folder `appassembler\bin\`.
+5. Navigate to the folder `slang\bin\`.
 6. Start the CLI by running `slang.bat`.
 
 ###Download, Build and Run CLI
@@ -870,7 +870,7 @@ There two ways to get started with the SLANG CLI. You can either download it pre
 1. Git clone (or GitHub fork and then clone) the [source code](https://github.com/openscore/score-language).
 2. Using the Command Prompt, navigate to the project root directory.
 3. Build the project by running `mvn clean install`.
-4. After the build finishes, navigate to the `score-language\score-lang-cli\target\appassembler\bin` folder.
+4. After the build finishes, navigate to the `score-language\score-lang-cli\target\slang\bin` folder.
 5. Start the CLI by running `slang.bat`.
 
 ###Use the CLI

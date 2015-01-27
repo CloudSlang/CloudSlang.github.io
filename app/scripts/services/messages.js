@@ -92,7 +92,7 @@ angular.module('scoreWebsiteApp')
             detailedUseCliHeader: 'Start slang command-line',
             detailedUseCliText: 'Open your console and execute slang cli',
             detailedTriggerFlowHeader: 'Trigger flow',
-            detailedTriggerFlowText1: '1. Open your console and execute slang cli. The cli is located at <path>/slang/appassembler/bin.',
+            detailedTriggerFlowText1: '1. Open your console and execute slang cli. The cli is located at <path>/slang/bin.',
             detailedTriggerFlowText2: '2. Trigger your slang written flow from slang command-line',
             detailedCliHeader: 'console',
             detailedCliPrefix: '$',

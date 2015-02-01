@@ -1,5 +1,39 @@
 #Developer (Contributor) Guide
 
+##SLANG Events
+
+SLANG uses **score** events and its own extended set of events. SLANG events are comprised of an event type string and a map of event data that contains all the relevant event information mapped to keys defined in the 
+`org.openscore.lang.runtime.events.LanguageEventData` class. All fired events are logged in the [execution log](#/docs#execution-log) file.
+
+
+Event types from score:
+
++ SCORE_FINISHED_EVENT
++ SCORE_FAILURE_EVENT
+
+Event types from SLANG are listed in the table below along with the event data each event contains. 
+
+All SLANG events contain the data in the following list. Additional event data is listed in the table below alongside the event type. The event data map keys are enclosed in square brackets - [KEYNAME].
+
+- [DESCRIPTION] - event description
+- [TIMESTAMP] - event time-stamp
+- [EXECUTIONID] - event execution id
+- [PATH] - event path: increased when entering a subflow or operation
+
+Type [TYPE]|Usage|Event Data
+---|---
+EVENT_INPUT_END|Input binding finished for task|[BOUND_INPUTS], [TASK_NAME]
+EVENT_INPUT_END|Input binding finished for flow or operation|[BOUND_INPUTS], [EXECUTABLE_NAME]
+EVENT_OUTPUT_START|Output binding started for task|[taskPublishValues], [taskNavigationValues], [operationReturnValues], [TASK_NAME]
+EVENT_OUTPUT_START|Output binding started for flow or operation|[executableOutputs],  [executableResults], [actionReturnValues], [EXECUTABLE_NAME]
+EVENT_OUTPUT_END|Output binding finished for task|[OUTPUTS], [RESULT], [nextPosition],  [TASK_NAME]
+EVENT_OUTPUT_END|Output binding finished for flow or operation|[OUTPUTS], [RESULT],  [EXECUTABLE_NAME]
+EVENT_EXECUTION_FINISHED|Execution finished running (in case of subflow)|[OUTPUTS],  [RESULT], [EXECUTABLE_NAME]
+EVENT_ACTION_START|Before action invocation|[CALL_ARGUMENTS], action type (Java or Python) in description
+EVENT_ACTION_END|After successful action invocation|[RETURN_VALUES]
+EVENT_ACTION_ERROR|Exception in action execution|[EXCEPTION]
+SLANG_EXECUTION_EXCEPTION|Exception in previous step|[EXCEPTION]
+
 ##score - Execution
 
 Score is a workflow engine and can execute Execution Plans.

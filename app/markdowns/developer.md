@@ -104,8 +104,7 @@ public class SlangEmbed {
         inputs.put("input1", "Hi. I'm inside this application.\n-Slang");
 
         slang.compileAndRun(SlangSource.fromFile(flowFile), dependencies,
-                inputs,
-                new HashMap<String, Serializable>());
+                inputs, new HashMap<String, Serializable>());
     }
 
     private static File getFile(String path) throws URISyntaxException {
@@ -146,27 +145,66 @@ operations:
         - SUCCESS
 ```
 ####Discussion
-+ The program begins by creating the Spring application context and getting the Slang bean. In general, most of the interactions with **score** are transmitted through the reference to this bean. 
++ The program begins by creating the Spring application context and getting the Slang bean. In general, most of the interactions with **score** are transmitted through the reference to this bean.
+ 
+  ```java
+  ApplicationContext applicationContext =
+          new ClassPathXmlApplicationContext("/spring/slangContext.xml");
 
+  Slang slang = applicationContext.getBean(Slang.class);
+  ```
+  
 + Next, the `subscribeOnAllEvents` method is called and passed a new `ScoreEventListener` to listen to all the **score** and [SLANG events](#/docs#slang-events) that are fired. 
-
+  
+  ```java
+  slang.subscribeOnAllEvents(new ScoreEventListener() {
+      @Override
+      public void onEvent(ScoreEvent event) {
+          System.out.println(event.getEventType() + " : " + event.getData());
+      }
+  });
+  ```
+  
   The `ScoreEventListener` interface defines only one method, the `onEvent` method. In this example the `onEvent` method is overridden to print out the type and data of all events it receives. It can, of course, be overridden to do other things. 
   
   The API also contains a method `subscribeOnEvents`, which takes in a set of the event types to listen for and a method `unSubscribeOnEvents`, which unsubscribes the listener from all the events it was listening for.
 
-+ Next,  the two content files, containing a flow and an operation respectively, are loaded into `File` objects. These `File` objects will be used to create the two `SlangSource` objects needed to compile and run the flow and its operation. 
++ Next,  the two content files, containing a flow and an operation respectively, are loaded into `File` objects. 
+  
+  ```java
+  File flowFile = getFile("/content//hello_world.sl");
+  File operationFile = getFile("/content/print.sl");
+  ```
+
+  These `File` objects will be used to create the two `SlangSource` objects needed to compile and run the flow and its operation. 
 
   A `SlangSource` object is a representation of source code written in SLANG along with the source's name. The `SlangSource` class exposes several `static` methods for creating new `SlangSource` objects from files, URIs or arrays of bytes.      
 
-+ Next, a set of dependencies is created and the operation is added to the set. A flow containing many operations or subflows would need all of it's dependencies loaded into the dependency set.
++ Next, a set of dependencies is created and the operation is added to the set. 
+
+  ```java
+  Set<SlangSource> dependencies = new HashSet<>();
+  dependencies.add(SlangSource.fromFile(operationFile));
+  ```
+  A flow containing many operations or subflows would need all of it's dependencies loaded into the dependency set.
 
 + Next, we create a map of input names to values. The input names are as they appear under the `inputs` key in the flow's SLANG file. 
 
+  ```java
+  HashMap<String, Serializable> inputs = new HashMap<>();
+  inputs.put("input1", "Hi. I'm inside this application.\n-Slang");
+  ```
+
 + Finally, we compile and run the flow by providing it's `SlangSource`, dependencies, inputs and an empty map of system properties. 
+
+  ```java
+  slang.compileAndRun(SlangSource.fromFile(flowFile), dependencies,
+          inputs, new HashMap<String, Serializable>());
+  ```
 
   An operation can be compiled and run in much the same way. The only difference is that when an operation file is compiled the name of the operation that will be run must be passed along with the other arguments. 
 
-  Although we compile and run here in one step, the process can be broken up into its component parts. The `Slang` interface exposes methods to just compile a flow or operation. Those methods return a `CompliationArtifact` which can then be run with another method call.
+  Although we compile and run here in one step, the process can be broken up into its component parts. The `Slang` interface exposes methods to compile a flow or operation without running it. Those methods return a `CompliationArtifact` which can then be run with a call to the `run` method.
 
   A `CompilationArtifact` is composed of a **score** [`ExecutionPlan`](#/docs#executionplan), a map of dependency names to their `ExecutionPlan`s and a list of Slang `Input`s. 
 

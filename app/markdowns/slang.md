@@ -829,7 +829,9 @@ There two ways to get started with the SLANG CLI. You can either download it pre
     + a folder called **slang** with the CLI tool and its necessary dependencies.
     + some other folders with sample flows.
 5. Navigate to the folder `slang\bin\`.
-6. Start the CLI by running `slang.bat`.
+6. Run the executable:
+  - For Windows : `slang.bat`.
+  - For Linux : `bash slang`.
 
 ###Download, Build and Run CLI
 
@@ -837,7 +839,9 @@ There two ways to get started with the SLANG CLI. You can either download it pre
 2. Using the Command Prompt, navigate to the project root directory.
 3. Build the project by running `mvn clean install`.
 4. After the build finishes, navigate to the `score-language\score-lang-cli\target\slang\bin` folder.
-5. Start the CLI by running `slang.bat`.
+5. Run the executable:
+  - For Windows : `slang.bat`.
+  - For Linux : `bash slang`.
 
 ###Use the CLI
 

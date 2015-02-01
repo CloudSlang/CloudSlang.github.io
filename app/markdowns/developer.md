@@ -1,7 +1,63 @@
 #Developer (Contributor) Guide
 
-##SLANG Events
+##Embedded SLANG 
+SLANG content can be run from inside an existing Java application using Maven and Spring by embedding **score** and interacting with it through the [SLANG API](#/docs#slang-api). 
 
+###Embed SLANG in a Java Application
+Follow the directions below or download a ready-made [sample project](https://github.com/meirwah/test-slang-embedded). 
+
+1. Add the score and SLANG dependencies to the project's pox.xml file in the `<dependencies>` tag.
+  ```xml
+  <dependency>
+      <groupId>io.openscore</groupId>
+      <artifactId>score-all</artifactId>
+      <version>0.1.251</version>
+  </dependency>
+
+  <dependency>
+      <groupId>io.openscore.lang</groupId>
+      <artifactId>score-lang-api</artifactId>
+      <version>0.1.8</version>
+  </dependency>
+
+  <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.3.175</version>
+  </dependency>
+  ```
+2. Add **score** and SLANG configuration to your Spring application context xml file.
+  ```xml
+  <beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:score="http://www.openscore.org/schema/score"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.openscore.org/schema/score
+        http://www.openscore.org/schema/score.xsd">
+
+        <score:engine/>
+        <score:worker uuid="-1"/>
+
+        <bean class="org.openscore.lang.api.configuration.SlangSpringConfiguration"/>
+    </beans>
+  ```
+3. Get the Slang bean from the application context xml file and interact with it using the [SLANG API](#/docs#slang-api).
+  ```java
+  ApplicationContext applicationContext =
+        new ClassPathXmlApplicationContext("/spring/slangContext.xml");
+
+  Slang slang = applicationContext.getBean(Slang.class);
+
+  slang.subscribeOnAllEvents(new ScoreEventListener() {
+        @Override
+        public void onEvent(ScoreEvent event) {
+            System.out.println(event.getEventType() + " : " + event.getData());
+        }
+  });
+  ```
+
+##SLANG Events
 SLANG uses **score** events and its own extended set of events. SLANG events are comprised of an event type string and a map of event data that contains all the relevant event information mapped to keys defined in the 
 `org.openscore.lang.runtime.events.LanguageEventData` class. All fired events are logged in the [execution log](#/docs#execution-log) file.
 

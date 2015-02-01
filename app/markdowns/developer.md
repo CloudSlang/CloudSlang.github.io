@@ -405,6 +405,24 @@ The following diagram describes the relations between score components:
 
 ![Full Diagram](images/diagrams/score_full.png "Full Diagram")
 
-##How to contribute code
+##Contributing Code
 
-Coming soon ;)
+The openscore project consists of the following [repositories](https://github.com/openscore) on GitHub.
+
++ **score** - score engine
++ **score-language** - score DSL (SLANG) and the CLI
++ **slang-content** - SLANG flows and operations
++ **score-actions** - Java actions for SLANG
++ **score-content-sdk** - Java annotation definitions, session related classes and enums
++ **openscore.github.io** - score website and documentation
+
+Please see the `CONTRIBUTING.md` file in any of the repositories for more information on how to contribute.
+
+###slang-content - organization
+-	Content is organized in a folder structure that best describes the content. 
+-  The directories are structured as follows:
+  -  All files will reside under org\openscore\slang
+  -  Under the slang directory there are the following sub-directories:
+      - base – general purpose content 
+        - below base there are sub-directories such as DB, network, mail
+      - other directories - content that integrates with other systems, such as Docker, Openstack, LDAP

@@ -57,6 +57,121 @@ Follow the directions below or download a ready-made [sample project](https://gi
   });
   ```
 
+##SLANG API
+The SLANG API allows a program to interact with score using content authored in SLANG. What follows is a brief discussion of the API using a simple example that compiles and runs a flow while listening for the events that are fired during the run. For more information, see the [Javadocs](TODO:JAVADOCS_LINK).
+
+###Example
+####Code
+**Java Class - SlangEmbed.java**
+```Java
+package io.openscore.example;
+
+import org.openscore.events.ScoreEvent;
+import org.openscore.events.ScoreEventListener;
+import org.openscore.lang.api.Slang;
+import org.openscore.lang.compiler.SlangSource;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.io.File;
+import java.io.Serializable;
+import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+public class SlangEmbed {
+    public static void main(String[] args) throws URISyntaxException{
+        ApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("/spring/slangContext.xml");
+
+        Slang slang = applicationContext.getBean(Slang.class);
+
+        slang.subscribeOnAllEvents(new ScoreEventListener() {
+            @Override
+            public void onEvent(ScoreEvent event) {
+                System.out.println(event.getEventType() + " : " + event.getData());
+            }
+        });
+
+		File flowFile = getFile("/content//hello_world.sl");
+        File operationFile = getFile("/content/print.sl");
+        
+        Set<SlangSource> dependencies = new HashSet<>();
+        dependencies.add(SlangSource.fromFile(operationFile));
+
+        HashMap<String, Serializable> inputs = new HashMap<>();
+        inputs.put("input1", "Hi. I'm inside this application.\n-Slang");
+
+        slang.compileAndRun(SlangSource.fromFile(flowFile), dependencies,
+                inputs,
+                new HashMap<String, Serializable>());
+    }
+
+    private static File getFile(String path) throws URISyntaxException {
+        return new File(SlangEmbed.class.getResource(path).toURI());
+    }
+}
+```
+**Flow - hello_world.sl**
+```yaml
+namespace: user.flows.hello_world
+
+imports:
+  ops: user.operations.utils
+
+flow:
+  name: hello_world
+
+  inputs:
+    - input1
+
+  workflow:
+    sayHi:
+      do:
+        ops.print:
+          - text: input1
+```
+**Operation - print.sl**
+```yaml
+namespace: user.operations.utils
+
+operations:
+  - print:
+      inputs:
+        - text
+      action:
+        python_script: print text
+      results:
+        - SUCCESS
+```
+####Discussion
++ The program begins by creating the Spring application context and getting the Slang bean. In general, most of the interactions with **score** are transmitted through the reference to this bean. 
+
++ Next, the `subscribeOnAllEvents` method is called and passed a new `ScoreEventListener` to listen to all the **score** and [SLANG events](#/docs#slang-events) that are fired. 
+
+  The `ScoreEventListener` interface defines only one method, the `onEvent` method. In this example the `onEvent` method is overridden to print out the type and data of all events it receives. It can, of course, be overridden to do other things. 
+  
+  The API also contains a method `subscribeOnEvents`, which takes in a set of the event types to listen for and a method `unSubscribeOnEvents`, which unsubscribes the listener from all the events it was listening for.
+
++ Next,  the two content files, containing a flow and an operation respectively, are loaded into `File` objects. These `File` objects will be used to create the two `SlangSource` objects needed to compile and run the flow and its operation. 
+
+  A `SlangSource` object is a representation of source code written in SLANG along with the source's name. The `SlangSource` class exposes several `static` methods for creating new `SlangSource` objects from files, URIs or arrays of bytes.      
+
++ Next, a set of dependencies is created and the operation is added to the set. A flow containing many operations or subflows would need all of it's dependencies loaded into the dependency set.
+
++ Next, we create a map of input names to values. The input names are as they appear under the `inputs` key in the flow's SLANG file. 
+
++ Finally, we compile and run the flow by providing it's `SlangSource`, dependencies, inputs and an empty map of system properties. 
+
+  An operation can be compiled and run in much the same way. The only difference is that when an operation file is compiled the name of the operation that will be run must be passed along with the other arguments. 
+
+  Although we compile and run here in one step, the process can be broken up into its component parts. The `Slang` interface exposes methods to just compile a flow or operation. Those methods return a `CompliationArtifact` which can then be run with another method call.
+
+  A `CompilationArtifact` is composed of a **score** [`ExecutionPlan`](#/docs#executionplan), a map of dependency names to their `ExecutionPlan`s and a list of Slang `Input`s. 
+
+  A Slang `Input` contains its name, expression and the state of all its input properties (e. g. required).
+
 ##SLANG Events
 SLANG uses **score** events and its own extended set of events. SLANG events are comprised of an event type string and a map of event data that contains all the relevant event information mapped to keys defined in the 
 `org.openscore.lang.runtime.events.LanguageEventData` class. All fired events are logged in the [execution log](#/docs#execution-log) file.

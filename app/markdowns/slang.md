@@ -91,7 +91,7 @@ The general structure of SLANG files is outlined here. Some of the properties th
   + [inputs](#/docs#inputs)
 	  + [required](#/docs#required)
 	  + [default](#/docs#default)
-	  + [override](#/docs#override)
+	  + [overridable](#/docs#overridable)
   + [workflow](#/docs#workflow)
     + [task(s)](#/docs#task)
       + [do](#/docs#do)
@@ -111,7 +111,7 @@ The general structure of SLANG files is outlined here. Some of the properties th
   + [inputs](#/docs#inputs)
     + [required](#/docs#required)
 	+ [default](#/docs#default)
-	+ [override](#/docs#override)
+	+ [overridable](#/docs#overridable)
   + [action](#/docs#action)
   + [outputs](#/docs#outputs)
 	+ [fromInputs](#/docs#fromInputs)
@@ -318,7 +318,7 @@ Property|Required|Default|Value Type|Description|More info
 ---|
 `required`|no|true|boolean|is the input required|[required](#/docs#required)
 `default`|no|-|expression|default value of the input|[default](#/docs#default)
-`override`|no|false|boolean|will the default value override values passed in|[override](#/docs#override)
+`overridable`|no|true|boolean|if false, the default value always overrides values passed in|[overridable](#/docs#overridable)
 
 **Example - two inputs**
 
@@ -326,7 +326,7 @@ Property|Required|Default|Value Type|Description|More info
 inputs:
   - input1:
       default: "'default value'"
-      override: true
+      overridable: false
   - input2
 ```
 
@@ -429,11 +429,11 @@ outputs:
 ```
 
 
-###override
-The key `override` is a property of an [input](#/docs#inputs) name.
+###overridable
+The key `overridable` is a property of an [input](#/docs#inputs) name.
 It is mapped to a boolean value.
 
-A value of `true` will always override the [input](#/docs#inputs) parameter sent to the [flow](#/docs#flow) or [operation](#/docs#operation) with the [default](#/docs#default) value. If `override` is not defined, the [default](#/docs#default) value will not override the value passed to the [input](#/docs#inputs) parameter. 
+A value of `false` will always override the [input](#/docs#inputs) parameter sent to the [flow](#/docs#flow) or [operation](#/docs#operation) with the [default](#/docs#default) value. If `overridable` is not defined, the [default](#/docs#default) value will not override the value passed to the [input](#/docs#inputs) parameter. 
 
 **Example - default value of text input parameter will override values passed in**
 
@@ -441,7 +441,7 @@ A value of `true` will always override the [input](#/docs#inputs) parameter sent
 inputs:
   - text:
       default: "'default text'"
-      override: true
+      overridable: false
 ```
 
 ###publish

@@ -135,14 +135,14 @@ flow:
 ```yaml
 namespace: user.operations.utils
 
-operations:
-  - print:
-      inputs:
-        - text
-      action:
-        python_script: print text
-      results:
-        - SUCCESS
+operation:
+  name: print
+  inputs:
+    - text
+  action:
+    python_script: print text
+  results:
+    - SUCCESS
 ```
 ####Discussion
 + The program begins by creating the Spring application context and getting the Slang bean. In general, most of the interactions with **score** are transmitted through the reference to this bean.
@@ -202,9 +202,9 @@ operations:
           inputs, new HashMap<String, Serializable>());
   ```
 
-  An operation can be compiled and run in much the same way. The only difference is that when an operation file is compiled the name of the operation that will be run must be passed along with the other arguments. 
+  An operation can be compiled and run in the same way. 
 
-  Although we compile and run here in one step, the process can be broken up into its component parts. The `Slang` interface exposes methods to compile a flow or operation without running it. Those methods return a `CompliationArtifact` which can then be run with a call to the `run` method.
+  Although we compile and run here in one step, the process can be broken up into its component parts. The `Slang` interface exposes a method to compile a flow or operation without running it. That method return a `CompliationArtifact` which can then be run with a call to the `run` method.
 
   A `CompilationArtifact` is composed of a **score** [`ExecutionPlan`](#/docs#executionplan), a map of dependency names to their `ExecutionPlan`s and a list of Slang `Input`s. 
 

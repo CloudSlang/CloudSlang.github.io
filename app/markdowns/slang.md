@@ -35,14 +35,14 @@ flow:
 ```yaml
 namespace: user.examples.hello_world
 
-operations:
-  - print:
-      inputs:
-        - text
-      action:
-        python_script: print text
-      results:
-        - SUCCESS
+operation:
+  name: print
+  inputs:
+    - text
+  action:
+    python_script: print text
+  results:
+    - SUCCESS
 ```
 
 ####Run
@@ -68,10 +68,10 @@ SLANG files are written using [YAML](http://www.yaml.org). The recommended exten
 There are two types of SLANG files:
 
 + flow
-+ operations
++ operation
 
 
-The following properties are for all types of SLANG files. For properties specific to [flows](#/docs#flow) or [operations](#/docs#operations), see their respective sections below.  
+The following properties are for all types of SLANG files. For properties specific to [flows](#/docs#flow) or [operations](#/docs#operation), see their respective sections below.  
 
 Property|Required|Default|Value Type|Description|More Info
 ---|---|---|---|---
@@ -106,16 +106,16 @@ The general structure of SLANG files is outlined here. Some of the properties th
 
 + [namespace](#/docs#namespace)
 + [imports](#/docs#imports)
-+ [operations](#/docs#operations)
-  + [operation(s)](#/docs#operation)
-    + [inputs](#/docs#inputs)
-      + [required](#/docs#required)
-	  + [default](#/docs#default)
-	  + [override](#/docs#override)
-    + [action](#/docs#action)
-    + [outputs](#/docs#outputs)
-	  + [fromInputs](#/docs#fromInputs)
-    + [results](#/docs#results)   
++ [operation](#/docs#operations)
+  + [name](#/docs#name)
+  + [inputs](#/docs#inputs)
+    + [required](#/docs#required)
+	+ [default](#/docs#default)
+	+ [override](#/docs#override)
+  + [action](#/docs#action)
+  + [outputs](#/docs#outputs)
+	+ [fromInputs](#/docs#fromInputs)
+  + [results](#/docs#results)   
 
 ---
 
@@ -139,30 +139,30 @@ A `java_action` is a valid @Action that conforms to the method signature: `publi
 **Example - SLANG call to  a Java @Action**
 
 ```yaml
-- pull_image:
-    inputs:
-      - input1
-      - input2
-    action:
-      java_action:
-        className: org.mypackage.MyClass
-        methodName: doMyAction
-    outputs:
-      - returnResult
-    results:
-      - SUCCESS : someActionOutput == '0'
-      - FAILURE
+name: pull_image
+inputs:
+  - input1
+  - input2
+action:
+  java_action:
+    className: org.mypackage.MyClass
+    methodName: doMyAction
+outputs:
+  - returnResult
+results:
+  - SUCCESS : someActionOutput == '0'
+  - FAILURE
 ```
 
 ```java
-    public Map<String, String> doMyAction(
-            @Param("input1") String input1,
-            @Param("input2") String input2) {
-        //logic here
-        Map<String, String> returnValues = new HashMap<>();
-        //prepare return values map
-        return returnValues;
-    }
+public Map<String, String> doMyAction(
+        @Param("input1") String input1,
+        @Param("input2") String input2) {
+    //logic here
+    Map<String, String> returnValues = new HashMap<>();
+    //prepare return values map
+    return returnValues;
+}
 ```
 
 ####python_script
@@ -172,24 +172,22 @@ It is mapped to a value containing a Python version 2.7 script.
 **Example - action with Python script that divides two numbers**
 
 ```yaml
-- divide:
-    inputs:
-      - dividend
-      - divisor
-    action:
-      python_script: |
-        if divisor == '0':
-          quotient = 'division by zero error'
-        else:
-          quotient = float(dividend) / float(divisor)
-    outputs:
-      - quotient
-    results:
-      - ILLEGAL: quotient == 'division by zero error'
-      - SUCCESS
+name: divide
+inputs:
+  - dividend
+  - divisor
+action:
+  python_script: |
+    if divisor == '0':
+      quotient = 'division by zero error'
+    else:
+      quotient = float(dividend) / float(divisor)
+outputs:
+  - quotient
+results:
+  - ILLEGAL: quotient == 'division by zero error'
+  - SUCCESS
 ```
-
- 
 
 ###default
 The key `default` is a property of an [input](#/docs#inputs) name.
@@ -284,7 +282,7 @@ flow:
 ```
 
 ###fromInputs
-May appear in the value of an [operation's](#/docs#operation) [output](#doc/#outputs).
+May appear in the value of an [output](#doc/#outputs).
 
 Special syntax to [output](#/docs#outputs) an [input](#/docs#inputs) parameter as it was passed in.
 
@@ -334,10 +332,10 @@ inputs:
 
 
 ###name
-The key `name` is a property of [flow](#/docs#flow) .
-It is mapped to a value that is used as the name of the flow.
+The key `name` is a property of [flow](#/docs#flow) and [operation](#/docs#operation).
+It is mapped to a value that is used as the name of the [flow](#/docs#flow) or [operation](#/docs#operation).
 
-The name of a [flow](#/docs#flow) may be used when calling the [flow](#/docs#flow) as a subflow by a [task](#/docs#task) in another [flow](#/docs#flow). 
+The name of a [flow](#/docs#flow) or [operation](#/docs#operation) may be used when called from a [flow](#/docs#flow)'s [task](#/docs#task). 
 
 **Example - naming the flow "division_flow"**
 
@@ -385,8 +383,7 @@ on_failure:
 ```
 
 ###operation
-A name of an operation which is a list item of [operations](#/docs#operations).
-It is mapped to the operation's properties.
+The key `operation` is mapped to the properties which make up the operation contents.
 
 Property|Required|Default|Value Type|Description|More Info
 ---|
@@ -399,33 +396,20 @@ results|no|`SUCCESS`|list|possible operation results|[results](#/docs#results)
 **Example - operation that adds two inputs and outputs the answer**
 
 ```yaml
-- add:
-   inputs:
-     - left
-     - right
-   action:
-     python_script: ans = left + right
-   outputs:
-     - out: ans
-   results:
-     - SUCCESS
-```
-
-###operations
-The key `operations` is mapped to a list of [operation](operation) definitions.
-
-
-
-**Example - operations key with one operation**
-```yaml
-operations:
-  - print_done:
-      action:
-        python_script: print 'Done'
+name: add
+inputs:
+  - left
+  - right
+action:
+  python_script: ans = left + right
+outputs:
+  - out: ans
+results:
+  - SUCCESS
 ```
 
 ###outputs
-The key `outputs` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation) name.
+The key `outputs` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation).
 It is mapped to a list of output variable names which may also contain expression values. Output expressions must evaluate to strings. 
 
 Defines the parameters a  [flow](#/docs#flow) or [operation](#/docs#operation) exposes to possible [publication](#/docs#publish) by a [task](#/docs#task). The calling [task](#/docs#task) refers to an output by its name.
@@ -633,32 +617,35 @@ flow:
 ```yaml
 namespace: examples.divide
 
-operations:
-  - divide:
-      inputs:
-        - dividend
-        - divisor
-      action:
-        python_script: |
-          if divisor == '0':
-            quotient = 'division by zero error'
-          else:
-            quotient = float(dividend) / float(divisor)
-      outputs:
-        - quotient
-      results:
-        - ILLEGAL: quotient == 'division by zero error'
-        - SUCCESS
+operation:
+  name: divide
+  inputs:
+    - dividend
+    - divisor
+  action:
+    python_script: |
+      if divisor == '0':
+        quotient = 'division by zero error'
+      else:
+        quotient = float(dividend) / float(divisor)
+  outputs:
+    - quotient
+  results:
+    - ILLEGAL: quotient == 'division by zero error'
+    - SUCCESS
 ```
 **Operations - print.sl**
 ```yaml
-  - print:
-      inputs:
-        - text
-      action:
-        python_script: print text
-      results:
-        - SUCCESS
+namespace: examples.divide
+
+operation:
+  name: print
+  inputs:
+    - text
+  action:
+    python_script: print text
+  results:
+    - SUCCESS
 ```
 
 ####Example 2 - Default Navigation
@@ -707,16 +694,16 @@ flow:
 ```yaml
 namespace: examples.defualtnav
 
-operations:
-  - produce_default_navigation:
-      inputs:
-        - navigationType
-      action:
-        python_script:
-          print 'Default navigation based on input of - ' + navigationType
-      results:
-        - SUCCESS: navigationType == 'success'
-        - FAILURE
+operation:
+  name: produce_default_navigation
+  inputs:
+    - navigationType
+  action:
+    python_script:
+      print 'Default navigation based on input of - ' + navigationType
+  results:
+    - SUCCESS: navigationType == 'success'
+    - FAILURE
 ```
 
 **Operations - something.sl**
@@ -724,25 +711,25 @@ operations:
 ```yaml
 namespace: examples.defualtnav
 
-operations:
-  - something:
-      action:
-        python_script:
-          print 'Doing something important'
+operation:
+  name: something
+  action:
+      python_script:
+        print 'Doing something important'
 ```
 
 **Operations - send_email_mock.sl**
 ```yaml
 namespace: examples.defualtnav
 
-operations:
-  - send_email_mock:
-      inputs:
-        - recipient
-        - subject
-      action:
-        python_script:
-          print 'Email sent to ' + recipient + ' with subject - ' + subject
+operation:
+  name: send_email_mock
+  inputs:
+    - recipient
+    - subject
+  action:
+    python_script:
+      print 'Email sent to ' + recipient + ' with subject - ' + subject
 ```
 
 ####Example3 - Subflow

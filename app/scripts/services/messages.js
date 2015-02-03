@@ -26,9 +26,8 @@ angular.module('scoreWebsiteApp')
             // header
             headerMainTitle: 'Lightweight, process-based orchestration engine',
             headerMainTitleBullets: headerMainTitleBullets,
-            headerDescription: 'score is a general-purpose java-based open-source orchestration engine which is process-based, ' +
-                'embeddable, lightweight, scalable and multilingual',
-            headerStartNow: 'Start Now',
+            headerDescription: 'A flow-based orchestration engine to manage your deployed applications. Rapidly automate your DevOps use cases using ready-made workflows.',
+            headerStartNow: 'Getting started',
 
             // footer
             footerPrivacy: 'Privacy Policy',
@@ -43,12 +42,14 @@ angular.module('scoreWebsiteApp')
             footerContribute: 'Contribute',
 
             // bullets
-            mainBulletsProcessBasedTitle: 'Process based',
-            mainBulletsMultiLingualTitle: 'Multilingual',
-            mainBulletsLightweightTitle: 'Lightweight',
-            mainBulletsProcessBasedDesc: 'score DSL – slang - is a simple, intuitive way to describe workflows in a re-usable fashion. slang allows you to define the ‘how’ and not just the ‘what’, thus allowing you to better control the actual runtime behavior of the workflow.',
-            mainBulletsMultiLingualDesc: 'slang is only one of the languages you can use to define workflows for score. Take advantage of score pluggable architecture to plug in your compiler to potentially support any process modeling language out there.',
-            mainBulletsLightweightDesc: 'Small footprint, out of the box content and an easy-to-embed approach makes score the perfect choice as the  workflow orchestration solution in your application.',
+            mainBulletsProcessBasedTitle: 'Process-Based',
+            mainBulletsDayTwoOperationsTitle: 'Day 2 Operations',
+            mainBulletsAgentlessTitle: 'Agentless',
+            mainBulletsProcessBasedDesc: 'score language - slang - is a simple, intuitive way to describe workflows in a reusable fashion. Using YAML and Python, slang allows you to better control the actual runtime behavior of the workflow.',
+            mainBulletsDayTwoOperationsDescPre: 'Use our existing slang content to manage your deployed application.',
+            mainBulletsDayTwoOperationsDescLink: 'Explore',
+            mainBulletsDayTwoOperationsDescPost: ' our Docker, OpenStack and Utilities content.',
+            mainBulletsAgentlessDesc: 'Don’t bother setting up and managing agents on all your machines. slang workflows can use remote APIs to run tasks.',
             mainBulletsReadMore: 'Read More',
 
             // contact us

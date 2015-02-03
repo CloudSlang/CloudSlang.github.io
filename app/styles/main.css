@@ -60,7 +60,7 @@ a:hover {
 }
 
 .h3, h3 {
-    font-size: 35px;
+    font-size: 34px;
     font-weight: normal;
     line-height: 0.9;
 }
@@ -277,7 +277,7 @@ a:hover {
     background-color: #5d913a;
 }
 
-.bullets .read-more {
+.bullets .explore {
     font-weight: 400;
     text-decoration: underline;
 }
@@ -477,7 +477,6 @@ a:hover {
 }
 
 .getting-started .detailedBox {
-    display: none;
     background-color: #152d07;
     padding: 20px;
     min-height: 500px;
@@ -502,46 +501,9 @@ a:hover {
     margin-left: 25px;
 }
 
-@media (max-width: 766px) {
-    .getting-started .box {
-        cursor: default;
-    }
-
-    .getting-started .box-content p {
-        font-size: 30px;
-    }
-
-    .getting-started .box .box-container .box-content {
-        margin-top: 10px;
-    }
-
-    .getting-started .box .box-container .box-content > a {
+@media (max-width: 991px) {
+    .getting-started {
         display: none;
-    }
-}
-
-@media (max-width: 596px) {
-    .getting-started .box .box-container .box-image {
-        width: 100px;
-        margin-top: 10px;
-        margin-right: 10px;
-        margin-left: 30px;
-    }
-    .getting-started .box-container .h3 {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .getting-started .box-container .h3 {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 372px) {
-    .getting-started .box .box-container .box-image {
-        margin-top: 15px;
-        width: 81px;
     }
 }
 

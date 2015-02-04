@@ -48,7 +48,7 @@ angular.module('scoreWebsiteApp')
             mainBulletsProcessBasedDesc: 'score language - slang - is a simple, intuitive way to describe workflows in a reusable fashion. Using YAML and Python, slang allows you to better control the actual runtime behavior of the workflow.',
             mainBulletsDayTwoOperationsDescPre: 'Use our existing slang content to manage your deployed application.',
             mainBulletsDayTwoOperationsDescLink: 'Explore',
-            mainBulletsDayTwoOperationsDescPost: ' our Docker, OpenStack and Utilities content.',
+            mainBulletsDayTwoOperationsDescPost: ' our Docker, OpenStack and utilities content.',
             mainBulletsAgentlessDesc: 'Don’t bother setting up and managing agents on all your machines. slang workflows can use remote APIs to run tasks.',
             mainBulletsReadMore: 'Read More',
 
@@ -63,7 +63,7 @@ angular.module('scoreWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsWhoWeAreText: 'The project score was contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
+            aboutUsWhoWeAreText: 'The score project is being contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
 
             // use cases
             useCasesTitle: 'Use Cases',
@@ -84,26 +84,27 @@ angular.module('scoreWebsiteApp')
             orText: 'or',
 
             // -- download and install cli
-            detailedDownloadCliHeader: 'Download slang command-line',
-            detailedDownloadCliText: 'Download and Unzip slang command-line',
+            detailedDownloadCliHeader: 'Download slang CLI',
+            detailedDownloadCliText: 'Download and unzip the slang command-line interface.',
             detailedDownloadLatest: 'Download latest version',
             detailedDownloadOldVersions: 'Download old versions',
             detailedSlangCliHeader: 'Use slang',
-            detailedSlangCliText: 'Write a flow with slang using your favorite text editor and save it as YAML file',
+            detailedSlangWriteFlowText: 'Write a slang flow and save it as \'hello_world.sl\'.',
+            detailedSlangWriteOperationText: 'Write a slang operation and save it as \'print.sl\'.',
             detailedUseCliHeader: 'Start slang command-line',
-            detailedUseCliText: 'Open your console and execute slang cli',
+            detailedUseCliText: 'Open your console and execute the slang CLI',
             detailedTriggerFlowHeader: 'Trigger flow',
             detailedTriggerFlowText1: '1. Open your console and execute slang cli. The cli is located at <path>/slang/bin.',
-            detailedTriggerFlowText2: '2. Trigger your slang written flow from slang command-line',
-            detailedCliHeader: 'console',
+            detailedTriggerFlowText2: '2. Trigger your slang flow from slang command-line.',
+            detailedCliHeader: 'Click to see how',
             detailedCliPrefix: '$',
             detailedCliClear: 'Clear',
             detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
-            detailedCliTriggerFlow: 'slang run --f /.../SimpleFlow.sl --i input1=LA\n' +
-                '^500 CheckWeather\n' +
-                '^250 PrintWeather\n' +
-                ' the weather in LA is: hot\n' +
-                '^250 Flow : SimpleFlow finished with result: SUCCESS\n' +
+            detailedCliTriggerFlow: 'slang run --f /.../hello_world.sl\n' +
+                '^500 - sayHi\n' +
+                '^250 Hello, World\n' +
+                '^250 Flow : hello_world finished with result : SUCCESS\n' +
+                ' Execution id: 101600001, duration: 0:00:00.790\n' +
                 '^250$',
 
             // -- embed score

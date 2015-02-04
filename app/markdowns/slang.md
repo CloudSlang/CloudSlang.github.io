@@ -261,6 +261,8 @@ results:
   - SUCCESS
 ```
 
+**Note:** Single-line Python scripts can be written inline with the `python_script` key. Multi-line Python scripts can use the YAML pipe (|) indicator as in the example above.
+
 ###default
 The key `default` is a property of an [input](#/docs#inputs) name.
 It is mapped to an expression value.

@@ -293,6 +293,12 @@ a:hover {
     border-bottom: 1px solid #8a9a7c;
 }
 
+
+.use-cases .watch-link {
+    font-weight: 400;
+    text-decoration: underline;
+}
+
 .use-cases .use-case .sm-image {
     margin-top: 40px;
 }

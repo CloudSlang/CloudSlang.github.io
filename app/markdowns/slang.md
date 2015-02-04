@@ -4,6 +4,78 @@
 
 SLANG is a [YAML](http://www.yaml.org) based language for describing a workflow. Using SLANG you can easily define a workflow in a structured, easy-to-understand format that can be run by **score**. SLANG files can be run by the [SLANG CLI](#/docs#slang-cli) or by an embedded instance of **score** using the [SLANG API](#/docs#slang-api).
 
+###YAML Overview
+The following is a brief overview of some of the YAML specification.
+
+####Whitespace
+Unlike many programming, markup, and data serialization languages, whitespace is syntactically significant. Indentation is used to denote scope and is always achieved using spaces. Never use tabs.
+
+**Example: a SLANG task (in this case named divider) contains do, publish and navigate keys**
+
+```yaml
+divider:
+  do:
+    ops.divide:
+      - dividend: input1
+      - divisor: input2
+  publish:
+    - answer: quotient
+  navigate:
+    ILLEGAL: FAILURE
+    SUCCESS: printer
+```
+
+####Lists
+List are denoted with a hypen (-) and a space preceding each list item. 
+
+**Example: a SLANG flow's possible results are defined using a list mapped to the results key**
+```yaml
+results:
+    - ILLEGAL
+    - SUCCESS
+```
+
+####Maps
+Maps are denoted use a colon (:) and a space between each key value pair.
+
+**Example: a SLANG  task's navigate key is mapped to a mapping of results and their targets**
+```yaml
+navigate:
+  ILLEGAL: FAILURE
+  SUCCESS: printer
+```
+
+####Strings
+Strings can be denoted in several ways: unquoted, single quoted and double quoted. The best method for any given string depends on whether it includes any special characters, leading or trailing whitespace, spans multiple lines, along with other factors.
+
+Strings that span multiple lines can be written using a pipe (|) to preserve line breaks or a greater than symbol (>) where each line break will be converted to a space.
+
+**Example:  a name of a SLANG flow is defined using the unquoted style** 
+```yaml
+flow:
+  name: hello_world
+```
+
+**Example:  the single or double quoted style is used in SLANG to pass a Python string, which is quoted using the other style, to an input parameter** 
+```yaml
+sayHi:
+  do:
+    ops.print:
+      - text: "'Hello, World'"
+```
+
+**Example:  the pipe is used in SLANG to indicate a multi-line Python script** 
+```yaml
+action:
+  python_script: |
+    if divisor == '0':
+      quotient = 'division by zero error'
+    else:
+      quotient = float(dividend) / float(divisor)
+```
+
+####Comments
+Comments begin with the # symbol.
 
 ### Hello World Example
 The following is a simple example to give you an idea of how SLANG is structured and can be used to ensure your environment is set up properly to run flows. 
@@ -53,14 +125,14 @@ The output will look similar to this:
 - sayHi
 Hello, World
 Flow : hello_world finished with result : SUCCESS
-Flow execution time took  0:00:00.790 , with execution id : 101600001
+Execution id: 101600001, duration: 0:00:00.790
 ```
 
 ####Explanation
 The CLI runs the [flow](#/docs#flow) in the file we have passed to it, namely **hello_world.sl**. The [flow](#/docs#flow) begins with an [import](#/docs#imports) of the operations file, **print.sl**, using its [namespace](#/docs#namespace) as the value for the [imports](#/docs#imports) key. Next, we enter the [flow](#/docs#flow) named `hello_world` and begin its [workflow](#/docs#workflow). The [workflow](#/docs#workflow) has one [task](#/docs#task) named `sayHi` which calls the `print` [operation](#/docs#operation) from the operations file that was imported. The [flow](#/docs#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#/docs#operation) `text` [input](#/docs#inputs). The print [operation](#/docs#operation) performs its [action](#/docs#action), which is a simple Python script that prints the [input](#/docs#inputs), and then returns a [result](#/docs#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#/docs#task) the [flow](#/docs#flow) finishes with a [result](#/docs#results) of `SUCCESS`.
 
 ##SLANG DSL Reference
-This reference begins with a brief introduction to SLANG files and their structure followed by an alphabetical list of SLANG keywords and concepts. 
+This reference begins with a brief introduction to SLANG files and their structure followed by an alphabetical listing of SLANG keywords and concepts. 
 
 ###SLANG Files 
 SLANG files are written using [YAML](http://www.yaml.org). The recommended extension for SLANG files is .sl, but .yaml  and .yl will work as well. 
@@ -755,7 +827,6 @@ flow:
     - divisor2: "'0'"
 
   workflow:
-
     division1:
       do:
         ops.division:
@@ -850,7 +921,7 @@ slang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/
 ####Other Commands
 Some of the available commands are:
 
-+ `env --setAsync` - Sets the execution mode to be synchronous or asynchronous. By default the execution mode is synchronous, meaning only one flow can run at a time.
++ `env --setAsync` - Sets the execution mode to be synchronous (`false`) or asynchronous (`true`). By default the execution mode is synchronous, meaning only one flow can run at a time. 
 
 	```bash
 	slang>env --setAsync true

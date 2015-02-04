@@ -100,12 +100,13 @@ angular.module('scoreWebsiteApp')
             detailedCliPrefix: '$',
             detailedCliClear: 'Clear',
             detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
-            detailedCliTriggerFlow: 'slang run --f /.../hello_world.sl\n' +
-                '^500 - sayHi\n' +
-                '^250 Hello, World\n' +
-                '^250 Flow : hello_world finished with result : SUCCESS\n' +
-                ' Execution id: 101600001, duration: 0:00:00.790\n' +
-                '^250$',
+            detailedCliTriggerFlow: 'slang\n' +
+                '^100slang>^500 run --f /.../hello_world.sl\n' +
+                '^500- sayHi\n' +
+                '^250Hello, World\n' +
+                '^250Flow : hello_world finished with result : SUCCESS\n' +
+                'Execution id: 101600001, duration: 0:00:00.790\n' +
+                '^250slang>',
 
             // -- embed score
             detailedEmbedPomHeader: 'score dependencies',

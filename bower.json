@@ -21,7 +21,8 @@
         "highlightjs": "~8.3.0",
         "typed.js": "*",
         "pace": "*",
-        "components-font-awesome" : "*"
+        "components-font-awesome" : "*",
+        "angular-highlightjs": "*"
     },
     "devDependencies": {
         "angular-mocks": "~1.2.0",

@@ -3,11 +3,11 @@
 ##Overview
 What follows is a brief overview of how **score** works and how SLANG interacts with it. For more detailed information see the [score API](#/docs#score-api) and [SLANG API](#/docs#slang-api) sections.
 
-**score** is an engine that runs workflows. Internally, the workflows are represented as [ExecutionPlans](#/docs#executionplan). An ExecutionPlan is essentially a map of IDs and [ExecutionSteps](#/docs#executionstep). Each [ExecutionStep](#/docs#executionstep) contains information for calling an action method and a navigation method. 
+**score** is an engine that runs workflows. Internally, the workflows are represented as [ExecutionPlans](#/docs#executionplan). An [ExecutionPlan](#/docs#executionplan) is essentially a map of IDs and [ExecutionSteps](#/docs#executionstep). Each [ExecutionStep](#/docs#executionstep) contains information for calling an action method and a navigation method. 
 
 When an [ExecutionPlan](#/docs#executionplan) is triggered it executes the first [ExecutionStep's](#/docs#executionstep) action method and navigation method. The navigation method returns the ID of the next [ExecutionStep](#/docs#executionstep) to run. Execution continues in this manner, successively calling the next [ExecutionStep's](#/docs#executionstep) action and navigation methods, until a navigation method returns `null` to indicate the end of the flow.
 
-SLANG plugs into **score** by compiling its workflow and operation files into **score** [ExecutionPlans](#/docs#executionplan) and then triggering them. Generally, when working with SLANG content, all interaction with **score** goes through the [SLANG API](#/docs#slang-api), not the [score API](#/score-api).
+SLANG plugs into **score** by compiling its workflow and operation files into **score** [ExecutionPlans](#/docs#executionplan) and then triggering them. Generally, when working with SLANG content, all interaction with **score** goes through the [SLANG API](#/docs#slang-api), not the [score API](#/docs#score-api).
 
 
 ##Embedded SLANG 
@@ -16,7 +16,7 @@ SLANG content can be run from inside an existing Java application using Maven an
 ###Embed SLANG in a Java Application
 Follow the directions below or download a ready-made [sample project](https://github.com/meirwah/test-slang-embedded). 
 
-1. Add the score and SLANG dependencies to the project's pox.xml file in the `<dependencies>` tag.
+1. Add the score and SLANG dependencies to the project's pom.xml file in the `<dependencies>` tag.
   ```xml
   <dependency>
       <groupId>io.openscore</groupId>
@@ -196,16 +196,16 @@ operation:
   Set<SlangSource> dependencies = new HashSet<>();
   dependencies.add(SlangSource.fromFile(operationFile));
   ```
-  A flow containing many operations or subflows would need all of it's dependencies loaded into the dependency set.
+  A flow containing many operations or subflows would need all of its dependencies loaded into the dependency set.
 
-+ Next, we create a map of input names to values. The input names are as they appear under the `inputs` key in the flow's SLANG file. 
++ Next, a map of input names to values is created. The input names are as they appear under the `inputs` key in the flow's SLANG file. 
 
   ```java
   HashMap<String, Serializable> inputs = new HashMap<>();
   inputs.put("input1", "Hi. I'm inside this application.\n-Slang");
   ```
 
-+ Finally, we compile and run the flow by providing it's `SlangSource`, dependencies, inputs and an empty map of system properties. 
++ Finally, the flow is compiled and run by providing its `SlangSource`, dependencies, inputs and an empty map of system properties. 
 
   ```java
   slang.compileAndRun(SlangSource.fromFile(flowFile), dependencies,
@@ -214,9 +214,9 @@ operation:
 
   An operation can be compiled and run in the same way. 
 
-  Although we compile and run here in one step, the process can be broken up into its component parts. The `Slang` interface exposes a method to compile a flow or operation without running it. That method return a `CompliationArtifact` which can then be run with a call to the `run` method.
+  Although we compile and run here in one step, the process can be broken up into its component parts. The `Slang` interface exposes a method to compile a flow or operation without running it. That method returns a `CompliationArtifact` which can then be run with a call to the `run` method.
 
-  A `CompilationArtifact` is composed of a **score** [`ExecutionPlan`](#/docs#executionplan), a map of dependency names to their `ExecutionPlan`s and a list of Slang `Input`s. 
+  A `CompilationArtifact` is composed of a **score** `ExecutionPlan`, a map of dependency names to their `ExecutionPlan`s and a list of Slang `Input`s. 
 
   A Slang `Input` contains its name, expression and the state of all its input properties (e. g. required).
 
@@ -252,7 +252,7 @@ score can be embedded inside an existing Java application using Maven and Spring
 
 ###Embed score in a Java Application
 
-1. Add the **score** dependencies to the project's pox.xml file in the `<dependencies>` tag.
+1. Add the **score** dependencies to the project's pom.xml file in the `<dependencies>` tag.
   ```xml
   <dependency>
       <groupId>io.openscore</groupId>
@@ -420,10 +420,10 @@ Both the control action and navigation action are regular Java methods which can
 
 There are several ways **score** can populate an action method's arguments:
 
-+ From the execution context that is passed to the [TriggeringProperties](#docs/triggeringproperties) when the [ExecutionPlan](#/docs#executionplan) is triggered.
++ From the execution context that is passed to the [TriggeringProperties](#/docs#triggeringproperties) when the [ExecutionPlan](#/docs#executionplan) is triggered.
   
   When a method such as `public void doSomething(String argName)` is encountered, **score** will attempt to populate the argument `argName` with a value mapped to the key `argName` in the execution context. If the key `argName` does not exist in the map, the argument will be populated with `null`.
-+ From data values set in the [ExecutionSteps](#/docs#executionsteps) during the creation of the [ExecutionPlan](#/docs#executionplan).
++ From data values set in the [ExecutionSteps](#/docs#executionstep) during the creation of the [ExecutionPlan](#/docs#executionplan).
 
 	Data can be set using the `setActionData` and `setNavigationData` methods.
 
@@ -473,7 +473,7 @@ The TriggeringProperties class exposes methods to create a TriggeringProperties 
 
 
 ###ExecutionRuntimeServices
-The ExecutionRuntimeServices provide a way to communicate with the **score** engine during the execution of an [ExecutionPlan](#/docs#ExecutionPlan). During an execution, after each [ExecutionStep](#/docs#executionstep), the engine will check the ExecutionRuntimeServices to see if there have been any requests made of it and will respond accordingly. These services can be used by a language written on top of **score** to affect the runtime behavior.
+The ExecutionRuntimeServices provide a way to communicate with the **score** engine during the execution of an [ExecutionPlan](#/docs#executionplan). During an execution, after each [ExecutionStep](#/docs#executionstep), the engine will check the ExecutionRuntimeServices to see if there have been any requests made of it and will respond accordingly. These services can be used by a language written on top of **score** to affect the runtime behavior.
 
 The ExecutionRuntimeServices can be injected into an [ExecutionStep's](#/docs#executionstep) action or navigation method's arguments by adding the `ExecutionRuntimeServices executionRuntimeServices` parameter to the method's argument list.  
 
@@ -581,7 +581,7 @@ The following diagram describes the relations between score components:
 ###GitHub Repositories
 The openscore project consists of the following [repositories](https://github.com/openscore) on GitHub with the dependencies depicted in the diagram.
 
-![Repository Dependencies](images/diagrams/repo_dependencies "Repository Dependencies")
+![Repository Dependencies](images/diagrams/repo_dependencies.png "Repository Dependencies")
 
 + **score** - score engine
   + engine

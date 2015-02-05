@@ -507,9 +507,9 @@ outputs:
 The key `overridable` is a property of an [input](#/docs#inputs) name.
 It is mapped to a boolean value.
 
-A value of `false` will always override the [input](#/docs#inputs) parameter sent to the [flow](#/docs#flow) or [operation](#/docs#operation) with the [default](#/docs#default) value. If `overridable` is not defined, the [default](#/docs#default) value will not override the value passed to the [input](#/docs#inputs) parameter. 
+A value of `false` will ensure that the [input](#/docs#inputs) parameter's [default](#/docs#default) value will not be overridden by values passed into the [flow](#/docs#flow) or [operation](#/docs#operation). If `overridable` is not defined, values passed in will override the [default](#/docs#default) value.
 
-**Example - default value of text input parameter will override values passed in**
+**Example - default value of text input parameter will not be overridden by values passed in**
 
 ```yaml
 inputs:

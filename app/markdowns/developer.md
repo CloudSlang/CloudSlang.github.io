@@ -1,5 +1,15 @@
 #Developer (Contributor) Guide
 
+##Overview
+What follows is a brief overview of how **score** works and how SLANG interacts with it. For more detailed information see the [score API](#/docs#score-api) and [SLANG API](#/docs#slang-api) sections.
+
+**score** is an engine that runs workflows. Internally, the workflows are represented as [ExecutionPlans](#/docs#executionplan). An ExecutionPlan is essentially a map of IDs and [ExecutionSteps](#/docs#executionstep). Each [ExecutionStep](#/docs#executionstep) contains information for calling an action method and a navigation method. 
+
+When an [ExecutionPlan](#/docs#executionplan) is triggered it executes the first [ExecutionStep's](#/docs#executionstep) action method and navigation method. The navigation method returns the ID of the next [ExecutionStep](#/docs#executionstep) to run. Execution continues in this manner, successively calling the next [ExecutionStep's](#/docs#executionstep) action and navigation methods, until a navigation method returns `null` to indicate the end of the flow.
+
+SLANG plugs into **score** by compiling its workflow and operation files into **score** [ExecutionPlans](#/docs#executionplan) and then triggering them. Generally, when working with SLANG content, all interaction with **score** goes through the [SLANG API](#/docs#slang-api), not the [score API](#/score-api).
+
+
 ##Embedded SLANG 
 SLANG content can be run from inside an existing Java application using Maven and Spring by embedding **score** and interacting with it through the [SLANG API](#/docs#slang-api). 
 
@@ -58,7 +68,7 @@ Follow the directions below or download a ready-made [sample project](https://gi
   ```
 
 ##SLANG API
-The SLANG API allows a program to interact with score using content authored in SLANG. What follows is a brief discussion of the API using a simple example that compiles and runs a flow while listening for the events that are fired during the run. For more information, see the [Javadocs](TODO:JAVADOCS_LINK).
+The SLANG API allows a program to interact with score using content authored in SLANG. What follows is a brief discussion of the API using a simple example that compiles and runs a flow while listening for the events that are fired during the run. For more information, see the Javadocs.
 
 ###Example
 ####Code
@@ -211,14 +221,8 @@ operation:
   A Slang `Input` contains its name, expression and the state of all its input properties (e. g. required).
 
 ##SLANG Events
-SLANG uses **score** events and its own extended set of events. SLANG events are comprised of an event type string and a map of event data that contains all the relevant event information mapped to keys defined in the 
+SLANG uses [score events](#/docs#score-events) and its own extended set of events. SLANG events are comprised of an event type string and a map of event data that contains all the relevant event information mapped to keys defined in the 
 `org.openscore.lang.runtime.events.LanguageEventData` class. All fired events are logged in the [execution log](#/docs#execution-log) file.
-
-
-Event types from score:
-
-+ SCORE_FINISHED_EVENT
-+ SCORE_FAILURE_EVENT
 
 Event types from SLANG are listed in the table below along with the event data each event contains. 
 
@@ -243,111 +247,278 @@ EVENT_ACTION_END|After successful action invocation|[RETURN_VALUES]
 EVENT_ACTION_ERROR|Exception in action execution|[EXCEPTION]
 SLANG_EXECUTION_EXCEPTION|Exception in previous step|[EXCEPTION]
 
-##score - Execution
+##Embedded score 
+score can be embedded inside an existing Java application using Maven and Spring. Interaction with **score** is done through the [score API](#/docs#score-api). 
 
-Score is a workflow engine and can execute Execution Plans.
+###Embed score in a Java Application
 
-###Execution Plan
-An execution plan as the name implies, is a set of steps for score to run. 
-In order to trigger an execution you need to pass the execution plan to score.
+1. Add the **score** dependencies to the project's pox.xml file in the `<dependencies>` tag.
+  ```xml
+  <dependency>
+      <groupId>io.openscore</groupId>
+      <artifactId>score-all</artifactId>
+      <version>0.1.251</version>
+  </dependency>
 
-The execution plan consists mainly of a set of steps to perform. 
-These steps are called *Execution Steps*. 
-Each execution step has a *position* within the execution plan – the position of the first step in the execution plan is usually zero.
+  <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.3.175</version>
+  </dependency>
+  ```
+2. Add **score** configuration to your Spring application context xml file.
+  
+  ```xml
+  <beans xmlns="http://www.springframework.org/schema/beans"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:score="http://www.openscore.org/schema/score"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.openscore.org/schema/score 
+            http://www.openscore.org/schema/score.xsd">
 
-###Execution Step
-An execution step is a building block for the execution plan. It consists of two parts:
-+  Control Action – The control action to perform in this step.
-+  Navigation Action – The navigation to perform after the action was performed. 
-    This control action should determine the position of the next execution step that should be executed.
+      <score:engine/>
+  
+      <score:worker uuid="-1"/>
 
-Each execution step has a position in the execution plan. 
-In the diagram above we have 3 execution steps, each with its own position. 
-A position has to be unique – there cannot be two steps with the same position.
+       <bean class="io.openscore.example.ScoreEmbed"/>
+  </beans>  
+  ```
+  
+3. Interact with score using the [score API](#/docs#score-api).
+  ```java
+  package io.openscore.example;
 
-###Control Action
-Both control action and navigation action are java methods. 
-Score invokes these methods by reflection so there is no API or naming convention for them. 
-There are some recommendations and reserved argument names, we’ll get to that later.
+  import org.apache.log4j.Logger;
+  import org.openscore.api.*;
+  import org.openscore.events.EventBus;
+  import org.openscore.events.EventConstants;
+  import org.openscore.events.ScoreEvent;
+  import org.openscore.events.ScoreEventListener;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.context.ApplicationContext;
+  import org.springframework.context.ConfigurableApplicationContext;
+  import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-A control action method can have input arguments and they will be Injected by the score engine. 
-There are several methods by which score can populate arguments:
-+ From the execution context.
-+ From values set during the creation of the execution plan.
+  import java.io.Serializable;
+  import java.util.HashMap;
+  import java.util.HashSet;
+  import java.util.Set;
 
-####Assigning argument values from the execution context
-Let’s take a look at the following method signature:
-```java
-public void doSomething(String argName) {
- …
- …
+  public class ScoreEmbed {
+    @Autowired
+    private Score score;
+
+    @Autowired
+    private EventBus eventBus;
+
+    private final static Logger logger = Logger.getLogger(ScoreEmbed.class);
+    private ApplicationContext context;
+    private final Object lock = new Object();
+
+    public static void main(String[] args) {
+        ScoreEmbed app = loadApp();
+        app.registerEventListener();
+        app.start();
+    }
+
+    private static ScoreEmbed loadApp() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("/META-INF/spring/scoreContext.xml");
+        ScoreEmbed app = context.getBean(ScoreEmbed.class);
+        app.context  = context;
+        return app;
+    }
+
+    private void start() {
+        ExecutionPlan executionPlan = createExecutionPlan();
+        score.trigger(TriggeringProperties.create(executionPlan));
+        waitForExecutionToFinish();
+        closeContext();
+    }
+
+    private void waitForExecutionToFinish() {
+        try {
+            synchronized(lock){
+                lock.wait(10000);
+            }
+        } catch (InterruptedException e) {
+            logger.error(e.getStackTrace());
+        }
+    }
+
+    private static ExecutionPlan createExecutionPlan() {
+        ExecutionPlan executionPlan = new ExecutionPlan();
+
+        executionPlan.setFlowUuid("1");
+
+        executionPlan.setBeginStep(0L);
+        ExecutionStep executionStep0 = new ExecutionStep(0L);
+        executionStep0.setAction(new ControlActionMetadata("io.openscore.example.controlactions.ConsoleControlActions", "printMessage"));
+        executionStep0.setActionData(new HashMap<String, Serializable>());
+        executionStep0.setNavigation(new ControlActionMetadata("io.openscore.example.controlactions.NavigationActions", "nextStepNavigation"));
+        executionStep0.setNavigationData(new HashMap<String, Serializable>());
+
+        executionPlan.addStep(executionStep0);
+        ExecutionStep executionStep1 = new ExecutionStep(1L);
+        executionStep1.setAction(new ControlActionMetadata("io.openscore.example.controlactions.ConsoleControlActions", "printMessage"));
+        executionStep1.setActionData(new HashMap<String, Serializable>());
+        executionStep1.setNavigation(new ControlActionMetadata("io.openscore.example.controlactions.NavigationActions", "endFlow"));
+        executionStep1.setNavigationData(new HashMap<String, Serializable>());
+        executionPlan.addStep(executionStep1);
+
+        ExecutionStep executionStep2 = new ExecutionStep(2L);
+        executionStep2.setAction(new ControlActionMetadata("io.openscore.example.controlactions.ConsoleControlActions", "failed"));
+        executionStep2.setActionData(new HashMap<String, Serializable>());
+        executionStep2.setNavigation(new ControlActionMetadata("io.openscore.example.controlactions.NavigationActions", "endFlow"));
+        executionStep2.setNavigationData(new HashMap<String, Serializable>());
+        executionPlan.addStep(executionStep2);
+
+        return executionPlan;
+    }
+
+    private void registerEventListener() {
+        Set<String> handlerTypes = new HashSet<>();
+        handlerTypes.add(EventConstants.SCORE_FINISHED_EVENT);
+        handlerTypes.add(EventConstants.SCORE_FAILURE_EVENT);
+        eventBus.subscribe(new ScoreEventListener() {
+            @Override
+            public void onEvent(ScoreEvent event) {
+                logger.info("Listener " + this.toString() + " invoked on type: " + event.getEventType() + " with data: " + event.getData());
+                synchronized (lock) {
+                    lock.notify();
+                }
+            }
+        }, handlerTypes);
+    }
+
+    private void closeContext() {
+        ((ConfigurableApplicationContext) context).close();
+    }
 }
-```
-When score runs this method it will attempt to populate the argument *argName* with a value from the execution context. If the key *argName* exists in the execution context map, then the argument *argName* will be populated with its associated value, otherwise it will be populated with *null*.
+  ```
 
-####Setting argument values during execution plan compilation
-It is also possible to set argument values in the execution plan using
+##score API
+The **score** API allows a program to interact with **score**. This section describes some of the more commonly used interfaces and methods from the score API. For more information and a full listing of methods see the Javadocs.
 
-####Reserved argument names
-There are some argument names that have a special meaning when used as control action arguments, those are:
+###ExecutionPlan
+An ExecutionPlan is a map of IDs and steps, called [ExecutionSteps](#/docs#executionstep), representing a workflow for **score** to run.  Normally, the ID of the first step to be run is 0. 
 
-+  ***executionRuntimeServices*** - score will populate it with the execution’s runtime services object. 
-    This means that such arguments have to be of the type ExecutionRuntimeServices.
-```java
-public void doWithServices(ExecutionRuntimeServices executionRuntimeServices) {
-    …
-    …
-}
-```
-+  ***executionContext*** – score will populate it with the execution’s context. 
-    This means that such arguments have to be of the type `Map<String, Serializable>`.
-```java
-public void doWithContext(Map<String, Serializable> executionContext) {
-    …
-    …
-}
-```
+[ExecutionSteps](#/docs#executionstep) can be added to the ExecutionPlan using the `addStep(ExecutionStep step)` method. 
 
-###Navigation Action
-There’s no real difference between a control action and a navigation action, 
-except that the navigation action must have a return value of type Long. 
-The return value is the position of the next step to execute.
-An execution is finished when the navigation returns null as the next step.
+The starting step of the ExecutionPlan can be set using the `setBeginStep(Long beginStep)` method.
 
-```java
-public Long navigation(...) {
-    …
-    …
-    return 2L;
-}
-```
+###ExecutionStep
+An ExecutionStep is the a building block upon which an [ExecutionPlan](#/docs#executionplan) is built. It consists of an ID representing its position in the plan, control action information and navigation action information. As each ExecutionStep is reached, its control action method is called followed by its navigation action method. The navigation action method returns the ID of the next ExecutionStep to be run in the [ExecutionPlan](#/docs#executionplan) or signals the plan to stop by returning `null`. The ID of an ExecutionStep must be unique among the steps in its [ExecutionPlan](#/docs#executionplan).
 
-###Runtime
-So what happens when score executes an execution plan? Well, the basic algorithm is this:
-+  Extract the next step to execute
-+  Execute the action.
-+  Execute the navigation action.
-+  Go back to extract.
+The control action method and navigation action methods can be set in the ExecutionStep using the following methods, where a `ControlActionMetadata` object is created using string values of the method's fully qualified class name and method name:
 
-The next step to execute is actually the result of the navigation action of the previous step.
++ `setAction(ControlActionMetadata action)`
++ `setNavigation(ControlActionMetadata navigationMetadata)`
+
+####Action Method Arguments
+Both the control action and navigation action are regular Java methods which can take arguments. They are invoked by reflection and their arguments are injected by the score engine, so there is no API or naming convention for them. But there are some names that are reserved for special use. 
+
+There are several ways **score** can populate an action method's arguments:
+
++ From the execution context that is passed to the [TriggeringProperties](#docs/triggeringproperties) when the [ExecutionPlan](#/docs#executionplan) is triggered.
+  
+  When a method such as `public void doSomething(String argName)` is encountered, **score** will attempt to populate the argument `argName` with a value mapped to the key `argName` in the execution context. If the key `argName` does not exist in the map, the argument will be populated with `null`.
++ From data values set in the [ExecutionSteps](#/docs#executionsteps) during the creation of the [ExecutionPlan](#/docs#executionplan).
+
+	Data can be set using the `setActionData` and `setNavigationData` methods.
+
++ From reserved argument names.
+
+  There are some argument names that have a special meaning when used as control action or navigation action method arguments:
+
+  +  **executionRuntimeServices** - **score** will populate this argument with the [ExecutionRuntimeServices](#/docs#executionruntimeservices) object. 
+  ```java
+  public void doWithServices(ExecutionRuntimeServices executionRuntimeServices)
+  ```
+  +  **executionContext** – **score** will populate this argument with the context tied to the ExecutionPlan during its triggering through the [TriggeringProperties](#/docs#triggeringproperties).
+  ```java
+  public void doWithContext(Map<String, Serializable> executionContext) 
+  ```
+If an argument is present in both the [ExecutionStep](#/docs#executionstep) data and the execution context, the value from the execution context will be used.
+
+####Action Method Return Values
++ Control action methods are `void` and do not return values.
++ Navigation action methods return a value of type `Long`, which is used to determine the next [ExecutionStep](#/docs#executionstep). Returning `null` signals the [ExecutionPlan](#/docs#executionplan) to finish.
+
+###Score Interface
+The Score interface exposes methods for triggering and canceling executions.
+
+####Triggering New Executions
+The `trigger(TriggeringProperties triggeringProperties)` method starts an execution with a given [ExecutionPlan](#docs/#executionplan) and the additional properties found in the [TriggeringProperies](#/docs#triggeringproperties) object. The method returns the ID of the new execution.
+
+By default the first executed step will be the execution plan’s start step, and the execution context will be empty.
+
+####Cancelling Executions
+The `cancelExecution(Long executionId)` method requests to cancel (terminate) a given execution. It is passed the ID that was returned when triggering the execution that is now to be cancelled. 
+
+Note that the execution will not necessarily be stopped immediately. 
+
+###TriggeringProperties
+A TriggeringProperties object is sent to the [Score interface's](#/docs#score-interface) trigger method when the execution begins.
+ 
+ The TriggeringProperties object contains:
+  
++ An [ExecutionPlan](#/docs#executionplan) to run.
++ The [ExecutionPlan's](#/docs#executionplan) dependencies, which are [ExecutionPlans](#/docs#executionplan) themselves.
++ A map of names and values to be added to the execution context.
++ A map of names and values to be added to the [ExecutionRuntimeServices](#/docs#executionruntimeservices).
++ A start step value, which can cause the [ExecutionPlan](#/docs#executionplan) to start from a step that is not necessarily its defined begin step.
+
+The TriggeringProperties class exposes methods to create a TriggeringProperties object from an [ExecutionPlan](#/docs#executionplan) and then optionally set the various other properties. 
 
 
 ###ExecutionRuntimeServices
-ExecutionRuntimeServices is a way for the language to affect the execution during run time. Several examples for this are:
-+  If the language wants to set an error
-+  If the language wants to throw an event
+The ExecutionRuntimeServices provide a way to communicate with the **score** engine during the execution of an [ExecutionPlan](#/docs#ExecutionPlan). During an execution, after each [ExecutionStep](#/docs#executionstep), the engine will check the ExecutionRuntimeServices to see if there have been any requests made of it and will respond accordingly. These services can be used by a language written on top of **score** to affect the runtime behavior.
 
-ExecutionRuntimeServices is a simple `Map<String, Serializable>` and the user writing a language for score (like slang) can modify the contents of this map freely. This is bad for two reasons:
-+  It is very inconvenient for the user to “use” our API this way since the usage is basically adding certain keys with certain values to this map.
-+  It exposes score’s inner workings to the user.
+The ExecutionRuntimeServices can be injected into an [ExecutionStep's](#/docs#executionstep) action or navigation method's arguments by adding the `ExecutionRuntimeServices executionRuntimeServices` parameter to the method's argument list.  
 
-Because of these two reason we want to convert this to a proper API with declared methods and everything! The methods for this API:
-+ `addEvent(String type, Serializable data)`
-+ `pause()`
-+ `setStepErrorKey(String error)`
-+  `addBranch(String uuid, Long position, Map<String, Serializable> runtimeValues)` – The runtime values will be added to the values inside ExecutionRuntimeServices values
-+ `getBranchId()`
-+ `requestToChangeExecutionPlan(Long executionPlanId)`
+Some of the services provided by ExecutionRuntimeServices are:
+
++ Events can be added using the `addEvent(String eventType, Serializable eventData)` method.
++ Execution can be paused using the `pause()` method.
++ Errors can be set using the `setStepErrorKey(String stepErrorKey)` method.
++ Branches can be added using the `addBranch(Long startPosition, String flowUuid, Map<String, Serializable> context)` method or the `addBranch(Long startPosition, Long executionPlanId, Map<String, Serializable> context, ExecutionRuntimeServices executionRuntimeServices)` method.
++ Requests can be made to change the ExecutionPlan that is running by calling the  `requestToChangeExecutionPlan(Long executionPlanId)` method.
+
+###EventBus
+The EventBus allows you to subscribe and unsubscribe listeners for events. 
+
+Listeners must implement the `ScoreEventListener` interface which consists of a single method – `onEvent(ScoreEvent event)`.
+
+To subscribe a listener for certain events, pass a set of the events to listen for to the `subscribe(ScoreEventListener eventHandler, Set<String> eventTypes)` method.
+
+The event types are defined in the `EventConstants` class.
+
+To unsubscribe a listener from all the events it was listening for call the `unsubscribe(ScoreEventListener listener)` method.
+
+###ScoreEvent
+A ScoreEvent is comprised of a string value corresponding to its type and a map containing the event data, which can be accessed using the `getEventType()` and `getData()` methods respectively.
+
+##score Events
+**score** defines two events that may be fired during execution. Each event is comprised of a string value corresponding to its type and a map containing the event data.
+
+Event Types:
+
++ SCORE_FINISHED_EVENT
++ SCORE_FAILURE_EVENT
+
+Event Data Keys:
+
++ IS_BRANCH
++ executionIdContext
++ systemContext
++ EXECUTION_CONTEXT
+
+A language built upon **score** can add events during run time using the [ExecutionRuntimeServices’s](#docs/#executionruntimeservices) API. An example of this usage can be seen in [SLANG's events](#/docs#slang-events).
+
+##score - Execution
+
+Score is a workflow engine and can execute Execution Plans.
 
 ###Splitting and Joining Executions
 
@@ -383,7 +554,7 @@ Does not have DB access.
 
 Contains 3 major components:
 
-####Event bus
+####Event Bus
 Allows registering and un-registering on the events of the specific worker, and is responsible for firing the events.
 
 ####Worker Manager
@@ -400,29 +571,64 @@ Using the ExecutionRuntimeServices, the execution service provides services such
 
 
 
-###Interaction between components
+###Interaction Between Components
 The following diagram describes the relations between score components:
 
 ![Full Diagram](images/diagrams/score_full.png "Full Diagram")
 
 ##Contributing Code
 
-The openscore project consists of the following [repositories](https://github.com/openscore) on GitHub.
+###GitHub Repositories
+The openscore project consists of the following [repositories](https://github.com/openscore) on GitHub with the dependencies depicted in the diagram.
+
+![Repository Dependencies](images/diagrams/repo_dependencies "Repository Dependencies")
 
 + **score** - score engine
-+ **score-language** - score DSL (SLANG) and the CLI
+  + engine
+  + package
+  + score-api
+  + score-samples
+  + score-tests
+  + worker 
++ **score-language** - score language (SLANG) and the CLI
+  + score-lang-api
+  + score-lang-cli
+  + score-lang-compiler
+  + score-lang-entities
+  + score-lang-runtime
+  + score-language-tests 
 + **slang-content** - SLANG flows and operations
-+ **score-actions** - Java actions for SLANG
-+ **score-content-sdk** - Java annotation definitions, session related classes and enums
+  + org/openscore/slang
+    + base
+      + comparisons
+      + lists
+      + mail
+      + network
+      + remote_command_execution
+        + ssh
+      + strings   
+    + docker
+    + openstack
+    + (other integrations to be added as new folders)  
++ **score-actions** - Java @Action classes for SLANG
+  + score-http-client
+  + score-mail
+  + score-ssh
+  + score-utilities 
++ **score-content-sdk** - SDK for developing Java @Actions
+  + src/main/java/com/hp/oo/sdk/content
+    + annotations
+    + plugin
+      + ActionMetadata   
 + **openscore.github.io** - score website and documentation
+  + app
+    + images
+    + markdowns
+    + scripts
+    + styles
+    + views
+  + tasks
+  + test
 
 Please see the `CONTRIBUTING.md` file in any of the repositories for more information on how to contribute.
 
-###slang-content - organization
--	Content is organized in a folder structure that best describes the content. 
--  The directories are structured as follows:
-  -  All files will reside under org\openscore\slang
-  -  Under the slang directory there are the following sub-directories:
-      - base – general purpose content 
-        - below base there are sub-directories such as DB, network, mail
-      - other directories - content that integrates with other systems, such as Docker, Openstack, LDAP

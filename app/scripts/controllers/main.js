@@ -7,9 +7,9 @@ angular.module('scoreWebsiteApp')
             { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
             { id: 'useCases', title: $rootScope.messages.navUseCasesTitle },
             { id: 'about', title: $rootScope.messages.navAboutTitle },
-            { id: 'blog', title: $rootScope.messages.navBlogTitle  }
+            //{ id: 'blog', title: $rootScope.messages.navBlogTitle  }
         ];
-        $rootScope.navSwitch = { uri: 'docs', title: $rootScope.messages.navDocumentationTitle };
+        //$rootScope.navSwitch = { uri: 'docs', title: $rootScope.messages.navDocumentationTitle };
 
         $rootScope.showCli = function (elemendId, commands, loop, typeSpeed) {
             $('#' + elemendId + '-cursor').empty();

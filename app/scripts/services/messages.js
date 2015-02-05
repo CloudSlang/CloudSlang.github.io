@@ -19,7 +19,7 @@ angular.module('scoreWebsiteApp')
 
             // header
             headerMainTitle: 'Flow-based orchestration engine to manage deployed applications',
-            headerDescription: 'score allows you to rapidly automate your DevOps use cases using ready-made workflows.',
+            headerDescription: 'Allows you to rapidly automate your DevOps use cases using ready-made workflows.',
             headerStartNow: 'Getting started',
 
             // footer
@@ -38,11 +38,11 @@ angular.module('scoreWebsiteApp')
             mainBulletsProcessBasedTitle: 'Process-Based',
             mainBulletsDayTwoOperationsTitle: 'Day 2 Operations',
             mainBulletsAgentlessTitle: 'Agentless',
-            mainBulletsProcessBasedDesc: 'score language, slang, is a simple way to describe workflows in a reusable fashion. Using YAML and Python, slang allows you to better control the workflow\'s behavior.',
-            mainBulletsDayTwoOperationsDescPre: 'Use our existing slang content to manage your deployed application.',
+            mainBulletsProcessBasedDesc: 'Our language is a simple way to describe workflows in a reusable fashion. Using YAML and Python, our language allows you to better control the workflow\'s behavior.',
+            mainBulletsDayTwoOperationsDescPre: 'Use our existing content to manage your deployed application.',
             mainBulletsDayTwoOperationsDescLink: 'Explore',
             mainBulletsDayTwoOperationsDescPost: ' our Docker, OpenStack and utilities content.',
-            mainBulletsAgentlessDesc: 'Don’t bother setting up and managing agents on all your machines. slang workflows can use remote APIs to run tasks.',
+            mainBulletsAgentlessDesc: 'Don’t bother setting up and managing agents on all your machines. Our workflows can use remote APIs to run tasks.',
             mainBulletsReadMore: 'Read More',
 
             // contact us
@@ -56,7 +56,7 @@ angular.module('scoreWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsWhoWeAreText: 'The score project is being contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
+            aboutUsWhoWeAreText: 'This project is being contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
 
             // use cases
             useCasesTitle: 'Use Cases',
@@ -77,18 +77,18 @@ angular.module('scoreWebsiteApp')
             orText: 'or',
 
             // -- download and install cli
-            detailedDownloadCliHeader: 'Download slang CLI',
-            detailedDownloadCliText: 'Download and unzip the slang command-line interface.',
+            detailedDownloadCliHeader: 'Download',
+            detailedDownloadCliText: 'Download and unzip the command-line interface.',
             detailedDownloadLatest: 'Download latest version',
             detailedDownloadOldVersions: 'Download old versions',
-            detailedSlangCliHeader: 'Use slang',
-            detailedSlangWriteFlowText: 'Write a slang flow and save it as \'hello_world.sl\'.',
-            detailedSlangWriteOperationText: 'Write a slang operation and save it as \'print.sl\'.',
-            detailedUseCliHeader: 'Start slang command-line',
-            detailedUseCliText: 'Open your console and execute the slang CLI',
-            detailedTriggerFlowHeader: 'Run flow',
-            detailedTriggerFlowText1: '1. Open your console and execute the slang CLI. The CLI is located at <path>/slang/bin.',
-            detailedTriggerFlowText2: '2. Run your slang flow from the slang command-line.',
+            detailedSlangCliHeader: 'Write',
+            detailedSlangWriteFlowText: 'Write a flow and save it as \'hello_world.sl\'.',
+            detailedSlangWriteOperationText: 'Write an operation and save it as \'print.sl\'.',
+            detailedUseCliHeader: 'Start command-line interface',
+            detailedUseCliText: 'Open your console and execute the CLI',
+            detailedTriggerFlowHeader: 'Run',
+            detailedTriggerFlowText1: '1. Open your console and execute the CLI. The CLI is located at <path>/slang/bin.',
+            detailedTriggerFlowText2: '2. Run your flow from the command-line.',
             detailedCliHeader: 'Click to see how',
             detailedCliPrefix: '$',
             detailedCliClear: 'Clear',

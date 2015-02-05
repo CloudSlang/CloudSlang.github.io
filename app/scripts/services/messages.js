@@ -2,12 +2,6 @@
 
 angular.module('scoreWebsiteApp')
     .factory('MessagesService', function ($rootScope) {
-        var small = $(window).width() < 482;
-        var verySmall = $(window).width() < 384;
-        var headerMainTitleBullets = small ?
-            verySmall ? ['^2500Heavy-weight', 'Lightweight,^1300\nprocess-based^300\norchestration\nengine'] :
-                ['^2500Heavy-weight', 'Lightweight,^1300\nprocess-based^300\norchestration engine'] :
-            ['^2500Heavy-weight', 'Lightweight,^1300 process-based^300\norchestration engine'];
         // App labels
         $rootScope.messages = {
             // nav bar
@@ -24,9 +18,8 @@ angular.module('scoreWebsiteApp')
             navDocsDeveloperTitle: 'Developer',
 
             // header
-            headerMainTitle: 'Lightweight, process-based orchestration engine',
-            headerMainTitleBullets: headerMainTitleBullets,
-            headerDescription: 'A flow-based orchestration engine to manage your deployed applications. Rapidly automate your DevOps use cases using ready-made workflows.',
+            headerMainTitle: 'Flow-based orchestration engine to manage deployed applications',
+            headerDescription: 'score allows you to rapidly automate your DevOps use cases using ready-made workflows.',
             headerStartNow: 'Getting started',
 
             // footer
@@ -45,7 +38,7 @@ angular.module('scoreWebsiteApp')
             mainBulletsProcessBasedTitle: 'Process-Based',
             mainBulletsDayTwoOperationsTitle: 'Day 2 Operations',
             mainBulletsAgentlessTitle: 'Agentless',
-            mainBulletsProcessBasedDesc: 'score language - slang - is a simple, intuitive way to describe workflows in a reusable fashion. Using YAML and Python, slang allows you to better control the actual runtime behavior of the workflow.',
+            mainBulletsProcessBasedDesc: 'score language, slang, is a simple way to describe workflows in a reusable fashion. Using YAML and Python, slang allows you to better control the workflow\'s behavior.',
             mainBulletsDayTwoOperationsDescPre: 'Use our existing slang content to manage your deployed application.',
             mainBulletsDayTwoOperationsDescLink: 'Explore',
             mainBulletsDayTwoOperationsDescPost: ' our Docker, OpenStack and utilities content.',

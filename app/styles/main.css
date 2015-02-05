@@ -438,7 +438,6 @@ a:hover {
 
 .section-wrapper.getting-started {
     background-color: #345B1F;
-    padding-top: 90px;
 }
 
 .vtop {
@@ -511,10 +510,6 @@ a:hover {
     .getting-started {
         display: none;
     }
-}
-
-.snippet {
-    margin-top: -50px;
 }
 
 .snippet code {

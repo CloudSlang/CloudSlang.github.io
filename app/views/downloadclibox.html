@@ -14,15 +14,13 @@
     <div class="explanation col-md-12">
         <p class="h3">{{$root.messages.detailedSlangCliHeader}}</p>
     </div>
-    <div class="snippet">
-        <div class="col-md-5">
-            <p class="h4">{{$root.messages.detailedSlangWriteFlowText}}</p>
-            <div hljs include="'views/codesnippets/slangflowcode.html'" language="less"></div>
-        </div>
-        <div class="col-md-5">
-            <p class="h4">{{$root.messages.detailedSlangWriteOperationText}}</p>
-            <div hljs include="'views/codesnippets/slangopcode.html'" language="less"></div>
-        </div>
+    <div class="col-md-7 snippet">
+        <div class="h4">{{$root.messages.detailedSlangWriteFlowText}}</div>
+        <div hljs include="'views/codesnippets/slangflowcode.html'" language="less"></div>
+    </div>
+    <div class="col-md-7 snippet">
+        <div class="h4">{{$root.messages.detailedSlangWriteOperationText}}</div>
+        <div hljs include="'views/codesnippets/slangopcode.html'" language="less"></div>
     </div>
     <div class="explanation col-md-12 col-xs-12">
         <p class="h3">{{$root.messages.detailedTriggerFlowHeader}}</p>

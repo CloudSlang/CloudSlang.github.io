@@ -437,15 +437,11 @@ a:hover {
 }
 
 .section-wrapper.getting-started {
-    background-color: #345B1F;
+    background-color: #152d07;
 }
 
 .vtop {
     vertical-align: top;
-}
-
-.getting-started .section-header {
-    margin-bottom: 80px;
 }
 
 .getting-started .box {
@@ -483,15 +479,12 @@ a:hover {
 
 .getting-started .detailedBox {
     background-color: #152d07;
-    padding: 20px;
-    min-height: 500px;
-    margin-top: 10px;
-    border-radius: 6px;
     text-align: left;
 }
 
 .getting-started .detailedBox .explanation {
-    margin: 40px 0 60px 15px;
+    margin-right: 15px;
+    margin-top: 20px;
     border-left: 8px solid #5d913a;
     padding-left: 30px;
 }
@@ -502,7 +495,7 @@ a:hover {
 }
 
 .getting-started .download {
-    margin-top: -45px;
+    padding-top: 15px;
     margin-left: 25px;
 }
 
@@ -525,9 +518,7 @@ a:hover {
 }
 
 .cli {
-    margin-top: -30px;
-    margin-bottom: 50px;
-    max-width: 530px;
+    margin-bottom: 30px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 20px 70px;
     clear: both;

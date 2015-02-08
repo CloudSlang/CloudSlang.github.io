@@ -260,8 +260,32 @@ results:
   - ILLEGAL: quotient == 'division by zero error'
   - SUCCESS
 ```
-
 **Note:** Single-line Python scripts can be written inline with the `python_script` key. Multi-line Python scripts can use the YAML pipe (|) indicator as in the example above.
+
+#####Importing External Python Modules
+There are two approaches to importing and using external Python modules.
+
++ Append to the `sys.path`:
+  1. In the action's Pyton script, import the `sys` module.
+  2. Use `sys.path.append()` to add the path to the desired module.
+  3. Import the module and use it. 
+    **Example - takes path as input parameter, adds it to sys.path and imports desired module **
+    ```yaml
+    inputs:
+      - path
+    action:
+      python_script: |
+        import sys
+        sys.path.append(path)
+        import module_to_import
+        print modult_to_import.somthing()
+           
+    ```
++ Add environment variable:
+  1. Create a JYTHONPATH environment variable.
+  2. Add desired modules' paths to the JYTHONPATH variable, separating them by colons (:) on Unix and semicolons (;) on Windows.
+  3. In the action's Pyton script, import the module and use it.
+    
 
 ###default
 The key `default` is a property of an [input](#/docs#inputs) name.

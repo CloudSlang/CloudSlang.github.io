@@ -891,7 +891,10 @@ The following is a list of best practices for authoring SLANG files.
 -	Flows and operations reside together in the same folders.
 -	System variables reside in separate folders.
 -	Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
-  - Optional parameters and default values are noted.	
+  - Optional parameters and default values are noted.
+- Identifiers (flow names, operation names, input names, etc.) are written:
+  -  In snake_case, lowercase letters with underscores (_)	between words, in all cases other than inputs to a Java @Action.
+  - In camelCase, starting with a lowercase letter and each additional word starting with an uppercase letter appended without a delimiter, for inputs to a Java @Action. 
  
 Note: In future releases some of the above best practices may be required by the SLANG compiler.
 

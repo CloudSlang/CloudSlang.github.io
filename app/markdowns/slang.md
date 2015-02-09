@@ -278,7 +278,7 @@ There are two approaches to importing and using external Python modules.
         import sys
         sys.path.append(path)
         import module_to_import
-        print modult_to_import.somthing()
+        print module_to_import.something()
            
     ```
 + Add environment variable:

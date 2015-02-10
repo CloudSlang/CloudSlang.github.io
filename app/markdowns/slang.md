@@ -416,7 +416,7 @@ Property|Required|Default|Value Type|Description|More info
 ---|
 `required`|no|true|boolean|is the input required|[required](#/docs#required)
 `default`|no|-|expression|default value of the input|[default](#/docs#default)
-`overridable`|no|true|boolean|if false, the default value always overrides values passed in|[overridable](#/docs#overridable)
+`overridable`|no|true|boolean|will the default value be overridden by values passed in|[overridable](#/docs#overridable)
 
 **Example - two inputs**
 

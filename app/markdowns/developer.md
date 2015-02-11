@@ -551,9 +551,9 @@ There are three types of scoped contexts:
 ![Scoped Contexts](images/diagrams/scoped_contexts.png "Scoped Contexts")
 
 ###Types of ExecutionSteps
-As flows and operations are compiled, they are broken down into a number of [`ExecutionSteps`](#docs/executionstep). These steps are built using their corresponding methods in the `ExecutionStepFactory`. 
+As flows and operations are compiled, they are broken down into a number of [`ExecutionSteps`](#/docs#executionstep). These steps are built using their corresponding methods in the `ExecutionStepFactory`. 
 
-There are five types of [`ExecutionSteps`](#docs/executionstep) used to build a SLANG [`ExecutionPlan`](#/docs#executionplan): 
+There are five types of [`ExecutionSteps`](#/docs#executionstep) used to build a SLANG [`ExecutionPlan`](#/docs#executionplan): 
 
 + Start Step
 + End Step
@@ -576,7 +576,7 @@ The `RuntimeEnvironment` contains:
  + **returnValues** - return values for the current step
  + **nextStepPosition** - position of the next step
  + **contextStack** - stack of contexts of the parent scopes
- + **parentFlowStack** - stack of the parent flow's data
+ + **parentFlowStack** - stack of the parent flows' data
  + **executionPath** - path of the current execution
  + **systemProperties** - system properties 
  + **serializableDataMap** - serializable data that is common to the entire run

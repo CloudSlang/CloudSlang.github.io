@@ -416,7 +416,7 @@ Property|Required|Default|Value Type|Description|More info
 ---|
 `required`|no|true|boolean|is the input required|[required](#/docs#required)
 `default`|no|-|expression|default value of the input|[default](#/docs#default)
-`overridable`|no|true|boolean|will the default value be overridden by values passed in|[overridable](#/docs#overridable)
+`overridable`|no|true|boolean|if false, the default value always overrides values passed in|[overridable](#/docs#overridable)
 
 **Example - two inputs**
 
@@ -890,13 +890,40 @@ The following is a list of best practices for authoring SLANG files.
 -	Each file has one flow, one operation or a map of system variables. 
 -	Flows and operations reside together in the same folders.
 -	System variables reside in separate folders.
--	Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
-  - Optional parameters and default values are noted.
 - Identifiers (flow names, operation names, input names, etc.) are written:
   -  In snake\_case, lowercase letters with underscores (\_)	between words, in all cases other than inputs to a Java @Action.
   - In camelCase, starting with a lowercase letter and each additional word starting with an uppercase letter appended without a delimiter, for inputs to a Java @Action. 
- 
+- Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
+  - Optional parameters and default values are noted.
 Note: In future releases some of the above best practices may be required by the SLANG compiler.
+
+**Example - commented description of operation that sends an email**
+```yaml
+####################################################
+#   This operation sends an email.
+#
+#   Inputs:
+#       - hostname - email host
+#       - port - email port
+#       - from - email sender
+#       - to - email recipient
+#       - cc - optional - Default: none
+#       - bcc - optional - Default: none
+#       - subject - email subject
+#       - body - email text
+#       - htmlEmail - optional - Default: true
+#       - readReceipt - optional - Default: false
+#       - attachments - optional - Default: none
+#       - username - optional - Default: none
+#       - password - optional - Default: none
+#       - characterSet - optional - Default: UTF-8
+#       - contentTransferEncoding - optional - Default: base64
+#       - delimiter - optional - Default: none
+#   Results:
+#       - SUCCESS - succeeds if mail was sent successfully (returnCode is equal to 0)
+#       - FAILURE - otherwise
+####################################################
+```
 
 ##SLANG CLI
 There two ways to get started with the SLANG CLI. You can either download it pre-built from the **score** website or build it yourself. 

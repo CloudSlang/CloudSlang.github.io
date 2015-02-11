@@ -516,13 +516,70 @@ Event Data Keys:
 
 A language built upon **score** can add events during run time using the [ExecutionRuntimeServices’s](#docs/#executionruntimeservices) API. An example of this usage can be seen in [SLANG's events](#/docs#slang-events).
 
-##score - Execution
+##SLANG Architecture
+###Overview
+To be run by **score**, a SLANG source file must undergo a process to transform it into a **score** [`ExecutionPlan`](#/docs#executionplan) using the `SlangCompiler`.  
 
-Score is a workflow engine and can execute Execution Plans.
+####Precompilation
+The file is first loaded, along with its dependencies if necessary, and parsed in the precompilation process. In precompilation, the SLANG file's YAML structure is translated into Java maps by the `YamlParser` using [snakeyaml](http://snakeyaml.org). That parsed structure is then modeled to Java objects representing the parts of a flow and operation by the `SlangModeller` and the `ExecutableBuilder`. The result of this process is an object of type `Executable`.
 
-###Splitting and Joining Executions
+####Compilation
+The resulting `Executable` object, along with its dependent `Executable` objects, are then passed to the `ScoreCompiler` for compilation. An [`ExecutionPlan`](#/docs#executionplan) is created from the `Executable` using the `ExecutionPlanBuilder`. The `ExecutionPlanBuilder` uses the `ExecutionStepFactory` to manufacture the appropriate **score** [`ExecutionStep`](#/docs#executionstep) objects and add them to the resulting [`ExecutionPlan`](#/docs#executionplan), which is then packaged with its dependent [`ExecutionPlan`](#/docs#executionplan) objects into a `CompilationArtifact`.
 
-Coming soon ;)
+####Running
+Now that the SLANG source has been fully transformed into an [`ExecutionPlan`](#/docs#executionplan) it can be run using **score**. The [`ExecutionPlan`](#/docs#executionplan) and its dependencies are extracted from the `CompilationArtifact` and used to create a [`TriggeringProperties`](#/docs#triggeringproperties) object. A [`RunEnvironment`](#/docs#runenvironment) is also created and added to the [`TriggeringProperties`](#/docs#triggeringproperties) context. The [`RunEnvironment`](#/docs#runenvironment) provides services to the [`ExecutionPlan`](#/docs#executionplan) as it runs, such as keeping track of the context stack and next step position.       
+
+###Treatment of Flows and Operations
+Genrally, SLANG treats flows and operations similarly. 
+
+Flows and operations both:
+
++ Receive inputs, produce outputs, and have navigation logic.
++ Can be called by a flow's task.
++ Are compiled to `ExecutionPlans` that can be run by score.
+
+
+###Scoped Contexts
+As execution progresses from flow to operation to action, the step data (inputs, outputs, etc.) that is in scope changes.  These contexts are stored in the `contextStack` of the [`RunEnvironment`](#/docs#runenvironment) and get pushed onto and popped off as the scope changes. 
+
+There are three types of scoped contexts:
+
++ Flow context
++ Operation context
++ Action context
+
+![Scoped Contexts](images/diagrams/scoped_contexts.png "Scoped Contexts")
+
+###Types of ExecutionSteps
+As flows and operations are compiled, they are broken down into a number of [`ExecutionSteps`](#docs/executionstep). These steps are built using their corresponding methods in the `ExecutionStepFactory`. 
+
+There are five types of [`ExecutionSteps`](#docs/executionstep) used to build a SLANG [`ExecutionPlan`](#/docs#executionplan): 
+
++ Start Step
++ End Step
++ Begin Task Step
++ End Task Step
++ Action Step
+
+An operation's [`ExecutionPlan`](#/docs#executionplan) is built from a Start Step, an Action Step and an End Step. 
+
+A flow's [`ExecutionPlan`](#/docs#executionplan) is built from a Start Step, a series of Begin Task Steps and End Task Steps, and an End Step. The task steps hand off the execution to other [`ExecutionPlan`](#/docs#executionplan) objects representing operations or subflows.
+
+![Execution Steps](images/diagrams/execution_steps.png "Execution Steps")
+  
+###RunEnvironment
+The `RunEnvironment` provides services to the [`ExecutionPlan`](#/docs#executionplan) as it is running. The different [types of execution steps](#/docs#types-of-executionsteps) read from, write to and update the environment.  
+
+The `RuntimeEnvironment` contains:
+
+ + **callArguments** - call arguments of the current step
+ + **returnValues** - return values for the current step
+ + **nextStepPosition** - position of the next step
+ + **contextStack** - stack of contexts of the parent scopes
+ + **parentFlowStack** - stack of the parent flow's data
+ + **executionPath** - path of the current execution
+ + **systemProperties** - system properties 
+ + **serializableDataMap** - serializable data that is common to the entire run
 
 ##score - Architecture Overview
 

@@ -897,30 +897,19 @@ The following is a list of best practices for authoring SLANG files.
   - Optional parameters and default values are noted.
 Note: In future releases some of the above best practices may be required by the SLANG compiler.
 
-**Example - commented description of operation that sends an email**
+**Example - commented description of operation to count occurrences of a string in another string**
 ```yaml
 ####################################################
-#   This operation sends an email.
+#   This operation will count the occurrences of a string in another string 
 #
 #   Inputs:
-#       - hostname - email host
-#       - port - email port
-#       - from - email sender
-#       - to - email recipient
-#       - cc - optional - Default: none
-#       - bcc - optional - Default: none
-#       - subject - email subject
-#       - body - email text
-#       - htmlEmail - optional - Default: true
-#       - readReceipt - optional - Default: false
-#       - attachments - optional - Default: none
-#       - username - optional - Default: none
-#       - password - optional - Default: none
-#       - characterSet - optional - Default: UTF-8
-#       - contentTransferEncoding - optional - Default: base64
-#       - delimiter - optional - Default: none
+#       - string_in_which_to_search - string where to search
+#       - string_to_find - string to be found
+#       - ignore_case - optional - ignores case if set to true - Default: true
+#   Outputs:
+#       - occurrences - number of times string_to_find was found
 #   Results:
-#       - SUCCESS - succeeds if mail was sent successfully (returnCode is equal to 0)
+#       - SUCCESS - string_to_find is found at least once
 #       - FAILURE - otherwise
 ####################################################
 ```

@@ -2,10 +2,10 @@
 
 ##What is SLANG?
 
-SLANG is a [YAML](http://www.yaml.org) based language for describing a workflow. Using SLANG you can easily define a workflow in a structured, easy-to-understand format that can be run by **score**. SLANG files can be run by the [SLANG CLI](#/docs#slang-cli) or by an embedded instance of **score** using the [SLANG API](#/docs#slang-api).
+SLANG is a [YAML](http://www.yaml.org) (version 1.2) based language for describing a workflow. Using SLANG you can easily define a workflow in a structured, easy-to-understand format that can be run by **score**. SLANG files can be run by the [SLANG CLI](#/docs#slang-cli) or by an embedded instance of **score** using the [SLANG API](#/docs#slang-api).
 
 ###YAML Overview
-The following is a brief overview of some of the YAML specification.
+The following is a brief overview of some of the YAML specification. See the full [YAML specification](http://www.yaml.org/spec/1.2/spec.html) for more information.
 
 ####Whitespace
 Unlike many programming, markup, and data serialization languages, whitespace is syntactically significant. Indentation is used to denote scope and is always achieved using spaces. Never use tabs.

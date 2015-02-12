@@ -915,7 +915,7 @@ Note: In future releases some of the above best practices may be required by the
 ```
 
 ##SLANG CLI
-There several ways to get started with the SLANG CLI. 
+There are several ways to get started with the SLANG CLI. 
 
 ###Download and Run Pre-built CLI
 **Prerequisites :** To run the SLANG CLI, Java JRE version 7 or higher is required.

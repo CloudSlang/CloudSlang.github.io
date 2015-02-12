@@ -915,14 +915,10 @@ Note: In future releases some of the above best practices may be required by the
 ```
 
 ##SLANG CLI
-There two ways to get started with the SLANG CLI. You can either download it pre-built from the **score** website or build it yourself. 
-
-###Prerequisites
-+ To run the SLANG CLI, Java JRE version 7 or higher is required.
-+ To build the SLANG CLI, Java JDK version 7 or higher and Maven version 3.0.3 or higher are required.
-
+There several ways to get started with the SLANG CLI. 
 
 ###Download and Run Pre-built CLI
+**Prerequisites :** To run the SLANG CLI, Java JRE version 7 or higher is required.
 
 1. Go to the **score** [website](/#/) and scroll to the **Getting Started** section.
 2. Click **Download an use slang CLI tool**.
@@ -937,6 +933,7 @@ There two ways to get started with the SLANG CLI. You can either download it pre
   - For Linux : `bash slang`.
 
 ###Download, Build and Run CLI
+**Prerequisites :** To build the SLANG CLI, Java JDK version 7 or higher and Maven version 3.0.3 or higher are required.
 
 1. Git clone (or GitHub fork and then clone) the [source code](https://github.com/openscore/score-language).
 2. Using the Command Prompt, navigate to the project root directory.
@@ -945,6 +942,13 @@ There two ways to get started with the SLANG CLI. You can either download it pre
 5. Run the executable:
   - For Windows : `slang.bat`.
   - For Linux : `bash slang`.
+
+###Download and Install npm Package
+**Prerequisites :** To download the package, Node.js is required. To run the SLANG CLI, Java JRE version 7 or higher is required.
+
+1. At a command prompt, enter `npm install -g score-cli`.
+	+ If using Linux, the sudo command might be neccessary: `sudo npm install -g score-cli`. 
+2. Enter the `slang` command at any command prompt.
 
 ###Use the CLI
 

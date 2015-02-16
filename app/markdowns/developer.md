@@ -665,6 +665,7 @@ The openscore project consists of the following [repositories](https://github.co
         + ssh
       + strings   
     + docker
+    + jenkins
     + openstack
     + (other integrations to be added as new folders)  
 + **score-actions** - Java @Action classes for SLANG

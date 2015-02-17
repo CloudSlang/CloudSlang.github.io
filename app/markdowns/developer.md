@@ -581,57 +581,65 @@ The `RuntimeEnvironment` contains:
  + **systemProperties** - system properties 
  + **serializableDataMap** - serializable data that is common to the entire run
 
-##score - Architecture Overview
+##Score Architecture
+**score** is built from two main components, an engine and a worker. Scaling is achieved by adding additional workers and engines. 
 
 ###Engine
-Score component responsible for orchestration and administration.
-Engine components have access to the DB.
-Contains 3 major components:
+The engine is responsible for managing the workers and interacting with the database. It does not hold any state information itself. 
 
-####Orchestrator
-Orchestrates score executions, creates new executions, canceling existing executions 
-and provides the status of existing executions. 
-In addition it also responsible for the split and join mechanism.
+The engine is composed of the following components:
 
-####Queue & Assigner
-The Assigner assigns each execution to a specific worker.
++ **Orchestrator:** Responsible for creating new executions, canceling existing executions, providing the status of existing executions and managing the split/join mechanism.
++ **Assigner:** Responsible for assigning workers to executions.
++ **Queue:** Responsible for storing execution information in the database and responding with messages to polling workers.
 
-The queue holds the execution messages in the DB, and provides messages to the worker for execution.
+###Worker 
+The worker is responsible for doing the actual work of running the execution plans. The worker holds the state of an execution as it is running.
 
-####Topology Management
-Administrates the workers. 
-Allows registering and un-registering workers, enabling, disabling and managing them. 
-The Assigner uses it for assigning the messages to workers.
+The worker is composed of the following components:
 
-Holds the workers administration data in the DB.
++ **Worker Manager:** Responsible for retrieving messages from the queue to the in-buffer, delegating messages to the execution service, draining messages from the out-buffer to the orchestrator and updating the engine as to the worker's status.
++ **Execution Service:** Responsible for executing the execution steps, pausing and canceling executions, splitting executions and dispatching relevant events.
 
-###Worker
-The component in charge of the actual execution. 
-Does not have DB access.
+###Database
+The database is composed of the following tables categorized here by their main function:
 
-Contains 3 major components:
++ Execution tracking:
+  + **RUNNING_EXECUTION_PLANS:** full data of an execution plan and all of its dependencies 
+  + **EXECUTION_STATE:** run statuses of an execution
+  + **EXECUTION_QUEUE_1:** metadata of execution message
+  + **EXECUTION_STATES_1 and EXECUTION_STATES_2:** full payloads of execution messages
++ Splitting and joining executions:
+  + **SUSPENDED_EXECUTIONS:** executions that have been split
+  + **FINISHED_BRANCHES:** finished branches of a split execution
++ Worker information:
+	+ **WORKER_NODES:** info of individual workers
+	+ **WORKER_GROUPS:** info of worker groups
++ Recovery:
+	+ **WORKER_LOCKS:** row to lock on during recovery process   
+	+ **VERSION_COUNTERS:** version numbers for testing responsiveness
++ Performance:
+  + **PARTITION_GROUPS:** info for rolling partitions
 
-####Event Bus
-Allows registering and un-registering on the events of the specific worker, and is responsible for firing the events.
+###Typical Execution Path
+In a typical execution the **orchestrator** receives an [`ExecutionPlan`](#/docs#executionplan) along with all that is needed to run it in a [`TriggeringProperties`](#/docs#triggeringproperties) object through a call to the [Score interface's](#/docs#score-interface) `trigger` method. The **orchestrator** inserts the full [ExecutionPlan](#/docs#executionplan) with all of its dependencies into the `RUNNING_EXECUTION_PLANS` table. An `Execution` object is then created based on the  [`TriggeringProperties`](#/docs#triggeringproperties) and an `EXECUTION_STATE` record is inserted indicating that the execution is running. The `Execution` object is then wrapped into an `ExecutionMessage`. The **assigner** assigns the `ExecutionMessage` to a **worker** and places the message metadata into the `EXECUTION_QUEUE_1` table and its `Payload` into the active `EXECUTION_STATES` table.
 
-####Worker Manager
-+ Polls messages from the engine’s queue using the In-Buffer component.
-+ Drains messages back to the orchestrator using the Out-Buffer
-+ Delegates messages to the execution service
-+ Responsible for updating the worker’s status in the engine’s Topology Management
+The **worker manager** constantly polls the **queue** to see if there are any `ExecutionMessage`s that have been assigned to it. As `ExecutionMessage`s are found, the **worker** acknowledges that they were received, wraps them as `SimpleExecutionRunnables` and submits them to the **execution service**. When a thread is available from the **execution service**'s pool the execution will run one step (control action and navigation action) at a time until there is a reason for it to stop. There are various reasons for a execution to stop running on the **worker** and return to the **engine** including: the execution is finished, is about to split or it is taking too long. Once an execution is stopped it is placed on the out-buffer which is periodically drained back to the **engine**.
 
-####Execution Service
-Executes a single execution step at a time (single step and navigation). 
-In addition, pauses and cancels executions and dispatches the relevant events.
+If the execution is finished, the **engine** fires a `SCORE_FINISHED_EVENT` and removes the execution's information from all of the execution tables in the database.
 
-Using the ExecutionRuntimeServices, the execution service provides services such as split the execution and add events for dispatch
+###Splitting and Joining Executions
+Before running each step, a worker checks to see if the step to be run is a split step. If it is a split step, the worker creates a list of the split executions. It puts the execution along with all its split executions into a `SplitMessage` which is placed on the out-buffer. After draining, the orchestrator's split-join service takes care of the executions until they are to be rejoined. The service places the parent execution into the `SUSPENDED_EXECUTIONS` table with a count of how many branches it has been split into. `Execution`s are created for the split branches and placed on the queue. From there, they are picked up as usual by workers and when they are finished they are added to the `FINISHED_BRANCHES` table. Periodically, a job runs to see if the number of branches that have finished are equal to the number of branches the original execution was split into. Once all the branches are finished the original execution can be placed back onto the queue to be picked up again by a worker.
 
+###Recovery
+The recovery mechanism allows **score** to recover from situations that would cause a loss of data otherwise. The recovery mechanism guarantees that each step of an execution plan will be run, but does not guarantee that it will be run only once. The most common recovery situations are outlined below.  
+####Lost Worker
+To prevent the loss of data from a worker that is no longer responsive the recovery mechanism does the following. Each worker continually reports their active status to the engine which stores a reporting version number for the worker in the `WORKER_NODES` table. Periodically a recovery job runs and sees which workers' reported version numbers are outdated, indicating that they have not been reporting back. The non-responsive workers' records in the queue get reassigned to other workers that pick up from the last known step that was executed.
+####Worker Restart
+To prevent the loss of data from a worker that has been restarted additional measures must be taken. The restarted worker will report that it is active, so the recovery job will not know to reassign the executions that were lost when it was restarted. Therefore, every time a worker has been started  an internal recovery is done. The worker's buffers are cleaned and the worker reports to the engine that it is starting up. The engine then checks the queue to see if that worker has anything that's already on the queue. Whatever is found is passed on to a different worker while the restarted one finishes starting up before polling for new messages. 
 
-
-###Interaction Between Components
-The following diagram describes the relations between score components:
-
-![Full Diagram](images/diagrams/score_full.png "Full Diagram")
+###Rolling Partition
+For performance optimization, there are two `EXECUTION_STATES` tables, one of which is active at any given time. As the active `EXECUTION_STATES` table receives new records for a given execution, the outdated records for that execution are not deleted. To keep the table from growing too large a rolling partition job runs periodically. This job moves the most current record for all of the executions from the active table to the non-active one, changes the non-active table to be the active one and truncates the formerly active table.
 
 ##Contributing Code
 

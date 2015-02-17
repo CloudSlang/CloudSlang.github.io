@@ -584,6 +584,8 @@ The `RuntimeEnvironment` contains:
 ##Score Architecture
 **score** is built from two main components, an engine and a worker. Scaling is achieved by adding additional workers and engines. 
 
+![Score Architecture](images/diagrams/score_architecture.png "Score Architecture")
+
 ###Engine
 The engine is responsible for managing the workers and interacting with the database. It does not hold any state information itself. 
 

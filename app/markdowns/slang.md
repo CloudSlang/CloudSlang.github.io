@@ -962,6 +962,11 @@ If the flow takes in input parameters, use the `--i` flag and a comma-separated 
 ```bash
 slang>run --f c:/.../your_flow.sl --i input1=root,input2=25
 ```
+Alternatively, inputs made be loaded from a file using the `--fi` flag and a comma-separated list of file paths. Inputs passed with the `--i` flag will override the inputs passed using a file. If two files contain the same inputs, then the file specified last will override the values in previous files.
+```bash
+slang>run --f c:/.../your_flow.sl --fi c:/.../inputs.yaml --i input1=value1
+```
+ 
 If the flow requires dependencies from another location, use the `--cp` flag: 
 ```bash
 slang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/

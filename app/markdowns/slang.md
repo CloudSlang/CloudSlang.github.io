@@ -31,8 +31,8 @@ List are denoted with a hypen (-) and a space preceding each list item.
 **Example: a SLANG flow's possible results are defined using a list mapped to the results key**
 ```yaml
 results:
-    - ILLEGAL
-    - SUCCESS
+  - ILLEGAL
+  - SUCCESS
 ```
 
 ####Maps
@@ -90,10 +90,10 @@ In a new folder, create two new SLANG files, hello_world.sl and print.sl, and co
 
 **hello_world.sl**
 ```yaml
-namespace: user.examples.hello_world
+namespace: examples.hello_world
 
 imports:
-  ops: user.examples.hello_world
+  ops: examples.hello_world
 
 flow:
   name: hello_world
@@ -105,7 +105,7 @@ flow:
 ```
 **print.sl**
 ```yaml
-namespace: user.examples.hello_world
+namespace: examples.hello_world
 
 operation:
   name: print
@@ -428,7 +428,6 @@ inputs:
   - input2
 ```
 
-
 ###name
 The key `name` is a property of [flow](#/docs#flow) and [operation](#/docs#operation).
 It is mapped to a value that is used as the name of the [flow](#/docs#flow) or [operation](#/docs#operation).
@@ -605,7 +604,9 @@ inputs:
 
 ###task
 A name of a task which is a property of [workflow](#/docs#workflow) or [on_failure](#/docs#on_failure).
-It is mapped to the task's properties.
+It is mapped to the properties which make up the task contents.
+
+
 
 Property|Required|Default|Value Type|Description|More Info
 ---|
@@ -764,14 +765,14 @@ flow:
   name: nav_flow
 
   inputs:
-    - navigationType
-    - emailRecipient
+    - navigation_type
+    - email_recipient
 
   workflow:
     produce_default_navigation:
       do:
         ops.produce_default_navigation:
-          - navigationType
+          - navigation_type
 
     # default navigation - go to this task on success
     do_something:
@@ -783,7 +784,7 @@ flow:
       send_error_mail:
         do:
           ops.send_email_mock:
-            - recipient: emailRecipient
+            - recipient: email_recipient
             - subject: "'Flow failure'"
 ```
 
@@ -795,12 +796,12 @@ namespace: examples.defualtnav
 operation:
   name: produce_default_navigation
   inputs:
-    - navigationType
+    - navigation_type
   action:
     python_script:
-      print 'Default navigation based on input of - ' + navigationType
+      print 'Default navigation based on input of - ' + navigation_type
   results:
-    - SUCCESS: navigationType == 'success'
+    - SUCCESS: navigation_type == 'success'
     - FAILURE
 ```
 

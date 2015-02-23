@@ -169,6 +169,13 @@ The general structure of SLANG files is outlined here. Some of the properties th
       + [do](#/docs#do)
       + [publish](#/docs#publish)
       + [navigate](#/docs#navigate) 
+    + [loop task](#/docs#task)
+      + [loop](#/docs#loop)
+        + [for](#/docs#for)
+        + [do](#/docs#do)
+        + [publish](#/docs#publish)
+        + [break](#/docs#break)
+      + [navigate](#/docs#navigate) 
     + [on_failure](#/docs#on_failure) 
   + [outputs](#/docs#outputs)
     + [fromInputs](#/docs#fromInputs)
@@ -284,8 +291,38 @@ There are two approaches to importing and using external Python modules.
 + Add environment variable:
   1. Create a JYTHONPATH environment variable.
   2. Add desired modules' paths to the JYTHONPATH variable, separating them by colons (:) on Unix and semicolons (;) on Windows.
-  3. In the action's Pyton script, import the module and use it.
-    
+  3. In the action's Python script, import the module and use it.
+
+###break
+The key `break` is a property of a [loop](#/docs#loop).
+It is mapped to a list of results on which to break out of the loop or an empty list (`[]`) to override the default breaking behavior for a list. When the [operation](#/docs#operation) or [subflow](#/docs#flow) of the [iterative task](#/docs#iterative-task) returns a result in the break's list, the iteration halts and the [interative task's](#/docs#iterative-task) [navigation](#/docs#navigation) logic is run. 
+
+If the `break` property is not defined, the loop will break on results of `FAILURE` by default. This behavior may be overriden so that iteration will continue even when a result of `FAILURE` is returned by defining alternate break behavior or mapping the `break` key to an empty list (`[]`). 
+
+**Example - loop that breaks on result of CUSTOM **
+
+```yaml
+loop:
+  for: value in range(1,7)
+  do:
+    ops.custom_op:
+      - text: value
+  break:
+    - CUSTOM
+navigate:
+  CUSTOM: print_end
+```
+
+**Example - loop that continues even on result of FAILURE **
+
+```yaml
+loop:
+  for: value in range(1,7)
+  do:
+    ops.custom_op:
+      - text: value
+  break: []
+```
 
 ###default
 The key `default` is a property of an [input](#/docs#inputs) name.
@@ -316,7 +353,7 @@ inputs:
 ```
 
 ###do
-The key `do` is a property of a [task](#/docs#task) name.
+The key `do` is a property of a [task](#/docs#task) name or a loop(#/docs#loop).
 It is mapped to a property that references an [operation](#/docs#operation) or [flow](#/docs#flow).
 
 Calls an [operation](#/docs#operation) or [flow](#/docs#flow) and passes in relevant [input](#/docs#inputs). The [operation](#/docs#operation) or [flow](#/docs#flow) is called by its qualified name using an alias created in the [imports](#/docs#imports) parameter.
@@ -379,6 +416,46 @@ flow:
     - SUCCESS
 ```
 
+###for
+The key `for` is a property of a [loop](#/docs#loop).
+It is mapped to an iteration variable followed by `in` followed by a list, an expression that evaluates to a list, or a comma delimited string.
+
+The [iterative task](#/docs#iterative-task) will run once for each element in the list or comma delimited string. Each time the iteration variable will be given the value of the next item in the list or comma delimited string.
+
+**Example - loop that iterates through the values in a list**
+
+```yaml
+print_values:
+  loop:
+    for: value in [1,2,3]
+    do:
+      ops.print:
+        - text: value
+```
+
+**Example - loop that iterates through the values in a comma delimited string**
+
+```yaml
+print_values:
+  loop:
+    for: value in "1,2,3"
+    do:
+      ops.print:
+        - text: value
+```
+
+**Example - loop that iterates through the values returned from an expression**
+
+```yaml
+print_values:
+  loop:
+    for: value in range(1,4)
+    do:
+      ops.print:
+        - text: value
+```
+
+
 ###fromInputs
 May appear in the value of an [output](#doc/#outputs).
 
@@ -428,6 +505,17 @@ inputs:
   - input2
 ```
 
+###loop
+The key `loop` is a property of an [iterative task's](#/docs#iterative-task) name.
+It is mapped to the [iterative task's](#/docs#iterative-task) properties.
+
+Property|Required|Default|Value Type|Description|More Info
+---|
+`for`|yes|-|variable `in` list|iteration logic|[for](#/docs#for) 
+`do`|yes|-|operation or subflow call|the operation or subflow this task will run iteratively|[do](#/docs#do) [operation](#/docs#operation) [flow](#/docs#flow)
+`publish`|no|-|list of key:value pairs|operation outputs to aggregate and publish to the flow level|[publish](#/docs#publish) [outputs](#/docs#outputs)
+`break`|no|-|list of [results](#/docs#result)|operation or subflow [results](#/docs#result) on which to break out of the loop|[break](#/docs#break)
+
 ###name
 The key `name` is a property of [flow](#/docs#flow) and [operation](#/docs#operation).
 It is mapped to a value that is used as the name of the [flow](#/docs#flow) or [operation](#/docs#operation).
@@ -455,7 +543,12 @@ namespace: user.examples
 The key `navigate` is a property of a [task](#/docs#task) name.
 It is mapped to key:value pairs where the key is the received [result](#/docs#results) and the value is the target [task](#/docs#task) or [flow](#doc/#flow) [result](#/docs#results).
 
-Defines the navigation logic for a [task](#/docs#task). The flow will continue with the [task](#/docs#task) or [flow](#/docs#flow) [result](#/docs#results) whose value is mapped to the [result](#/docs#results) returned by the called [operation](#/docs#operation) or subflow when the [task](#/docs#task) is completed. The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`.
+Defines the navigation logic for a [standard task](#/docs#standard-task) or an [iterative task](#/docs#iterative-task). The flow will continue with the [task](#/docs#task) or [flow](#/docs#flow) [result](#/docs#results) whose value is mapped to the [result](#/docs#results) returned by the called [operation](#/docs#operation) or subflow. 
+
+For a [standard task](#/docs#standard-task) the navigation logic runs when the [task](#/docs#task) is completed. For an [iterative task](#/docs#iterative-task) the navigation logic runs when the last iteration of the [task](#/docs#task) is completed or after exiting the iteration due to a [break](#/docs#break).
+
+
+The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`. 
 
 **Example - ILLEGAL result will navigate to flow's FAILURE result and SUCCESS result will navigate to task named "printer"**
 ```yaml
@@ -542,10 +635,12 @@ inputs:
 ```
 
 ###publish
-The key `publish` is a property of a [task](#/docs#task) name.
+The key `publish` is a property of a [task](#/docs#task) name or a [loop](#/docs#loop).
 It is mapped to a list of key:value pairs where the key is the published variable name and the value is the name of the [output](#/docs#outputs) received from an [operation](#/docs#operation) or [flow](#/docs#flow).
 
 Binds the [output](#/docs#outputs) from an [operation](#/docs#operation) or [flow](#/docs#flow) to a variable whose scope is the current [flow](#/docs#flow) and can therefore be used by other [tasks](#/docs#task) or as the [flow's](#/docs#flow) own [output](#/docs#outputs).
+
+In an [iterative task](#/docs#iterative-task) the publish mechanism is run during each iteration after the [operation](#/docs#operation) or [subflow](#/docs#flow) has completed.
 
 **Example - publish the quotient output as answer**
 ```yaml
@@ -604,9 +699,11 @@ inputs:
 
 ###task
 A name of a task which is a property of [workflow](#/docs#workflow) or [on_failure](#/docs#on_failure).
-It is mapped to the properties which make up the task contents.
 
+A task can either be a standard one or and iterative one.
 
+####Standard Task
+The task name is mapped to the task's properties.
 
 Property|Required|Default|Value Type|Description|More Info
 ---|
@@ -627,6 +724,26 @@ divider:
   navigate:
     ILLEGAL: FAILURE
     SUCCESS: printer
+```
+
+####Iterative Task
+The task name is mapped to the iterative task's properties.
+Property|Required|Default|Value Type|Description|More Info
+---|
+`loop`|yes|-|key|container for loop properties|[for](#/docs#for)
+`navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic from [break](#/docs#break) or the result of the last iteration of the operation or flow|[navigation](#/docs#navigate) [results](#/docs#results)
+
+**Example - task prints all the values in value_list and the navigates to a task named "another_task"**
+
+```yaml
+print_values:
+  loop:
+    for: value in value_list
+    do:
+      ops.print:
+        - text: value
+  navigate:
+    SUCCESS: another_task
 ```
 
 ###workflow
@@ -733,7 +850,7 @@ operation:
     - ILLEGAL: quotient == 'division by zero error'
     - SUCCESS
 ```
-**Operations - print.sl**
+**Operation - print.sl**
 ```yaml
 namespace: examples.divide
 
@@ -788,7 +905,7 @@ flow:
             - subject: "'Flow failure'"
 ```
 
-**Operations - produce_default_navigation.sl**
+**Operation - produce_default_navigation.sl**
 
 ```yaml
 namespace: examples.defualtnav
@@ -805,7 +922,7 @@ operation:
     - FAILURE
 ```
 
-**Operations - something.sl**
+**Operation - something.sl**
 
 ```yaml
 namespace: examples.defualtnav
@@ -817,7 +934,7 @@ operation:
         print 'Doing something important'
 ```
 
-**Operations - send_email_mock.sl**
+**Operation - send_email_mock.sl**
 ```yaml
 namespace: examples.defualtnav
 
@@ -880,6 +997,96 @@ flow:
         do:
           ops.print:
             - text: ans
+```
+
+####Example4 - Loops
+This example demonstrates the different types of values that can be looped on and various methods for handling loop breaks. 
+
+**Flow - loops.sl**
+
+```yaml
+namespace: examples.loops
+
+imports:
+  ops: examples.loops
+
+flow:
+  name: loops
+
+  workflow:
+    fail3a:
+      loop:
+        for: value in [1,2,3,4,5]
+        do:
+          ops.fail3:
+            - text: value
+        break: []
+    custom3:
+      loop:
+        for: value in range(1,6)
+        do:
+          ops.custom3:
+            - text: value
+        break:
+          - CUSTOM
+      navigate:
+        CUSTOM: fail3b
+    skip_this:
+      do:
+        ops.print:
+          - text: "'This will not run.'"
+    fail3b:
+      loop:
+        for: value in "1,2,3,4,5"
+        do:
+          ops.fail3:
+            - text: value
+```
+
+**Operation - custom3.sl**
+
+```yaml
+namespace: examples.loops
+
+operation:
+  name: custom3
+  inputs:
+    - text
+  action:
+    python_script: print text
+  results:
+    - CUSTOM: int(fromInputs['text']) == 3
+    - SUCCESS
+```
+
+**Operation - fail3.sl**
+
+```yaml
+namespace: examples.loops
+
+operation:
+  name: fail3
+  inputs:
+    - text
+  action:
+    python_script: print text
+  results:
+    - FAILURE: int(fromInputs['text']) == 3
+    - SUCCESS
+```
+
+**Operation - print.sl**
+```yaml
+namespace: examples.loops
+
+operation:
+  name: print
+  inputs:
+    - text
+  action:
+    python_script: print text
+  results:
+    - SUCCESS
 ```
 
 ##SLANG Best Practices

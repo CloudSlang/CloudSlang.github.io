@@ -164,6 +164,7 @@ The general structure of SLANG files is outlined here. Some of the properties th
 	  + [required](#/docs#required)
 	  + [default](#/docs#default)
 	  + [overridable](#/docs#overridable)
+	  + [system_property](#/docs#system_property)
   + [workflow](#/docs#workflow)
     + [task(s)](#/docs#task)
       + [do](#/docs#do)
@@ -191,10 +192,21 @@ The general structure of SLANG files is outlined here. Some of the properties th
     + [required](#/docs#required)
 	+ [default](#/docs#default)
 	+ [overridable](#/docs#overridable)
+	+ [system_property](#/docs#system_property)
   + [action](#/docs#action)
   + [outputs](#/docs#outputs)
 	+ [fromInputs](#/docs#fromInputs)
   + [results](#/docs#results)   
+
+###System Property Files 
+System property files are written in flat [YAML](http://www.yaml.org), containing a map of names to values. System property files end with the .yaml  or .yml extensions. If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name. System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. 
+
+**Example - system properties file**
+
+```yaml
+examples.sysprops.hostname: smtp.somedomain.com
+examples.sysprops.port: 587
+``` 
 
 ---
 
@@ -328,7 +340,7 @@ loop:
 The key `default` is a property of an [input](#/docs#inputs) name.
 It is mapped to an expression value.
 
-The expression's value will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed.  
+The expression's value will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed or if the input's [overridable](#/docs#overridable) parameter is set to `false` and there is no [system_properties](#/docs#system_properties) parameter defined.   
 
 **Example - default values **
 
@@ -494,6 +506,7 @@ Property|Required|Default|Value Type|Description|More info
 `required`|no|true|boolean|is the input required|[required](#/docs#required)
 `default`|no|-|expression|default value of the input|[default](#/docs#default)
 `overridable`|no|true|boolean|if false, the default value always overrides values passed in|[overridable](#/docs#overridable)
+`system_properties`|no|-|string|the name of a system property variable|[system_property](#/docs#system_property)
 
 **Example - two inputs**
 
@@ -604,7 +617,7 @@ It is mapped to a list of output variable names which may also contain expressio
 
 Defines the parameters a  [flow](#/docs#flow) or [operation](#/docs#operation) exposes to possible [publication](#/docs#publish) by a [task](#/docs#task). The calling [task](#/docs#task) refers to an output by its name.
 
-Note:  all variable values are converted to string before being used in an output's boolean expression.
+Note:  All variable values are converted to string before being used in an output's boolean expression.
 
 See also [fromInputs](#/docs#fromInputs).
 
@@ -672,7 +685,7 @@ In a [operation](#/docs#operation) the key `results` is mapped to a list of key:
 
 Defines the possible results of the [operation](#/docs#operation). By default, if no results exist, the result is `SUCCESS`.  The first result in the list whose expression evaluates to true, or does not have an expression at all, will be passed back to the calling [task](#/docs#task) to be used for [navigation](#/docs#navigate) purposes.  
 
-Note:  all variable values are converted to string before being used in a result's boolean expression.
+Note:  All variable values are converted to string before being used in a result's boolean expression.
 
 **Example - three user-defined results**
 ```yaml
@@ -696,6 +709,25 @@ inputs:
   - input2:
       required: false
 ```
+
+###system_property
+The key `system_property` is a property of an [input](#/docs#inputs) name.
+It is mapped to an string of a key from a system properties file.
+
+The value referenced in the system properties file will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed in or if the input's [overridable](#/docs#overridable) parameter is set to `false`.  
+
+Note: If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name.  
+
+**Example - default values **
+
+```yaml
+inputs:
+  - host:
+      system_property: examples.sysprops.hostname
+  - port:
+      system_property: examples.sysprops.port
+```
+
 
 ###task
 A name of a task which is a property of [workflow](#/docs#workflow) or [on_failure](#/docs#on_failure).
@@ -999,7 +1031,7 @@ flow:
             - text: ans
 ```
 
-####Example4 - Loops
+####Example 4 - Loops
 This example demonstrates the different types of values that can be looped on and various methods for handling loop breaks. 
 
 **Flow - loops.sl**
@@ -1177,8 +1209,14 @@ slang>run --f c:/.../your_flow.sl --fi c:/.../inputs.yaml --i input1=value1
  
 If the flow requires dependencies from another location, use the `--cp` flag: 
 ```bash
-slang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/
+slang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml
 ```
+
+If the flow requires a system properties file that is not in a properties in the same directory, use the `--spf` flag: 
+```bash
+slang>run --f c:/.../your_flow.sl --spf c:/.../yaml
+```
+System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. 
 
 ####Other Commands
 Some of the available commands are:

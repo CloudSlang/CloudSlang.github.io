@@ -782,7 +782,7 @@ print_values:
 
 ###workflow
 The key `workflow` is a property of a [flow](#/docs#flow).
-It is mapped to a the workflow's [tasks](#/docs#task).
+It is mapped to a list of the workflow's [tasks](#/docs#task).
 
 Defines a container for the [tasks](#/docs#task), their [published variables](#/docs#publish) and [navigation](#/docs#navigate) logic.
 
@@ -1195,6 +1195,8 @@ There are several ways to get started with the SLANG CLI.
 ###Use the CLI
 
 ####Run a Flow
+When a flow is run, the entire directory in which the flow resides is scanned recursively (including all subfolders) for files with a valid SLANG extension. All of the files found are compiled by the CLI. If the `--cp` flag is used, all of the directories listed there will be scanned and compiled recursively as well. 
+
 To run a flow located at `c:/.../your_flow.sl`, enter the following at the `slang>` prompt:
 ```bash
 slang>run --f c:/.../your_flow.sl

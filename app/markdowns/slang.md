@@ -2,7 +2,80 @@
 
 ##What is SLANG?
 
-SLANG is a [YAML](http://www.yaml.org) based language for describing a workflow. Using SLANG you can easily define a workflow in a structured, easy-to-understand format that can be run by **score**.
+SLANG is a [YAML](http://www.yaml.org) (version 1.2) based language for describing a workflow. Using SLANG you can easily define a workflow in a structured, easy-to-understand format that can be run by **score**. SLANG files can be run by the [SLANG CLI](#/docs#slang-cli) or by an embedded instance of **score** using the [SLANG API](#/docs#slang-api).
+
+###YAML Overview
+The following is a brief overview of some of the YAML specification. See the full [YAML specification](http://www.yaml.org/spec/1.2/spec.html) for more information.
+
+####Whitespace
+Unlike many programming, markup, and data serialization languages, whitespace is syntactically significant. Indentation is used to denote scope and is always achieved using spaces. Never use tabs.
+
+**Example: a SLANG task (in this case named divider) contains do, publish and navigate keys**
+
+```yaml
+divider:
+  do:
+    ops.divide:
+      - dividend: input1
+      - divisor: input2
+  publish:
+    - answer: quotient
+  navigate:
+    ILLEGAL: FAILURE
+    SUCCESS: printer
+```
+
+####Lists
+List are denoted with a hypen (-) and a space preceding each list item. 
+
+**Example: a SLANG flow's possible results are defined using a list mapped to the results key**
+```yaml
+results:
+  - ILLEGAL
+  - SUCCESS
+```
+
+####Maps
+Maps are denoted use a colon (:) and a space between each key value pair.
+
+**Example: a SLANG  task's navigate key is mapped to a mapping of results and their targets**
+```yaml
+navigate:
+  ILLEGAL: FAILURE
+  SUCCESS: printer
+```
+
+####Strings
+Strings can be denoted in several ways: unquoted, single quoted and double quoted. The best method for any given string depends on whether it includes any special characters, leading or trailing whitespace, spans multiple lines, along with other factors.
+
+Strings that span multiple lines can be written using a pipe (|) to preserve line breaks or a greater than symbol (>) where each line break will be converted to a space.
+
+**Example:  a name of a SLANG flow is defined using the unquoted style** 
+```yaml
+flow:
+  name: hello_world
+```
+
+**Example:  the single or double quoted style is used in SLANG to pass a Python string, which is quoted using the other style, to an input parameter** 
+```yaml
+sayHi:
+  do:
+    ops.print:
+      - text: "'Hello, World'"
+```
+
+**Example:  the pipe is used in SLANG to indicate a multi-line Python script** 
+```yaml
+action:
+  python_script: |
+    if divisor == '0':
+      quotient = 'division by zero error'
+    else:
+      quotient = float(dividend) / float(divisor)
+```
+
+####Comments
+Comments begin with the # symbol.
 
 ### Hello World Example
 The following is a simple example to give you an idea of how SLANG is structured and can be used to ensure your environment is set up properly to run flows. 
@@ -17,10 +90,10 @@ In a new folder, create two new SLANG files, hello_world.sl and print.sl, and co
 
 **hello_world.sl**
 ```yaml
-namespace: user.examples.hello_world
+namespace: examples.hello_world
 
 imports:
-  ops: user.examples.hello_world
+  ops: examples.hello_world
 
 flow:
   name: hello_world
@@ -32,16 +105,16 @@ flow:
 ```
 **print.sl**
 ```yaml
-namespace: user.examples.hello_world
+namespace: examples.hello_world
 
-operations:
-  - print:
-      inputs:
-        - text
-      action:
-        python_script: print text
-      results:
-        - SUCCESS
+operation:
+  name: print
+  inputs:
+    - text
+  action:
+    python_script: print text
+  results:
+    - SUCCESS
 ```
 
 ####Run
@@ -52,25 +125,25 @@ The output will look similar to this:
 - sayHi
 Hello, World
 Flow : hello_world finished with result : SUCCESS
-Flow execution time took  0:00:00.790 , with execution id : 101600001
+Execution id: 101600001, duration: 0:00:00.790
 ```
 
 ####Explanation
 The CLI runs the [flow](#/docs#flow) in the file we have passed to it, namely **hello_world.sl**. The [flow](#/docs#flow) begins with an [import](#/docs#imports) of the operations file, **print.sl**, using its [namespace](#/docs#namespace) as the value for the [imports](#/docs#imports) key. Next, we enter the [flow](#/docs#flow) named `hello_world` and begin its [workflow](#/docs#workflow). The [workflow](#/docs#workflow) has one [task](#/docs#task) named `sayHi` which calls the `print` [operation](#/docs#operation) from the operations file that was imported. The [flow](#/docs#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#/docs#operation) `text` [input](#/docs#inputs). The print [operation](#/docs#operation) performs its [action](#/docs#action), which is a simple Python script that prints the [input](#/docs#inputs), and then returns a [result](#/docs#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#/docs#task) the [flow](#/docs#flow) finishes with a [result](#/docs#results) of `SUCCESS`.
 
 ##SLANG DSL Reference
-This reference begins with a brief introduction to SLANG files and their structure followed by an alphabetical list of SLANG keywords and concepts. 
+This reference begins with a brief introduction to SLANG files and their structure followed by an alphabetical listing of SLANG keywords and concepts. 
 
 ###SLANG Files 
-SLANG files are written using [YAML](http://www.yaml.org). The recommended extension for SLANG files is .sl, but .yaml  and .yl will work as well. 
+SLANG files are written using [YAML](http://www.yaml.org). The recommended extension for SLANG files is .sl, but .sl.yaml  and .sl.yml will work as well. 
 
 There are two types of SLANG files:
 
 + flow
-+ operations
++ operation
 
 
-The following properties are for all types of SLANG files. For properties specific to [flows](#/docs#flow) or [operations](#/docs#operations), see their respective sections below.  
+The following properties are for all types of SLANG files. For properties specific to [flows](#/docs#flow) or [operations](#/docs#operation), see their respective sections below.  
 
 Property|Required|Default|Value Type|Description|More Info
 ---|---|---|---|---
@@ -91,10 +164,18 @@ The general structure of SLANG files is outlined here. Some of the properties th
 	  + [required](#/docs#required)
 	  + [default](#/docs#default)
 	  + [overridable](#/docs#overridable)
+	  + [system_property](#/docs#system_property)
   + [workflow](#/docs#workflow)
     + [task(s)](#/docs#task)
       + [do](#/docs#do)
       + [publish](#/docs#publish)
+      + [navigate](#/docs#navigate) 
+    + [loop task](#/docs#task)
+      + [loop](#/docs#loop)
+        + [for](#/docs#for)
+        + [do](#/docs#do)
+        + [publish](#/docs#publish)
+        + [break](#/docs#break)
       + [navigate](#/docs#navigate) 
     + [on_failure](#/docs#on_failure) 
   + [outputs](#/docs#outputs)
@@ -105,16 +186,27 @@ The general structure of SLANG files is outlined here. Some of the properties th
 
 + [namespace](#/docs#namespace)
 + [imports](#/docs#imports)
-+ [operations](#/docs#operations)
-  + [operation(s)](#/docs#operation)
-    + [inputs](#/docs#inputs)
-      + [required](#/docs#required)
-	  + [default](#/docs#default)
-	  + [overridable](#/docs#overridable)
-    + [action](#/docs#action)
-    + [outputs](#/docs#outputs)
-	  + [fromInputs](#/docs#fromInputs)
-    + [results](#/docs#results)   
++ [operation](#/docs#operations)
+  + [name](#/docs#name)
+  + [inputs](#/docs#inputs)
+    + [required](#/docs#required)
+	+ [default](#/docs#default)
+	+ [overridable](#/docs#overridable)
+	+ [system_property](#/docs#system_property)
+  + [action](#/docs#action)
+  + [outputs](#/docs#outputs)
+	+ [fromInputs](#/docs#fromInputs)
+  + [results](#/docs#results)   
+
+###System Property Files 
+System property files are written in flat [YAML](http://www.yaml.org), containing a map of names to values. System property files end with the .yaml  or .yml extensions. If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name. System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. 
+
+**Example - system properties file**
+
+```yaml
+examples.sysprops.hostname: smtp.somedomain.com
+examples.sysprops.port: 587
+``` 
 
 ---
 
@@ -138,30 +230,30 @@ A `java_action` is a valid @Action that conforms to the method signature: `publi
 **Example - SLANG call to  a Java @Action**
 
 ```yaml
-- pull_image:
-    inputs:
-      - input1
-      - input2
-    action:
-      java_action:
-        className: org.mypackage.MyClass
-        methodName: doMyAction
-    outputs:
-      - returnResult
-    results:
-      - SUCCESS : someActionOutput == '0'
-      - FAILURE
+name: pull_image
+inputs:
+  - input1
+  - input2
+action:
+  java_action:
+    className: org.mypackage.MyClass
+    methodName: doMyAction
+outputs:
+  - returnResult
+results:
+  - SUCCESS : someActionOutput == '0'
+  - FAILURE
 ```
 
 ```java
-    public Map<String, String> doMyAction(
-            @Param("input1") String input1,
-            @Param("input2") String input2) {
-        //logic here
-        Map<String, String> returnValues = new HashMap<>();
-        //prepare return values map
-        return returnValues;
-    }
+public Map<String, String> doMyAction(
+        @Param("input1") String input1,
+        @Param("input2") String input2) {
+    //logic here
+    Map<String, String> returnValues = new HashMap<>();
+    //prepare return values map
+    return returnValues;
+}
 ```
 
 ####python_script
@@ -171,30 +263,84 @@ It is mapped to a value containing a Python version 2.7 script.
 **Example - action with Python script that divides two numbers**
 
 ```yaml
-- divide:
+name: divide
+inputs:
+  - dividend
+  - divisor
+action:
+  python_script: |
+    if divisor == '0':
+      quotient = 'division by zero error'
+    else:
+      quotient = float(dividend) / float(divisor)
+outputs:
+  - quotient
+results:
+  - ILLEGAL: quotient == 'division by zero error'
+  - SUCCESS
+```
+**Note:** Single-line Python scripts can be written inline with the `python_script` key. Multi-line Python scripts can use the YAML pipe (|) indicator as in the example above.
+
+#####Importing External Python Modules
+There are two approaches to importing and using external Python modules.
+
++ Append to the `sys.path`:
+  1. In the action's Pyton script, import the `sys` module.
+  2. Use `sys.path.append()` to add the path to the desired module.
+  3. Import the module and use it. 
+    **Example - takes path as input parameter, adds it to sys.path and imports desired module **
+    ```yaml
     inputs:
-      - dividend
-      - divisor
+      - path
     action:
       python_script: |
-        if divisor == '0':
-          quotient = 'division by zero error'
-        else:
-          quotient = float(dividend) / float(divisor)
-    outputs:
-      - quotient
-    results:
-      - ILLEGAL: quotient == 'division by zero error'
-      - SUCCESS
+        import sys
+        sys.path.append(path)
+        import module_to_import
+        print module_to_import.something()
+           
+    ```
++ Add environment variable:
+  1. Create a JYTHONPATH environment variable.
+  2. Add desired modules' paths to the JYTHONPATH variable, separating them by colons (:) on Unix and semicolons (;) on Windows.
+  3. In the action's Python script, import the module and use it.
+
+###break
+The key `break` is a property of a [loop](#/docs#loop).
+It is mapped to a list of results on which to break out of the loop or an empty list (`[]`) to override the default breaking behavior for a list. When the [operation](#/docs#operation) or [subflow](#/docs#flow) of the [iterative task](#/docs#iterative-task) returns a result in the break's list, the iteration halts and the [interative task's](#/docs#iterative-task) [navigation](#/docs#navigation) logic is run. 
+
+If the `break` property is not defined, the loop will break on results of `FAILURE` by default. This behavior may be overriden so that iteration will continue even when a result of `FAILURE` is returned by defining alternate break behavior or mapping the `break` key to an empty list (`[]`). 
+
+**Example - loop that breaks on result of CUSTOM **
+
+```yaml
+loop:
+  for: value in range(1,7)
+  do:
+    ops.custom_op:
+      - text: value
+  break:
+    - CUSTOM
+navigate:
+  CUSTOM: print_end
 ```
 
- 
+**Example - loop that continues even on result of FAILURE **
+
+```yaml
+loop:
+  for: value in range(1,7)
+  do:
+    ops.custom_op:
+      - text: value
+  break: []
+```
 
 ###default
 The key `default` is a property of an [input](#/docs#inputs) name.
 It is mapped to an expression value.
 
-The expression's value will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed.  
+The expression's value will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed or if the input's [overridable](#/docs#overridable) parameter is set to `false` and there is no [system_properties](#/docs#system_properties) parameter defined.   
 
 **Example - default values **
 
@@ -219,10 +365,10 @@ inputs:
 ```
 
 ###do
-The key `do` is a property of a [task](#/docs#task) name.
+The key `do` is a property of a [task](#/docs#task) name or a [loop](#/docs#loop).
 It is mapped to a property that references an [operation](#/docs#operation) or [flow](#/docs#flow).
 
-Calls an [operation](#/docs#operation) or [flow](#/docs#flow) and passes in relevant [input](#/docs#inputs). The [operation](#/docs#operation) or [flow](#/docs#flow) is called by its qualified name using an alias created in the [imports](#/docs#imports) parameter.
+Calls an [operation](#/docs#operation) or [flow](#/docs#flow) and passes in relevant [input](#/docs#inputs). The [input](#/docs#inputs) list may contain [input](#/docs#inputs) properties. The [operation](#/docs#operation) or [flow](#/docs#flow) is called by its qualified name using an alias created in the [imports](#/docs#imports) parameter.
 
 **Example - call to a divide operation with inputs**
 ```yaml
@@ -282,8 +428,48 @@ flow:
     - SUCCESS
 ```
 
+###for
+The key `for` is a property of a [loop](#/docs#loop).
+It is mapped to an iteration variable followed by `in` followed by a list, an expression that evaluates to a list, or a comma delimited string.
+
+The [iterative task](#/docs#iterative-task) will run once for each element in the list or comma delimited string. Each time the iteration variable will be given the value of the next item in the list or comma delimited string.
+
+**Example - loop that iterates through the values in a list**
+
+```yaml
+print_values:
+  loop:
+    for: value in [1,2,3]
+    do:
+      ops.print:
+        - text: value
+```
+
+**Example - loop that iterates through the values in a comma delimited string**
+
+```yaml
+print_values:
+  loop:
+    for: value in "1,2,3"
+    do:
+      ops.print:
+        - text: value
+```
+
+**Example - loop that iterates through the values returned from an expression**
+
+```yaml
+print_values:
+  loop:
+    for: value in range(1,4)
+    do:
+      ops.print:
+        - text: value
+```
+
+
 ###fromInputs
-May appear in the value of an [operation's](#/docs#operation) [output](#doc/#outputs).
+May appear in the value of an [output](#doc/#outputs).
 
 Special syntax to [output](#/docs#outputs) an [input](#/docs#inputs) parameter as it was passed in.
 
@@ -315,11 +501,14 @@ It is mapped to a list of input names. Each input name may in turn be mapped to 
 
 Inputs are used to pass parameters to [flows](#/docs#flow) or [operations](#/docs#operation).
 
+Input properties may also be used in the input list of a [task](#/docs#task). 
+
 Property|Required|Default|Value Type|Description|More info
 ---|
 `required`|no|true|boolean|is the input required|[required](#/docs#required)
 `default`|no|-|expression|default value of the input|[default](#/docs#default)
-`overridable`|no|true|boolean|will the default value be overridden by values passed in|[overridable](#/docs#overridable)
+`overridable`|no|true|boolean|if false, the default value always overrides values passed in|[overridable](#/docs#overridable)
+`system_properties`|no|-|string|the name of a system property variable|[system_property](#/docs#system_property)
 
 **Example - two inputs**
 
@@ -331,12 +520,22 @@ inputs:
   - input2
 ```
 
+###loop
+The key `loop` is a property of an [iterative task's](#/docs#iterative-task) name.
+It is mapped to the [iterative task's](#/docs#iterative-task) properties.
+
+Property|Required|Default|Value Type|Description|More Info
+---|
+`for`|yes|-|variable `in` list|iteration logic|[for](#/docs#for) 
+`do`|yes|-|operation or subflow call|the operation or subflow this task will run iteratively|[do](#/docs#do) [operation](#/docs#operation) [flow](#/docs#flow)
+`publish`|no|-|list of key:value pairs|operation outputs to aggregate and publish to the flow level|[publish](#/docs#publish) [outputs](#/docs#outputs)
+`break`|no|-|list of [results](#/docs#result)|operation or subflow [results](#/docs#result) on which to break out of the loop|[break](#/docs#break)
 
 ###name
-The key `name` is a property of [flow](#/docs#flow) .
-It is mapped to a value that is used as the name of the flow.
+The key `name` is a property of [flow](#/docs#flow) and [operation](#/docs#operation).
+It is mapped to a value that is used as the name of the [flow](#/docs#flow) or [operation](#/docs#operation).
 
-The name of a [flow](#/docs#flow) may be used when calling the [flow](#/docs#flow) as a subflow by a [task](#/docs#task) in another [flow](#/docs#flow). 
+The name of a [flow](#/docs#flow) or [operation](#/docs#operation) may be used when called from a [flow](#/docs#flow)'s [task](#/docs#task). 
 
 **Example - naming the flow "division_flow"**
 
@@ -359,7 +558,12 @@ namespace: user.examples
 The key `navigate` is a property of a [task](#/docs#task) name.
 It is mapped to key:value pairs where the key is the received [result](#/docs#results) and the value is the target [task](#/docs#task) or [flow](#doc/#flow) [result](#/docs#results).
 
-Defines the navigation logic for a [task](#/docs#task). The flow will continue with the [task](#/docs#task) or [flow](#/docs#flow) [result](#/docs#results) whose value is mapped to the [result](#/docs#results) returned by the called [operation](#/docs#operation) or subflow when the [task](#/docs#task) is completed. The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`.
+Defines the navigation logic for a [standard task](#/docs#standard-task) or an [iterative task](#/docs#iterative-task). The flow will continue with the [task](#/docs#task) or [flow](#/docs#flow) [result](#/docs#results) whose value is mapped to the [result](#/docs#results) returned by the called [operation](#/docs#operation) or subflow. 
+
+For a [standard task](#/docs#standard-task) the navigation logic runs when the [task](#/docs#task) is completed. For an [iterative task](#/docs#iterative-task) the navigation logic runs when the last iteration of the [task](#/docs#task) is completed or after exiting the iteration due to a [break](#/docs#break).
+
+
+The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`. 
 
 **Example - ILLEGAL result will navigate to flow's FAILURE result and SUCCESS result will navigate to task named "printer"**
 ```yaml
@@ -384,8 +588,7 @@ on_failure:
 ```
 
 ###operation
-A name of an operation which is a list item of [operations](#/docs#operations).
-It is mapped to the operation's properties.
+The key `operation` is mapped to the properties which make up the operation contents.
 
 Property|Required|Default|Value Type|Description|More Info
 ---|
@@ -398,38 +601,25 @@ results|no|`SUCCESS`|list|possible operation results|[results](#/docs#results)
 **Example - operation that adds two inputs and outputs the answer**
 
 ```yaml
-- add:
-   inputs:
-     - left
-     - right
-   action:
-     python_script: ans = left + right
-   outputs:
-     - out: ans
-   results:
-     - SUCCESS
-```
-
-###operations
-The key `operations` is mapped to a list of [operation](operation) definitions.
-
-
-
-**Example - operations key with one operation**
-```yaml
-operations:
-  - print_done:
-      action:
-        python_script: print 'Done'
+name: add
+inputs:
+  - left
+  - right
+action:
+  python_script: ans = left + right
+outputs:
+  - out: ans
+results:
+  - SUCCESS
 ```
 
 ###outputs
-The key `outputs` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation) name.
+The key `outputs` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation).
 It is mapped to a list of output variable names which may also contain expression values. Output expressions must evaluate to strings. 
 
 Defines the parameters a  [flow](#/docs#flow) or [operation](#/docs#operation) exposes to possible [publication](#/docs#publish) by a [task](#/docs#task). The calling [task](#/docs#task) refers to an output by its name.
 
-Note:  all variable values are converted to string before being used in an output's boolean expression.
+Note:  All variable values are converted to string before being used in an output's boolean expression.
 
 See also [fromInputs](#/docs#fromInputs).
 
@@ -448,7 +638,7 @@ outputs:
 The key `overridable` is a property of an [input](#/docs#inputs) name.
 It is mapped to a boolean value.
 
-A value of `false` will always override the [input](#/docs#inputs) parameter sent to the [flow](#/docs#flow) or [operation](#/docs#operation) with the [default](#/docs#default) value. If `overridable` is not defined, the [default](#/docs#default) value will not override the value passed to the [input](#/docs#inputs) parameter. 
+A value of `false` will ensure that the [input](#/docs#inputs) parameter's [default](#/docs#default) value will not be overridden by values passed into the [flow](#/docs#flow) or [operation](#/docs#operation). If `overridable` is not defined, values passed in will override the [default](#/docs#default) value.
 
 **Example - default value of text input parameter will not be overridden by values passed in**
 
@@ -460,10 +650,12 @@ inputs:
 ```
 
 ###publish
-The key `publish` is a property of a [task](#/docs#task) name.
+The key `publish` is a property of a [task](#/docs#task) name or a [loop](#/docs#loop).
 It is mapped to a list of key:value pairs where the key is the published variable name and the value is the name of the [output](#/docs#outputs) received from an [operation](#/docs#operation) or [flow](#/docs#flow).
 
 Binds the [output](#/docs#outputs) from an [operation](#/docs#operation) or [flow](#/docs#flow) to a variable whose scope is the current [flow](#/docs#flow) and can therefore be used by other [tasks](#/docs#task) or as the [flow's](#/docs#flow) own [output](#/docs#outputs).
+
+In an [iterative task](#/docs#iterative-task) the publish mechanism is run during each iteration after the [operation](#/docs#operation) or [subflow](#/docs#flow) has completed.
 
 **Example - publish the quotient output as answer**
 ```yaml
@@ -495,7 +687,7 @@ In a [operation](#/docs#operation) the key `results` is mapped to a list of key:
 
 Defines the possible results of the [operation](#/docs#operation). By default, if no results exist, the result is `SUCCESS`.  The first result in the list whose expression evaluates to true, or does not have an expression at all, will be passed back to the calling [task](#/docs#task) to be used for [navigation](#/docs#navigate) purposes.  
 
-Note:  all variable values are converted to string before being used in a result's boolean expression.
+Note:  All variable values are converted to string before being used in a result's boolean expression.
 
 **Example - three user-defined results**
 ```yaml
@@ -520,9 +712,32 @@ inputs:
       required: false
 ```
 
+###system_property
+The key `system_property` is a property of an [input](#/docs#inputs) name.
+It is mapped to an string of a key from a system properties file.
+
+The value referenced in the system properties file will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed in or if the input's [overridable](#/docs#overridable) parameter is set to `false`.  
+
+Note: If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name.  
+
+**Example - default values **
+
+```yaml
+inputs:
+  - host:
+      system_property: examples.sysprops.hostname
+  - port:
+      system_property: examples.sysprops.port
+```
+
+
 ###task
 A name of a task which is a property of [workflow](#/docs#workflow) or [on_failure](#/docs#on_failure).
-It is mapped to the task's properties.
+
+A task can either be a standard one or and iterative one.
+
+####Standard Task
+The task name is mapped to the task's properties.
 
 Property|Required|Default|Value Type|Description|More Info
 ---|
@@ -545,9 +760,29 @@ divider:
     SUCCESS: printer
 ```
 
+####Iterative Task
+The task name is mapped to the iterative task's properties.
+Property|Required|Default|Value Type|Description|More Info
+---|
+`loop`|yes|-|key|container for loop properties|[for](#/docs#for)
+`navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic from [break](#/docs#break) or the result of the last iteration of the operation or flow|[navigation](#/docs#navigate) [results](#/docs#results)
+
+**Example - task prints all the values in value_list and the navigates to a task named "another_task"**
+
+```yaml
+print_values:
+  loop:
+    for: value in value_list
+    do:
+      ops.print:
+        - text: value
+  navigate:
+    SUCCESS: another_task
+```
+
 ###workflow
 The key `workflow` is a property of a [flow](#/docs#flow).
-It is mapped to a the workflow's [tasks](#/docs#task).
+It is mapped to a list of the workflow's [tasks](#/docs#task).
 
 Defines a container for the [tasks](#/docs#task), their [published variables](#/docs#publish) and [navigation](#/docs#navigate) logic.
 
@@ -632,32 +867,35 @@ flow:
 ```yaml
 namespace: examples.divide
 
-operations:
-  - divide:
-      inputs:
-        - dividend
-        - divisor
-      action:
-        python_script: |
-          if divisor == '0':
-            quotient = 'division by zero error'
-          else:
-            quotient = float(dividend) / float(divisor)
-      outputs:
-        - quotient
-      results:
-        - ILLEGAL: quotient == 'division by zero error'
-        - SUCCESS
+operation:
+  name: divide
+  inputs:
+    - dividend
+    - divisor
+  action:
+    python_script: |
+      if divisor == '0':
+        quotient = 'division by zero error'
+      else:
+        quotient = float(dividend) / float(divisor)
+  outputs:
+    - quotient
+  results:
+    - ILLEGAL: quotient == 'division by zero error'
+    - SUCCESS
 ```
-**Operations - print.sl**
+**Operation - print.sl**
 ```yaml
-  - print:
-      inputs:
-        - text
-      action:
-        python_script: print text
-      results:
-        - SUCCESS
+namespace: examples.divide
+
+operation:
+  name: print
+  inputs:
+    - text
+  action:
+    python_script: print text
+  results:
+    - SUCCESS
 ```
 
 ####Example 2 - Default Navigation
@@ -678,14 +916,14 @@ flow:
   name: nav_flow
 
   inputs:
-    - navigationType
-    - emailRecipient
+    - navigation_type
+    - email_recipient
 
   workflow:
     produce_default_navigation:
       do:
         ops.produce_default_navigation:
-          - navigationType
+          - navigation_type
 
     # default navigation - go to this task on success
     do_something:
@@ -697,51 +935,51 @@ flow:
       send_error_mail:
         do:
           ops.send_email_mock:
-            - recipient: emailRecipient
+            - recipient: email_recipient
             - subject: "'Flow failure'"
 ```
 
-**Operations - produce_default_navigation.sl**
+**Operation - produce_default_navigation.sl**
 
 ```yaml
 namespace: examples.defualtnav
 
-operations:
-  - produce_default_navigation:
-      inputs:
-        - navigationType
-      action:
-        python_script:
-          print 'Default navigation based on input of - ' + navigationType
-      results:
-        - SUCCESS: navigationType == 'success'
-        - FAILURE
+operation:
+  name: produce_default_navigation
+  inputs:
+    - navigation_type
+  action:
+    python_script:
+      print 'Default navigation based on input of - ' + navigation_type
+  results:
+    - SUCCESS: navigation_type == 'success'
+    - FAILURE
 ```
 
-**Operations - something.sl**
+**Operation - something.sl**
 
 ```yaml
 namespace: examples.defualtnav
 
-operations:
-  - something:
-      action:
-        python_script:
-          print 'Doing something important'
+operation:
+  name: something
+  action:
+      python_script:
+        print 'Doing something important'
 ```
 
-**Operations - send_email_mock.sl**
+**Operation - send_email_mock.sl**
 ```yaml
 namespace: examples.defualtnav
 
-operations:
-  - send_email_mock:
-      inputs:
-        - recipient
-        - subject
-      action:
-        python_script:
-          print 'Email sent to ' + recipient + ' with subject - ' + subject
+operation:
+  name: send_email_mock
+  inputs:
+    - recipient
+    - subject
+  action:
+    python_script:
+      print 'Email sent to ' + recipient + ' with subject - ' + subject
 ```
 
 ####Example3 - Subflow
@@ -767,7 +1005,6 @@ flow:
     - divisor2: "'0'"
 
   workflow:
-
     division1:
       do:
         ops.division:
@@ -796,40 +1033,95 @@ flow:
             - text: ans
 ```
 
-##SLANG Events
+####Example 4 - Loops
+This example demonstrates the different types of values that can be looped on and various methods for handling loop breaks. 
 
-SLANG uses **score** events and its own extended set of events. SLANG events are comprised of an event type string and a map of event data that contains all the relevant event information mapped to keys defined in the 
-`org.openscore.lang.runtime.events.LanguageEventData` class. All fired events are logged in the [execution log](#/docs#execution-log) file.
+**Flow - loops.sl**
 
+```yaml
+namespace: examples.loops
 
-Event types from score:
+imports:
+  ops: examples.loops
 
-+ SCORE_FINISHED_EVENT
-+ SCORE_FAILURE_EVENT
+flow:
+  name: loops
 
-Event types from SLANG are listed in the table below along with the event data each event contains. 
+  workflow:
+    fail3a:
+      loop:
+        for: value in [1,2,3,4,5]
+        do:
+          ops.fail3:
+            - text: value
+        break: []
+    custom3:
+      loop:
+        for: value in range(1,6)
+        do:
+          ops.custom3:
+            - text: value
+        break:
+          - CUSTOM
+      navigate:
+        CUSTOM: fail3b
+    skip_this:
+      do:
+        ops.print:
+          - text: "'This will not run.'"
+    fail3b:
+      loop:
+        for: value in "1,2,3,4,5"
+        do:
+          ops.fail3:
+            - text: value
+```
 
-All SLANG events contain the data in the following list. Additional event data is listed in the table below alongside the event type. The event data map keys are enclosed in square brackets - [KEYNAME].
+**Operation - custom3.sl**
 
-- [DESCRIPTION] - event description
-- [TIMESTAMP] - event time-stamp
-- [EXECUTIONID] - event execution id
-- [PATH] - event path: increased when entering a subflow or operation
+```yaml
+namespace: examples.loops
 
-Type [TYPE]|Usage|Event Data
----|---
-EVENT_INPUT_END|Input binding finished for task|[BOUND_INPUTS], [TASK_NAME]
-EVENT_INPUT_END|Input binding finished for flow or operation|[BOUND_INPUTS], [EXECUTABLE_NAME]
-EVENT_OUTPUT_START|Output binding started for task|[taskPublishValues], [taskNavigationValues], [operationReturnValues], [TASK_NAME]
-EVENT_OUTPUT_START|Output binding started for flow or operation|[executableOutputs],  [executableResults], [actionReturnValues], [EXECUTABLE_NAME]
-EVENT_OUTPUT_END|Output binding finished for task|[OUTPUTS], [RESULT], [nextPosition],  [TASK_NAME]
-EVENT_OUTPUT_END|Output binding finished for flow or operation|[OUTPUTS], [RESULT],  [EXECUTABLE_NAME]
-EVENT_EXECUTION_FINISHED|Execution finished running (in case of subflow)|[OUTPUTS],  [RESULT], [EXECUTABLE_NAME]
-EVENT_ACTION_START|Before action invocation|[CALL_ARGUMENTS], action type (Java or Python) in description
-EVENT_ACTION_END|After successful action invocation|[RETURN_VALUES]
-EVENT_ACTION_ERROR|Exception in action execution|[EXCEPTION]
-SLANG_EXECUTION_EXCEPTION|Exception in previous step|[EXCEPTION]
+operation:
+  name: custom3
+  inputs:
+    - text
+  action:
+    python_script: print text
+  results:
+    - CUSTOM: int(fromInputs['text']) == 3
+    - SUCCESS
+```
 
+**Operation - fail3.sl**
+
+```yaml
+namespace: examples.loops
+
+operation:
+  name: fail3
+  inputs:
+    - text
+  action:
+    python_script: print text
+  results:
+    - FAILURE: int(fromInputs['text']) == 3
+    - SUCCESS
+```
+
+**Operation - print.sl**
+```yaml
+namespace: examples.loops
+
+operation:
+  name: print
+  inputs:
+    - text
+  action:
+    python_script: print text
+  results:
+    - SUCCESS
+```
 
 ##SLANG Best Practices
 The following is a list of best practices for authoring SLANG files. 
@@ -840,20 +1132,35 @@ The following is a list of best practices for authoring SLANG files.
 -	Each file has one flow, one operation or a map of system variables. 
 -	Flows and operations reside together in the same folders.
 -	System variables reside in separate folders.
--	Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
-  - Optional parameters and default values are noted.	
- 
+- Identifiers (flow names, operation names, input names, etc.) are written:
+  -  In snake\_case, lowercase letters with underscores (\_)	between words, in all cases other than inputs to a Java @Action.
+  - In camelCase, starting with a lowercase letter and each additional word starting with an uppercase letter appended without a delimiter, for inputs to a Java @Action. 
+- Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
+  - Optional parameters and default values are noted.
 Note: In future releases some of the above best practices may be required by the SLANG compiler.
 
+**Example - commented description of operation to count occurrences of a string in another string**
+```yaml
+####################################################
+#   This operation will count the occurrences of a string in another string 
+#
+#   Inputs:
+#       - string_in_which_to_search - string where to search
+#       - string_to_find - string to be found
+#       - ignore_case - optional - ignores case if set to true - Default: true
+#   Outputs:
+#       - occurrences - number of times string_to_find was found
+#   Results:
+#       - SUCCESS - string_to_find is found at least once
+#       - FAILURE - otherwise
+####################################################
+```
+
 ##SLANG CLI
-There two ways to get started with the SLANG CLI. You can either download it pre-built from the **score** website or build it yourself. 
-
-###Prerequisites
-+ To run the SLANG CLI, Java JRE version 7 or higher is required.
-+ To build the SLANG CLI, Java JDK version 7 or higher and Maven version 3.0.3 or higher are required.
-
+There are several ways to get started with the SLANG CLI. 
 
 ###Download and Run Pre-built CLI
+**Prerequisites :** To run the SLANG CLI, Java JRE version 7 or higher is required.
 
 1. Go to the **score** [website](/#/) and scroll to the **Getting Started** section.
 2. Click **Download an use slang CLI tool**.
@@ -863,19 +1170,33 @@ There two ways to get started with the SLANG CLI. You can either download it pre
     + a folder called **slang** with the CLI tool and its necessary dependencies.
     + some other folders with sample flows.
 5. Navigate to the folder `slang\bin\`.
-6. Start the CLI by running `slang.bat`.
+6. Run the executable:
+  - For Windows : `slang.bat`.
+  - For Linux : `bash slang`.
 
 ###Download, Build and Run CLI
+**Prerequisites :** To build the SLANG CLI, Java JDK version 7 or higher and Maven version 3.0.3 or higher are required.
 
 1. Git clone (or GitHub fork and then clone) the [source code](https://github.com/openscore/score-language).
 2. Using the Command Prompt, navigate to the project root directory.
 3. Build the project by running `mvn clean install`.
 4. After the build finishes, navigate to the `score-language\score-lang-cli\target\slang\bin` folder.
-5. Start the CLI by running `slang.bat`.
+5. Run the executable:
+  - For Windows : `slang.bat`.
+  - For Linux : `bash slang`.
+
+###Download and Install npm Package
+**Prerequisites :** To download the package, Node.js is required. To run the SLANG CLI, Java JRE version 7 or higher is required.
+
+1. At a command prompt, enter `npm install -g score-cli`.
+	+ If using Linux, the sudo command might be neccessary: `sudo npm install -g score-cli`. 
+2. Enter the `slang` command at any command prompt.
 
 ###Use the CLI
 
 ####Run a Flow
+When a flow is run, the entire directory in which the flow resides is scanned recursively (including all subfolders) for files with a valid SLANG extension. All of the files found are compiled by the CLI. If the `--cp` flag is used, all of the directories listed there will be scanned and compiled recursively as well. 
+
 To run a flow located at `c:/.../your_flow.sl`, enter the following at the `slang>` prompt:
 ```bash
 slang>run --f c:/.../your_flow.sl
@@ -885,15 +1206,26 @@ If the flow takes in input parameters, use the `--i` flag and a comma-separated 
 ```bash
 slang>run --f c:/.../your_flow.sl --i input1=root,input2=25
 ```
+Alternatively, inputs made be loaded from a file using the `--fi` flag and a comma-separated list of file paths. Inputs passed with the `--i` flag will override the inputs passed using a file. If two files contain the same inputs, then the file specified last will override the values in previous files.
+```bash
+slang>run --f c:/.../your_flow.sl --fi c:/.../inputs.yaml --i input1=value1
+```
+ 
 If the flow requires dependencies from another location, use the `--cp` flag: 
 ```bash
-slang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml/
+slang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml
 ```
+
+If the flow requires a system properties file that is not in a properties in the same directory, use the `--spf` flag: 
+```bash
+slang>run --f c:/.../your_flow.sl --spf c:/.../yaml
+```
+System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. 
 
 ####Other Commands
 Some of the available commands are:
 
-+ `env --setAsync` - Sets the execution mode to be synchronous or asynchronous. By default the execution mode is synchronous, meaning only one flow can run at a time.
++ `env --setAsync` - Sets the execution mode to be synchronous (`false`) or asynchronous (`true`). By default the execution mode is synchronous, meaning only one flow can run at a time. 
 
 	```bash
 	slang>env --setAsync true

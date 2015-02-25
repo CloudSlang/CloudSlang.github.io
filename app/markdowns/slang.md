@@ -365,10 +365,10 @@ inputs:
 ```
 
 ###do
-The key `do` is a property of a [task](#/docs#task) name or a loop(#/docs#loop).
+The key `do` is a property of a [task](#/docs#task) name or a [loop](#/docs#loop).
 It is mapped to a property that references an [operation](#/docs#operation) or [flow](#/docs#flow).
 
-Calls an [operation](#/docs#operation) or [flow](#/docs#flow) and passes in relevant [input](#/docs#inputs). The [operation](#/docs#operation) or [flow](#/docs#flow) is called by its qualified name using an alias created in the [imports](#/docs#imports) parameter.
+Calls an [operation](#/docs#operation) or [flow](#/docs#flow) and passes in relevant [input](#/docs#inputs). The [input](#/docs#inputs) list may contain [input](#/docs#inputs) properties. The [operation](#/docs#operation) or [flow](#/docs#flow) is called by its qualified name using an alias created in the [imports](#/docs#imports) parameter.
 
 **Example - call to a divide operation with inputs**
 ```yaml
@@ -500,6 +500,8 @@ The key `inputs` is a property of a [flow](#/docs#flow) or [operation](#/docs#op
 It is mapped to a list of input names. Each input name may in turn be mapped to its properties.   
 
 Inputs are used to pass parameters to [flows](#/docs#flow) or [operations](#/docs#operation).
+
+Input properties may also be used in the input list of a [task](#/docs#task). 
 
 Property|Required|Default|Value Type|Description|More info
 ---|

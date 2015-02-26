@@ -13,16 +13,16 @@ Unlike many programming, markup, and data serialization languages, whitespace is
 **Example: a SLANG task (in this case named divider) contains do, publish and navigate keys**
 
 ```yaml
-divider:
-  do:
-    ops.divide:
-      - dividend: input1
-      - divisor: input2
-  publish:
-    - answer: quotient
-  navigate:
-    ILLEGAL: FAILURE
-    SUCCESS: printer
+- divider:
+    do:
+      ops.divide:
+        - dividend: input1
+        - divisor: input2
+    publish:
+      - answer: quotient
+    navigate:
+      ILLEGAL: FAILURE
+      SUCCESS: printer
 ```
 
 ####Lists
@@ -58,10 +58,10 @@ flow:
 
 **Example:  the single or double quoted style is used in SLANG to pass a Python string, which is quoted using the other style, to an input parameter** 
 ```yaml
-sayHi:
-  do:
-    ops.print:
-      - text: "'Hello, World'"
+- sayHi:
+    do:
+      ops.print:
+        - text: "'Hello, World'"
 ```
 
 **Example:  the pipe is used in SLANG to indicate a multi-line Python script** 
@@ -98,10 +98,10 @@ imports:
 flow:
   name: hello_world
   workflow:
-    sayHi:
-      do:
-        ops.print:
-          - text: "'Hello, World'"
+    - sayHi:
+        do:
+          ops.print:
+            - text: "'Hello, World'"
 ```
 **print.sl**
 ```yaml
@@ -403,22 +403,22 @@ flow:
     - input2
   
   workflow:
-    divider:
-      do:
-        ops.divide:
-          - dividend: input1
-          - divisor: input2
-      publish:
-        - answer: quotient
-      navigate:
-        ILLEGAL: ILLEGAL
-        SUCCESS: printer
-    printer:
-      do:
-        ops.print:
-          - text: input1 + "/" + input2 + " = " + answer
-      navigate:
-        SUCCESS: SUCCESS
+    - divider:
+        do:
+          ops.divide:
+            - dividend: input1
+            - divisor: input2
+        publish:
+          - answer: quotient
+        navigate:
+          ILLEGAL: ILLEGAL
+          SUCCESS: printer
+    - printer:
+        do:
+          ops.print:
+            - text: input1 + "/" + input2 + " = " + answer
+        navigate:
+          SUCCESS: SUCCESS
   
   outputs:
     - quotient: answer
@@ -437,34 +437,34 @@ The [iterative task](#/docs#iterative-task) will run once for each element in th
 **Example - loop that iterates through the values in a list**
 
 ```yaml
-print_values:
-  loop:
-    for: value in [1,2,3]
-    do:
-      ops.print:
-        - text: value
+- print_values:
+    loop:
+      for: value in [1,2,3]
+      do:
+        ops.print:
+          - text: value
 ```
 
 **Example - loop that iterates through the values in a comma delimited string**
 
 ```yaml
-print_values:
-  loop:
-    for: value in "1,2,3"
-    do:
-      ops.print:
-        - text: value
+- print_values:
+    loop:
+      for: value in "1,2,3"
+      do:
+        ops.print:
+          - text: value
 ```
 
 **Example - loop that iterates through the values returned from an expression**
 
 ```yaml
-print_values:
-  loop:
-    for: value in range(1,4)
-    do:
-      ops.print:
-        - text: value
+- print_values:
+    loop:
+      for: value in range(1,4)
+      do:
+        ops.print:
+          - text: value
 ```
 
 
@@ -580,11 +580,11 @@ Defines the [task](#/docs#task), which when using default [navigation](#/docs#na
 
 **Example - faliure task which call a print operation to print an error message**
 ```yaml
-on_failure:
-  failure:
-    do:
-      ops.print:
-        - text: error_msg
+- on_failure:
+  - failure:
+      do:
+        ops.print:
+          - text: error_msg
 ```
 
 ###operation
@@ -748,16 +748,16 @@ Property|Required|Default|Value Type|Description|More Info
 **Example - task that performs a division of two inputs, publishes the answer and navigates accordingly**
 
 ```yaml
-divider:
-  do:
-    ops.divide:
-      - dividend: input1
-      - divisor: input2
-  publish:
-    - answer: quotient
-  navigate:
-    ILLEGAL: FAILURE
-    SUCCESS: printer
+- divider:
+    do:
+      ops.divide:
+        - dividend: input1
+        - divisor: input2
+    publish:
+      - answer: quotient
+    navigate:
+      ILLEGAL: FAILURE
+      SUCCESS: printer
 ```
 
 ####Iterative Task
@@ -770,14 +770,14 @@ Property|Required|Default|Value Type|Description|More Info
 **Example - task prints all the values in value_list and the navigates to a task named "another_task"**
 
 ```yaml
-print_values:
-  loop:
-    for: value in value_list
-    do:
-      ops.print:
-        - text: value
-  navigate:
-    SUCCESS: another_task
+- print_values:
+    loop:
+      for: value in value_list
+      do:
+        ops.print:
+          - text: value
+    navigate:
+      SUCCESS: another_task
 ```
 
 ###workflow
@@ -796,20 +796,20 @@ Propery|Required|Default|Value Type|Description|More Info
 
 ```yaml
 workflow:
-  divider:
-    do:
-      ops.divide:
-        - dividend: input1
-        - divisor: input2
-    publish:
-      - answer: quotient
-    navigate:
-      ILLEGAL: FAILURE
-      SUCCESS: printer
-  printer:
-    do:
-      ops.print:
-        - text: input1 + "/" + input2 + " = " + answer
+  - divider:
+      do:
+        ops.divide:
+          - dividend: input1
+          - divisor: input2
+      publish:
+        - answer: quotient
+      navigate:
+        ILLEGAL: FAILURE
+        SUCCESS: printer
+  - printer:
+      do:
+        ops.print:
+          - text: input1 + "/" + input2 + " = " + answer
 ```
 
 ###Examples
@@ -839,22 +839,22 @@ flow:
     - input2
 
   workflow:
-    divider:
-      do:
-        ops.divide:
-          - dividend: input1
-          - divisor: input2
-      publish:
-        - answer: quotient
-      navigate:
-        ILLEGAL: ILLEGAL
-        SUCCESS: printer
-    printer:
-      do:
-        ops.print:
-          - text: input1 + "/" + input2 + " = " + answer
-      navigate:
-        SUCCESS: SUCCESS
+    - divider:
+        do:
+          ops.divide:
+            - dividend: input1
+            - divisor: input2
+        publish:
+          - answer: quotient
+        navigate:
+          ILLEGAL: ILLEGAL
+          SUCCESS: printer
+    - printer:
+        do:
+          ops.print:
+            - text: input1 + "/" + input2 + " = " + answer
+        navigate:
+          SUCCESS: SUCCESS
 
   outputs:
     - quotient: answer
@@ -920,23 +920,23 @@ flow:
     - email_recipient
 
   workflow:
-    produce_default_navigation:
-      do:
-        ops.produce_default_navigation:
-          - navigation_type
+    - produce_default_navigation:
+        do:
+          ops.produce_default_navigation:
+            - navigation_type
 
     # default navigation - go to this task on success
-    do_something:
-      do:
-        ops.something:
+    - do_something:
+        do:
+          ops.something:
 
     # default navigation - go to this task on failure
-    on_failure:
-      send_error_mail:
-        do:
-          ops.send_email_mock:
-            - recipient: email_recipient
-            - subject: "'Flow failure'"
+    - on_failure:
+      - send_error_mail:
+          do:
+            ops.send_email_mock:
+              - recipient: email_recipient
+              - subject: "'Flow failure'"
 ```
 
 **Operation - produce_default_navigation.sl**
@@ -1005,32 +1005,32 @@ flow:
     - divisor2: "'0'"
 
   workflow:
-    division1:
-      do:
-        ops.division:
-          - input1: dividend1
-          - input2: divisor1
-      publish:
-        - ans: quotient
-      navigate:
-        SUCCESS: division2
-        ILLEGAL: failure_task
-
-    division2:
-      do:
-        ops.division:
-          - input1: dividend2
-          - input2: divisor2
-      publish:
-        - ans: quotient
-      navigate:
-        SUCCESS: SUCCESS
-        ILLEGAL: failure_task
-    on_failure:
-      failure_task:
+    - division1:
         do:
-          ops.print:
-            - text: ans
+          ops.division:
+            - input1: dividend1
+            - input2: divisor1
+        publish:
+          - ans: quotient
+        navigate:
+          SUCCESS: division2
+          ILLEGAL: failure_task
+
+    - division2:
+        do:
+          ops.division:
+            - input1: dividend2
+            - input2: divisor2
+        publish:
+          - ans: quotient
+        navigate:
+          SUCCESS: SUCCESS
+          ILLEGAL: failure_task
+    - on_failure:
+      - failure_task:
+          do:
+            ops.print:
+              - text: ans
 ```
 
 ####Example 4 - Loops
@@ -1048,33 +1048,33 @@ flow:
   name: loops
 
   workflow:
-    fail3a:
-      loop:
-        for: value in [1,2,3,4,5]
+    - fail3a:
+        loop:
+          for: value in [1,2,3,4,5]
+          do:
+            ops.fail3:
+              - text: value
+          break: []
+    - custom3:
+        loop:
+          for: value in range(1,6)
+          do:
+            ops.custom3:
+              - text: value
+          break:
+            - CUSTOM
+        navigate:
+          CUSTOM: fail3b
+    - skip_this:
         do:
-          ops.fail3:
-            - text: value
-        break: []
-    custom3:
-      loop:
-        for: value in range(1,6)
-        do:
-          ops.custom3:
-            - text: value
-        break:
-          - CUSTOM
-      navigate:
-        CUSTOM: fail3b
-    skip_this:
-      do:
-        ops.print:
-          - text: "'This will not run.'"
-    fail3b:
-      loop:
-        for: value in "1,2,3,4,5"
-        do:
-          ops.fail3:
-            - text: value
+          ops.print:
+            - text: "'This will not run.'"
+    - fail3b:
+        loop:
+          for: value in "1,2,3,4,5"
+          do:
+            ops.fail3:
+              - text: value
 ```
 
 **Operation - custom3.sl**

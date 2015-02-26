@@ -524,12 +524,28 @@ inputs:
 The key `loop` is a property of an [iterative task's](#/docs#iterative-task) name.
 It is mapped to the [iterative task's](#/docs#iterative-task) properties.
 
+For each value in the loop's list the `do` will run an [operation](#/docs#operation) or [subflow](#/docs#flow). If the returned result is in the `break` list, or if `break` does not appear and the returned result is `FAILURE`, or if the list has been exhausted, the task's navigation will run. 
+
 Property|Required|Default|Value Type|Description|More Info
 ---|
 `for`|yes|-|variable `in` list|iteration logic|[for](#/docs#for) 
 `do`|yes|-|operation or subflow call|the operation or subflow this task will run iteratively|[do](#/docs#do) [operation](#/docs#operation) [flow](#/docs#flow)
 `publish`|no|-|list of key:value pairs|operation outputs to aggregate and publish to the flow level|[publish](#/docs#publish) [outputs](#/docs#outputs)
 `break`|no|-|list of [results](#/docs#result)|operation or subflow [results](#/docs#result) on which to break out of the loop|[break](#/docs#break)
+
+**Example: loop that breaks on a result of custom**
+```yaml
+- custom3:
+	loop:
+	  for: value in range(1,6)
+	  do:
+	    ops.custom3:
+	      - text: value
+	  break:
+	    - CUSTOM
+	navigate:
+	  CUSTOM: fail3b
+```
 
 ###name
 The key `name` is a property of [flow](#/docs#flow) and [operation](#/docs#operation).
@@ -1197,6 +1213,8 @@ There are several ways to get started with the SLANG CLI.
 ####Run a Flow
 When a flow is run, the entire directory in which the flow resides is scanned recursively (including all subfolders) for files with a valid SLANG extension. All of the files found are compiled by the CLI. If the `--cp` flag is used, all of the directories listed there will be scanned and compiled recursively as well. 
 
+It is recommended to use forward slashes (`/`) in all the file paths.
+
 To run a flow located at `c:/.../your_flow.sl`, enter the following at the `slang>` prompt:
 ```bash
 slang>run --f c:/.../your_flow.sl
@@ -1206,7 +1224,9 @@ If the flow takes in input parameters, use the `--i` flag and a comma-separated 
 ```bash
 slang>run --f c:/.../your_flow.sl --i input1=root,input2=25
 ```
-Alternatively, inputs made be loaded from a file using the `--fi` flag and a comma-separated list of file paths. Inputs passed with the `--i` flag will override the inputs passed using a file. If two files contain the same inputs, then the file specified last will override the values in previous files.
+Commas can be used as part of the input values by escaping them with a backslash (`\`).
+
+Alternatively, inputs made be loaded from a file using the `--fi` flag and a comma-separated list of file paths. The files are flat YAML maps of input names to values. Inputs passed with the `--i` flag will override the inputs passed using a file. If two files contain the same inputs, then the file specified last will override the values in previous files.
 ```bash
 slang>run --f c:/.../your_flow.sl --fi c:/.../inputs.yaml --i input1=value1
 ```

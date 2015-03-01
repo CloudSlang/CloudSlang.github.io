@@ -6,5 +6,7 @@ operation:
     - text
   action:
     python_script: print text
+  outputs:
+    - out: text
   results:
     - SUCCESS

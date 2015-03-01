@@ -24,7 +24,7 @@ flow:
     - printer:
         do:
           ops.print:
-            - text: input1 + "/" + input2 + " = " + answer
+            - text: input1 + "/" + input2 + " = " + str(answer)
         navigate:
           SUCCESS: SUCCESS
 

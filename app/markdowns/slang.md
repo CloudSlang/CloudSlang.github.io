@@ -471,7 +471,7 @@ The [iterative task](#/docs#iterative-task) will run once for each element in th
 ###fromInputs
 May appear in the value of an [output](#doc/#outputs).
 
-Special syntax to [output](#/docs#outputs) an [input](#/docs#inputs) parameter as it was passed in.
+Special syntax to refer to an [input](#/docs#inputs) parameter as opposed to another variable with the same name in a narrower scope.
 
 **Example - output "input1" as it was passed in**
 
@@ -635,8 +635,6 @@ It is mapped to a list of output variable names which may also contain expressio
 
 Defines the parameters a  [flow](#/docs#flow) or [operation](#/docs#operation) exposes to possible [publication](#/docs#publish) by a [task](#/docs#task). The calling [task](#/docs#task) refers to an output by its name.
 
-Note:  All variable values are converted to string before being used in an output's boolean expression.
-
 See also [fromInputs](#/docs#fromInputs).
 
 **Example - various types of outputs**
@@ -645,7 +643,7 @@ See also [fromInputs](#/docs#fromInputs).
 outputs:
   - existing_variable
   - output2: some_variable
-  - output3: str(5 + 6)
+  - output3: 5 + 6
   - output4: fromInputs['input1']
 ```
 
@@ -702,8 +700,6 @@ results:
 In a [operation](#/docs#operation) the key `results` is mapped to a list of key:value pairs of result names and boolean expressions. 
 
 Defines the possible results of the [operation](#/docs#operation). By default, if no results exist, the result is `SUCCESS`.  The first result in the list whose expression evaluates to true, or does not have an expression at all, will be passed back to the calling [task](#/docs#task) to be used for [navigation](#/docs#navigate) purposes.  
-
-Note:  All variable values are converted to string before being used in a result's boolean expression.
 
 **Example - three user-defined results**
 ```yaml

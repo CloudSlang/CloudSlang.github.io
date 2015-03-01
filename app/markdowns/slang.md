@@ -491,8 +491,17 @@ Specifies the file's dependencies and the aliases they will be referenced by in 
 **Example - import operations and sublflow into flow**
 ```yaml
 imports:
-  ops: user.examples.utils
-  sub_flows: user.examples.subflows
+  ops: examples.utils
+  sub_flows: examples.subflows
+
+flow:
+  name: hello_flow
+
+  workflow:
+    - print_hi:
+        do:
+          ops.print:
+            - text: "'Hi'"
 ```
 
 ###inputs
@@ -563,12 +572,18 @@ name: division_flow
 ###namespace
 The key `namespace` is mapped to a string value that defines the file's namespace.
 
-The namespace  may be used by other SLANG files for [importing](#/docs#imports) purposes.
+The namespace of a file  may be used by other SLANG files to [import](#/docs#imports) dependencies, such as a flow importing operations.
 
 **Example - definition a namespace**
 
 ```yaml
-namespace: user.examples
+namespace: examples.hello_world
+```
+
+**Example - using a namespace in an imports definition**
+```yaml
+imports:
+  ops: examples.hello_world
 ```
 
 ###navigate
@@ -877,7 +892,7 @@ flow:
     - printer:
         do:
           ops.print:
-            - text: input1 + "/" + input2 + " = " + answer
+            - text: input1 + "/" + input2 + " = " + str(answer)
         navigate:
           SUCCESS: SUCCESS
 

@@ -1185,12 +1185,12 @@ operation:
 ##SLANG Best Practices
 The following is a list of best practices for authoring SLANG files. 
 
--	The namespace for a file is identical to the folder structure in which the file resides in the project.
--	File names are all lowercase with words separated by an underscore (_).
+-	The namespace for a file matches the suffix of the file path in which the file resides.
+    Example: The send\_mail operation is found in the _slang-content/org/openscore/slang/base_ folder. It uses the namespace _org.openscore.slang.base.mail_.
+- Namespaces should be comprised of only lowercase alphanumeric characters (a-z and 0-9), underscores (_), periods(.) and hyphens (-).
 -	A flow or operation has the same name as the file it is in.
--	Each file has one flow, one operation or a map of system variables. 
+-	Each file has one flow or one operation. 
 -	Flows and operations reside together in the same folders.
--	System variables reside in separate folders.
 - Identifiers (flow names, operation names, input names, etc.) are written:
   -  In snake\_case, lowercase letters with underscores (\_)	between words, in all cases other than inputs to a Java @Action.
   - In camelCase, starting with a lowercase letter and each additional word starting with an uppercase letter appended without a delimiter, for inputs to a Java @Action. 

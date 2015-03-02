@@ -595,7 +595,7 @@ Defines the navigation logic for a [standard task](#/docs#standard-task) or an [
 For a [standard task](#/docs#standard-task) the navigation logic runs when the [task](#/docs#task) is completed. For an [iterative task](#/docs#iterative-task) the navigation logic runs when the last iteration of the [task](#/docs#task) is completed or after exiting the iteration due to a [break](#/docs#break).
 
 
-The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`. 
+The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`. All possible [results](#/docs#results) returned by the called [operation](#/docs#operation) or subflow must be handled.
 
 **Example - ILLEGAL result will navigate to flow's FAILURE result and SUCCESS result will navigate to task named "printer"**
 ```yaml
@@ -713,7 +713,11 @@ The results of a [flow](#/docs#flow) or [operation](#/docs#operation) can be use
 ####Flow results
 In a [flow](#/docs#flow), the key `results` is mapped to a list of result names. 
 
-Defines the possible results of the [flow](#/docs#flow). By default a [flow](#/docs#flow) has two results, `SUCCESS` and `FAILURE`.  The defaults can be overridden with any number of user-defined results. When overriding, the defaults are lost and must be redefined if they are to be used. 
+Defines the possible results of the [flow](#/docs#flow). By default a [flow](#/docs#flow) has two results, `SUCCESS` and `FAILURE`.  The defaults can be overridden with any number of user-defined results. 
+
+When overriding, the defaults are lost and must be redefined if they are to be used. 
+
+All result possibilities must be listed. When being used as a subflow all [flow](#/docs#flow) results must be handled by the calling [task](#/docs#task). 
 
 **Example - a user-defined result**
 
@@ -725,9 +729,11 @@ results:
 ```
 
 ####Operation results
-In a [operation](#/docs#operation) the key `results` is mapped to a list of key:value pairs of result names and boolean expressions. 
+In an [operation](#/docs#operation) the key `results` is mapped to a list of key:value pairs of result names and boolean expressions. 
 
 Defines the possible results of the [operation](#/docs#operation). By default, if no results exist, the result is `SUCCESS`.  The first result in the list whose expression evaluates to true, or does not have an expression at all, will be passed back to the calling [task](#/docs#task) to be used for [navigation](#/docs#navigate) purposes.  
+
+All [operation](#/docs#operation) results must be handled by the calling [task](#/docs#task). 
 
 **Example - three user-defined results**
 ```yaml

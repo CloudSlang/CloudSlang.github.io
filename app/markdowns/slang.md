@@ -198,16 +198,6 @@ The general structure of SLANG files is outlined here. Some of the properties th
 	+ [fromInputs](#/docs#fromInputs)
   + [results](#/docs#results)   
 
-###System Property Files 
-System property files are written in flat [YAML](http://www.yaml.org), containing a map of names to values. System property files end with the .yaml  or .yml extensions. If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name. System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. 
-
-**Example - system properties file**
-
-```yaml
-examples.sysprops.hostname: smtp.somedomain.com
-examples.sysprops.port: 587
-``` 
-
 ---
 
 ###action
@@ -1263,37 +1253,59 @@ There are several ways to get started with the SLANG CLI.
 
 ###Use the CLI
 
-####Run a Flow
 When a flow is run, the entire directory in which the flow resides is scanned recursively (including all subfolders) for files with a valid SLANG extension. All of the files found are compiled by the CLI. If the `--cp` flag is used, all of the directories listed there will be scanned and compiled recursively as well. 
 
-It is recommended to use forward slashes (`/`) in all the file paths.
+The usage of forward slashes (`/`) in all file paths is recommended.
 
+####Run a Flow
 To run a flow located at `c:/.../your_flow.sl`, enter the following at the `slang>` prompt:
 ```bash
 slang>run --f c:/.../your_flow.sl
 ```
 
+####Run a Flow with Inputs
 If the flow takes in input parameters, use the `--i` flag and a comma-separated list of key=value pairs:
 ```bash
 slang>run --f c:/.../your_flow.sl --i input1=root,input2=25
 ```
 Commas can be used as part of the input values by escaping them with a backslash (`\`).
 
-Alternatively, inputs made be loaded from a file using the `--fi` flag and a comma-separated list of file paths. The files are flat YAML maps of input names to values. Inputs passed with the `--i` flag will override the inputs passed using a file. If two files contain the same inputs, then the file specified last will override the values in previous files.
+Alternatively, inputs made be loaded from a file. Input files are written in flat [YAML](http://www.yaml.org), containing a map of names to values. Input files end with the .yaml  or .yml extensions. If multiple input files are being used and they contain an input with the same name, the input in the file that is loaded last will overwrite the others with the same name. 
+
+**Example - inputs file**
+
+```yaml
+input1: hello
+input2: world
+``` 
+
+Input files can be loaded automatically if placed in a folder named `inputs` in the directory from which the CLI is run. If the flow requires an input file that is not loaded automatically, use the `--fi` flag and a comma-separated list of file paths. Inputs passed with the `--i` flag will override the inputs passed using a file. 
+
 ```bash
 slang>run --f c:/.../your_flow.sl --fi c:/.../inputs.yaml --i input1=value1
 ```
- 
+
+####Run a Flow with Dependencies 
 If the flow requires dependencies from another location, use the `--cp` flag: 
 ```bash
 slang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml
 ```
 
-If the flow requires a system properties file that is not in a properties in the same directory, use the `--spf` flag: 
+####Run a Flow with System Properties
+
+System properties files are written in flat [YAML](http://www.yaml.org), containing a map of names to values. System property files end with the .yaml  or .yml extensions. If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name. 
+
+**Example - system properties file**
+
+```yaml
+examples.sysprops.hostname: smtp.somedomain.com
+examples.sysprops.port: 587
+``` 
+
+System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. If the flow requires a system properties file that is not loaded automatically, use the `--spf` flag and a comma-separated list of file paths. 
 ```bash
 slang>run --f c:/.../your_flow.sl --spf c:/.../yaml
 ```
-System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. 
 
 ####Other Commands
 Some of the available commands are:

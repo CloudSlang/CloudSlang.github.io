@@ -1183,7 +1183,7 @@ operation:
 ```
 
 ##SLANG Best Practices
-The following is a list of best practices for authoring SLANG files. 
+The following is a list of best practices for authoring SLANG files. Many of these best practices are checked when using the [SLANG Verifier](#/docs#slang-verifier).
 
 -	The namespace for a file matches the suffix of the file path in which the file resides.
     Example: The send\_mail operation is found in the _slang-content/org/openscore/slang/base_ folder. It uses the namespace _org.openscore.slang.base.mail_.
@@ -1196,7 +1196,8 @@ The following is a list of best practices for authoring SLANG files.
   - In camelCase, starting with a lowercase letter and each additional word starting with an uppercase letter appended without a delimiter, for inputs to a Java @Action. 
 - Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
   - Optional parameters and default values are noted.
-Note: In future releases some of the above best practices may be required by the SLANG compiler.
+
+Note: In future releases some of the above best practices may be required by the SLANG compiler. 
 
 **Example - commented description of operation to count occurrences of a string in another string**
 ```yaml
@@ -1214,6 +1215,13 @@ Note: In future releases some of the above best practices may be required by the
 #       - FAILURE - otherwise
 ####################################################
 ```
+
+##SLANG Verifier
+The SLANG Verifier is a tool that checks the syntactic validity of SLANG files along with adherence to many of the [best practices](#/docs#slang-best-practices). 
+
+The SLANG Verifier can be downloaded from [here](https://github.com/openscore/score-language/releases).
+
+To use the SLANG Verifier, run `java -jar slang-content-verifier.jar <directory_path>`. The Verifier will recursively search the directory for SLANG files by extension and verify the validity of their syntax.
 
 ##SLANG CLI
 There are several ways to get started with the SLANG CLI. 

@@ -1311,8 +1311,16 @@ examples.sysprops.port: 587
 ``` 
 
 System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. If the flow requires a system properties file that is not loaded automatically, use the `--spf` flag and a comma-separated list of file paths. 
+
 ```bash
 slang>run --f c:/.../your_flow.sl --spf c:/.../yaml
+```
+
+####Run a Flow in Quiet Mode
+Normally a flow's task names are printed to the screen as they are run. To disable the task names from being printed, use the `--q` flag.
+
+```bash
+slang>run --f c:/.../your_flow.s --q
 ```
 
 ####Other Commands

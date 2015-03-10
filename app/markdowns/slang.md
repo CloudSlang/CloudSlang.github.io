@@ -271,29 +271,45 @@ results:
 ```
 **Note:** Single-line Python scripts can be written inline with the `python_script` key. Multi-line Python scripts can use the YAML pipe (|) indicator as in the example above.
 
-#####Importing External Python Modules
-There are two approaches to importing and using external Python modules.
+#####Importing External Python Packages
+To use a 3rd party Python package in a `python_script` action:
 
-+ Append to the `sys.path`:
-  1. In the action's Pyton script, import the `sys` module.
-  2. Use `sys.path.append()` to add the path to the desired module.
-  3. Import the module and use it. 
-    **Example - takes path as input parameter, adds it to sys.path and imports desired module **
+Prerequisite: **pip** - see **pip**'s [documentation](https://pip.pypa.io/en/latest/installing.html) for how to install. 
+
+1. Add a **requirements.txt** file to the **python-lib** folder, which is found at the same level as the **bin** folder that contains the CLI executable. 
+	+ If not using a pre-built CLI, you may have to create the **python-lib** folder.
+2. Enter the Python package and all its dependencies in the requirements file.
+	+ See the **pip** [documentation](https://pip.pypa.io/en/latest/user_guide.html#requirements-files) for information on how to format the requirements file.
+    **Example - requirements file**
+    ```
+    pyfiglet == 0.7.2
+    setuptools
+    ```  
+3.  Run the following command from inside the **python-lib** folder:
+    ```
+    pip install -r requirements.txt -t .
+    ```
+    Note: If your machine is behind a proxy you will need to specify the proxy using pip's `--proxy` flag.
+4. Import the package as you normally would in Python from within the action's `python_script`:
     ```yaml
-    inputs:
-      - path
     action:
       python_script: |
-        import sys
-        sys.path.append(path)
-        import module_to_import
-        print module_to_import.something()
-           
+        from pyfiglet import Figlet
+        f = Figlet(font='slant')
+        print f.renderText(text)
     ```
-+ Add environment variable:
-  1. Create a JYTHONPATH environment variable.
-  2. Add desired modules' paths to the JYTHONPATH variable, separating them by colons (:) on Unix and semicolons (;) on Windows.
-  3. In the action's Python script, import the module and use it.
+
+Note: If you have defined a `JYTHONPATH` environment variable, you will need to add the **python-lib** folder's path to its value. 
+
+####Importing Python Scripts
+To import a Python script in a `python_script` action:
+
+1. Add the Python script to the **python-lib** folder.
+2. Import the script as you normally would in Python from within the action's `python_script`.
+
+Note: If you have defined a `JYTHONPATH` environment variable, you will need to add the **python-lib** folder's path to its value. 
+
+
 
 ###break
 The key `break` is a property of a [loop](#/docs#loop).

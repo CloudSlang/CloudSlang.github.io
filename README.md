@@ -7,7 +7,7 @@ openscore website [http://openscore.io](http://openscore.io)
 
 ```sh
 npm install
-npm install grunt-cli
+npm install -g grunt-cli
 
 grunt build
 grunt serve (will start the server on port 9000)

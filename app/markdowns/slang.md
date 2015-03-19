@@ -822,7 +822,7 @@ A task can either be a standard one or and iterative one.
 The task name is mapped to the task's properties.
 
 Property|Required|Default|Value Type|Description|More Info
----|
+---|---
 `do`|yes|-|operation or subflow call|the operation or subflow this task will run|[do](#/docs#do) [operation](#/docs#operation) [flow](#/docs#flow)
 `publish`|no|-|list of key:value pairs|operation outputs to publish to the flow level|[publish](#/docs#publish) [outputs](#/docs#outputs)
 `navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic from operation or flow results|[navigation](#/docs#navigate) [results](#/docs#results)
@@ -844,8 +844,9 @@ Property|Required|Default|Value Type|Description|More Info
 
 ####Iterative Task
 The task name is mapped to the iterative task's properties.
+
 Property|Required|Default|Value Type|Description|More Info
----|
+---|---
 `loop`|yes|-|key|container for loop properties|[for](#/docs#for)
 `navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic from [break](#/docs#break) or the result of the last iteration of the operation or flow|[navigation](#/docs#navigate) [results](#/docs#results)
 

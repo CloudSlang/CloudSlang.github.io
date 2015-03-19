@@ -13,16 +13,16 @@ Unlike many programming, markup, and data serialization languages, whitespace is
 **Example: a SLANG task (in this case named divider) contains do, publish and navigate keys**
 
 ```yaml
-divider:
-  do:
-    ops.divide:
-      - dividend: input1
-      - divisor: input2
-  publish:
-    - answer: quotient
-  navigate:
-    ILLEGAL: FAILURE
-    SUCCESS: printer
+- divider:
+    do:
+      ops.divide:
+        - dividend: input1
+        - divisor: input2
+    publish:
+      - answer: quotient
+    navigate:
+      ILLEGAL: FAILURE
+      SUCCESS: printer
 ```
 
 ####Lists
@@ -58,10 +58,10 @@ flow:
 
 **Example:  the single or double quoted style is used in SLANG to pass a Python string, which is quoted using the other style, to an input parameter** 
 ```yaml
-sayHi:
-  do:
-    ops.print:
-      - text: "'Hello, World'"
+- sayHi:
+    do:
+      ops.print:
+        - text: "'Hello, World'"
 ```
 
 **Example:  the pipe is used in SLANG to indicate a multi-line Python script** 
@@ -98,10 +98,10 @@ imports:
 flow:
   name: hello_world
   workflow:
-    sayHi:
-      do:
-        ops.print:
-          - text: "'Hello, World'"
+    - sayHi:
+        do:
+          ops.print:
+            - text: "'Hello, World'"
 ```
 **print.sl**
 ```yaml
@@ -198,16 +198,6 @@ The general structure of SLANG files is outlined here. Some of the properties th
 	+ [fromInputs](#/docs#fromInputs)
   + [results](#/docs#results)   
 
-###System Property Files 
-System property files are written in flat [YAML](http://www.yaml.org), containing a map of names to values. System property files end with the .yaml  or .yml extensions. If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name. System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. 
-
-**Example - system properties file**
-
-```yaml
-examples.sysprops.hostname: smtp.somedomain.com
-examples.sysprops.port: 587
-``` 
-
 ---
 
 ###action
@@ -281,29 +271,75 @@ results:
 ```
 **Note:** Single-line Python scripts can be written inline with the `python_script` key. Multi-line Python scripts can use the YAML pipe (|) indicator as in the example above.
 
-#####Importing External Python Modules
-There are two approaches to importing and using external Python modules.
+#####Importing External Python Packages
+There are three approaches to importing and using external Python modules:
 
-+ Append to the `sys.path`:
-  1. In the action's Pyton script, import the `sys` module.
-  2. Use `sys.path.append()` to add the path to the desired module.
-  3. Import the module and use it. 
-    **Example - takes path as input parameter, adds it to sys.path and imports desired module **
++ Installing packages into the **python-lib** folder
++ Editing the executable file
++ Adding the package location to `sys.path` 
+
+**Installing packages into the python-lib folder:**
+
+Prerequisite: **pip** - see **pip**'s [documentation](https://pip.pypa.io/en/latest/installing.html) for how to install. 
+
+1. Edit the **requirements.txt** file in the **python-lib** folder, which is found at the same level as the **bin** folder that contains the CLI executable. 
+	+ If not using a pre-built CLI, you may have to create the **python-lib** folder and **requirements.txt** file.
+2. Enter the Python package and all its dependencies in the requirements file.
+	+ See the **pip** [documentation](https://pip.pypa.io/en/latest/user_guide.html#requirements-files) for information on how to format the requirements file.
+    **Example - requirements file**
+    ```
+    pyfiglet == 0.7.2
+    setuptools
+    ```  
+3.  Run the following command from inside the **python-lib** folder:
+    ```
+    pip install -r requirements.txt -t .
+    ```
+    **Note:** If your machine is behind a proxy you will need to specify the proxy using pip's `--proxy` flag.
+4. Import the package as you normally would in Python from within the action's `python_script`:
     ```yaml
-    inputs:
-      - path
     action:
       python_script: |
-        import sys
-        sys.path.append(path)
-        import module_to_import
-        print module_to_import.something()
-           
+        from pyfiglet import Figlet
+        f = Figlet(font='slant')
+        print f.renderText(text)
     ```
-+ Add environment variable:
-  1. Create a JYTHONPATH environment variable.
-  2. Add desired modules' paths to the JYTHONPATH variable, separating them by colons (:) on Unix and semicolons (;) on Windows.
-  3. In the action's Python script, import the module and use it.
+
+**Note:** If you have defined a `JYTHONPATH` environment variable, you will need to add the **python-lib** folder's path to its value. 
+
+**Editing the executable file**
+
+1. Open the executable found in the **bin** folder for editing.
+2. Change the `Dpython.path` key's value to the desired path.
+3. Import the package as you normally would in Python from within the action's `python_script`.
+
+**Adding the package location to `sys.path`:**
+
+1. In the action's Pyton script, import the `sys` module.
+2. Use `sys.path.append()` to add the path to the desired module.
+3. Import the module and use it. 
+    **Example - takes path as input parameter, adds it to sys.path and imports desired module **
+```yaml
+inputs:
+  - path
+action:
+  python_script: |
+    import sys
+    sys.path.append(path)
+    import module_to_import
+    print module_to_import.something()
+```
+
+
+####Importing Python Scripts
+To import a Python script in a `python_script` action:
+
+1. Add the Python script to the **python-lib** folder.
+2. Import the script as you normally would in Python from within the action's `python_script`.
+
+**Note:** If you have defined a `JYTHONPATH` environment variable, you will need to add the **python-lib** folder's path to its value. 
+
+
 
 ###break
 The key `break` is a property of a [loop](#/docs#loop).
@@ -403,22 +439,22 @@ flow:
     - input2
   
   workflow:
-    divider:
-      do:
-        ops.divide:
-          - dividend: input1
-          - divisor: input2
-      publish:
-        - answer: quotient
-      navigate:
-        ILLEGAL: ILLEGAL
-        SUCCESS: printer
-    printer:
-      do:
-        ops.print:
-          - text: input1 + "/" + input2 + " = " + answer
-      navigate:
-        SUCCESS: SUCCESS
+    - divider:
+        do:
+          ops.divide:
+            - dividend: input1
+            - divisor: input2
+        publish:
+          - answer: quotient
+        navigate:
+          ILLEGAL: ILLEGAL
+          SUCCESS: printer
+    - printer:
+        do:
+          ops.print:
+            - text: input1 + "/" + input2 + " = " + answer
+        navigate:
+          SUCCESS: SUCCESS
   
   outputs:
     - quotient: answer
@@ -437,41 +473,41 @@ The [iterative task](#/docs#iterative-task) will run once for each element in th
 **Example - loop that iterates through the values in a list**
 
 ```yaml
-print_values:
-  loop:
-    for: value in [1,2,3]
-    do:
-      ops.print:
-        - text: value
+- print_values:
+    loop:
+      for: value in [1,2,3]
+      do:
+        ops.print:
+          - text: value
 ```
 
 **Example - loop that iterates through the values in a comma delimited string**
 
 ```yaml
-print_values:
-  loop:
-    for: value in "1,2,3"
-    do:
-      ops.print:
-        - text: value
+- print_values:
+    loop:
+      for: value in "1,2,3"
+      do:
+        ops.print:
+          - text: value
 ```
 
 **Example - loop that iterates through the values returned from an expression**
 
 ```yaml
-print_values:
-  loop:
-    for: value in range(1,4)
-    do:
-      ops.print:
-        - text: value
+- print_values:
+    loop:
+      for: value in range(1,4)
+      do:
+        ops.print:
+          - text: value
 ```
 
 
 ###fromInputs
 May appear in the value of an [output](#doc/#outputs).
 
-Special syntax to [output](#/docs#outputs) an [input](#/docs#inputs) parameter as it was passed in.
+Special syntax to refer to an [input](#/docs#inputs) parameter as opposed to another variable with the same name in a narrower scope.
 
 **Example - output "input1" as it was passed in**
 
@@ -491,8 +527,17 @@ Specifies the file's dependencies and the aliases they will be referenced by in 
 **Example - import operations and sublflow into flow**
 ```yaml
 imports:
-  ops: user.examples.utils
-  sub_flows: user.examples.subflows
+  ops: examples.utils
+  sub_flows: examples.subflows
+
+flow:
+  name: hello_flow
+
+  workflow:
+    - print_hi:
+        do:
+          ops.print:
+            - text: "'Hi'"
 ```
 
 ###inputs
@@ -524,12 +569,29 @@ inputs:
 The key `loop` is a property of an [iterative task's](#/docs#iterative-task) name.
 It is mapped to the [iterative task's](#/docs#iterative-task) properties.
 
+For each value in the loop's list the `do` will run an [operation](#/docs#operation) or [subflow](#/docs#flow). If the returned result is in the `break` list, or if `break` does not appear and the returned result is `FAILURE`, or if the list has been exhausted, the task's navigation will run. 
+
 Property|Required|Default|Value Type|Description|More Info
 ---|
 `for`|yes|-|variable `in` list|iteration logic|[for](#/docs#for) 
 `do`|yes|-|operation or subflow call|the operation or subflow this task will run iteratively|[do](#/docs#do) [operation](#/docs#operation) [flow](#/docs#flow)
 `publish`|no|-|list of key:value pairs|operation outputs to aggregate and publish to the flow level|[publish](#/docs#publish) [outputs](#/docs#outputs)
 `break`|no|-|list of [results](#/docs#result)|operation or subflow [results](#/docs#result) on which to break out of the loop|[break](#/docs#break)
+
+**Example: loop that breaks on a result of custom**
+```yaml
+ - custom3:
+	 loop:
+	   for: value in "1,2,3,4,5"
+	   do:
+	     ops.custom3:
+	       - text: value
+	   break:
+	     - CUSTOM
+	 navigate:
+	   CUSTOM: aggregate
+	   SUCCESS: skip_this
+```
 
 ###name
 The key `name` is a property of [flow](#/docs#flow) and [operation](#/docs#operation).
@@ -546,12 +608,18 @@ name: division_flow
 ###namespace
 The key `namespace` is mapped to a string value that defines the file's namespace.
 
-The namespace  may be used by other SLANG files for [importing](#/docs#imports) purposes.
+The namespace of a file  may be used by other SLANG files to [import](#/docs#imports) dependencies, such as a flow importing operations.
 
 **Example - definition a namespace**
 
 ```yaml
-namespace: user.examples
+namespace: examples.hello_world
+```
+
+**Example - using a namespace in an imports definition**
+```yaml
+imports:
+  ops: examples.hello_world
 ```
 
 ###navigate
@@ -563,7 +631,7 @@ Defines the navigation logic for a [standard task](#/docs#standard-task) or an [
 For a [standard task](#/docs#standard-task) the navigation logic runs when the [task](#/docs#task) is completed. For an [iterative task](#/docs#iterative-task) the navigation logic runs when the last iteration of the [task](#/docs#task) is completed or after exiting the iteration due to a [break](#/docs#break).
 
 
-The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`. 
+The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`. All possible [results](#/docs#results) returned by the called [operation](#/docs#operation) or subflow must be handled.
 
 **Example - ILLEGAL result will navigate to flow's FAILURE result and SUCCESS result will navigate to task named "printer"**
 ```yaml
@@ -580,11 +648,11 @@ Defines the [task](#/docs#task), which when using default [navigation](#/docs#na
 
 **Example - faliure task which call a print operation to print an error message**
 ```yaml
-on_failure:
-  failure:
-    do:
-      ops.print:
-        - text: error_msg
+- on_failure:
+  - failure:
+      do:
+        ops.print:
+          - text: error_msg
 ```
 
 ###operation
@@ -619,8 +687,6 @@ It is mapped to a list of output variable names which may also contain expressio
 
 Defines the parameters a  [flow](#/docs#flow) or [operation](#/docs#operation) exposes to possible [publication](#/docs#publish) by a [task](#/docs#task). The calling [task](#/docs#task) refers to an output by its name.
 
-Note:  All variable values are converted to string before being used in an output's boolean expression.
-
 See also [fromInputs](#/docs#fromInputs).
 
 **Example - various types of outputs**
@@ -629,7 +695,7 @@ See also [fromInputs](#/docs#fromInputs).
 outputs:
   - existing_variable
   - output2: some_variable
-  - output3: str(5 + 6)
+  - output3: 5 + 6
   - output4: fromInputs['input1']
 ```
 
@@ -663,6 +729,18 @@ publish:
   - answer: quotient
 ```
 
+**Example - publishing in an iterative task to aggregate output**
+```yaml
+- aggregate:
+    loop:
+      for: value in range(1,6)
+      do:
+        ops.print:
+          - text: value
+      publish:
+        - sum: fromInputs['sum'] + out
+```
+
 ###results
 The key `results` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation).
 
@@ -671,7 +749,11 @@ The results of a [flow](#/docs#flow) or [operation](#/docs#operation) can be use
 ####Flow results
 In a [flow](#/docs#flow), the key `results` is mapped to a list of result names. 
 
-Defines the possible results of the [flow](#/docs#flow). By default a [flow](#/docs#flow) has two results, `SUCCESS` and `FAILURE`.  The defaults can be overridden with any number of user-defined results. When overriding, the defaults are lost and must be redefined if they are to be used. 
+Defines the possible results of the [flow](#/docs#flow). By default a [flow](#/docs#flow) has two results, `SUCCESS` and `FAILURE`.  The defaults can be overridden with any number of user-defined results. 
+
+When overriding, the defaults are lost and must be redefined if they are to be used. 
+
+All result possibilities must be listed. When being used as a subflow all [flow](#/docs#flow) results must be handled by the calling [task](#/docs#task). 
 
 **Example - a user-defined result**
 
@@ -683,11 +765,11 @@ results:
 ```
 
 ####Operation results
-In a [operation](#/docs#operation) the key `results` is mapped to a list of key:value pairs of result names and boolean expressions. 
+In an [operation](#/docs#operation) the key `results` is mapped to a list of key:value pairs of result names and boolean expressions. 
 
 Defines the possible results of the [operation](#/docs#operation). By default, if no results exist, the result is `SUCCESS`.  The first result in the list whose expression evaluates to true, or does not have an expression at all, will be passed back to the calling [task](#/docs#task) to be used for [navigation](#/docs#navigate) purposes.  
 
-Note:  All variable values are converted to string before being used in a result's boolean expression.
+All [operation](#/docs#operation) results must be handled by the calling [task](#/docs#task). 
 
 **Example - three user-defined results**
 ```yaml
@@ -748,16 +830,16 @@ Property|Required|Default|Value Type|Description|More Info
 **Example - task that performs a division of two inputs, publishes the answer and navigates accordingly**
 
 ```yaml
-divider:
-  do:
-    ops.divide:
-      - dividend: input1
-      - divisor: input2
-  publish:
-    - answer: quotient
-  navigate:
-    ILLEGAL: FAILURE
-    SUCCESS: printer
+- divider:
+    do:
+      ops.divide:
+        - dividend: input1
+        - divisor: input2
+    publish:
+      - answer: quotient
+    navigate:
+      ILLEGAL: FAILURE
+      SUCCESS: printer
 ```
 
 ####Iterative Task
@@ -770,14 +852,14 @@ Property|Required|Default|Value Type|Description|More Info
 **Example - task prints all the values in value_list and the navigates to a task named "another_task"**
 
 ```yaml
-print_values:
-  loop:
-    for: value in value_list
-    do:
-      ops.print:
-        - text: value
-  navigate:
-    SUCCESS: another_task
+- print_values:
+    loop:
+      for: value in value_list
+      do:
+        ops.print:
+          - text: value
+    navigate:
+      SUCCESS: another_task
 ```
 
 ###workflow
@@ -796,20 +878,20 @@ Propery|Required|Default|Value Type|Description|More Info
 
 ```yaml
 workflow:
-  divider:
-    do:
-      ops.divide:
-        - dividend: input1
-        - divisor: input2
-    publish:
-      - answer: quotient
-    navigate:
-      ILLEGAL: FAILURE
-      SUCCESS: printer
-  printer:
-    do:
-      ops.print:
-        - text: input1 + "/" + input2 + " = " + answer
+  - divider:
+      do:
+        ops.divide:
+          - dividend: input1
+          - divisor: input2
+      publish:
+        - answer: quotient
+      navigate:
+        ILLEGAL: FAILURE
+        SUCCESS: printer
+  - printer:
+      do:
+        ops.print:
+          - text: input1 + "/" + input2 + " = " + answer
 ```
 
 ###Examples
@@ -839,22 +921,22 @@ flow:
     - input2
 
   workflow:
-    divider:
-      do:
-        ops.divide:
-          - dividend: input1
-          - divisor: input2
-      publish:
-        - answer: quotient
-      navigate:
-        ILLEGAL: ILLEGAL
-        SUCCESS: printer
-    printer:
-      do:
-        ops.print:
-          - text: input1 + "/" + input2 + " = " + answer
-      navigate:
-        SUCCESS: SUCCESS
+    - divider:
+        do:
+          ops.divide:
+            - dividend: input1
+            - divisor: input2
+        publish:
+          - answer: quotient
+        navigate:
+          ILLEGAL: ILLEGAL
+          SUCCESS: printer
+    - printer:
+        do:
+          ops.print:
+            - text: input1 + "/" + input2 + " = " + str(answer)
+        navigate:
+          SUCCESS: SUCCESS
 
   outputs:
     - quotient: answer
@@ -920,23 +1002,23 @@ flow:
     - email_recipient
 
   workflow:
-    produce_default_navigation:
-      do:
-        ops.produce_default_navigation:
-          - navigation_type
+    - produce_default_navigation:
+        do:
+          ops.produce_default_navigation:
+            - navigation_type
 
     # default navigation - go to this task on success
-    do_something:
-      do:
-        ops.something:
+    - do_something:
+        do:
+          ops.something:
 
     # default navigation - go to this task on failure
-    on_failure:
-      send_error_mail:
-        do:
-          ops.send_email_mock:
-            - recipient: email_recipient
-            - subject: "'Flow failure'"
+    - on_failure:
+      - send_error_mail:
+          do:
+            ops.send_email_mock:
+              - recipient: email_recipient
+              - subject: "'Flow failure'"
 ```
 
 **Operation - produce_default_navigation.sl**
@@ -1005,32 +1087,32 @@ flow:
     - divisor2: "'0'"
 
   workflow:
-    division1:
-      do:
-        ops.division:
-          - input1: dividend1
-          - input2: divisor1
-      publish:
-        - ans: quotient
-      navigate:
-        SUCCESS: division2
-        ILLEGAL: failure_task
-
-    division2:
-      do:
-        ops.division:
-          - input1: dividend2
-          - input2: divisor2
-      publish:
-        - ans: quotient
-      navigate:
-        SUCCESS: SUCCESS
-        ILLEGAL: failure_task
-    on_failure:
-      failure_task:
+    - division1:
         do:
-          ops.print:
-            - text: ans
+          ops.division:
+            - input1: dividend1
+            - input2: divisor1
+        publish:
+          - ans: quotient
+        navigate:
+          SUCCESS: division2
+          ILLEGAL: failure_task
+
+    - division2:
+        do:
+          ops.division:
+            - input1: dividend2
+            - input2: divisor2
+        publish:
+          - ans: quotient
+        navigate:
+          SUCCESS: SUCCESS
+          ILLEGAL: failure_task
+    - on_failure:
+      - failure_task:
+          do:
+            ops.print:
+              - text: ans
 ```
 
 ####Example 4 - Loops
@@ -1047,34 +1129,55 @@ imports:
 flow:
   name: loops
 
+  inputs:
+    - sum:
+        default: 0
+        overridable: false
+
   workflow:
-    fail3a:
-      loop:
-        for: value in [1,2,3,4,5]
+    - fail3a:
+        loop:
+          for: value in [1,2,3,4,5]
+          do:
+            ops.fail3:
+              - text: value
+        navigate:
+          SUCCESS: fail3b
+          FAILURE: fail3b
+    - fail3b:
+        loop:
+          for: value in [1,2,3,4,5]
+          do:
+            ops.fail3:
+              - text: value
+          break: []
+    - custom3:
+        loop:
+          for: value in "1,2,3,4,5"
+          do:
+            ops.custom3:
+              - text: value
+          break:
+            - CUSTOM
+        navigate:
+          CUSTOM: aggregate
+          SUCCESS: skip_this
+    - skip_this:
         do:
-          ops.fail3:
-            - text: value
-        break: []
-    custom3:
-      loop:
-        for: value in range(1,6)
+          ops.print:
+            - text: "'This will not run.'"
+    - aggregate:
+        loop:
+          for: value in range(1,6)
+          do:
+            ops.print:
+              - text: value
+          publish:
+            - sum: fromInputs['sum'] + out
+    - print:
         do:
-          ops.custom3:
-            - text: value
-        break:
-          - CUSTOM
-      navigate:
-        CUSTOM: fail3b
-    skip_this:
-      do:
-        ops.print:
-          - text: "'This will not run.'"
-    fail3b:
-      loop:
-        for: value in "1,2,3,4,5"
-        do:
-          ops.fail3:
-            - text: value
+          ops.print:
+            - text: sum
 ```
 
 **Operation - custom3.sl**
@@ -1119,25 +1222,28 @@ operation:
     - text
   action:
     python_script: print text
+  outputs:
+    - out: text
   results:
     - SUCCESS
 ```
 
 ##SLANG Best Practices
-The following is a list of best practices for authoring SLANG files. 
+The following is a list of best practices for authoring SLANG files. Many of these best practices are checked when using the [SLANG Verifier](#/docs#slang-verifier).
 
--	The namespace for a file is identical to the folder structure in which the file resides in the project.
--	File names are all lowercase with words separated by an underscore (_).
+-	The namespace for a file matches the suffix of the file path in which the file resides.
+    Example: The send\_mail operation is found in the _slang-content/org/openscore/slang/base_ folder. It uses the namespace _org.openscore.slang.base.mail_.
+- Namespaces should be comprised of only lowercase alphanumeric characters (a-z and 0-9), underscores (_), periods(.) and hyphens (-).
 -	A flow or operation has the same name as the file it is in.
--	Each file has one flow, one operation or a map of system variables. 
+-	Each file has one flow or one operation. 
 -	Flows and operations reside together in the same folders.
--	System variables reside in separate folders.
 - Identifiers (flow names, operation names, input names, etc.) are written:
   -  In snake\_case, lowercase letters with underscores (\_)	between words, in all cases other than inputs to a Java @Action.
   - In camelCase, starting with a lowercase letter and each additional word starting with an uppercase letter appended without a delimiter, for inputs to a Java @Action. 
 - Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
   - Optional parameters and default values are noted.
-Note: In future releases some of the above best practices may be required by the SLANG compiler.
+
+Note: In future releases some of the above best practices may be required by the SLANG compiler. 
 
 **Example - commented description of operation to count occurrences of a string in another string**
 ```yaml
@@ -1155,6 +1261,13 @@ Note: In future releases some of the above best practices may be required by the
 #       - FAILURE - otherwise
 ####################################################
 ```
+
+##SLANG Verifier
+The SLANG Verifier is a tool that checks the syntactic validity of SLANG files along with adherence to many of the [best practices](#/docs#slang-best-practices). 
+
+The SLANG Verifier can be downloaded from [here](https://github.com/openscore/score-language/releases).
+
+To use the SLANG Verifier, run `java -jar slang-content-verifier.jar <directory_path>`. The Verifier will recursively search the directory for SLANG files by extension and verify the validity of their syntax.
 
 ##SLANG CLI
 There are several ways to get started with the SLANG CLI. 
@@ -1194,33 +1307,67 @@ There are several ways to get started with the SLANG CLI.
 
 ###Use the CLI
 
-####Run a Flow
 When a flow is run, the entire directory in which the flow resides is scanned recursively (including all subfolders) for files with a valid SLANG extension. All of the files found are compiled by the CLI. If the `--cp` flag is used, all of the directories listed there will be scanned and compiled recursively as well. 
 
+The usage of forward slashes (`/`) in all file paths is recommended.
+
+####Run a Flow
 To run a flow located at `c:/.../your_flow.sl`, enter the following at the `slang>` prompt:
 ```bash
 slang>run --f c:/.../your_flow.sl
 ```
 
+####Run a Flow with Inputs
 If the flow takes in input parameters, use the `--i` flag and a comma-separated list of key=value pairs:
 ```bash
 slang>run --f c:/.../your_flow.sl --i input1=root,input2=25
 ```
-Alternatively, inputs made be loaded from a file using the `--fi` flag and a comma-separated list of file paths. Inputs passed with the `--i` flag will override the inputs passed using a file. If two files contain the same inputs, then the file specified last will override the values in previous files.
+Commas can be used as part of the input values by escaping them with a backslash (`\`).
+
+Alternatively, inputs made be loaded from a file. Input files are written in flat [YAML](http://www.yaml.org), containing a map of names to values. Input files end with the .yaml  or .yml extensions. If multiple input files are being used and they contain an input with the same name, the input in the file that is loaded last will overwrite the others with the same name. 
+
+**Example - inputs file**
+
+```yaml
+input1: hello
+input2: world
+``` 
+
+Input files can be loaded automatically if placed in a folder named `inputs` in the directory from which the CLI is run. If the flow requires an input file that is not loaded automatically, use the `--fi` flag and a comma-separated list of file paths. Inputs passed with the `--i` flag will override the inputs passed using a file. 
+
 ```bash
 slang>run --f c:/.../your_flow.sl --fi c:/.../inputs.yaml --i input1=value1
 ```
- 
+
+####Run a Flow with Dependencies 
 If the flow requires dependencies from another location, use the `--cp` flag: 
 ```bash
 slang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml
 ```
 
-If the flow requires a system properties file that is not in a properties in the same directory, use the `--spf` flag: 
+####Run a Flow with System Properties
+
+System properties files are written in flat [YAML](http://www.yaml.org), containing a map of names to values. System property files end with the .yaml  or .yml extensions. If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name. 
+
+**Example - system properties file**
+
+```yaml
+examples.sysprops.hostname: smtp.somedomain.com
+examples.sysprops.port: 587
+``` 
+
+System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. If the flow requires a system properties file that is not loaded automatically, use the `--spf` flag and a comma-separated list of file paths. 
+
 ```bash
 slang>run --f c:/.../your_flow.sl --spf c:/.../yaml
 ```
-System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. 
+
+####Run a Flow in Quiet Mode
+Normally a flow's task names are printed to the screen as they are run. To disable the task names from being printed, use the `--q` flag.
+
+```bash
+slang>run --f c:/.../your_flow.s --q
+```
 
 ####Other Commands
 Some of the available commands are:

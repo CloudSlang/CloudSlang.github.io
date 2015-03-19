@@ -6,7 +6,7 @@ imports:
 flow:
   name: hello_world
   workflow:
-    sayHi:
-      do:
-        ops.print:
-          - text: "'Hello, World'"
+    - sayHi:
+        do:
+          ops.print:
+            - text: "'Hello, World'"

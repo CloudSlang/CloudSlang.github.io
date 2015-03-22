@@ -5,7 +5,7 @@
 CloudSlang is a [YAML](http://www.yaml.org) (version 1.2) based language for describing a workflow. Using CloudSlang you can easily define a workflow in a structured, easy-to-understand format that can be run by the CloudSlang Orchestration Engine (Score). CloudSlang files can be run by the [CloudSlang CLI](#/docs#cloudslang-cli) or by an embedded instance of Score using the [CloudSlang API](#/docs#cloudslang-api).
 
 ###YAML Overview
-The following is a brief overview of some of the YAML specification. See the full [YAML specification](http://www.yaml.org/spec/1.2/spec.html) for more information.
+Before writing CloudSlang code it help to have a good working knowledge of YAML. The following is a brief overview of some of the YAML specification. See the full [YAML specification](http://www.yaml.org/spec/1.2/spec.html) for more information.
 
 ####Whitespace
 Unlike many programming, markup, and data serialization languages, whitespace is syntactically significant. Indentation is used to denote scope and is always achieved using spaces. Never use tabs.
@@ -75,7 +75,7 @@ action:
 ```
 
 ####Comments
-Comments begin with the # symbol.
+Comments begin with the `#` symbol.
 
 ### Hello World Example
 The following is a simple example to give you an idea of how CloudSlang is structured and can be used to ensure your environment is set up properly to run flows. 
@@ -132,16 +132,16 @@ Execution id: 101600001, duration: 0:00:00.790
 The CLI runs the [flow](#/docs#flow) in the file we have passed to it, namely **hello_world.sl**. The [flow](#/docs#flow) begins with an [import](#/docs#imports) of the operations file, **print.sl**, using its [namespace](#/docs#namespace) as the value for the [imports](#/docs#imports) key. Next, we enter the [flow](#/docs#flow) named `hello_world` and begin its [workflow](#/docs#workflow). The [workflow](#/docs#workflow) has one [task](#/docs#task) named `sayHi` which calls the `print` [operation](#/docs#operation) from the operations file that was imported. The [flow](#/docs#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#/docs#operation) `text` [input](#/docs#inputs). The print [operation](#/docs#operation) performs its [action](#/docs#action), which is a simple Python script that prints the [input](#/docs#inputs), and then returns a [result](#/docs#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#/docs#task) the [flow](#/docs#flow) finishes with a [result](#/docs#results) of `SUCCESS`.
 
 ##CloudSlang Reference
-This reference begins with a brief introduction to CloudSlang files and their structure followed by an alphabetical listing of CloudSlang keywords and concepts. 
+This reference begins with a brief introduction to CloudSlang files and their structure, an alphabetical listing of CloudSlang keywords and concepts, and several examples, including one from which many of the code snippets below are taken.
+
 
 ###CloudSlang Files 
 CloudSlang files are written using [YAML](http://www.yaml.org). The recommended extension for CloudSlang files is **.sl**, but **.sl.yaml** and **.sl.yml** will work as well. 
 
 There are two types of CloudSlang files:
 
-+ flow - contains a list of tasks that call operations or subflows
++ flow - contains a list of tasks and navigation logic that calls operations or subflows
 + operation - contains an action that runs a script or method
-
 
 The following properties are for all types of CloudSlang files. For properties specific to [flows](#/docs#flow) or [operations](#/docs#operation), see their respective sections below.  
 
@@ -152,7 +152,7 @@ Property|Required|Default|Value Type|Description|More Info
 
 
 ####File Structure
-The general structure of CloudSlang files is outlined here. Some of the properties that appear are optional. All CloudSlang keywords, properties and concepts are explained in detail below. Lastly, several examples are presented, including one from which many of the code snippets below are taken.
+The general structure of CloudSlang files is outlined here. Some of the properties that appear are optional. All CloudSlang keywords, properties and concepts are explained in detail below. 
 
 **Flow file**
 
@@ -169,6 +169,7 @@ The general structure of CloudSlang files is outlined here. Some of the properti
     + [task(s)](#/docs#task)
       + [do](#/docs#do)
       + [publish](#/docs#publish)
+	    + [fromInputs](#/docs#fromInputs)
       + [navigate](#/docs#navigate) 
     + [loop task](#/docs#task)
       + [loop](#/docs#loop)
@@ -467,7 +468,7 @@ flow:
 ###for
 The key `for` is a property of a [loop](#/docs#loop).
 
-The loop can iterate through a [list](#/docs#iterating-through-a-list) or a [map](#/docs#iterating-through-a-map).
+A loop can iterate through a [list](#/docs#iterating-through-a-list) or a [map](#/docs#iterating-through-a-map).
 
 The [iterative task](#/docs#iterative-task) will run once for each element in the list or key in the map. 
 
@@ -508,7 +509,7 @@ When iterating through a list, the `for` key is mapped to an iteration variable 
 ```
 
 ####Iterating through a map
-When iterating through a list, the `for` key is mapped to a iteration variables for the key and value followed by `in` followed by a map or an expression that evaluates to a map.
+When iterating through a map, the `for` key is mapped to iteration variables for the key and value followed by `in` followed by a map or an expression that evaluates to a map.
 
 **Example - loop that iterates through the values returned from an expression**
 
@@ -523,7 +524,7 @@ When iterating through a list, the `for` key is mapped to a iteration variables 
 ```
 
 ###fromInputs
-May appear in the value of an [output](#doc/#outputs).
+May appear in the value of an [output](#doc#outputs) or [publish](#doc#publish).
 
 Special syntax to refer to an [input](#/docs#inputs) parameter as opposed to another variable with the same name in a narrower scope.
 

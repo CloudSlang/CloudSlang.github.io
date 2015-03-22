@@ -1,19 +1,19 @@
 #Developer (Contributor) Guide
 
 ##Overview
-What follows is a brief overview of how **score** works and how SLANG interacts with it. For more detailed information see the [score API](#/docs#score-api) and [SLANG API](#/docs#slang-api) sections.
+What follows is a brief overview of how CloudSlang and the CloudSlang Orchestration Engine (Score) work. For more detailed information see the [Score API](#/docs#score-api) and [Slang API](#/docs#slang-api) sections.
 
-**score** is an engine that runs workflows. Internally, the workflows are represented as [ExecutionPlans](#/docs#executionplan). An [ExecutionPlan](#/docs#executionplan) is essentially a map of IDs and [ExecutionSteps](#/docs#executionstep). Each [ExecutionStep](#/docs#executionstep) contains information for calling an action method and a navigation method. 
+The CloudSlang Orchestration Engine is an engine that runs workflows. Internally, the workflows are represented as [ExecutionPlans](#/docs#executionplan). An [ExecutionPlan](#/docs#executionplan) is essentially a map of IDs and [ExecutionSteps](#/docs#executionstep). Each [ExecutionStep](#/docs#executionstep) contains information for calling an action method and a navigation method. 
 
 When an [ExecutionPlan](#/docs#executionplan) is triggered it executes the first [ExecutionStep's](#/docs#executionstep) action method and navigation method. The navigation method returns the ID of the next [ExecutionStep](#/docs#executionstep) to run. Execution continues in this manner, successively calling the next [ExecutionStep's](#/docs#executionstep) action and navigation methods, until a navigation method returns `null` to indicate the end of the flow.
 
-SLANG plugs into **score** by compiling its workflow and operation files into **score** [ExecutionPlans](#/docs#executionplan) and then triggering them. Generally, when working with SLANG content, all interaction with **score** goes through the [SLANG API](#/docs#slang-api), not the [score API](#/docs#score-api).
+CloudSlang plugs into the CloudSlang Orchestration Engine (Score) by compiling its workflow and operation files into Score [ExecutionPlans](#/docs#executionplan) and then triggering them. Generally, when working with CloudSlang content, all interaction with Score goes through the [Slang API](#/docs#slang-api), not the [Score API](#/docs#score-api).
 
 
-##Embedded SLANG 
-SLANG content can be run from inside an existing Java application using Maven and Spring by embedding **score** and interacting with it through the [SLANG API](#/docs#slang-api). 
+##Embedded CloudSlang 
+CloudSlang content can be run from inside an existing Java application using Maven and Spring by embedding the CloudSlang Orchestration Engine and interacting with it through the [Slang API](#/docs#slang-api). 
 
-###Embed SLANG in a Java Application
+###Embed CloudSlang in a Java Application
 Follow the directions below or download a ready-made [sample project](https://github.com/meirwah/test-slang-embedded). 
 
 1. Add the score and SLANG dependencies to the project's pom.xml file in the `<dependencies>` tag.
@@ -36,7 +36,7 @@ Follow the directions below or download a ready-made [sample project](https://gi
       <version>1.3.175</version>
   </dependency>
   ```
-2. Add **score** and SLANG configuration to your Spring application context xml file.
+2. Add Score and CloudSlang configuration to your Spring application context xml file.
   ```xml
   <beans xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -52,7 +52,7 @@ Follow the directions below or download a ready-made [sample project](https://gi
         <bean class="org.openscore.lang.api.configuration.SlangSpringConfiguration"/>
     </beans>
   ```
-3. Get the Slang bean from the application context xml file and interact with it using the [SLANG API](#/docs#slang-api).
+3. Get the Slang bean from the application context xml file and interact with it using the [Slang API](#/docs#slang-api).
   ```java
   ApplicationContext applicationContext =
         new ClassPathXmlApplicationContext("/spring/slangContext.xml");
@@ -67,12 +67,12 @@ Follow the directions below or download a ready-made [sample project](https://gi
   });
   ```
 
-##SLANG API
-The SLANG API allows a program to interact with score using content authored in SLANG. What follows is a brief discussion of the API using a simple example that compiles and runs a flow while listening for the events that are fired during the run. For more information, see the Javadocs.
+##Slang API
+The SLANG API allows a program to interact with the CloudSlang Orchestration Engine (Score) using content authored in CloudSlang. What follows is a brief discussion of the API using a simple example that compiles and runs a flow while listening for the events that are fired during the run.
 
 ###Example
 ####Code
-**Java Class - SlangEmbed.java**
+**Java Class - CloudSlangEmbed.java**
 ```Java
 package io.openscore.example;
 
@@ -90,7 +90,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SlangEmbed {
+public class CloudSlangEmbed {
     public static void main(String[] args) throws URISyntaxException{
         ApplicationContext applicationContext =
                 new ClassPathXmlApplicationContext("/spring/slangContext.xml");
@@ -155,7 +155,7 @@ operation:
     - SUCCESS
 ```
 ####Discussion
-+ The program begins by creating the Spring application context and getting the Slang bean. In general, most of the interactions with **score** are transmitted through the reference to this bean.
++ The program begins by creating the Spring application context and getting the Slang bean. In general, most of the interactions with Score are transmitted through the reference to this bean.
  
   ```java
   ApplicationContext applicationContext =
@@ -164,7 +164,7 @@ operation:
   Slang slang = applicationContext.getBean(Slang.class);
   ```
   
-+ Next, the `subscribeOnAllEvents` method is called and passed a new `ScoreEventListener` to listen to all the **score** and [SLANG events](#/docs#slang-events) that are fired. 
++ Next, the `subscribeOnAllEvents` method is called and passed a new `ScoreEventListener` to listen to all the [Score](#/docs#score-events) and [Slang events](#/docs#slang-events) that are fired. 
   
   ```java
   slang.subscribeOnAllEvents(new ScoreEventListener() {
@@ -188,7 +188,7 @@ operation:
 
   These `File` objects will be used to create the two `SlangSource` objects needed to compile and run the flow and its operation. 
 
-  A `SlangSource` object is a representation of source code written in SLANG along with the source's name. The `SlangSource` class exposes several `static` methods for creating new `SlangSource` objects from files, URIs or arrays of bytes.      
+  A `SlangSource` object is a representation of source code written in CloudSlang along with the source's name. The `SlangSource` class exposes several `static` methods for creating new `SlangSource` objects from files, URIs or arrays of bytes.      
 
 + Next, a set of dependencies is created and the operation is added to the set. 
 
@@ -198,11 +198,11 @@ operation:
   ```
   A flow containing many operations or subflows would need all of its dependencies loaded into the dependency set.
 
-+ Next, a map of input names to values is created. The input names are as they appear under the `inputs` key in the flow's SLANG file. 
++ Next, a map of input names to values is created. The input names are as they appear under the `inputs` key in the flow's CloudSlang file. 
 
   ```java
   HashMap<String, Serializable> inputs = new HashMap<>();
-  inputs.put("input1", "Hi. I'm inside this application.\n-Slang");
+  inputs.put("input1", "Hi. I'm inside this application.\n-CloudSlang");
   ```
 
 + Finally, the flow is compiled and run by providing its `SlangSource`, dependencies, inputs and an empty map of system properties. 
@@ -216,17 +216,17 @@ operation:
 
   Although we compile and run here in one step, the process can be broken up into its component parts. The `Slang` interface exposes a method to compile a flow or operation without running it. That method returns a `CompliationArtifact` which can then be run with a call to the `run` method.
 
-  A `CompilationArtifact` is composed of a **score** `ExecutionPlan`, a map of dependency names to their `ExecutionPlan`s and a list of Slang `Input`s. 
+  A `CompilationArtifact` is composed of a Score `ExecutionPlan`, a map of dependency names to their `ExecutionPlan`s and a list of CloudSlang `Input`s. 
 
-  A Slang `Input` contains its name, expression and the state of all its input properties (e. g. required).
+  A CloudSlang `Input` contains its name, expression and the state of all its input properties (e. g. required).
 
-##SLANG Events
-SLANG uses [score events](#/docs#score-events) and its own extended set of events. SLANG events are comprised of an event type string and a map of event data that contains all the relevant event information mapped to keys defined in the 
+##Slang Events
+CloudSlang uses [Score events](#/docs#score-events) and its own extended set of Slang events. Slang events are comprised of an event type string and a map of event data that contains all the relevant event information mapped to keys defined in the 
 `org.openscore.lang.runtime.events.LanguageEventData` class. All fired events are logged in the [execution log](#/docs#execution-log) file.
 
-Event types from SLANG are listed in the table below along with the event data each event contains. 
+Event types from CloudSlang are listed in the table below along with the event data each event contains. 
 
-All SLANG events contain the data in the following list. Additional event data is listed in the table below alongside the event type. The event data map keys are enclosed in square brackets - [KEYNAME].
+All Slang events contain the data in the following list. Additional event data is listed in the table below alongside the event type. The event data map keys are enclosed in square brackets - [KEYNAME].
 
 - [DESCRIPTION] - event description
 - [TIMESTAMP] - event time-stamp
@@ -247,12 +247,12 @@ EVENT_ACTION_END|After successful action invocation|[RETURN_VALUES]
 EVENT_ACTION_ERROR|Exception in action execution|[EXCEPTION]
 SLANG_EXECUTION_EXCEPTION|Exception in previous step|[EXCEPTION]
 
-##Embedded score 
-score can be embedded inside an existing Java application using Maven and Spring. Interaction with **score** is done through the [score API](#/docs#score-api). 
+##Embedded CloudSlang Orchestration Engine (Score) 
+Score can be embedded inside an existing Java application using Maven and Spring. Interaction with Score is done through the [Score API](#/docs#score-api). 
 
-###Embed score in a Java Application
+###Embed Score in a Java Application
 
-1. Add the **score** dependencies to the project's pom.xml file in the `<dependencies>` tag.
+1. Add the Score dependencies to the project's pom.xml file in the `<dependencies>` tag.
   ```xml
   <dependency>
       <groupId>io.openscore</groupId>
@@ -266,7 +266,7 @@ score can be embedded inside an existing Java application using Maven and Spring
       <version>1.3.175</version>
   </dependency>
   ```
-2. Add **score** configuration to your Spring application context xml file.
+2. Add Score configuration to your Spring application context xml file.
   
   ```xml
   <beans xmlns="http://www.springframework.org/schema/beans"
@@ -285,7 +285,7 @@ score can be embedded inside an existing Java application using Maven and Spring
   </beans>  
   ```
   
-3. Interact with score using the [score API](#/docs#score-api).
+3. Interact with Score using the [Score API](#/docs#score-api).
   ```java
   package io.openscore.example;
 
@@ -397,11 +397,11 @@ score can be embedded inside an existing Java application using Maven and Spring
 }
   ```
 
-##score API
-The **score** API allows a program to interact with **score**. This section describes some of the more commonly used interfaces and methods from the score API. For more information and a full listing of methods see the Javadocs.
+##Score API
+The Score API allows a program to interact with the CloudSlang Orchestration Engine (Score). This section describes some of the more commonly used interfaces and methods from the Score API.
 
 ###ExecutionPlan
-An ExecutionPlan is a map of IDs and steps, called [ExecutionSteps](#/docs#executionstep), representing a workflow for **score** to run.  Normally, the ID of the first step to be run is 0. 
+An ExecutionPlan is a map of IDs and steps, called [ExecutionSteps](#/docs#executionstep), representing a workflow for Score to run.  Normally, the ID of the first step to be run is 0. 
 
 [ExecutionSteps](#/docs#executionstep) can be added to the ExecutionPlan using the `addStep(ExecutionStep step)` method. 
 
@@ -418,11 +418,11 @@ The control action method and navigation action methods can be set in the Execut
 ####Action Method Arguments
 Both the control action and navigation action are regular Java methods which can take arguments. They are invoked by reflection and their arguments are injected by the score engine, so there is no API or naming convention for them. But there are some names that are reserved for special use. 
 
-There are several ways **score** can populate an action method's arguments:
+There are several ways Score can populate an action method's arguments:
 
 + From the execution context that is passed to the [TriggeringProperties](#/docs#triggeringproperties) when the [ExecutionPlan](#/docs#executionplan) is triggered.
   
-  When a method such as `public void doSomething(String argName)` is encountered, **score** will attempt to populate the argument `argName` with a value mapped to the key `argName` in the execution context. If the key `argName` does not exist in the map, the argument will be populated with `null`.
+  When a method such as `public void doSomething(String argName)` is encountered, Score will attempt to populate the argument `argName` with a value mapped to the key `argName` in the execution context. If the key `argName` does not exist in the map, the argument will be populated with `null`.
 + From data values set in the [ExecutionSteps](#/docs#executionstep) during the creation of the [ExecutionPlan](#/docs#executionplan).
 
 	Data can be set using the `setActionData` and `setNavigationData` methods.
@@ -431,11 +431,11 @@ There are several ways **score** can populate an action method's arguments:
 
   There are some argument names that have a special meaning when used as control action or navigation action method arguments:
 
-  +  **executionRuntimeServices** - **score** will populate this argument with the [ExecutionRuntimeServices](#/docs#executionruntimeservices) object. 
+  +  **executionRuntimeServices** - Score will populate this argument with the [ExecutionRuntimeServices](#/docs#executionruntimeservices) object. 
   ```java
   public void doWithServices(ExecutionRuntimeServices executionRuntimeServices)
   ```
-  +  **executionContext** – **score** will populate this argument with the context tied to the ExecutionPlan during its triggering through the [TriggeringProperties](#/docs#triggeringproperties).
+  +  **executionContext** – Score will populate this argument with the context tied to the ExecutionPlan during its triggering through the [TriggeringProperties](#/docs#triggeringproperties).
   ```java
   public void doWithContext(Map<String, Serializable> executionContext) 
   ```
@@ -473,7 +473,7 @@ The TriggeringProperties class exposes methods to create a TriggeringProperties 
 
 
 ###ExecutionRuntimeServices
-The ExecutionRuntimeServices provide a way to communicate with the **score** engine during the execution of an [ExecutionPlan](#/docs#executionplan). During an execution, after each [ExecutionStep](#/docs#executionstep), the engine will check the ExecutionRuntimeServices to see if there have been any requests made of it and will respond accordingly. These services can be used by a language written on top of **score** to affect the runtime behavior.
+The ExecutionRuntimeServices provide a way to communicate with Score during the execution of an [ExecutionPlan](#/docs#executionplan). During an execution, after each [ExecutionStep](#/docs#executionstep), the engine will check the ExecutionRuntimeServices to see if there have been any requests made of it and will respond accordingly. These services can be used by a language written on top of Score, as CloundSlang does, to affect the runtime behavior.
 
 The ExecutionRuntimeServices can be injected into an [ExecutionStep's](#/docs#executionstep) action or navigation method's arguments by adding the `ExecutionRuntimeServices executionRuntimeServices` parameter to the method's argument list.  
 
@@ -499,8 +499,8 @@ To unsubscribe a listener from all the events it was listening for call the `uns
 ###ScoreEvent
 A ScoreEvent is comprised of a string value corresponding to its type and a map containing the event data, which can be accessed using the `getEventType()` and `getData()` methods respectively.
 
-##score Events
-**score** defines two events that may be fired during execution. Each event is comprised of a string value corresponding to its type and a map containing the event data.
+##Score Events
+The CloudSlang Orchestration Engine (Score) defines two events that may be fired during execution. Each event is comprised of a string value corresponding to its type and a map containing the event data.
 
 Event Types:
 
@@ -514,29 +514,29 @@ Event Data Keys:
 + systemContext
 + EXECUTION_CONTEXT
 
-A language built upon **score** can add events during run time using the [ExecutionRuntimeServices’s](#docs/#executionruntimeservices) API. An example of this usage can be seen in [SLANG's events](#/docs#slang-events).
+A language built upon Score can add events during run time using the [ExecutionRuntimeServices’s](#docs/#executionruntimeservices) API. An example of this usage can be seen in CloudSlang's addition of [Slang events](#/docs#slang-events).
 
-##SLANG Architecture
+##CloudSlang Architecture
 ###Overview
-To be run by **score**, a SLANG source file must undergo a process to transform it into a **score** [`ExecutionPlan`](#/docs#executionplan) using the `SlangCompiler`.  
+To be run by the CloudSlang Orchestration Engine (Score), a CloudSlang source file must undergo a process to transform it into a Score [`ExecutionPlan`](#/docs#executionplan) using the `SlangCompiler`.  
 
 ####Precompilation
-The file is first loaded, along with its dependencies if necessary, and parsed in the precompilation process. In precompilation, the SLANG file's YAML structure is translated into Java maps by the `YamlParser` using [snakeyaml](http://snakeyaml.org). That parsed structure is then modeled to Java objects representing the parts of a flow and operation by the `SlangModeller` and the `ExecutableBuilder`. The result of this process is an object of type `Executable`.
+The file is first loaded, along with its dependencies if necessary, and parsed in the precompilation process. In precompilation, the CloudSlang file's YAML structure is translated into Java maps by the `YamlParser` using [snakeyaml](http://snakeyaml.org). That parsed structure is then modeled to Java objects representing the parts of a flow and operation by the `SlangModeller` and the `ExecutableBuilder`. The result of this process is an object of type `Executable`.
 
 ####Compilation
-The resulting `Executable` object, along with its dependent `Executable` objects, are then passed to the `ScoreCompiler` for compilation. An [`ExecutionPlan`](#/docs#executionplan) is created from the `Executable` using the `ExecutionPlanBuilder`. The `ExecutionPlanBuilder` uses the `ExecutionStepFactory` to manufacture the appropriate **score** [`ExecutionStep`](#/docs#executionstep) objects and add them to the resulting [`ExecutionPlan`](#/docs#executionplan), which is then packaged with its dependent [`ExecutionPlan`](#/docs#executionplan) objects into a `CompilationArtifact`.
+The resulting `Executable` object, along with its dependent `Executable` objects, are then passed to the `ScoreCompiler` for compilation. An [`ExecutionPlan`](#/docs#executionplan) is created from the `Executable` using the `ExecutionPlanBuilder`. The `ExecutionPlanBuilder` uses the `ExecutionStepFactory` to manufacture the appropriate Score [`ExecutionStep`](#/docs#executionstep) objects and add them to the resulting [`ExecutionPlan`](#/docs#executionplan), which is then packaged with its dependent [`ExecutionPlan`](#/docs#executionplan) objects into a `CompilationArtifact`.
 
 ####Running
-Now that the SLANG source has been fully transformed into an [`ExecutionPlan`](#/docs#executionplan) it can be run using **score**. The [`ExecutionPlan`](#/docs#executionplan) and its dependencies are extracted from the `CompilationArtifact` and used to create a [`TriggeringProperties`](#/docs#triggeringproperties) object. A [`RunEnvironment`](#/docs#runenvironment) is also created and added to the [`TriggeringProperties`](#/docs#triggeringproperties) context. The [`RunEnvironment`](#/docs#runenvironment) provides services to the [`ExecutionPlan`](#/docs#executionplan) as it runs, such as keeping track of the context stack and next step position.       
+Now that the CloudSlang source has been fully transformed into an [`ExecutionPlan`](#/docs#executionplan) it can be run using Score. The [`ExecutionPlan`](#/docs#executionplan) and its dependencies are extracted from the `CompilationArtifact` and used to create a [`TriggeringProperties`](#/docs#triggeringproperties) object. A [`RunEnvironment`](#/docs#runenvironment) is also created and added to the [`TriggeringProperties`](#/docs#triggeringproperties) context. The [`RunEnvironment`](#/docs#runenvironment) provides services to the [`ExecutionPlan`](#/docs#executionplan) as it runs, such as keeping track of the context stack and next step position.       
 
 ###Treatment of Flows and Operations
-Genrally, SLANG treats flows and operations similarly. 
+Genrally, CloudSlang treats flows and operations similarly. 
 
 Flows and operations both:
 
 + Receive inputs, produce outputs, and have navigation logic.
 + Can be called by a flow's task.
-+ Are compiled to `ExecutionPlans` that can be run by score.
++ Are compiled to `ExecutionPlans` that can be run by Score.
 
 
 ###Scoped Contexts
@@ -553,7 +553,7 @@ There are three types of scoped contexts:
 ###Types of ExecutionSteps
 As flows and operations are compiled, they are broken down into a number of [`ExecutionSteps`](#/docs#executionstep). These steps are built using their corresponding methods in the `ExecutionStepFactory`. 
 
-There are five types of [`ExecutionSteps`](#/docs#executionstep) used to build a SLANG [`ExecutionPlan`](#/docs#executionplan): 
+There are five types of [`ExecutionSteps`](#/docs#executionstep) used to build a CloudSlang [`ExecutionPlan`](#/docs#executionplan): 
 
 + Start Step
 + End Step
@@ -581,8 +581,8 @@ The `RuntimeEnvironment` contains:
  + **systemProperties** - system properties 
  + **serializableDataMap** - serializable data that is common to the entire run
 
-##Score Architecture
-**score** is built from two main components, an engine and a worker. Scaling is achieved by adding additional workers and engines. 
+##CloudSlang Orchestration Engine (Score) Architecture
+Score is built from two main components, an engine and a worker. Scaling is achieved by adding additional workers and/or engines. 
 
 ![Score Architecture](images/diagrams/score_architecture.png "Score Architecture")
 
@@ -604,7 +604,7 @@ The worker is composed of the following components:
 + **Execution Service:** Responsible for executing the execution steps, pausing and canceling executions, splitting executions and dispatching relevant events.
 
 ###Database
-The database is composed of the following tables categorized here by their main function:
+The database is composed of the following tables categorized here by their main functions:
 
 + Execution tracking:
   + **RUNNING_EXECUTION_PLANS:** full data of an execution plan and all of its dependencies 
@@ -634,9 +634,11 @@ If the execution is finished, the **engine** fires a `SCORE_FINISHED_EVENT` and 
 Before running each step, a worker checks to see if the step to be run is a split step. If it is a split step, the worker creates a list of the split executions. It puts the execution along with all its split executions into a `SplitMessage` which is placed on the out-buffer. After draining, the orchestrator's split-join service takes care of the executions until they are to be rejoined. The service places the parent execution into the `SUSPENDED_EXECUTIONS` table with a count of how many branches it has been split into. `Execution`s are created for the split branches and placed on the queue. From there, they are picked up as usual by workers and when they are finished they are added to the `FINISHED_BRANCHES` table. Periodically, a job runs to see if the number of branches that have finished are equal to the number of branches the original execution was split into. Once all the branches are finished the original execution can be placed back onto the queue to be picked up again by a worker.
 
 ###Recovery
-The recovery mechanism allows **score** to recover from situations that would cause a loss of data otherwise. The recovery mechanism guarantees that each step of an execution plan will be run, but does not guarantee that it will be run only once. The most common recovery situations are outlined below.  
+The recovery mechanism allows Score to recover from situations that would cause a loss of data otherwise. The recovery mechanism guarantees that each step of an execution plan will be run, but does not guarantee that it will be run only once. The most common recovery situations are outlined below. 
+ 
 ####Lost Worker
 To prevent the loss of data from a worker that is no longer responsive the recovery mechanism does the following. Each worker continually reports their active status to the engine which stores a reporting version number for the worker in the `WORKER_NODES` table. Periodically a recovery job runs and sees which workers' reported version numbers are outdated, indicating that they have not been reporting back. The non-responsive workers' records in the queue get reassigned to other workers that pick up from the last known step that was executed.
+
 ####Worker Restart
 To prevent the loss of data from a worker that has been restarted additional measures must be taken. The restarted worker will report that it is active, so the recovery job will not know to reassign the executions that were lost when it was restarted. Therefore, every time a worker has been started  an internal recovery is done. The worker's buffers are cleaned and the worker reports to the engine that it is starting up. The engine then checks the queue to see if that worker has anything that's already on the queue. Whatever is found is passed on to a different worker while the restarted one finishes starting up before polling for new messages. 
 
@@ -646,7 +648,7 @@ For performance optimization, there are two `EXECUTION_STATES` tables, one of wh
 ##Contributing Code
 
 ###GitHub Repositories
-The openscore project consists of the following [repositories](https://github.com/openscore) on GitHub with the dependencies depicted in the diagram.
+The openscore project consists of the following [repositories](https://github.com/cloudslang) on GitHub with the dependencies depicted in the diagram.
 
 ![Repository Dependencies](images/diagrams/repo_dependencies.png "Repository Dependencies")
 
@@ -657,15 +659,15 @@ The openscore project consists of the following [repositories](https://github.co
   + score-samples
   + score-tests
   + worker 
-+ **score-language** - score language (SLANG) and the CLI
++ **cloudslang** - CloudSlang and the CLI
   + score-lang-api
   + score-lang-cli
   + score-lang-compiler
   + score-lang-entities
   + score-lang-runtime
   + score-language-tests 
-+ **slang-content** - SLANG flows and operations
-  + org/openscore/slang
++ **cloudslang-content** - CloudSlang flows and operations
+  + io/cloudslang/cloudslang
     + base
       + comparisons
       + lists
@@ -673,22 +675,25 @@ The openscore project consists of the following [repositories](https://github.co
       + network
       + remote_command_execution
         + ssh
-      + strings   
+      + strings  
+    + consul
+    + coreos 
     + docker
     + jenkins
+    + marathon
     + openstack
     + (other integrations to be added as new folders)  
-+ **score-actions** - Java @Action classes for SLANG
++ **cloudslang-actions** - Java @Action classes for CloudSlang
   + score-http-client
   + score-mail
   + score-ssh
   + score-utilities 
-+ **score-content-sdk** - SDK for developing Java @Actions
++ **cloudslang-sdk** - SDK for developing Java @Actions
   + src/main/java/com/hp/oo/sdk/content
     + annotations
     + plugin
       + ActionMetadata   
-+ **openscore.github.io** - score website and documentation
++ **cloudslang.github.io** - score website and documentation
   + app
     + images
     + markdowns
@@ -700,10 +705,10 @@ The openscore project consists of the following [repositories](https://github.co
 
 ### Contribution Guide
 
-We welcome and encourage community contributions to score.
+We welcome and encourage community contributions to CloudSlang.
 Please familiarize yourself with the Contribution Guidelines and Project Roadmap before contributing.
 
-There are many ways to help score:
+There are many ways to help the CloudSlang project:
 
 * Report issues
 * Fix issues
@@ -712,7 +717,7 @@ There are many ways to help score:
 
 #### Contributing Code
 
-The best way to directly collaborate with the project contributors is through GitHub: https://github.com/openscore.
+The best way to directly collaborate with the project contributors is through GitHub: https://github.com/cloudslang.
 
 * If you want to contribute to our code by either fixing a problem or creating a new feature, please open a GitHub pull request.
 * If you want to raise an issue such as a defect, an enhancement request or a general issue, please open a GitHub issue.
@@ -777,4 +782,4 @@ Please avoid using nicknames that might detract from a friendly, safe and welcom
 
 Those who insult, demean or harass anyone will be excluded from interaction. In particular, behavior that excludes people in socially marginalized groups will not be tolerated.
 
-We welcome discussion about creating a welcoming, safe and productive environment for the community. If you have any questions, feedback or concerns please let us know. (info@openscore.io)
+We welcome discussion about creating a welcoming, safe and productive environment for the community. If you have any questions, feedback or concerns please let us know. (info@cloudslang.io)

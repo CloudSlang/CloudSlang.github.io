@@ -1,8 +1,8 @@
-#SLANG - score Language
+#CloudSlang
 
-##What is SLANG?
+##What is CloudSlang?
 
-SLANG is a [YAML](http://www.yaml.org) (version 1.2) based language for describing a workflow. Using SLANG you can easily define a workflow in a structured, easy-to-understand format that can be run by **score**. SLANG files can be run by the [SLANG CLI](#/docs#slang-cli) or by an embedded instance of **score** using the [SLANG API](#/docs#slang-api).
+CloudSlang is a [YAML](http://www.yaml.org) (version 1.2) based language for describing a workflow. Using CloudSlang you can easily define a workflow in a structured, easy-to-understand format that can be run by the CloudSlang Orchestration Engine (Score). CloudSlang files can be run by the [CloudSlang CLI](#/docs#cloudslang-cli) or by an embedded instance of Score using the [CloudSlang API](#/docs#cloudslang-api).
 
 ###YAML Overview
 The following is a brief overview of some of the YAML specification. See the full [YAML specification](http://www.yaml.org/spec/1.2/spec.html) for more information.
@@ -10,7 +10,7 @@ The following is a brief overview of some of the YAML specification. See the ful
 ####Whitespace
 Unlike many programming, markup, and data serialization languages, whitespace is syntactically significant. Indentation is used to denote scope and is always achieved using spaces. Never use tabs.
 
-**Example: a SLANG task (in this case named divider) contains do, publish and navigate keys**
+**Example: a CloudSlang task (in this case named divider) contains do, publish and navigate keys**
 
 ```yaml
 - divider:
@@ -26,9 +26,9 @@ Unlike many programming, markup, and data serialization languages, whitespace is
 ```
 
 ####Lists
-List are denoted with a hypen (-) and a space preceding each list item. 
+Lists are denoted with a hypen (-) and a space preceding each list item. 
 
-**Example: a SLANG flow's possible results are defined using a list mapped to the results key**
+**Example: a CloudSlang flow's possible results are defined using a list mapped to the results key**
 ```yaml
 results:
   - ILLEGAL
@@ -38,7 +38,7 @@ results:
 ####Maps
 Maps are denoted use a colon (:) and a space between each key value pair.
 
-**Example: a SLANG  task's navigate key is mapped to a mapping of results and their targets**
+**Example: a CloudSlang task's navigate key is mapped to a mapping of results and their targets**
 ```yaml
 navigate:
   ILLEGAL: FAILURE
@@ -50,13 +50,13 @@ Strings can be denoted in several ways: unquoted, single quoted and double quote
 
 Strings that span multiple lines can be written using a pipe (|) to preserve line breaks or a greater than symbol (>) where each line break will be converted to a space.
 
-**Example:  a name of a SLANG flow is defined using the unquoted style** 
+**Example:  a name of a CloudSlang flow is defined using the unquoted style** 
 ```yaml
 flow:
   name: hello_world
 ```
 
-**Example:  the single or double quoted style is used in SLANG to pass a Python string, which is quoted using the other style, to an input parameter** 
+**Example:  the single or double quoted style is used in CloudSlang to pass a Python string, which is quoted using the other style, to an input parameter** 
 ```yaml
 - sayHi:
     do:
@@ -64,7 +64,7 @@ flow:
         - text: "'Hello, World'"
 ```
 
-**Example:  the pipe is used in SLANG to indicate a multi-line Python script** 
+**Example:  the pipe is used in CloudSlang to indicate a multi-line Python script** 
 ```yaml
 action:
   python_script: |
@@ -78,15 +78,15 @@ action:
 Comments begin with the # symbol.
 
 ### Hello World Example
-The following is a simple example to give you an idea of how SLANG is structured and can be used to ensure your environment is set up properly to run flows. 
+The following is a simple example to give you an idea of how CloudSlang is structured and can be used to ensure your environment is set up properly to run flows. 
 
 ####Prerequisites
-This example uses the SLANG CLI to run a flow. See the [SLANG CLI](#/docs#slang-cli) section for instructions on how to download and run the CLI.
+This example uses the CloudSlang CLI to run a flow. See the [CloudSlang CLI](#/docs#cloudslang-cli) section for instructions on how to download and run the CLI.
 
-Although SLANG files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. See [Sublime Integration](#/docs#sublime-integration) for instructions on how to download, install and use the SLANG snippets for [Sublime Text](http://www.sublimetext.com/).    
+Although CloudSlang files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. See [Sublime Integration](#/docs#sublime-integration) for instructions on how to download, install and use the CloudSlang snippets for [Sublime Text](http://www.sublimetext.com/).    
 
 ####Code files
-In a new folder, create two new SLANG files, hello_world.sl and print.sl, and copy the code below.
+In a new folder, create two new CloudSlang files, hello_world.sl and print.sl, and copy the code below.
 
 **hello_world.sl**
 ```yaml
@@ -118,7 +118,7 @@ operation:
 ```
 
 ####Run
-Start the CLI from the folder in which your SLANG files reside and enter `run hello_world.sl` at the `slang>` prompt. 
+Start the CLI from the folder in which your CloudSlang files reside and enter `run hello_world.sl` at the `slang>` prompt. 
 
 The output will look similar to this:
 ```bash
@@ -131,19 +131,19 @@ Execution id: 101600001, duration: 0:00:00.790
 ####Explanation
 The CLI runs the [flow](#/docs#flow) in the file we have passed to it, namely **hello_world.sl**. The [flow](#/docs#flow) begins with an [import](#/docs#imports) of the operations file, **print.sl**, using its [namespace](#/docs#namespace) as the value for the [imports](#/docs#imports) key. Next, we enter the [flow](#/docs#flow) named `hello_world` and begin its [workflow](#/docs#workflow). The [workflow](#/docs#workflow) has one [task](#/docs#task) named `sayHi` which calls the `print` [operation](#/docs#operation) from the operations file that was imported. The [flow](#/docs#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#/docs#operation) `text` [input](#/docs#inputs). The print [operation](#/docs#operation) performs its [action](#/docs#action), which is a simple Python script that prints the [input](#/docs#inputs), and then returns a [result](#/docs#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#/docs#task) the [flow](#/docs#flow) finishes with a [result](#/docs#results) of `SUCCESS`.
 
-##SLANG DSL Reference
-This reference begins with a brief introduction to SLANG files and their structure followed by an alphabetical listing of SLANG keywords and concepts. 
+##CloudSlang Reference
+This reference begins with a brief introduction to CloudSlang files and their structure followed by an alphabetical listing of CloudSlang keywords and concepts. 
 
-###SLANG Files 
-SLANG files are written using [YAML](http://www.yaml.org). The recommended extension for SLANG files is .sl, but .sl.yaml  and .sl.yml will work as well. 
+###CloudSlang Files 
+CloudSlang files are written using [YAML](http://www.yaml.org). The recommended extension for CloudSlang files is **.sl**, but **.sl.yaml** and **.sl.yml** will work as well. 
 
-There are two types of SLANG files:
+There are two types of CloudSlang files:
 
-+ flow
-+ operation
++ flow - contains a list of tasks that call operations or subflows
++ operation - contains an action that runs a script or method
 
 
-The following properties are for all types of SLANG files. For properties specific to [flows](#/docs#flow) or [operations](#/docs#operation), see their respective sections below.  
+The following properties are for all types of CloudSlang files. For properties specific to [flows](#/docs#flow) or [operations](#/docs#operation), see their respective sections below.  
 
 Property|Required|Default|Value Type|Description|More Info
 ---|---|---|---|---
@@ -152,7 +152,7 @@ Property|Required|Default|Value Type|Description|More Info
 
 
 ####File Structure
-The general structure of SLANG files is outlined here. Some of the properties that appear are optional. All SLANG keywords, properties and concepts are explained in detail below. Lastly, several examples are presented, including one from which many of the code snippets below are taken.
+The general structure of CloudSlang files is outlined here. Some of the properties that appear are optional. All CloudSlang keywords, properties and concepts are explained in detail below. Lastly, several examples are presented, including one from which many of the code snippets below are taken.
 
 **Flow file**
 
@@ -217,7 +217,7 @@ A `java_action` is a valid @Action that conforms to the method signature: `publi
     - @Output: action output
     - @Response: action response
 
-**Example - SLANG call to  a Java @Action**
+**Example - CloudSlang call to  a Java @Action**
 
 ```yaml
 name: pull_image
@@ -334,7 +334,7 @@ action:
 ####Importing Python Scripts
 To import a Python script in a `python_script` action:
 
-1. Add the Python script to the **python-lib** folder.
+1. Add the Python script to the **python-lib** folder, which is found at the same level as the **bin** folder that contains the CLI executable. 
 2. Import the script as you normally would in Python from within the action's `python_script`.
 
 **Note:** If you have defined a `JYTHONPATH` environment variable, you will need to add the **python-lib** folder's path to its value. 
@@ -417,7 +417,7 @@ do:
 ###flow
 The key `flow` is mapped to the properties which make up the flow contents.
 
-A flow is the basic executable unit of SLANG. A flow can run on its own or it can be used by another flow in the [do](#/docs#do) property of a [task](#/docs#task).
+A flow is the basic executable unit of CloudSlang. A flow can run on its own or it can be used by another flow in the [do](#/docs#do) property of a [task](#/docs#task).
 
 
 Property|Required|Default|Value Type|Description|More Info
@@ -466,9 +466,13 @@ flow:
 
 ###for
 The key `for` is a property of a [loop](#/docs#loop).
-It is mapped to an iteration variable followed by `in` followed by a list, an expression that evaluates to a list, or a comma delimited string.
 
-The [iterative task](#/docs#iterative-task) will run once for each element in the list or comma delimited string. Each time the iteration variable will be given the value of the next item in the list or comma delimited string.
+The loop can iterate through a [list](#/docs#iterating-through-a-list) or a [map](#/docs#iterating-through-a-map).
+
+The [iterative task](#/docs#iterative-task) will run once for each element in the list or key in the map. 
+
+####Iterating through a list
+When iterating through a list, the `for` key is mapped to an iteration variable followed by `in` followed by a list, an expression that evaluates to a list, or a comma delimited string.
 
 **Example - loop that iterates through the values in a list**
 
@@ -503,6 +507,20 @@ The [iterative task](#/docs#iterative-task) will run once for each element in th
           - text: value
 ```
 
+####Iterating through a map
+When iterating through a list, the `for` key is mapped to a iteration variables for the key and value followed by `in` followed by a map or an expression that evaluates to a map.
+
+**Example - loop that iterates through the values returned from an expression**
+
+```yaml
+- print_values:
+    loop:
+      for: k, v in map
+      do:
+        ops.print2:
+          - text1: k
+          - text2: v
+```
 
 ###fromInputs
 May appear in the value of an [output](#doc/#outputs).
@@ -514,6 +532,13 @@ Special syntax to refer to an [input](#/docs#inputs) parameter as opposed to ano
 ```yaml
 outputs:
   - output1: fromInputs['input1']
+```
+
+**Example - usage in publish to refer to a variable in the flow's scope**
+
+```yaml
+publish:
+  - total_cost: fromInputs['total_cost'] + cost
 ```
 
 ###imports
@@ -573,7 +598,7 @@ For each value in the loop's list the `do` will run an [operation](#/docs#operat
 
 Property|Required|Default|Value Type|Description|More Info
 ---|
-`for`|yes|-|variable `in` list|iteration logic|[for](#/docs#for) 
+`for`|yes|-|variable `in` list or key, value `in` map|iteration logic|[for](#/docs#for) 
 `do`|yes|-|operation or subflow call|the operation or subflow this task will run iteratively|[do](#/docs#do) [operation](#/docs#operation) [flow](#/docs#flow)
 `publish`|no|-|list of key:value pairs|operation outputs to aggregate and publish to the flow level|[publish](#/docs#publish) [outputs](#/docs#outputs)
 `break`|no|-|list of [results](#/docs#result)|operation or subflow [results](#/docs#result) on which to break out of the loop|[break](#/docs#break)
@@ -599,7 +624,7 @@ It is mapped to a value that is used as the name of the [flow](#/docs#flow) or [
 
 The name of a [flow](#/docs#flow) or [operation](#/docs#operation) may be used when called from a [flow](#/docs#flow)'s [task](#/docs#task). 
 
-**Example - naming the flow "division_flow"**
+**Example - naming the flow _division\_flow_**
 
 ```yaml
 name: division_flow
@@ -608,7 +633,7 @@ name: division_flow
 ###namespace
 The key `namespace` is mapped to a string value that defines the file's namespace.
 
-The namespace of a file  may be used by other SLANG files to [import](#/docs#imports) dependencies, such as a flow importing operations.
+The namespace of a file  may be used by other CloudSlang files to [import](#/docs#imports) dependencies, such as a flow importing operations.
 
 **Example - definition a namespace**
 
@@ -633,7 +658,7 @@ For a [standard task](#/docs#standard-task) the navigation logic runs when the [
 
 The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`. All possible [results](#/docs#results) returned by the called [operation](#/docs#operation) or subflow must be handled.
 
-**Example - ILLEGAL result will navigate to flow's FAILURE result and SUCCESS result will navigate to task named "printer"**
+**Example - ILLEGAL result will navigate to flow's FAILURE result and SUCCESS result will navigate to task named _printer_**
 ```yaml
 navigate:
   ILLEGAL: FAILURE
@@ -646,7 +671,7 @@ It is mapped to a [task](#/docs#task).
 
 Defines the [task](#/docs#task), which when using default [navigation](#/docs#navigation), is the target of a `FAILURE` [result](#/docs#result) returned from an [operation](#/docs#operations) or [flow](#docs/flow). The `on_failure` [task's](#/docs#task) [navigation](#/docs#navigate) defaults to `FAILURE`.
 
-**Example - faliure task which call a print operation to print an error message**
+**Example - failure task which call a print operation to print an error message**
 ```yaml
 - on_failure:
   - failure:
@@ -896,13 +921,13 @@ workflow:
 ```
 
 ###Examples
-The following simplified examples demonstrate some of the key SLANG concepts. Each of the examples below can be run by doing the following:
+The following simplified examples demonstrate some of the key CloudSlang concepts. Each of the examples below can be run by doing the following:
 
 1. Create a new folder.
-2. Create new SLANG (.sl) files and copy the code into them.
+2. Create new CloudSlang(.sl) files and copy the code into them.
 3. [Use the CLI](#/docs#use-the-cli) to run the flow. 
 
-For more information on getting set up to run flows, see the [SLANG CLI](#/docs#slang-cli) and [Hello World Example](#/docs#hello-world-example) sections.
+For more information on getting set up to run flows, see the [CloudSlang CLI](#/docs#cloudslang-cli) and [Hello World Example](#/docs#hello-world-example) sections.
 
 ####Example 1 - User-defined Navigation and Publishing Outputs
 This example is a full working version from which many of the example snippets above have been taken. The flow takes in two inputs, divides them and prints the answer. In case of a division by zero, the flow does not print the output of the division, but instead ends with a user-defined result of `ILLEGAL`.
@@ -1229,11 +1254,11 @@ operation:
     - SUCCESS
 ```
 
-##SLANG Best Practices
-The following is a list of best practices for authoring SLANG files. Many of these best practices are checked when using the [SLANG Verifier](#/docs#slang-verifier).
+##CloudSlang Best Practices
+The following is a list of best practices for authoring CloudSlang files. Many of these best practices are checked when using the [CloudSlang Verifier](#/docs#cloudslang-verifier).
 
 -	The namespace for a file matches the suffix of the file path in which the file resides.
-    Example: The send\_mail operation is found in the _slang-content/org/openscore/slang/base_ folder. It uses the namespace _org.openscore.slang.base.mail_.
+    Example: The send\_mail operation is found in the **cloudslang-content/io/cloudslang/cloudslangs/base** folder. It uses the namespace `io.cloudslang.cloudslang.base.mail`.
 - Namespaces should be comprised of only lowercase alphanumeric characters (a-z and 0-9), underscores (_), periods(.) and hyphens (-).
 -	A flow or operation has the same name as the file it is in.
 -	Each file has one flow or one operation. 
@@ -1244,75 +1269,128 @@ The following is a list of best practices for authoring SLANG files. Many of the
 - Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
   - Optional parameters and default values are noted.
 
-Note: In future releases some of the above best practices may be required by the SLANG compiler. 
+Note: In future releases some of the above best practices may be required by the CloudSlang compiler. 
 
 **Example - commented description of operation to count occurrences of a string in another string**
 ```yaml
 ####################################################
-#   This operation will count the occurrences of a string in another string 
+# Counts the occurrences of a string in another string 
 #
-#   Inputs:
-#       - string_in_which_to_search - string where to search
-#       - string_to_find - string to be found
-#       - ignore_case - optional - ignores case if set to true - Default: true
-#   Outputs:
-#       - occurrences - number of times string_to_find was found
-#   Results:
-#       - SUCCESS - string_to_find is found at least once
-#       - FAILURE - otherwise
+# Inputs:
+#   - string_in_which_to_search - string where to search
+#   - string_to_find - string to be found
+#   - ignore_case - optional - ignores case if set to true - Default: true
+# Outputs:
+#   - occurrences - number of times string_to_find was found
+# Results:
+#   - SUCCESS - string_to_find is found at least once
+#   - FAILURE - otherwise
 ####################################################
 ```
 
-##SLANG Verifier
-The SLANG Verifier is a tool that checks the syntactic validity of SLANG files along with adherence to many of the [best practices](#/docs#slang-best-practices). 
+## CloudSlang Comments Style Guide
 
-The SLANG Verifier can be downloaded from [here](https://github.com/openscore/score-language/releases).
+###Structure
+The structure and spacing of the comments are as in the example below:
+```
+####################################################
+# Does something fantastic.
+#
+# Prerequisites: some Python module
+#
+# Inputs:
+#   - input1 - first input
+#   - input2 - optional - port for something - Default: 8080
+#   - list - a list of things - Format: comma delimited list of things
+# Outputs:
+#   - output1 - some sort of message
+# Results:
+#   - SUCCESS - everything went well
+#   - FAILURE - otherwise 
+####################################################
+```
 
-To use the SLANG Verifier, run `java -jar slang-content-verifier.jar <directory_path>`. The Verifier will recursively search the directory for SLANG files by extension and verify the validity of their syntax.
+###Description
 
-##SLANG CLI
-There are several ways to get started with the SLANG CLI. 
++ Written as a sentence, beginning with a capital letter and ending with a period.
++ Written in the present tense (e.g. "Prints text.").
++ Does not include "This flow" or "This operation" or anything similar.
+
+###Prerequisites
+
++ Flows and operations that assume prerequisites include a prerequisite line beginning with "Prerequisites:", followed by a comma delimited list of prerequisites.
+
+###Inputs, Outputs and Results
++ Fields appear in the same order as they appear in the code.
++ Description begins with a lowercase letter (unless a proper name or capitalized acronym) and does not end with a period.
++ Usage of the words "the" and "a" are strongly discouraged, especially at the beginning of the description.
++ Does not include "this flow", "this operation", "this field" or anything similar.
++ Proper names and acronyms that are normally capitalized are capitalized (e.g. HTTP, Docker, ID).
+
+###Inputs and Outputs
++ Written in the present tense (e.g. "true if job exists").
++ Non-required fields contain the "optional" label.
++ Additional labels are "Default:", "Example:", "Valid:" and "Format:".
+
+###Results
++ Actions written in the past tense (e.g. "error occurred") and states written in the present tense (e.g. "application is up").
++ Results are always included, even if just listing the default results without explanations. 
+
+###Recurring Fields
++ Fields that appear often with the same meaning should have the same name and description across flows and operations. However, if the meaning is specific to the flow or operation, the field description may be different. Some examples are.
+  + FAILURE - otherwise
+  + error_message - error message if error occurred 
+  + command - command to execute
+
+##CloudSlang Verifier
+The CloudSlang Verifier is a tool that checks the syntactic validity of CloudSlang files along with adherence to many of the [best practices](#/docs#cloudslang-best-practices). 
+
+The CloudSlang Verifier can be downloaded from [here](https://github.com/cloudslang/cloudslang/releases).
+
+To use the CloudSlang Verifier, run `java -jar cloudslang-content-verifier.jar <directory_path>`. The Verifier will recursively search the directory for CloudSlang files by extension and verify the validity of their syntax.
+
+##CloudSlang CLI
+There are several ways to get started with the CloudSlang CLI. 
 
 ###Download and Run Pre-built CLI
-**Prerequisites :** To run the SLANG CLI, Java JRE version 7 or higher is required.
+**Prerequisites :** To run the CloudSlang CLI, Java JRE version 7 or higher is required.
 
-1. Go to the **score** [website](/#/) and scroll to the **Getting Started** section.
-2. Click **Download an use slang CLI tool**.
-3. Click **Download latest version**. 
-4. Locate the downloaded file and unzip the archive.  
+1. Go to the CloudSlang [website](/#/) and scroll to the **Getting Started** section.
+2. Click **Download latest version**. 
+3. Locate the downloaded file and unzip the archive.  
     The decompressed file contains:
-    + a folder called **slang** with the CLI tool and its necessary dependencies.
-    + some other folders with sample flows.
-5. Navigate to the folder `slang\bin\`.
-6. Run the executable:
-  - For Windows : `slang.bat`.
-  - For Linux : `bash slang`.
+    + a folder called **cloudslang** with the CLI tool and its necessary dependencies.
+    + some other folders with ready-made content.
+4. Navigate to the folder `cloudslang\bin\`.
+5. Run the executable:
+  - For Windows : `cloudslang.bat`.
+  - For Linux : `bash cloudslang`.
 
 ###Download, Build and Run CLI
-**Prerequisites :** To build the SLANG CLI, Java JDK version 7 or higher and Maven version 3.0.3 or higher are required.
+**Prerequisites :** To build the CloudSlang CLI, Java JDK version 7 or higher and Maven version 3.0.3 or higher are required.
 
-1. Git clone (or GitHub fork and then clone) the [source code](https://github.com/openscore/score-language).
+1. Git clone (or GitHub fork and then clone) the [source code](https://github.com/cloudslang/cloudslang).
 2. Using the Command Prompt, navigate to the project root directory.
 3. Build the project by running `mvn clean install`.
-4. After the build finishes, navigate to the `score-language\score-lang-cli\target\slang\bin` folder.
+4. After the build finishes, navigate to the `cloudslang\cloudslang\target\cloudslang\bin` folder.
 5. Run the executable:
-  - For Windows : `slang.bat`.
-  - For Linux : `bash slang`.
+  - For Windows : `cloudslang.bat`.
+  - For Linux : `bash cloudslang`.
 
 ###Download and Install npm Package
-**Prerequisites :** To download the package, Node.js is required. To run the SLANG CLI, Java JRE version 7 or higher is required.
+**Prerequisites :** To download the package, Node.js is required. To run the CloudSlang CLI, Java JRE version 7 or higher is required.
 
-1. At a command prompt, enter `npm install -g score-cli`.
-	+ If using Linux, the sudo command might be neccessary: `sudo npm install -g score-cli`. 
-2. Enter the `slang` command at any command prompt.
+1. At a command prompt, enter `npm install -g cloudslang-cli`.
+	+ If using Linux, the sudo command might be neccessary: `sudo npm install -g cloudslang-cli`. 
+2. Enter the `cloudslang` command at any command prompt.
 
 ###Use the CLI
 
-When a flow is run, the entire directory in which the flow resides is scanned recursively (including all subfolders) for files with a valid SLANG extension. All of the files found are compiled by the CLI. If the `--cp` flag is used, all of the directories listed there will be scanned and compiled recursively as well. 
+When a flow is run, the entire directory in which the flow resides is scanned recursively (including all subfolders) for files with a valid CloudSlang extension. All of the files found are compiled by the CLI. If the `--cp` flag is used, all of the directories listed there will be scanned and compiled recursively as well. 
 
-The usage of forward slashes (`/`) in all file paths is recommended.
+The usage of forward slashes (`/`) in all file paths is recommended even on Windows.
 
-####Run a Flow
+####Run a Flow or Operation
 To run a flow located at `c:/.../your_flow.sl`, enter the following at the `slang>` prompt:
 ```bash
 slang>run --f c:/.../your_flow.sl
@@ -1330,14 +1408,21 @@ Alternatively, inputs made be loaded from a file. Input files are written in fla
 **Example - inputs file**
 
 ```yaml
-input1: hello
-input2: world
+input: hello
+input_list:
+  - one
+  - two
+  - three
+input_map:
+  one: a
+  two: b
+  three: c
 ``` 
 
-Input files can be loaded automatically if placed in a folder named `inputs` in the directory from which the CLI is run. If the flow requires an input file that is not loaded automatically, use the `--fi` flag and a comma-separated list of file paths. Inputs passed with the `--i` flag will override the inputs passed using a file. 
+Input files can be loaded automatically if placed in a folder named `inputs` in the directory from which the CLI is run. If the flow requires an input file that is not loaded automatically, use the `--if` flag and a comma-separated list of file paths. Inputs passed with the `--i` flag will override the inputs passed using a file. 
 
 ```bash
-slang>run --f c:/.../your_flow.sl --fi c:/.../inputs.yaml --i input1=value1
+slang>run --f c:/.../your_flow.sl --if c:/.../inputs.yaml --i input1=value1
 ```
 
 ####Run a Flow with Dependencies 
@@ -1367,8 +1452,17 @@ slang>run --f c:/.../your_flow.sl --spf c:/.../yaml
 Normally a flow's task names are printed to the screen as they are run. To disable the task names from being printed, use the `--q` flag.
 
 ```bash
-slang>run --f c:/.../your_flow.s --q
+slang>run --f c:/.../your_flow.sl --q
 ```
+
+####Run a Flow in Non-Interactive Mode
+A flow can be run without first starting up the CLI using the non-interactive mode. 
+
+From a shell prompt:
+```bash
+>cloudslang run --f c:/.../your_flow.sl
+```
+
 
 ####Other Commands
 Some of the available commands are:
@@ -1391,24 +1485,24 @@ Some of the available commands are:
 	```
 
 ####Execution Log
-The execution log is saved in the directory in which the CLI was started in a file named `execution.log`. The log file stores all the [events](#/docs#slang-events) that have been fired, and therefore it allows for tracking a flow's execution.
+The execution log is saved in the directory in which the CLI was started in a file named `execution.log`. The log file stores all the [events](#/docs#cloudslang-events) that have been fired, and therefore it allows for tracking a flow's execution.
 
 ####Help
 To get a list of available commands, enter `help` at the CLI `slang>` prompt. For further help, enter `help` and the name of the command.
 
 ##Sublime Integration
 
-Although SLANG files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. 
+Although CloudSlang files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. 
 
-To ease the SLANG coding process you can use our Sublime Text snippets. 
+To ease the CloudSlang coding process you can use our Sublime Text snippets. 
 
 ###Download, Install and Configure Sublime Text for Windows:
 
 1. Download and install [Sublime Text](http://www.sublimetext.com/).
-2. Download the [slang-sublime package](https://github.com/orius123/slang-sublime/releases/download/0.1.0/slang-sublime-0.1.0.sublime-package). 
+2. Download the [cloudslang-sublime package](https://github.com/orius123/slang-sublime/releases/download/0.1.0/slang-sublime-0.1.0.sublime-package). 
 3. Copy the downloaded package file into C:\Users\&lt;User&gt;\AppData\Roaming\Sublime Text 2\Installed Packages
 4. Restart Sublime Text.
-5. New files with the .sl extension will be recognized as SLANG files. For existing files you may have to change the language manually.
+5. New files with the .sl extension will be recognized as CloudSlang files. For existing files you may have to change the language manually.
 
 To use the templates start typing the template name and press enter when it appears on the screen. 
 
@@ -1416,9 +1510,9 @@ The following templates are provided:
 
 Keyword|Description
 ---|---
-slang|template for a SLANG file
+slang|template for a CloudSlang file
 flow|template for a flow
 task|template for a task
 operation|template for an operation
   
-Note: Optional SLANG elements are marked as comments (begin with #).
+Note: Optional CloudSlang elements are marked as comments (begin with #).

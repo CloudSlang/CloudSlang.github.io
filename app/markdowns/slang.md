@@ -1362,7 +1362,7 @@ There are several ways to get started with the CloudSlang CLI.
     The decompressed file contains:
     + a folder called **cloudslang** with the CLI tool and its necessary dependencies.
     + some other folders with ready-made content.
-4. Navigate to the folder `cloudslang\bin\`.
+4. Navigate to the folder `cslang\bin\`.
 5. Run the executable:
   - For Windows : `cslang.bat`.
   - For Linux : `bash cslang`.
@@ -1373,7 +1373,7 @@ There are several ways to get started with the CloudSlang CLI.
 1. Git clone (or GitHub fork and then clone) the [source code](https://github.com/cloudslang/cloudslang).
 2. Using the Command Prompt, navigate to the project root directory.
 3. Build the project by running `mvn clean install`.
-4. After the build finishes, navigate to the `cloudslang\cloudslang\target\cloudslang\bin` folder.
+4. After the build finishes, navigate to the `cloudslang\cslang\target\cloudslang\bin` folder.
 5. Run the executable:
   - For Windows : `cslang.bat`.
   - For Linux : `bash cslang`.
@@ -1381,9 +1381,9 @@ There are several ways to get started with the CloudSlang CLI.
 ###Download and Install npm Package
 **Prerequisites :** To download the package, Node.js is required. To run the CloudSlang CLI, Java JRE version 7 or higher is required.
 
-1. At a command prompt, enter `npm install -g cloudslang-cli`.
-	+ If using Linux, the sudo command might be neccessary: `sudo npm install -g cloudslang-cli`. 
-2. Enter the `cloudslang` command at any command prompt.
+1. At a command prompt, enter `npm install -g cslang-cli`.
+	+ If using Linux, the sudo command might be neccessary: `sudo npm install -g cslang-cli`. 
+2. Enter the `cslang` command at any command prompt.
 
 ###Use the CLI
 
@@ -1461,7 +1461,7 @@ A flow can be run without first starting up the CLI using the non-interactive mo
 
 From a shell prompt:
 ```bash
->cloudslang run --f c:/.../your_flow.sl
+>cslang run --f c:/.../your_flow.sl
 ```
 
 
@@ -1479,10 +1479,10 @@ Some of the available commands are:
 	cslang>inputs --f c:/.../your_flow.sl
 	```
 
-+ `slang --version` - Displays the version of **score** being used.
++ `cslang --version` - Displays the version of **score** being used.
 
 	```bash
-	cslang>slang --version
+	cslang>cslang --version
 	```
 
 ####Execution Log
@@ -1500,7 +1500,7 @@ To ease the CloudSlang coding process you can use our Sublime Text snippets.
 ###Download, Install and Configure Sublime Text for Windows:
 
 1. Download and install [Sublime Text](http://www.sublimetext.com/).
-2. Download the [cloudslang-sublime package](https://github.com/orius123/slang-sublime/releases/download/0.1.0/slang-sublime-0.1.0.sublime-package). 
+2. Download the [slang-sublime package](https://github.com/orius123/slang-sublime/releases/download/0.1.0/slang-sublime-0.1.0.sublime-package). 
 3. Copy the downloaded package file into C:\Users\&lt;User&gt;\AppData\Roaming\Sublime Text 2\Installed Packages
 4. Restart Sublime Text.
 5. New files with the .sl extension will be recognized as CloudSlang files. For existing files you may have to change the language manually.

@@ -16,7 +16,7 @@ CloudSlang content can be run from inside an existing Java application using Mav
 ###Embed CloudSlang in a Java Application
 Follow the directions below or download a ready-made [sample project](https://github.com/meirwah/test-slang-embedded). 
 
-1. Add the score and SLANG dependencies to the project's pom.xml file in the `<dependencies>` tag.
+1. Add the score and CloudSlang dependencies to the project's pom.xml file in the `<dependencies>` tag.
   ```xml
   <dependency>
       <groupId>io.openscore</groupId>
@@ -68,7 +68,7 @@ Follow the directions below or download a ready-made [sample project](https://gi
   ```
 
 ##Slang API
-The SLANG API allows a program to interact with the CloudSlang Orchestration Engine (Score) using content authored in CloudSlang. What follows is a brief discussion of the API using a simple example that compiles and runs a flow while listening for the events that are fired during the run.
+The Slang API allows a program to interact with the CloudSlang Orchestration Engine (Score) using content authored in CloudSlang. What follows is a brief discussion of the API using a simple example that compiles and runs a flow while listening for the events that are fired during the run.
 
 ###Example
 ####Code
@@ -111,14 +111,14 @@ public class CloudSlangEmbed {
         dependencies.add(SlangSource.fromFile(operationFile));
 
         HashMap<String, Serializable> inputs = new HashMap<>();
-        inputs.put("input1", "Hi. I'm inside this application.\n-Slang");
+        inputs.put("input1", "Hi. I'm inside this application.\n-CloudSlang");
 
         slang.compileAndRun(SlangSource.fromFile(flowFile), dependencies,
                 inputs, new HashMap<String, Serializable>());
     }
 
     private static File getFile(String path) throws URISyntaxException {
-        return new File(SlangEmbed.class.getResource(path).toURI());
+        return new File(CloudSlangEmbed.class.getResource(path).toURI());
     }
 }
 ```

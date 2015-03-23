@@ -1,41 +1,33 @@
-#Score
-##Overview
-**score** is a general-purpose java-based open-source orchestration engine which is process-based, 
-embeddable, lightweight, scalable and multilingual.
+#Overview
 
-###Process Based
+##The CloudSlang Project
+CloudSlang is an open source language for defining workflows run by the CloudSlang Orchestration Engine.
 
-Unlike many orchestration solutions that describe the desired model, 
-**score** aims to provide a process-based approach, that allows you to define the ‘how’ and not just the ‘what’, 
-therefore providing the ability to better control the actual runtime behavior of the workflow.
+CloudSlang and its Orchestration Engine are:
 
-###Embeddable
++ Process Based: allowing you to define the 'how' and not just the 'what' to better control the runtime behavior of your workflows.
++ Agentless: there are no agents to set up and manage on all your machines. Instead, workflows use remote APIs to run tasks.
++ Scalable: execution logic and distribution are optimized for high throughput and are horizontally scalable.
++ Embeddable: the CloudSlang Orchestration Engine is distributed as a standard java library, allowing you to embed it and run CloudSlang from your own applications.
++ Content Rich: you can build your own flows, or just use CloudSlang ready-made content. 
 
-**score** is distributed as a standard java library, allowing you to embedded score in your application, 
-and use java [APIs](#docs/#score-apis).
+##Get Started
+It's easy to get started running CloudSlang flows, especially using the CLI and ready-made content.
 
-###Scalable
+1. Go to the CloudSlang [website](/#/), scroll to the **Getting Started** section and click **Download latest version**.
+2. Unzip the archive.
+3. Run the CloudSlang executable. 
+4. At the prompt enter: 
+  ```bash
+  run --f ../content/org/openscore/slang/base/print/print_text.sl --i text=Hi
+  ```
+5. The CLI will run the ready-made `print_text` operation that will print the value passed to the variable `text` to the screen.
 
-The fundamental architecture of **score** consists of:
+##Next Steps
+Now that you've ran your first CloudSlang file, you might want to:
 
-+ [Worker](#docs/#worker) - the unit that actually executes the steps from the execution plan. 
-+ [Engine](#docs/#engine) - a queue-based work distribution mechanism. 
-
-Execution logic and distribution are optimized for high throughput and are horizontally scalable.
-
-###Multilingual
-
-**score** architecture allows you to use any process modelling language.
-The [ExecutionPlan](#docs/#execution-plan) low-level structure enables you to compile multiple languages for **score** to run. 
-See [slang](#docs/#slang) as one of the languages you can use to define workflows for score. 
-
-###Use Cases
-**score**  can be used in a variety of environments and scenarios such as: 
--	Day 2 operations
--	Cloud orchestration
--	Application deployment
--	DevOps
--	QA
-and many more..
-
-You can build your own flows, or just use slang out-of-the-box content. 
++ Learn how to write a print operation yourself using the [Hello World example](#/docs#hello-world-example).
++ Learn about the language features using the [New Hire Tutorial](TODO:addlink).
++ Learn about the language in detail using the [CloudSlang Reference](#/docs#cloudslang-reference).
++ See an [overview](TODO:addlink) of the ready-made content.
++ Browse the ready-made content [repository](TODO:addlink).

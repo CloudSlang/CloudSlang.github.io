@@ -118,7 +118,7 @@ operation:
 ```
 
 ####Run
-Start the CLI from the folder in which your CloudSlang files reside and enter `run hello_world.sl` at the `slang>` prompt. 
+Start the CLI from the folder in which your CloudSlang files reside and enter `run hello_world.sl` at the `cslang>` prompt. 
 
 The output will look similar to this:
 ```bash
@@ -1392,15 +1392,15 @@ When a flow is run, the entire directory in which the flow resides is scanned re
 The usage of forward slashes (`/`) in all file paths is recommended even on Windows.
 
 ####Run a Flow or Operation
-To run a flow located at `c:/.../your_flow.sl`, enter the following at the `slang>` prompt:
+To run a flow located at `c:/.../your_flow.sl`, enter the following at the `cslang>` prompt:
 ```bash
-slang>run --f c:/.../your_flow.sl
+cslang>run --f c:/.../your_flow.sl
 ```
 
 ####Run a Flow with Inputs
 If the flow takes in input parameters, use the `--i` flag and a comma-separated list of key=value pairs:
 ```bash
-slang>run --f c:/.../your_flow.sl --i input1=root,input2=25
+cslang>run --f c:/.../your_flow.sl --i input1=root,input2=25
 ```
 Commas can be used as part of the input values by escaping them with a backslash (`\`).
 
@@ -1423,13 +1423,13 @@ input_map:
 Input files can be loaded automatically if placed in a folder named `inputs` in the directory from which the CLI is run. If the flow requires an input file that is not loaded automatically, use the `--if` flag and a comma-separated list of file paths. Inputs passed with the `--i` flag will override the inputs passed using a file. 
 
 ```bash
-slang>run --f c:/.../your_flow.sl --if c:/.../inputs.yaml --i input1=value1
+cslang>run --f c:/.../your_flow.sl --if c:/.../inputs.yaml --i input1=value1
 ```
 
 ####Run a Flow with Dependencies 
 If the flow requires dependencies from another location, use the `--cp` flag: 
 ```bash
-slang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml
+cslang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml
 ```
 
 ####Run a Flow with System Properties
@@ -1446,14 +1446,14 @@ examples.sysprops.port: 587
 System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. If the flow requires a system properties file that is not loaded automatically, use the `--spf` flag and a comma-separated list of file paths. 
 
 ```bash
-slang>run --f c:/.../your_flow.sl --spf c:/.../yaml
+cslang>run --f c:/.../your_flow.sl --spf c:/.../yaml
 ```
 
 ####Run a Flow in Quiet Mode
 Normally a flow's task names are printed to the screen as they are run. To disable the task names from being printed, use the `--q` flag.
 
 ```bash
-slang>run --f c:/.../your_flow.sl --q
+cslang>run --f c:/.../your_flow.sl --q
 ```
 
 ####Run a Flow in Non-Interactive Mode
@@ -1471,25 +1471,25 @@ Some of the available commands are:
 + `env --setAsync` - Sets the execution mode to be synchronous (`false`) or asynchronous (`true`). By default the execution mode is synchronous, meaning only one flow can run at a time. 
 
 	```bash
-	slang>env --setAsync true
+	cslang>env --setAsync true
 	```
 + `inputs` - Lists the inputs of a given flow.
 
 	```bash
-	slang>inputs --f c:/.../your_flow.sl
+	cslang>inputs --f c:/.../your_flow.sl
 	```
 
 + `slang --version` - Displays the version of **score** being used.
 
 	```bash
-	slang>slang --version
+	cslang>slang --version
 	```
 
 ####Execution Log
 The execution log is saved in the directory in which the CLI was started in a file named `execution.log`. The log file stores all the [events](#/docs#cloudslang-events) that have been fired, and therefore it allows for tracking a flow's execution.
 
 ####Help
-To get a list of available commands, enter `help` at the CLI `slang>` prompt. For further help, enter `help` and the name of the command.
+To get a list of available commands, enter `help` at the CLI `cslang>` prompt. For further help, enter `help` and the name of the command.
 
 ##Sublime Integration
 

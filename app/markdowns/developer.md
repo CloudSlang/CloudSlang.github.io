@@ -673,6 +673,8 @@ The openscore project consists of the following [repositories](https://github.co
       + lists
       + mail
       + network
+      + os
+        + linux 
       + remote_command_execution
         + ssh
       + strings  

@@ -659,15 +659,15 @@ The openscore project consists of the following [repositories](https://github.co
   + score-samples
   + score-tests
   + worker 
-+ **cloudslang** - CloudSlang and the CLI
++ **cloud-slang** - CloudSlang and the CLI
   + score-lang-api
   + score-lang-cli
   + score-lang-compiler
   + score-lang-entities
   + score-lang-runtime
   + score-language-tests 
-+ **cloudslang-content** - CloudSlang flows and operations
-  + io/cloudslang/cloudslang
++ **cloud-slang-content** - CloudSlang flows and operations
+  + io/cloudslang
     + base
       + comparisons
       + lists
@@ -685,17 +685,17 @@ The openscore project consists of the following [repositories](https://github.co
     + marathon
     + openstack
     + (other integrations to be added as new folders)  
-+ **cloudslang-actions** - Java @Action classes for CloudSlang
++ **score-actions** - Java @Action classes used by CloudSlang
   + score-http-client
   + score-mail
   + score-ssh
   + score-utilities 
-+ **cloudslang-sdk** - SDK for developing Java @Actions
++ **cloud-slang-sdk** - SDK for developing Java @Actions
   + src/main/java/com/hp/oo/sdk/content
     + annotations
     + plugin
       + ActionMetadata   
-+ **cloudslang.github.io** - score website and documentation
++ **CloudSlang.github.io** - CloudSlang website and documentation
   + app
     + images
     + markdowns
@@ -719,7 +719,7 @@ There are many ways to help the CloudSlang project:
 
 #### Contributing Code
 
-The best way to directly collaborate with the project contributors is through GitHub: https://github.com/cloudslang.
+The best way to directly collaborate with the project contributors is through GitHub: https://github.com/CloudSlang.
 
 * If you want to contribute to our code by either fixing a problem or creating a new feature, please open a GitHub pull request.
 * If you want to raise an issue such as a defect, an enhancement request or a general issue, please open a GitHub issue.

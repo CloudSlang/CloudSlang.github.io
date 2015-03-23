@@ -30,6 +30,6 @@ Now that you've run your first CloudSlang file, you might want to:
 + Learn about the language features using the [New Hire Tutorial](TODO:addlink).
 + Learn about the language in detail using the [CloudSlang Reference](#/docs#cloudslang-reference).
 + See an [overview](TODO:addlink) of the ready-made content.
-+ Browse the ready-made content [repository](TODO:addlink).
++ Browse the ready-made content [repository](https://github.com/CloudSlang/cloud-slang-content).
 + Learn about embedding [CloudSlang](#/docs#embedded-cloudslang) or the [CloudSlang Orchestration Engine](#/docs#embedded-cloudslang-orchestration-engine) into your existing application.
 + Learn about the architecture of [CloudSlang](#/docs#cloudslang-architecture) or the [CloudSlang Orchestration Engine](#/docs#cloudslang-orchestration-engine-architecture).

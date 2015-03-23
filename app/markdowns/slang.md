@@ -1259,7 +1259,7 @@ operation:
 The following is a list of best practices for authoring CloudSlang files. Many of these best practices are checked when using the [CloudSlang Verifier](#/docs#cloudslang-verifier).
 
 -	The namespace for a file matches the suffix of the file path in which the file resides.
-    Example: The send\_mail operation is found in the **cloudslang-content/io/cloudslang/cloudslangs/base** folder. It uses the namespace `io.cloudslang.cloudslang.base.mail`.
+    Example: The send\_mail operation is found in the **cloudslang-content/io/cloudslang/base** folder. It uses the namespace `io.cloudslang.base.mail`.
 - Namespaces should be comprised of only lowercase alphanumeric characters (a-z and 0-9), underscores (_), periods(.) and hyphens (-).
 -	A flow or operation has the same name as the file it is in.
 -	Each file has one flow or one operation. 
@@ -1346,7 +1346,7 @@ The structure and spacing of the comments are as in the example below:
 ##CloudSlang Verifier
 The CloudSlang Verifier is a tool that checks the syntactic validity of CloudSlang files along with adherence to many of the [best practices](#/docs#cloudslang-best-practices). 
 
-The CloudSlang Verifier can be downloaded from [here](https://github.com/cloudslang/cloudslang/releases).
+The CloudSlang Verifier can be downloaded from [here](https://github.com/CloudSlang/cloud-slang/releases).
 
 To use the CloudSlang Verifier, run `java -jar cloudslang-content-verifier.jar <directory_path>`. The Verifier will recursively search the directory for CloudSlang files by extension and verify the validity of their syntax.
 
@@ -1364,8 +1364,8 @@ There are several ways to get started with the CloudSlang CLI.
     + some other folders with ready-made content.
 4. Navigate to the folder `cloudslang\bin\`.
 5. Run the executable:
-  - For Windows : `cloudslang.bat`.
-  - For Linux : `bash cloudslang`.
+  - For Windows : `cslang.bat`.
+  - For Linux : `bash cslang`.
 
 ###Download, Build and Run CLI
 **Prerequisites :** To build the CloudSlang CLI, Java JDK version 7 or higher and Maven version 3.0.3 or higher are required.
@@ -1375,8 +1375,8 @@ There are several ways to get started with the CloudSlang CLI.
 3. Build the project by running `mvn clean install`.
 4. After the build finishes, navigate to the `cloudslang\cloudslang\target\cloudslang\bin` folder.
 5. Run the executable:
-  - For Windows : `cloudslang.bat`.
-  - For Linux : `bash cloudslang`.
+  - For Windows : `cslang.bat`.
+  - For Linux : `bash cslang`.
 
 ###Download and Install npm Package
 **Prerequisites :** To download the package, Node.js is required. To run the CloudSlang CLI, Java JRE version 7 or higher is required.

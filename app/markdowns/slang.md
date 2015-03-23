@@ -1373,7 +1373,7 @@ There are several ways to get started with the CloudSlang CLI.
 1. Git clone (or GitHub fork and then clone) the [source code](https://github.com/cloudslang/cloudslang).
 2. Using the Command Prompt, navigate to the project root directory.
 3. Build the project by running `mvn clean install`.
-4. After the build finishes, navigate to the `cloudslang\cslang\target\cloudslang\bin` folder.
+4. After the build finishes, navigate to the `score-lang-cli\target\cloudslang\bin` folder.
 5. Run the executable:
   - For Windows : `cslang.bat`.
   - For Linux : `bash cslang`.

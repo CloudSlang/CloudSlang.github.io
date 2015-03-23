@@ -247,8 +247,8 @@ EVENT_ACTION_END|After successful action invocation|[RETURN_VALUES]
 EVENT_ACTION_ERROR|Exception in action execution|[EXCEPTION]
 SLANG_EXECUTION_EXCEPTION|Exception in previous step|[EXCEPTION]
 
-##Embedded CloudSlang Orchestration Engine (Score) 
-Score can be embedded inside an existing Java application using Maven and Spring. Interaction with Score is done through the [Score API](#/docs#score-api). 
+##Embedded CloudSlang Orchestration Engine
+The CloudSlang Orchestration Engine (Score) can be embedded inside an existing Java application using Maven and Spring. Interaction with Score is done through the [Score API](#/docs#score-api). 
 
 ###Embed Score in a Java Application
 
@@ -581,8 +581,8 @@ The `RuntimeEnvironment` contains:
  + **systemProperties** - system properties 
  + **serializableDataMap** - serializable data that is common to the entire run
 
-##CloudSlang Orchestration Engine (Score) Architecture
-Score is built from two main components, an engine and a worker. Scaling is achieved by adding additional workers and/or engines. 
+##CloudSlang Orchestration Engine Architecture
+The CloudSlang Orchestration Engine (Score) is built from two main components, an engine and a worker. Scaling is achieved by adding additional workers and/or engines. 
 
 ![Score Architecture](images/diagrams/score_architecture.png "Score Architecture")
 

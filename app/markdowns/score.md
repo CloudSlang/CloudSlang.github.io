@@ -24,10 +24,12 @@ It's easy to get started running CloudSlang flows, especially using the CLI and 
 5. The CLI will run the ready-made `print_text` operation that will print the value passed to the variable `text` to the screen.
 
 ##Next Steps
-Now that you've ran your first CloudSlang file, you might want to:
+Now that you've run your first CloudSlang file, you might want to:
 
 + Learn how to write a print operation yourself using the [Hello World example](#/docs#hello-world-example).
 + Learn about the language features using the [New Hire Tutorial](TODO:addlink).
 + Learn about the language in detail using the [CloudSlang Reference](#/docs#cloudslang-reference).
 + See an [overview](TODO:addlink) of the ready-made content.
 + Browse the ready-made content [repository](TODO:addlink).
++ Learn about embedding [CloudSlang](#/docs#embedded-cloudslang) or the [CloudSlang Orchestration Engine](#/docs#embedded-cloudslang-orchestration-engine) into your existing application.
++ Learn about the architecture of [CloudSlang](#/docs#cloudslang-architecture) or the [CloudSlang Orchestration Engine](#/docs#cloudslang-orchestration-engine-architecture).

@@ -1,7 +1,7 @@
-# openscore.github.io
-openscore website [http://openscore.io](http://openscore.io)
+# CloudSlang.github.io
+CloudSlang website [http://cloudslang.io](http://cloudslang.io)
 
-[![Build Status](https://travis-ci.org/openscore/openscore.github.io.svg)](https://travis-ci.org/openscore/openscore.github.io)
+[![Build Status](https://travis-ci.org/cloudslang/cloudslang.github.io.svg)](https://travis-ci.org/cloudslang/cloudslang.github.io)
 
 ## Build and start server
 

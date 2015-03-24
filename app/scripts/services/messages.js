@@ -38,11 +38,11 @@ angular.module('scoreWebsiteApp')
             mainBulletsProcessBasedTitle: 'Process-Based',
             mainBulletsDayTwoOperationsTitle: 'Day 2 Operations',
             mainBulletsAgentlessTitle: 'Agentless',
-            mainBulletsProcessBasedDesc: 'Our language is a simple way to describe workflows in a reusable fashion. Using YAML and Python, our language allows you to better control the workflow\'s behavior.',
-            mainBulletsDayTwoOperationsDescPre: 'Use our existing content to manage your deployed application.',
+            mainBulletsProcessBasedDesc: 'CloudSlang is a simple way to describe workflows in a reusable fashion. Using YAML and Python, our language allows you to better control the workflow\'s behavior.',
+            mainBulletsDayTwoOperationsDescPre: 'Use existing CloudSlang content to manage your deployed application.',
             mainBulletsDayTwoOperationsDescLink: 'Explore',
             mainBulletsDayTwoOperationsDescPost: ' our Docker, OpenStack and utilities content.',
-            mainBulletsAgentlessDesc: 'Don’t bother setting up and managing agents on all your machines. Our workflows can use remote APIs to run tasks.',
+            mainBulletsAgentlessDesc: 'Don’t bother setting up and managing agents on all your machines. CloudSlang workflows can use remote APIs to run tasks.',
             mainBulletsReadMore: 'Read More',
 
             // contact us
@@ -87,19 +87,19 @@ angular.module('scoreWebsiteApp')
             detailedUseCliHeader: 'Start command-line interface',
             detailedUseCliText: 'Open your console and execute the CLI',
             detailedTriggerFlowHeader: 'Run',
-            detailedTriggerFlowText1: '1. Open your console and execute the CLI. The CLI is located at <path>/slang/bin.',
+            detailedTriggerFlowText1: '1. Open your console and execute the CLI. The CLI is located at <path>/cslang/bin.',
             detailedTriggerFlowText2: '2. Run your flow from the command-line.',
             detailedCliHeader: 'Click to see how',
             detailedCliPrefix: '$',
             detailedCliClear: 'Clear',
             detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
-            detailedCliTriggerFlow: 'slang\n' +
-                '^100slang>^500 run --f /.../hello_world.sl\n' +
+            detailedCliTriggerFlow: 'cslang\n' +
+                '^100cslang>^500 run --f .../hello_world.sl\n' +
                 '^500- sayHi\n' +
                 '^250Hello, World\n' +
                 '^250Flow : hello_world finished with result : SUCCESS\n' +
                 'Execution id: 101600001, duration: 0:00:00.790\n' +
-                '^250slang>',
+                '^250cslang>',
 
             // -- embed score
             detailedEmbedPomHeader: 'score dependencies',

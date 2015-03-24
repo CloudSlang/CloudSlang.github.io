@@ -648,7 +648,7 @@ For performance optimization, there are two `EXECUTION_STATES` tables, one of wh
 ##Contributing Code
 
 ###GitHub Repositories
-The openscore project consists of the following [repositories](https://github.com/cloudslang) on GitHub with the dependencies depicted in the diagram.
+The CloudSlang project consists of the following [repositories](https://github.com/cloudslang) on GitHub with the dependencies depicted in the diagram.
 
 ![Repository Dependencies](images/diagrams/repo_dependencies.png "Repository Dependencies")
 

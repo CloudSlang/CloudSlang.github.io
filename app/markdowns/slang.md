@@ -1402,7 +1402,14 @@ If the flow takes in input parameters, use the `--i` flag and a comma-separated 
 ```bash
 cslang>run --f c:/.../your_flow.sl --i input1=root,input2=25
 ```
-Commas can be used as part of the input values by escaping them with a backslash (`\`).
+Commas (`,`) can be used as part of input values by escaping them with a backslash (`\`).
+
+To use inputs that include spaces, enclose the entire input list in quotes (`"`):
+```bash
+cslang>run --f c:/.../your_flow.sl --i "input1=Hello World, input2=x"
+```
+
+Double quotes (`"`) can be used as part of quoted input values by escaping them with a backslash (`\`). When using a quoted input list, spaces between input parameters will be trimmed.
 
 Alternatively, inputs made be loaded from a file. Input files are written in flat [YAML](http://www.yaml.org), containing a map of names to values. Input files end with the .yaml  or .yml extensions. If multiple input files are being used and they contain an input with the same name, the input in the file that is loaded last will overwrite the others with the same name. 
 

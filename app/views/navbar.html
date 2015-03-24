@@ -17,19 +17,19 @@
             <p class="h3 text-muted scroll-top" scroll-top>
                 <!--<img src="../images/logos/score_logo_50x50.png" img-responsive alt="SCalable ORchestration Engine" width="50px"-->
                      <!--height="50px"/>-->
-                Scalable Orchestration Engine
+                CloudSlang
             </p>
         </div>
-        <!--<ul class="nav navbar-nav navbar-right navbar-collapse bs-navbar-collapse collapse">-->
-            <!--<li>-->
-                <!--<a href="/#/{{navSwitch.uri}}">-->
-                    <!--<span class="row go-to-page">-->
-                        <!--<span class="col-lg-9 button">{{navSwitch.title}}</span>-->
-                        <!--<i class="col-lg-1 fa arrow" ng-class="navSwitch.title === $root.messages.navBackToSiteTitle ? 'fa-arrow-circle-o-left' : 'fa-arrow-circle-o-right'"></i>-->
-                    <!--</span>-->
-                <!--</a>-->
-            <!--</li>-->
-        <!--</ul>-->
+        <ul class="nav navbar-nav navbar-right navbar-collapse bs-navbar-collapse collapse">
+            <li>
+                <a href="/#/{{navSwitch.uri}}">
+                    <span class="row go-to-page">
+                        <span class="col-lg-9 button">{{navSwitch.title}}</span>
+                        <i class="col-lg-1 fa arrow" ng-class="navSwitch.title === $root.messages.navBackToSiteTitle ? 'fa-arrow-circle-o-left' : 'fa-arrow-circle-o-right'"></i>
+                    </span>
+                </a>
+            </li>
+        </ul>
         <ul one-page-nav class="nav navbar-nav navbar-right navbar-collapse bs-navbar-collapse collapse">
             <li ng-repeat="section in sections" >
                 <a ng-href="#{{section.id}}" class="h5">{{section.title}}</a>

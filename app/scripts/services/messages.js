@@ -38,7 +38,7 @@ angular.module('scoreWebsiteApp')
             mainBulletsProcessBasedTitle: 'Process-Based',
             mainBulletsDayTwoOperationsTitle: 'Day 2 Operations',
             mainBulletsAgentlessTitle: 'Agentless',
-            mainBulletsProcessBasedDesc: 'CloudSlang is a simple way to describe workflows in a reusable fashion. Using YAML and Python, our language allows you to better control the workflow\'s behavior.',
+            mainBulletsProcessBasedDesc: 'CloudSlang is a simple way to describe workflows in a reusable fashion. Using YAML and Python, CloudSlang allows you to better control the workflow\'s behavior.',
             mainBulletsDayTwoOperationsDescPre: 'Use existing CloudSlang content to manage your deployed application.',
             mainBulletsDayTwoOperationsDescLink: 'Explore',
             mainBulletsDayTwoOperationsDescPost: ' our Docker, OpenStack and utilities content.',

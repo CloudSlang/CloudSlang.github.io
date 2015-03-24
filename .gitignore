@@ -10,6 +10,7 @@ tmp
 .DS_Store
 .idea
 *.log
+*.iml
 .project
 .settings/
 app/views/docs/generated/*

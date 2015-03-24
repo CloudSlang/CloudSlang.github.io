@@ -1,14 +1,27 @@
-# openscore.github.io
-openscore website [http://openscore.io](http://openscore.io)
+# CloudSlang.github.io
+CloudSlang website [http://cloudslang.io](http://cloudslang.io)
 
-<b>Build and start server</b>
+[![Build Status](https://travis-ci.org/CloudSlang/CloudSlang.github.io.svg)](https://travis-ci.org/CloudSlang/CloudSlang.github.io)
 
-1. npm install
+## Build and start server
 
-2. grunt build
-3.  grunt serve (will start the server on port 9000)
+```sh
+npm install
+npm install -g grunt-cli
 
-    grunt serve-express (will start express node server on port 9001)
+grunt build
+grunt serve (will start the server on port 9000)
+```
+**or**
+```sh
+grunt serve-express (will start express node server on port 9001)
+```
+
+## Deploying to Heroku
+
+Alternatively, you can deploy your own copy of the app using this button:
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 
-[![Build Status](https://travis-ci.org/openscore/openscore.github.io.svg)](https://travis-ci.org/openscore/openscore.github.io)
+

@@ -92,7 +92,6 @@ angular.module('scoreWebsiteApp')
             detailedCliHeader: 'Click to see how',
             detailedCliPrefix: '$',
             detailedCliClear: 'Clear',
-            detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
             detailedCliTriggerFlow: 'cslang\n' +
                 '^100cslang>^500 run --f .../hello_world.sl\n' +
                 '^500- sayHi\n' +

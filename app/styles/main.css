@@ -104,7 +104,7 @@ a:hover {
     padding-bottom: 60px;
 }
 
-.header .fork {
+.header .star {
     display: none;
     margin-top: 20px;
 }
@@ -130,13 +130,13 @@ a:hover {
         display: none;
     }
 
-    .header .fork {
+    .header .star {
         display: inherit;
     }
 }
 
 @media (max-width: 1199px) {
-    .header .fork {
+    .header .star {
         margin-left: 0;
     }
 }
@@ -151,7 +151,7 @@ a:hover {
         text-align: left;
     }
 
-    .header .fork {
+    .header .star {
         margin-left: 0;
     }
 }

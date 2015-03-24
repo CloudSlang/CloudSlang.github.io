@@ -1,0 +1,12 @@
+{
+    "name": "CloudSlang-site",
+    "description": "this the CloudSlang project site",
+    "website": "http://cloudslang.io",
+    "keywords": [
+        "CloudSlang slang"
+    ],
+    "env": {
+        "BUILDPACK_URL": "https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git",
+        "NODE_ENV": "production"
+    }
+}

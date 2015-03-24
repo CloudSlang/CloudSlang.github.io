@@ -1346,7 +1346,7 @@ The structure and spacing of the comments are as in the example below:
 ##CloudSlang Verifier
 The CloudSlang Verifier is a tool that checks the syntactic validity of CloudSlang files along with adherence to many of the [best practices](#/docs#cloudslang-best-practices). 
 
-The CloudSlang Verifier can be downloaded from [here](https://github.com/CloudSlang/cloud-slang/releases).
+The CloudSlang Verifier can be downloaded from [here](https://github.com/CloudSlang/cloud-slang/releases/latest).
 
 To use the CloudSlang Verifier, run `java -jar cloudslang-content-verifier.jar <directory_path>`. The Verifier will recursively search the directory for CloudSlang files by extension and verify the validity of their syntax.
 
@@ -1356,14 +1356,13 @@ There are several ways to get started with the CloudSlang CLI.
 ###Download and Run Pre-built CLI
 **Prerequisites :** To run the CloudSlang CLI, Java JRE version 7 or higher is required.
 
-1. Go to the CloudSlang [website](/#/) and scroll to the **Getting Started** section.
-2. Click **Download latest version**. 
-3. Locate the downloaded file and unzip the archive.  
+1. [Download](https://github.com/CloudSlang/cloud-slang/releases/latest) the CLI zip file. 
+2. Locate the downloaded file and unzip the archive.  
     The decompressed file contains:
-    + a folder called **cloudslang** with the CLI tool and its necessary dependencies.
+    + a folder called **cslang** with the CLI tool and its necessary dependencies.
     + some other folders with ready-made content.
-4. Navigate to the folder `cslang\bin\`.
-5. Run the executable:
+3. Navigate to the folder `cslang\bin\`.
+4. Run the executable:
   - For Windows : `cslang.bat`.
   - For Linux : `bash cslang`.
 

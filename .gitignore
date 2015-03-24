@@ -12,3 +12,4 @@ tmp
 *.log
 .project
 .settings/
+app/views/docs/generated/*

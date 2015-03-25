@@ -15,7 +15,7 @@ angular.module('scoreWebsiteApp')
         });
 
         $rootScope.sections = [
-            { id: 'score', title: $rootScope.messages.navDocsScoreTitle },
+            { id: 'overview', title: $rootScope.messages.navDocsScoreTitle },
             { id: 'slang', title: $rootScope.messages.navDocsSlangTitle },
             { id: 'developer', title: $rootScope.messages.navDocsDeveloperTitle }
         ];

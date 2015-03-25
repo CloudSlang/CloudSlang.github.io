@@ -13,7 +13,7 @@ angular.module('scoreWebsiteApp')
             navBackToSiteTitle: 'Back To Site',
 
             //docs nav bar
-            navDocsScoreTitle: 'Score',
+            navDocsScoreTitle: 'Overview',
             navDocsSlangTitle: 'Slang',
             navDocsDeveloperTitle: 'Developer',
 

@@ -1,14 +1,16 @@
 'use strict';
 
 angular.module('scoreWebsiteApp')
-    .controller('DocsCtrl', function ($rootScope, MessagesService, $location) {
+    .controller('DocsCtrl', function ($rootScope, MessagesService, $location, $timeout) {
 
-        if ($location.hash()) {
-            var aTag = $('#' +  $location.hash());
-            if (!_.isEmpty(aTag)) {
-                $('html, body').animate({scrollTop: aTag.offset().top}, 'slow');
+        $timeout(function() {
+            if ($location.hash()) {
+                var aTag = $('#' +  $location.hash());
+                if (aTag) {
+                    $('html, body').animate({scrollTop: aTag.offset().top}, 'slow');
+                }
             }
-        }
+        }, 1000);
 
         _.forEach($('.navbar-collapse'), function(target) {
             $(target).collapse({'toggle': false});

@@ -1,34 +1,28 @@
 'use strict';
 
 angular.module('scoreWebsiteApp')
-    .controller('DocsCtrl', function ($rootScope, MessagesService, $location) {
+    .controller('SidebarCtrl', function ($rootScope, MessagesService, $timeout) {
 
-        if ($location.hash()) {
-            var aTag = $('#' +  $location.hash());
-            if (!_.isEmpty(aTag)) {
-                $('html, body').animate({scrollTop: aTag.offset().top}, 'slow');
-            }
+        $('#docs-sidebar').affix();
+
+        function mapToSize() {
+            return _.map($('.anchor'), function (target) {
+                    var parent = $(target).parent()[0];
+                    return {
+                        'size' : parent.nodeName.toLowerCase(),
+                        'id'   : target.id,
+                        'title': parent.textContent
+                    }
+                }
+            ).filter(function (node) {
+                    return _.includes(["h1", "h2"], node.size)
+                });
         }
 
-        _.forEach($('.navbar-collapse'), function(target) {
-            $(target).collapse({'toggle': false});
-        });
+        $timeout(function () {
+            if (_.isEmpty($rootScope.docsSections)) {
+                $rootScope.docsSections = mapToSize();
+            }
+        }, 1000);
 
-        $rootScope.sections = [
-            { id: 'overview', title: $rootScope.messages.navDocsScoreTitle },
-            { id: 'slang', title: $rootScope.messages.navDocsSlangTitle },
-            { id: 'developer', title: $rootScope.messages.navDocsDeveloperTitle }
-        ];
-
-        $rootScope.titles = [
-            { id: 'first', title: 'first' },
-            { id: 'second', title: 'second' },
-            { id: 'third', title: 'third' }
-        ];
-
-        _.forEach($('.anchor'), function(target) {
-            $rootScope.titles.append($(target).id);
-        });
-
-        $rootScope.navSwitch = { uri: '', title: $rootScope.messages.navBackToSiteTitle };
     });

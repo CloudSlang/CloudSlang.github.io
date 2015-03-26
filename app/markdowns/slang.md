@@ -1,13 +1,11 @@
 #CloudSlang
 
-##What is CloudSlang?
-
 CloudSlang is a [YAML](http://www.yaml.org) (version 1.2) based language for describing a workflow. Using CloudSlang you can easily define a workflow in a structured, easy-to-understand format that can be run by the CloudSlang Orchestration Engine (Score). CloudSlang files can be run by the [CloudSlang CLI](#/docs#cloudslang-cli) or by an embedded instance of Score using the [Slang API](#/docs#slang-api).
 
-###YAML Overview
+##YAML Overview
 Before writing CloudSlang code it help to have a good working knowledge of YAML. The following is a brief overview of some of the YAML specification. See the full [YAML specification](http://www.yaml.org/spec/1.2/spec.html) for more information.
 
-####Whitespace
+###Whitespace
 Unlike many programming, markup, and data serialization languages, whitespace is syntactically significant. Indentation is used to denote scope and is always achieved using spaces. Never use tabs.
 
 **Example: a CloudSlang task (in this case named divider) contains do, publish and navigate keys**
@@ -25,7 +23,7 @@ Unlike many programming, markup, and data serialization languages, whitespace is
       SUCCESS: printer
 ```
 
-####Lists
+###Lists
 Lists are denoted with a hypen (-) and a space preceding each list item. 
 
 **Example: a CloudSlang flow's possible results are defined using a list mapped to the results key**
@@ -35,7 +33,7 @@ results:
   - SUCCESS
 ```
 
-####Maps
+###Maps
 Maps are denoted use a colon (:) and a space between each key value pair.
 
 **Example: a CloudSlang task's navigate key is mapped to a mapping of results and their targets**
@@ -45,7 +43,7 @@ navigate:
   SUCCESS: printer
 ```
 
-####Strings
+###Strings
 Strings can be denoted in several ways: unquoted, single quoted and double quoted. The best method for any given string depends on whether it includes any special characters, leading or trailing whitespace, spans multiple lines, along with other factors.
 
 Strings that span multiple lines can be written using a pipe (|) to preserve line breaks or a greater than symbol (>) where each line break will be converted to a space.
@@ -74,18 +72,18 @@ action:
       quotient = float(dividend) / float(divisor)
 ```
 
-####Comments
+###Comments
 Comments begin with the `#` symbol.
 
-### Hello World Example
+## Hello World Example
 The following is a simple example to give you an idea of how CloudSlang is structured and can be used to ensure your environment is set up properly to run flows. 
 
-####Prerequisites
+###Prerequisites
 This example uses the CloudSlang CLI to run a flow. See the [CloudSlang CLI](#/docs#cloudslang-cli) section for instructions on how to download and run the CLI.
 
 Although CloudSlang files can be composed in any text editor, using a modern code editor with support for YAML syntax highlighting is recommended. See [Sublime Integration](#/docs#sublime-integration) for instructions on how to download, install and use the CloudSlang snippets for [Sublime Text](http://www.sublimetext.com/).    
 
-####Code files
+###Code files
 In a new folder, create two new CloudSlang files, hello_world.sl and print.sl, and copy the code below.
 
 **hello_world.sl**
@@ -117,7 +115,7 @@ operation:
     - SUCCESS
 ```
 
-####Run
+###Run
 Start the CLI from the folder in which your CloudSlang files reside and enter `run hello_world.sl` at the `cslang>` prompt. 
 
 The output will look similar to this:
@@ -128,7 +126,7 @@ Flow : hello_world finished with result : SUCCESS
 Execution id: 101600001, duration: 0:00:00.790
 ```
 
-####Explanation
+###Explanation
 The CLI runs the [flow](#/docs#flow) in the file we have passed to it, namely **hello_world.sl**. The [flow](#/docs#flow) begins with an [import](#/docs#imports) of the operations file, **print.sl**, using its [namespace](#/docs#namespace) as the value for the [imports](#/docs#imports) key. Next, we enter the [flow](#/docs#flow) named `hello_world` and begin its [workflow](#/docs#workflow). The [workflow](#/docs#workflow) has one [task](#/docs#task) named `sayHi` which calls the `print` [operation](#/docs#operation) from the operations file that was imported. The [flow](#/docs#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#/docs#operation) `text` [input](#/docs#inputs). The print [operation](#/docs#operation) performs its [action](#/docs#action), which is a simple Python script that prints the [input](#/docs#inputs), and then returns a [result](#/docs#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#/docs#task) the [flow](#/docs#flow) finishes with a [result](#/docs#results) of `SUCCESS`.
 
 ##CloudSlang Reference
@@ -1346,7 +1344,7 @@ The structure and spacing of the comments are as in the example below:
 ##CloudSlang Verifier
 The CloudSlang Verifier is a tool that checks the syntactic validity of CloudSlang files along with adherence to many of the [best practices](#/docs#cloudslang-best-practices). 
 
-The CloudSlang Verifier can be downloaded from [here](https://github.com/CloudSlang/cloud-slang/releases).
+The CloudSlang Verifier can be downloaded from [here](https://github.com/CloudSlang/cloud-slang/releases/latest).
 
 To use the CloudSlang Verifier, run `java -jar cloudslang-content-verifier.jar <directory_path>`. The Verifier will recursively search the directory for CloudSlang files by extension and verify the validity of their syntax.
 
@@ -1356,14 +1354,13 @@ There are several ways to get started with the CloudSlang CLI.
 ###Download and Run Pre-built CLI
 **Prerequisites :** To run the CloudSlang CLI, Java JRE version 7 or higher is required.
 
-1. Go to the CloudSlang [website](/#/) and scroll to the **Getting Started** section.
-2. Click **Download latest version**. 
-3. Locate the downloaded file and unzip the archive.  
+1. [Download](https://github.com/CloudSlang/cloud-slang/releases/latest) the CLI zip file. 
+2. Locate the downloaded file and unzip the archive.  
     The decompressed file contains:
-    + a folder called **cloudslang** with the CLI tool and its necessary dependencies.
+    + a folder called **cslang** with the CLI tool and its necessary dependencies.
     + some other folders with ready-made content.
-4. Navigate to the folder `cslang\bin\`.
-5. Run the executable:
+3. Navigate to the folder `cslang\bin\`.
+4. Run the executable:
   - For Windows : `cslang.bat`.
   - For Linux : `bash cslang`.
 
@@ -1402,7 +1399,14 @@ If the flow takes in input parameters, use the `--i` flag and a comma-separated 
 ```bash
 cslang>run --f c:/.../your_flow.sl --i input1=root,input2=25
 ```
-Commas can be used as part of the input values by escaping them with a backslash (`\`).
+Commas (`,`) can be used as part of input values by escaping them with a backslash (`\`).
+
+To use inputs that include spaces, enclose the entire input list in quotes (`"`):
+```bash
+cslang>run --f c:/.../your_flow.sl --i "input1=Hello World, input2=x"
+```
+
+Double quotes (`"`) can be used as part of quoted input values by escaping them with a backslash (`\`). When using a quoted input list, spaces between input parameters will be trimmed.
 
 Alternatively, inputs made be loaded from a file. Input files are written in flat [YAML](http://www.yaml.org), containing a map of names to values. Input files end with the .yaml  or .yml extensions. If multiple input files are being used and they contain an input with the same name, the input in the file that is loaded last will overwrite the others with the same name. 
 

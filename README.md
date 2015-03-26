@@ -1,7 +1,7 @@
 # CloudSlang.github.io
 CloudSlang website [http://cloudslang.io](http://cloudslang.io)
 
-[![Build Status](https://travis-ci.org/cloudslang/cloudslang.github.io.svg)](https://travis-ci.org/cloudslang/cloudslang.github.io)
+[![Build Status](https://travis-ci.org/CloudSlang/CloudSlang.github.io.svg)](https://travis-ci.org/CloudSlang/CloudSlang.github.io)
 
 ## Build and start server
 

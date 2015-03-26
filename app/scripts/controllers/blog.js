@@ -2,7 +2,7 @@
 
 angular.module('scoreWebsiteApp')
     .controller('BlogCtrl', function () {
-        window.location.replace('http://blog.openscore.io');
+        window.location.replace('http://blog.cloudslang.io');
         //_.forEach($('.navbar-collapse'), function(target) {
         //    $(target).collapse({'toggle': false});
         //});

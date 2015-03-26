@@ -2,12 +2,6 @@
 
 angular.module('scoreWebsiteApp')
     .factory('MessagesService', function ($rootScope) {
-        var small = $(window).width() < 482;
-        var verySmall = $(window).width() < 384;
-        var headerMainTitleBullets = small ?
-            verySmall ? ['^2500Heavy-weight', 'Lightweight,^1300\nprocess-based^300\norchestration\nengine'] :
-                ['^2500Heavy-weight', 'Lightweight,^1300\nprocess-based^300\norchestration engine'] :
-            ['^2500Heavy-weight', 'Lightweight,^1300 process-based^300\norchestration engine'];
         // App labels
         $rootScope.messages = {
             // nav bar
@@ -19,16 +13,14 @@ angular.module('scoreWebsiteApp')
             navBackToSiteTitle: 'Back To Site',
 
             //docs nav bar
-            navDocsScoreTitle: 'Score',
+            navDocsScoreTitle: 'Overview',
             navDocsSlangTitle: 'Slang',
             navDocsDeveloperTitle: 'Developer',
 
             // header
-            headerMainTitle: 'Lightweight, process-based orchestration engine',
-            headerMainTitleBullets: headerMainTitleBullets,
-            headerDescription: 'score is a general-purpose java-based open-source orchestration engine which is process-based, ' +
-                'embeddable, lightweight, scalable and multilingual',
-            headerStartNow: 'Start Now',
+            headerMainTitle: 'Flow-based orchestration engine to manage deployed applications',
+            headerDescription: 'Allows you to rapidly automate your DevOps use cases using ready-made workflows.',
+            headerStartNow: 'Getting started',
 
             // footer
             footerPrivacy: 'Privacy Policy',
@@ -43,12 +35,14 @@ angular.module('scoreWebsiteApp')
             footerContribute: 'Contribute',
 
             // bullets
-            mainBulletsProcessBasedTitle: 'Process based',
-            mainBulletsMultiLingualTitle: 'Multilingual',
-            mainBulletsLightweightTitle: 'Lightweight',
-            mainBulletsProcessBasedDesc: 'score DSL – slang - is a simple, intuitive way to describe workflows in a re-usable fashion. slang allows you to define the ‘how’ and not just the ‘what’, thus allowing you to better control the actual runtime behavior of the workflow.',
-            mainBulletsMultiLingualDesc: 'slang is only one of the languages you can use to define workflows for score. Take advantage of score pluggable architecture to plug in your compiler to potentially support any process modeling language out there.',
-            mainBulletsLightweightDesc: 'Small footprint, out of the box content and an easy-to-embed approach makes score the perfect choice as the  workflow orchestration solution in your application.',
+            mainBulletsProcessBasedTitle: 'Process-Based',
+            mainBulletsDayTwoOperationsTitle: 'Day 2 Operations',
+            mainBulletsAgentlessTitle: 'Agentless',
+            mainBulletsProcessBasedDesc: 'CloudSlang is a simple way to describe workflows in a reusable fashion. Using YAML and Python, CloudSlang allows you to better control the workflow\'s behavior.',
+            mainBulletsDayTwoOperationsDescPre: 'Use existing CloudSlang content to manage your deployed application.',
+            mainBulletsDayTwoOperationsDescLink: 'Explore',
+            mainBulletsDayTwoOperationsDescPost: ' our Docker, OpenStack and utilities content.',
+            mainBulletsAgentlessDesc: 'Don’t bother setting up and managing agents on all your machines. CloudSlang workflows can use remote APIs to run tasks.',
             mainBulletsReadMore: 'Read More',
 
             // contact us
@@ -62,7 +56,7 @@ angular.module('scoreWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsWhoWeAreText: 'The project score was contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
+            aboutUsWhoWeAreText: 'This project is being contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
 
             // use cases
             useCasesTitle: 'Use Cases',
@@ -83,27 +77,28 @@ angular.module('scoreWebsiteApp')
             orText: 'or',
 
             // -- download and install cli
-            detailedDownloadCliHeader: 'Download slang command-line',
-            detailedDownloadCliText: 'Download and Unzip slang command-line',
+            detailedDownloadCliHeader: 'Download',
+            detailedDownloadCliText: 'Download and unzip the command-line interface.',
             detailedDownloadLatest: 'Download latest version',
             detailedDownloadOldVersions: 'Download old versions',
-            detailedSlangCliHeader: 'Use slang',
-            detailedSlangCliText: 'Write a flow with slang using your favorite text editor and save it as YAML file',
-            detailedUseCliHeader: 'Start slang command-line',
-            detailedUseCliText: 'Open your console and execute slang cli',
-            detailedTriggerFlowHeader: 'Trigger flow',
-            detailedTriggerFlowText1: '1. Open your console and execute slang cli. The cli is located at <path>/slang/bin.',
-            detailedTriggerFlowText2: '2. Trigger your slang written flow from slang command-line',
-            detailedCliHeader: 'console',
+            detailedSlangCliHeader: 'Write',
+            detailedSlangWriteFlowText: 'Write a flow and save it as \'hello_world.sl\'.',
+            detailedSlangWriteOperationText: 'Write an operation and save it as \'print.sl\'.',
+            detailedUseCliHeader: 'Start command-line interface',
+            detailedUseCliText: 'Open your console and execute the CLI',
+            detailedTriggerFlowHeader: 'Run',
+            detailedTriggerFlowText1: '1. Open your console and execute the CLI. The CLI is located at <path>/cslang/bin.',
+            detailedTriggerFlowText2: '2. Run your flow from the command-line.',
+            detailedCliHeader: 'Click to see how',
             detailedCliPrefix: '$',
             detailedCliClear: 'Clear',
-            detailedCliOpenScore: 'java -jar score-cli.jar^1000\nHi I\'m score!!\n>',
-            detailedCliTriggerFlow: 'slang run --f /.../SimpleFlow.sl --i input1=LA\n' +
-                '^500 CheckWeather\n' +
-                '^250 PrintWeather\n' +
-                ' the weather in LA is: hot\n' +
-                '^250 Flow : SimpleFlow finished with result: SUCCESS\n' +
-                '^250$',
+            detailedCliTriggerFlow: 'cslang\n' +
+                '^100cslang>^500 run --f .../hello_world.sl\n' +
+                '^500- sayHi\n' +
+                '^250Hello, World\n' +
+                '^250Flow : hello_world finished with result : SUCCESS\n' +
+                'Execution id: 101600001, duration: 0:00:00.790\n' +
+                '^250cslang>',
 
             // -- embed score
             detailedEmbedPomHeader: 'score dependencies',

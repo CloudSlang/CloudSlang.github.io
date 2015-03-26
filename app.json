@@ -1,9 +1,9 @@
 {
-    "name": "openscore-site",
-    "description": "this the openscore project site",
-    "website": "http://openscore.io",
+    "name": "CloudSlang-site",
+    "description": "this the CloudSlang project site",
+    "website": "http://cloudslang.io",
     "keywords": [
-        "score slang"
+        "CloudSlang slang"
     ],
     "env": {
         "BUILDPACK_URL": "https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git",

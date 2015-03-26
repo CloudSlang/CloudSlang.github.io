@@ -1,25 +1,33 @@
 <div>
     <div class="explanation col-md-7">
         <p class="h3">{{$root.messages.detailedDownloadCliHeader}}</p>
+    </div>
+    <div class="col-md-7">
         <p class="h4">{{$root.messages.detailedDownloadCliText}}</p>
     </div>
     <div class="download col-md-7">
         <a class="pull-left btn btn-primary btn-lg download-now-button left-side"
-           ng-href="https://github.com/openscore/score-language/releases/download/slang-CLI-v0.2.1/score-lang-cli.zip"><img
+           ng-href="https://github.com/CloudSlang/cloud-slang/releases/download/score-language-0.7.0/slang-cli.zip"><img
             src="images/download_button.png" alt="Start Now"></a>
         <a class="pull-left btn btn-primary btn-lg download-now-button right-side"
-           ng-href="https://github.com/openscore/score-language/releases/download/slang-CLI-v0.2.1/score-lang-cli.zip"><p class="h4">
+           ng-href="https://github.com/CloudSlang/cloud-slang/releases/download/score-language-0.7.0/slang-cli.zip"><p class="h4">
             {{$root.messages.detailedDownloadLatest}}</p></a>
     </div>
-    <div class="explanation col-md-7">
+    <div class="explanation col-md-12">
         <p class="h3">{{$root.messages.detailedSlangCliHeader}}</p>
-        <p class="h4">{{$root.messages.detailedSlangCliText}}</p>
     </div>
-    <div class="snippet col-md-7">
-        <div ng-include src="'views/codesnippets/slangcode.html'"></div>
+    <div class="col-md-7 snippet">
+        <div class="h4">{{$root.messages.detailedSlangWriteFlowText}}</div>
+        <div hljs include="'views/codesnippets/hello_world.sl'" language="less"></div>
     </div>
-    <div class="explanation col-md-7 col-xs-12">
+    <div class="col-md-7 snippet">
+        <div class="h4">{{$root.messages.detailedSlangWriteOperationText}}</div>
+        <div hljs include="'views/codesnippets/print.sl'" language="less"></div>
+    </div>
+    <div class="explanation col-md-12 col-xs-12">
         <p class="h3">{{$root.messages.detailedTriggerFlowHeader}}</p>
+    </div>
+    <div class="col-md-7 col-xs-12">
         <p class="h4">{{$root.messages.detailedTriggerFlowText1}}</p>
         <p class="h4">{{$root.messages.detailedTriggerFlowText2}}</p>
     </div>
@@ -30,7 +38,6 @@
                 <span id="cli-trigger-flow" class="typed"></span>
                 <span id="cli-trigger-flow-cursor" class="typed-cursor">|</span>
             </div>
-            <a ng-href="">{{$root.messages.embedScoreLink}}</a>
         </div>
     </div>
 </div>

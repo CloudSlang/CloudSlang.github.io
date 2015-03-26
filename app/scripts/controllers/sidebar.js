@@ -19,5 +19,16 @@ angular.module('scoreWebsiteApp')
             { id: 'slang', title: $rootScope.messages.navDocsSlangTitle },
             { id: 'developer', title: $rootScope.messages.navDocsDeveloperTitle }
         ];
+
+        $rootScope.titles = [
+            { id: 'first', title: 'first' },
+            { id: 'second', title: 'second' },
+            { id: 'third', title: 'third' }
+        ];
+
+        _.forEach($('.anchor'), function(target) {
+            $rootScope.titles.append($(target).id);
+        });
+
         $rootScope.navSwitch = { uri: '', title: $rootScope.messages.navBackToSiteTitle };
     });

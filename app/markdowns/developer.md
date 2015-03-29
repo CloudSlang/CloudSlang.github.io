@@ -13,20 +13,18 @@ CloudSlang plugs into the CloudSlang Orchestration Engine (Score) by compiling i
 CloudSlang content can be run from inside an existing Java application using Maven and Spring by embedding the CloudSlang Orchestration Engine and interacting with it through the [Slang API](#/docs#slang-api). 
 
 ###Embed CloudSlang in a Java Application
-Follow the directions below or download a ready-made [sample project](https://github.com/meirwah/test-slang-embedded). 
-
 1. Add the score and CloudSlang dependencies to the project's pom.xml file in the `<dependencies>` tag.
   ```xml
   <dependency>
-      <groupId>io.openscore</groupId>
+	  <groupId>io.cloudslang</groupId>
       <artifactId>score-all</artifactId>
-      <version>0.1.251</version>
+      <version>0.1.271</version>
   </dependency>
 
   <dependency>
-      <groupId>io.openscore.lang</groupId>
-      <artifactId>score-lang-api</artifactId>
-      <version>0.1.8</version>
+      <groupId>io.cloudslang.lang</groupId>
+      <artifactId>cloudslang-all</artifactId>
+      <version>0.7.2</version>
   </dependency>
 
   <dependency>
@@ -37,32 +35,34 @@ Follow the directions below or download a ready-made [sample project](https://gi
   ```
 2. Add Score and CloudSlang configuration to your Spring application context xml file.
   ```xml
-  <beans xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:score="http://www.openscore.org/schema/score"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.openscore.org/schema/score
-        http://www.openscore.org/schema/score.xsd">
+   <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:score="http://www.cloudslang.io/schema/score"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.cloudslang.io/schema/score
+                        http://www.cloudslang.io/schema/score.xsd">
 
-        <score:engine/>
-        <score:worker uuid="-1"/>
+      <bean class="io.cloudslang.lang.api.configuration.SlangSpringConfiguration"/>
 
-        <bean class="org.openscore.lang.api.configuration.SlangSpringConfiguration"/>
-    </beans>
+      <score:engine />
+
+      <score:worker uuid="-1"/>
+
+  </beans>
   ```
 3. Get the Slang bean from the application context xml file and interact with it using the [Slang API](#/docs#slang-api).
   ```java
   ApplicationContext applicationContext =
-        new ClassPathXmlApplicationContext("/spring/slangContext.xml");
+                new ClassPathXmlApplicationContext("/META-INF/spring/cloudSlangContext.xml");
 
   Slang slang = applicationContext.getBean(Slang.class);
 
   slang.subscribeOnAllEvents(new ScoreEventListener() {
-        @Override
-        public void onEvent(ScoreEvent event) {
-            System.out.println(event.getEventType() + " : " + event.getData());
-        }
+      @Override
+      public void onEvent(ScoreEvent event) {
+          System.out.println(event.getEventType() + " : " + event.getData());
+      }
   });
   ```
 
@@ -73,16 +73,17 @@ The Slang API allows a program to interact with the CloudSlang Orchestration Eng
 ####Code
 **Java Class - CloudSlangEmbed.java**
 ```Java
-package io.openscore.example;
+package io.cloudslang.example;
 
-import org.openscore.events.ScoreEvent;
-import org.openscore.events.ScoreEventListener;
-import org.openscore.lang.api.Slang;
-import org.openscore.lang.compiler.SlangSource;
+import io.cloudslang.score.events.ScoreEvent;
+import io.cloudslang.score.events.ScoreEventListener;
+import io.cloudslang.lang.api.Slang;
+import io.cloudslang.lang.compiler.SlangSource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -90,9 +91,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class CloudSlangEmbed {
-    public static void main(String[] args) throws URISyntaxException{
+    public static void main(String[] args) throws URISyntaxException, IOException{
         ApplicationContext applicationContext =
-                new ClassPathXmlApplicationContext("/spring/slangContext.xml");
+                new ClassPathXmlApplicationContext("/META-INF/spring/cloudSlangContext.xml");
 
         Slang slang = applicationContext.getBean(Slang.class);
 
@@ -103,17 +104,17 @@ public class CloudSlangEmbed {
             }
         });
 
-		File flowFile = getFile("/content//hello_world.sl");
+        File flowFile = getFile("/content//hello_world.sl");
         File operationFile = getFile("/content/print.sl");
-        
+
         Set<SlangSource> dependencies = new HashSet<>();
         dependencies.add(SlangSource.fromFile(operationFile));
 
         HashMap<String, Serializable> inputs = new HashMap<>();
         inputs.put("input1", "Hi. I'm inside this application.\n-CloudSlang");
 
-        slang.compileAndRun(SlangSource.fromFile(flowFile), dependencies,
-                inputs, new HashMap<String, Serializable>());
+        slang.compileAndRun(SlangSource.fromFile(flowFile), dependencies, inputs, 
+                new HashMap<String, Serializable>());
     }
 
     private static File getFile(String path) throws URISyntaxException {
@@ -123,10 +124,10 @@ public class CloudSlangEmbed {
 ```
 **Flow - hello_world.sl**
 ```yaml
-namespace: user.flows.hello_world
+namespace: resources.content
 
 imports:
-  ops: user.operations.utils
+  ops: resources.content
 
 flow:
   name: hello_world
@@ -135,14 +136,14 @@ flow:
     - input1
 
   workflow:
-    sayHi:
-      do:
-        ops.print:
-          - text: input1
+    - sayHi:
+        do:
+          ops.print:
+            - text: input1
 ```
 **Operation - print.sl**
 ```yaml
-namespace: user.operations.utils
+namespace: resources.content
 
 operation:
   name: print
@@ -158,7 +159,7 @@ operation:
  
   ```java
   ApplicationContext applicationContext =
-          new ClassPathXmlApplicationContext("/spring/slangContext.xml");
+          new ClassPathXmlApplicationContext("/META-INF/spring/cloudSlangContext.xml");
 
   Slang slang = applicationContext.getBean(Slang.class);
   ```
@@ -254,9 +255,9 @@ The CloudSlang Orchestration Engine (Score) can be embedded inside an existing J
 1. Add the Score dependencies to the project's pom.xml file in the `<dependencies>` tag.
   ```xml
   <dependency>
-      <groupId>io.openscore</groupId>
+      <groupId>io.cloudslang</groupId>
       <artifactId>score-all</artifactId>
-      <version>0.1.251</version>
+      <version>0.1.271</version>
   </dependency>
 
   <dependency>
@@ -286,14 +287,14 @@ The CloudSlang Orchestration Engine (Score) can be embedded inside an existing J
   
 3. Interact with Score using the [Score API](#/docs#score-api).
   ```java
-  package io.openscore.example;
+  package io.cloudslang.example;
 
   import org.apache.log4j.Logger;
-  import org.openscore.api.*;
-  import org.openscore.events.EventBus;
-  import org.openscore.events.EventConstants;
-  import org.openscore.events.ScoreEvent;
-  import org.openscore.events.ScoreEventListener;
+  import io.cloudslang.score.api.*;
+  import io.cloudslang.score.events.EventBus;
+  import io.cloudslang.score.events.EventConstants;
+  import io.cloudslang.score.events.ScoreEvent;
+  import io.cloudslang.score.events.ScoreEventListener;
   import org.springframework.beans.factory.annotation.Autowired;
   import org.springframework.context.ApplicationContext;
   import org.springframework.context.ConfigurableApplicationContext;
@@ -350,25 +351,24 @@ The CloudSlang Orchestration Engine (Score) can be embedded inside an existing J
 
         executionPlan.setFlowUuid("1");
 
-        executionPlan.setBeginStep(0L);
         ExecutionStep executionStep0 = new ExecutionStep(0L);
-        executionStep0.setAction(new ControlActionMetadata("io.openscore.example.controlactions.ConsoleControlActions", "printMessage"));
+        executionStep0.setAction(new ControlActionMetadata("io.cloudslang.example.controlactions.ConsoleControlActions", "printMessage"));
         executionStep0.setActionData(new HashMap<String, Serializable>());
-        executionStep0.setNavigation(new ControlActionMetadata("io.openscore.example.controlactions.NavigationActions", "nextStepNavigation"));
+        executionStep0.setNavigation(new ControlActionMetadata("io.cloudslang.example.controlactions.NavigationActions", "nextStepNavigation"));
         executionStep0.setNavigationData(new HashMap<String, Serializable>());
-
         executionPlan.addStep(executionStep0);
+
         ExecutionStep executionStep1 = new ExecutionStep(1L);
-        executionStep1.setAction(new ControlActionMetadata("io.openscore.example.controlactions.ConsoleControlActions", "printMessage"));
+        executionStep1.setAction(new ControlActionMetadata("io.cloudslang.example.controlactions.ConsoleControlActions", "printMessage"));
         executionStep1.setActionData(new HashMap<String, Serializable>());
-        executionStep1.setNavigation(new ControlActionMetadata("io.openscore.example.controlactions.NavigationActions", "endFlow"));
+        executionStep1.setNavigation(new ControlActionMetadata("io.cloudslang.example.controlactions.NavigationActions", "nextStepNavigation"));
         executionStep1.setNavigationData(new HashMap<String, Serializable>());
         executionPlan.addStep(executionStep1);
 
         ExecutionStep executionStep2 = new ExecutionStep(2L);
-        executionStep2.setAction(new ControlActionMetadata("io.openscore.example.controlactions.ConsoleControlActions", "failed"));
+        executionStep2.setAction(new ControlActionMetadata("io.cloudslang.example.controlactions.ConsoleControlActions", "failed"));
         executionStep2.setActionData(new HashMap<String, Serializable>());
-        executionStep2.setNavigation(new ControlActionMetadata("io.openscore.example.controlactions.NavigationActions", "endFlow"));
+        executionStep2.setNavigation(new ControlActionMetadata("io.cloudslang.example.controlactions.NavigationActions", "endFlow"));
         executionStep2.setNavigationData(new HashMap<String, Serializable>());
         executionPlan.addStep(executionStep2);
 
@@ -529,7 +529,7 @@ The resulting `Executable` object, along with its dependent `Executable` objects
 Now that the CloudSlang source has been fully transformed into an [`ExecutionPlan`](#/docs#executionplan) it can be run using Score. The [`ExecutionPlan`](#/docs#executionplan) and its dependencies are extracted from the `CompilationArtifact` and used to create a [`TriggeringProperties`](#/docs#triggeringproperties) object. A [`RunEnvironment`](#/docs#runenvironment) is also created and added to the [`TriggeringProperties`](#/docs#triggeringproperties) context. The [`RunEnvironment`](#/docs#runenvironment) provides services to the [`ExecutionPlan`](#/docs#executionplan) as it runs, such as keeping track of the context stack and next step position.       
 
 ###Treatment of Flows and Operations
-Genrally, CloudSlang treats flows and operations similarly. 
+Generally, CloudSlang treats flows and operations similarly. 
 
 Flows and operations both:
 

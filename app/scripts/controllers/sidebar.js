@@ -3,8 +3,6 @@
 angular.module('scoreWebsiteApp')
     .controller('SidebarCtrl', function ($rootScope, MessagesService, $timeout) {
 
-        $('#docs-sidebar').affix();
-
         function mapToSize() {
             return _.map($('.anchor'), function (target) {
                     var parent = $(target).parent()[0];
@@ -19,10 +17,12 @@ angular.module('scoreWebsiteApp')
                 });
         }
 
-        $timeout(function () {
-            if (_.isEmpty($rootScope.docsSections)) {
+        if (_.isEmpty($rootScope.docsSections)) {
+            $('#docs-sidebar').affix();
+
+            $timeout(function () {
                 $rootScope.docsSections = mapToSize();
-            }
-        }, 1000);
+            }, 1000);
+        }
 
     });

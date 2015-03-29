@@ -18,8 +18,6 @@ angular.module('scoreWebsiteApp')
         }
 
         if (_.isEmpty($rootScope.docsSections)) {
-            $('#docs-sidebar').affix();
-
             $timeout(function () {
                 $rootScope.docsSections = mapToSize();
             }, 1000);

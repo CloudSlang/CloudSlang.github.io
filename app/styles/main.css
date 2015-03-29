@@ -620,9 +620,33 @@ a:hover {
     visibility: hidden;
 }
 
+.docs-md-content {
+    width: 82%;
+    float: right;
+}
+
 .docs-sidebar {
-    margin-top: -60px;
-    padding-left: 10px;
+    background-color: #5D913A;
+    color: #ffffff;
+    margin-top: -95px;
+    position: fixed;
+    width: 18%;
+    height: 100%;
+    overflow: auto;
+}
+
+.docs-sidebar-content {
+    margin-top: 35px;
+    margin-left: 20px;
+}
+
+@media (max-width: 1131px) {
+    .docs-sidebar {
+        visibility: hidden;
+    }
+    .docs-md-content {
+        width: 100%;
+    }
 }
 
 .docs-sidebar .back-to-top{

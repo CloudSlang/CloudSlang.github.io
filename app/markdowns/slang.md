@@ -1,9 +1,12 @@
 #CloudSlang
 
-CloudSlang is a [YAML](http://www.yaml.org) (version 1.2) based language for describing a workflow. Using CloudSlang you can easily define a workflow in a structured, easy-to-understand format that can be run by the CloudSlang Orchestration Engine (Score). CloudSlang files can be run by the [CloudSlang CLI](#/docs#cloudslang-cli) or by an embedded instance of Score using the [Slang API](#/docs#slang-api).
+CloudSlang is a [YAML](http://www.yaml.org) (version 1.2) based language for describing a workflow. Using CloudSlang you can easily define a workflow in a structured, easy-to-understand format that can be run by the CloudSlang Orchestration Engine (Score). CloudSlang files can be run by the [CloudSlang CLI](#/docs#cloudslang-cli) or by an embedded instance of Score using the [Slang API](#/docs#slang-api). 
+
+##Tutorial
+See the [New Hire tutorial](http://cloudslang-tutorials.readthedocs.org) for a comprehensive walkthrough of the CloudSlang language's features.
 
 ##YAML Overview
-Before writing CloudSlang code it help to have a good working knowledge of YAML. The following is a brief overview of some of the YAML specification. See the full [YAML specification](http://www.yaml.org/spec/1.2/spec.html) for more information.
+Before writing CloudSlang code it helps to have a good working knowledge of YAML. The following is a brief overview of some of the YAML specification. See the full [YAML specification](http://www.yaml.org/spec/1.2/spec.html) for more information.
 
 ###Whitespace
 Unlike many programming, markup, and data serialization languages, whitespace is syntactically significant. Indentation is used to denote scope and is always achieved using spaces. Never use tabs.
@@ -128,6 +131,9 @@ Execution id: 101600001, duration: 0:00:00.790
 
 ###Explanation
 The CLI runs the [flow](#/docs#flow) in the file we have passed to it, namely **hello_world.sl**. The [flow](#/docs#flow) begins with an [import](#/docs#imports) of the operations file, **print.sl**, using its [namespace](#/docs#namespace) as the value for the [imports](#/docs#imports) key. Next, we enter the [flow](#/docs#flow) named `hello_world` and begin its [workflow](#/docs#workflow). The [workflow](#/docs#workflow) has one [task](#/docs#task) named `sayHi` which calls the `print` [operation](#/docs#operation) from the operations file that was imported. The [flow](#/docs#flow) passes the string `"'Hello, World'"` to the `print` [operation's](#/docs#operation) `text` [input](#/docs#inputs). The print [operation](#/docs#operation) performs its [action](#/docs#action), which is a simple Python script that prints the [input](#/docs#inputs), and then returns a [result](#/docs#results) of `SUCCESS`. Since the flow does not contain any more [tasks](#/docs#task) the [flow](#/docs#flow) finishes with a [result](#/docs#results) of `SUCCESS`.
+
+###More
+For a more comprehensive walkthrough of the CloudSlang language's features, see the [New Hire tutorial](http://cloudslang-tutorials.readthedocs.org). 
 
 ##CloudSlang Reference
 This reference begins with a brief introduction to CloudSlang files and their structure, an alphabetical listing of CloudSlang keywords and concepts, and several examples, including one from which many of the code snippets below are taken.
@@ -1287,9 +1293,9 @@ Note: In future releases some of the above best practices may be required by the
 ####################################################
 ```
 
-## CloudSlang Comments Style Guide
+### CloudSlang Comments Style Guide
 
-###Structure
+####Structure
 The structure and spacing of the comments are as in the example below:
 ```
 ####################################################
@@ -1309,33 +1315,33 @@ The structure and spacing of the comments are as in the example below:
 ####################################################
 ```
 
-###Description
+####Description
 
 + Written as a sentence, beginning with a capital letter and ending with a period.
 + Written in the present tense (e.g. "Prints text.").
 + Does not include "This flow" or "This operation" or anything similar.
 
-###Prerequisites
+####Prerequisites
 
 + Flows and operations that assume prerequisites include a prerequisite line beginning with "Prerequisites:", followed by a comma delimited list of prerequisites.
 
-###Inputs, Outputs and Results
+####Inputs, Outputs and Results
 + Fields appear in the same order as they appear in the code.
 + Description begins with a lowercase letter (unless a proper name or capitalized acronym) and does not end with a period.
 + Usage of the words "the" and "a" are strongly discouraged, especially at the beginning of the description.
 + Does not include "this flow", "this operation", "this field" or anything similar.
 + Proper names and acronyms that are normally capitalized are capitalized (e.g. HTTP, Docker, ID).
 
-###Inputs and Outputs
+####Inputs and Outputs
 + Written in the present tense (e.g. "true if job exists").
 + Non-required fields contain the "optional" label.
 + Additional labels are "Default:", "Example:", "Valid:" and "Format:".
 
-###Results
+####Results
 + Actions written in the past tense (e.g. "error occurred") and states written in the present tense (e.g. "application is up").
 + Results are always included, even if just listing the default results without explanations. 
 
-###Recurring Fields
+####Recurring Fields
 + Fields that appear often with the same meaning should have the same name and description across flows and operations. However, if the meaning is specific to the flow or operation, the field description may be different. Some examples are.
   + FAILURE - otherwise
   + error_message - error message if error occurred 
@@ -1357,9 +1363,10 @@ There are several ways to get started with the CloudSlang CLI.
 1. [Download](https://github.com/CloudSlang/cloud-slang/releases/latest) the CLI zip file. 
 2. Locate the downloaded file and unzip the archive.  
     The decompressed file contains:
-    + a folder called **cslang** with the CLI tool and its necessary dependencies.
-    + some other folders with ready-made content.
-3. Navigate to the folder `cslang\bin\`.
+    + A folder named **cslang** with the CLI tool and its necessary dependencies.
+    + A folder named **content** with ready-made CloudSlang flows and operations.
+    + A folder named **python-lib**.
+3. Navigate to the folder `cslang-cli\cslang\cslang\bin\`.
 4. Run the executable:
   - For Windows : `cslang.bat`.
   - For Linux : `bash cslang`.
@@ -1370,7 +1377,7 @@ There are several ways to get started with the CloudSlang CLI.
 1. Git clone (or GitHub fork and then clone) the [source code](https://github.com/cloudslang/cloudslang).
 2. Using the Command Prompt, navigate to the project root directory.
 3. Build the project by running `mvn clean install`.
-4. After the build finishes, navigate to the `score-lang-cli\target\cloudslang\bin` folder.
+4. After the build finishes, navigate to the `cloudslang-cli\target\cloudslang\bin` folder.
 5. Run the executable:
   - For Windows : `cslang.bat`.
   - For Linux : `bash cslang`.

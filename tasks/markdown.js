@@ -4,6 +4,11 @@ module.exports = function (grunt) {
 
     var marked = require('marked');
     var hljs = require('highlight.js');
+    var _ = require('lodash');
+
+    function escapeId(text) {
+        return text.toLowerCase().replace(/[^\w]+/g, '-');
+    }
 
     grunt.registerMultiTask("marked", "Runs marked plugin to render markdown files", function () {
         var options = {
@@ -52,7 +57,7 @@ module.exports = function (grunt) {
         }
 
         function anchorHeadings(text, level) {
-            var escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+            var escapedText = escapeId(text);
 
             return '<h' + level + '>' +
                         '<a id="' + escapedText + '"' +
@@ -84,6 +89,41 @@ module.exports = function (grunt) {
         function responsiveImage(href, title, text) {
             var markedLink = new marked.Renderer().image(href, title, text);
             return markedLink.replace("<img ", "<img class=\"img-responsive\" ");
+        }
+    });
+
+    grunt.registerTask("extractheaders", "extract headers from markdown files", function () {
+
+        var options = this.options();
+        var dest = options.dest;
+        if (grunt.file.exists(dest)) {
+            grunt.file.delete(dest);
+        }
+
+        var content = [];
+        _.forEach(options.sources, function(src) {
+            content = content.concat(parse(grunt.file.read(src)));
+        });
+
+        var jsonContent = JSON.stringify(content);
+
+        grunt.log.writeln('File "' + dest + '" created.');
+        grunt.file.write(dest, jsonContent);
+
+        function parse(file) {
+            var tokens = marked.lexer(file);
+            var headers = _.chain(tokens)
+                .filter(function (node) {
+                    return _.includes([1, 2], node.depth);
+                })
+                .map(function (node) {
+                    return {
+                        "size" : 'h' + node.depth,
+                        "title": node.text,
+                        "link" : escapeId(node.text)
+                    };
+                });
+            return headers.value();
         }
     });
 };

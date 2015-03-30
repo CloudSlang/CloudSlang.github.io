@@ -287,7 +287,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= yeoman.dist %>',
-                    src: ['*.html', 'views/{,*/}*.html'],
+                    src: ['*.html', 'views/{,*/}*.html', 'views/**/*.html'],
                     dest: '<%= yeoman.dist %>'
                 }]
             }
@@ -326,6 +326,7 @@ module.exports = function (grunt) {
                         '.htaccess',
                         '*.html',
                         'views/**/*.html',
+                        'views/**/*.json',
                         'views/codesnippets/*',
                         'images/{,*/}*.{webp}',
                         'fonts/*'
@@ -414,6 +415,17 @@ module.exports = function (grunt) {
                     }
                 ]
             }
+        },
+
+        extractheaders: {
+            options: {
+                sources: [
+                    '<%= yeoman.app %>/markdowns/score.md',
+                    '<%= yeoman.app %>/markdowns/slang.md',
+                    '<%= yeoman.app %>/markdowns/developer.md'
+                ],
+                dest   : '<%= yeoman.app %>/views/docs/generated/sidebar.json'
+            }
         }
     });
 
@@ -425,6 +437,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'marked',
+            'extractheaders',
             'wiredep',
             'concurrent:server',
             'autoprefixer',
@@ -441,6 +454,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'marked',
+            'extractheaders',
             'wiredep',
             'concurrent:server',
             'autoprefixer',
@@ -466,6 +480,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'marked',
+        'extractheaders',
         'wiredep',
         'useminPrepare',
         'concurrent:dist',

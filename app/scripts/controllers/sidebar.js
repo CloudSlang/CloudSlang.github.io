@@ -1,26 +1,16 @@
 'use strict';
 
 angular.module('scoreWebsiteApp')
-    .controller('SidebarCtrl', function ($rootScope, MessagesService, $timeout) {
+    .controller('SidebarCtrl', function ($rootScope, $http) {
 
-        function mapToSize() {
-            return _.map($('.anchor'), function (target) {
-                    var parent = $(target).parent()[0];
-                    return {
-                        'size' : parent.nodeName.toLowerCase(),
-                        'id'   : target.id,
-                        'title': parent.textContent
-                    }
-                }
-            ).filter(function (node) {
-                    return _.includes(["h1", "h2"], node.size)
-                });
+        function populateSideBar() {
+            $http.get('views/docs/generated/sidebar.json').then(function(response) {
+                $rootScope.docsSections = response.data;
+            });
         }
 
         if (_.isEmpty($rootScope.docsSections)) {
-            $timeout(function () {
-                $rootScope.docsSections = mapToSize();
-            }, 1000);
+            $rootScope.docsSections = populateSideBar();
         }
 
     });

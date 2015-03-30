@@ -5,8 +5,8 @@
         Back to top
     </a>
     <ul class="nav">
-        <li ng-repeat="title in docsSections">
-            <a ng-class="title.size" ng-href="#/docs#{{title.id}}">{{title.title}}</a>
+        <li ng-repeat="section in docsSections">
+            <a ng-class="section.size" ng-href="#/docs#{{section.link}}">{{section.title}}</a>
         </li>
     </ul>
 </nav>

@@ -628,7 +628,9 @@ a:hover {
 .docs-sidebar {
     background-color: #5D913A;
     color: #ffffff;
-    margin-top: -95px;
+    margin-top: -155px;
+    padding-top: 85px;
+    padding-left: 20px;
     position: fixed;
     width: 18%;
     height: 100%;
@@ -636,8 +638,6 @@ a:hover {
 }
 
 .docs-sidebar-content {
-    margin-top: 35px;
-    margin-left: 20px;
 }
 
 @media (max-width: 1131px) {

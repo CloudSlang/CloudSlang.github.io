@@ -1360,7 +1360,7 @@ There are several ways to get started with the CloudSlang CLI.
 ###Download and Run Pre-built CLI
 **Prerequisites :** To run the CloudSlang CLI, Java JRE version 7 or higher is required.
 
-1. [Download](https://github.com/CloudSlang/cloud-slang/releases/latest) the CLI zip file. 
+1. [Download](https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.7.4/cslang-cli.zip) the CLI zip file. 
 2. Locate the downloaded file and unzip the archive.  
     The decompressed file contains:
     + A folder named **cslang** with the CLI tool and its necessary dependencies.

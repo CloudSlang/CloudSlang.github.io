@@ -14,7 +14,7 @@ CloudSlang and its Orchestration Engine are:
 ##Get Started
 It's easy to get started running CloudSlang flows, especially using the CLI and ready-made content.
 
-1. [Download](https://github.com/CloudSlang/cloud-slang/releases/latest) the CLI zip file. 
+1. [Download](https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.7.4/cslang-cli.zip) the CLI zip file. 
 2. Unzip the archive.
 3. Run the CloudSlang executable. 
 4. At the prompt enter: 

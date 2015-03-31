@@ -79,7 +79,7 @@ angular.module('scoreWebsiteApp')
             template: '',
             link: function(scope, element) {
                 var onePageNav = function () {
-                    element.onePageNav({
+                    $(element).onePageNav({
                         currentClass: 'current',
                         changeHash: false,
                         scrollSpeed: 400,

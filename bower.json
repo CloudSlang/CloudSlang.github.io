@@ -1,33 +1,36 @@
 {
-    "name": "score-website",
-    "version": "0.0.0",
-    "dependencies": {
-        "angular": "~1.2.0",
-        "jquery": ">= 1.9.0",
-        "json3": "~3.3.1",
-        "es5-shim": "~3.1.0",
-        "bootstrap": "~3.2.0",
-        "angular-resource": "~1.2.0",
-        "angular-cookies": "~1.2.0",
-        "angular-sanitize": "~1.2.0",
-        "angular-animate": "~1.2.0",
-        "angular-touch": "~1.2.0",
-        "angular-route": "~1.2.0",
-        "angular-bootstrap": "~0.11.2",
-        "jquery.easing": "~1.3.1",
-        "string-format-js": "~0.1.2",
-        "lodash": "3.6.0",
-        "jQuery-One-Page-Nav": "~3.0.0",
-        "jquery.transit": "~0.9.12",
-        "highlightjs": "~8.3.0",
-        "typed.js": "*",
-        "pace": "*",
-        "components-font-awesome" : "*",
-        "angular-highlightjs": "*"
-    },
-    "devDependencies": {
-        "angular-mocks": "~1.2.0",
-        "angular-scenario": "~1.2.0"
-    },
-    "appPath": "app"
+  "name": "score-website",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "~1.2.0",
+    "jquery": "~1.9.0",
+    "json3": "~3.3.1",
+    "es5-shim": "~3.1.0",
+    "bootstrap": "~3.2.0",
+    "angular-resource": "~1.2.0",
+    "angular-cookies": "~1.2.0",
+    "angular-sanitize": "~1.2.0",
+    "angular-animate": "~1.2.0",
+    "angular-touch": "~1.2.0",
+    "angular-route": "~1.2.0",
+    "angular-bootstrap": "~0.11.2",
+    "jquery.easing": "~1.3.1",
+    "string-format-js": "~0.1.2",
+    "lodash": "~3.6.0",
+    "jQuery-One-Page-Nav": "~3.0.0",
+    "jquery.transit": "~0.9.12",
+    "highlightjs": "~8.3.0",
+    "typed.js": "*",
+    "pace": "*",
+    "components-font-awesome": "*",
+    "angular-highlightjs": "*"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.0",
+    "angular-scenario": "~1.2.0"
+  },
+  "appPath": "app",
+  "resolutions": {
+    "jquery": ">= 1.9.0"
+  }
 }

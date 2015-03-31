@@ -48,8 +48,5 @@
   "scripts": {
     "test": "grunt test",
     "postinstall": "bower install"
-  },
-  "devDependencies": {
-    "grunt-debug-task": "^0.1.5"
   }
 }

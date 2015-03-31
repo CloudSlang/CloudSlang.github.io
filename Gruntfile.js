@@ -183,7 +183,11 @@ module.exports = function (grunt) {
             app: {
                 src: ['<%= yeoman.app %>/index.html'],
                 ignorePath:  /\.\.\//,
-                exclude: ['bower_components/highlightjs/styles/default.css']
+                exclude: [
+                    '/jquery/',
+                    'bower_components/bootstrap/dist/js/bootstrap.js',
+                    'bower_components/highlightjs/styles/default.css'
+                ]
             }
         },
 

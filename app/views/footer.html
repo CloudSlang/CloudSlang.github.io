@@ -21,16 +21,6 @@
                     <i class="github social-icon fa fa-github-square"></i>
                 </a>
             </div>
-            <div class="col-md-1 col-xs-2 col-centered">
-                <a ng-href="mailto:support@cloudslang.io" target="_blank" title="{{$root.messages.footerContactUs}}">
-                    <i class="contact social-icon fa fa-envelope-square"></i>
-                </a>
-            </div>
-        </div>
-        <div class="row row-centered">
-            <div class="col-md-12 col-xs-12 license">
-                {{$root.messages.footerLicense}}<a ng-href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">{{$root.messages.footerLicenseHref}}</a>
-            </div>
         </div>
         <div class="row row-centered">
             <div class="col-md-12 col-xs-12 copyright">
@@ -38,10 +28,22 @@
             </div>
         </div>
         <div class="row row-centered">
-            <div class="col-md-12 col-xs-12 privacy">
-                <a ng-href="http://www8.hp.com/us/en/privacy/terms-of-use.html" target="_blank">Terms of use</a>
-                <span> and </span>
-                <a ng-href="http://www8.hp.com/us/en/privacy/privacy.html" target="_blank">Privacy Policy</a>
+            <div class="col-md-12 col-xs-12 links">
+                <a ng-href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">
+                    {{$root.messages.footerLicense}}
+                </a>
+                <i class="column-separator"></i>
+                <a ng-href="http://www8.hp.com/us/en/privacy/terms-of-use.html" target="_blank">
+                    {{$root.messages.footerTerms}}
+                </a>
+                <i class="column-separator"></i>
+                <a ng-href="http://www8.hp.com/us/en/privacy/privacy.html" target="_blank">
+                    {{$root.messages.footerPrivacy}}
+                </a>
+                <i class="column-separator"> </i>
+                <a ng-href="mailto:support@cloudslang.io" target="_blank">
+                    {{$root.messages.footerContactUs}}
+                </a>
             </div>
         </div>
     </div>

@@ -236,14 +236,26 @@ a:hover {
 
 .footer .links {
     margin-bottom: 10px;
+    padding-top: 20px;
+}
+
+.footer .icon-text {
+}
+
+.footer .footer-row {
+    font-size: 27px;
+    padding-bottom: 5px;
 }
 
 .footer .social-icons {
     margin-top: 15px;
+    padding-bottom: 5px;
+    color: #2f6019;
 }
 
-.footer .social-icon{
-    font-size: 40px;
+.footer .social-icon {
+    font-size: 20px;
+    padding-bottom: 5px;
 }
 
 .footer .social-icon.gplus:hover{

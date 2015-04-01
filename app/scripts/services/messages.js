@@ -32,7 +32,12 @@ angular.module('scoreWebsiteApp')
             footerYoutube: 'YouTube',
             footerTwitter: 'Twitter',
             footerGitHub: 'GitHub',
-            footerContribute: 'Contribute',
+            footerContribute: 'Contributing',
+            footerRoadMap: 'Project Roadmap',
+            footerGoogleGroups: 'Mailing List',
+            footerBlog: 'Blog',
+            footerDocs: 'Docs',
+            footerTutorials: 'Tutorials',
 
             // bullets
             mainBulletsProcessBasedTitle: 'Process-Based',

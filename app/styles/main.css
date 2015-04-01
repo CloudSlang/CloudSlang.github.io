@@ -177,6 +177,10 @@ a:hover {
     cursor: pointer;
 }
 
+.navbar-title {
+    font-weight: 900;
+}
+
 .main-nav {
     background-color: #ffffff;
     color: #000000;
@@ -214,6 +218,10 @@ a:hover {
     border-top: 4px solid #d7d7d7;
 }
 
+.footer .column-separator {
+    padding-right: 25px;
+}
+
 .footer .copyright {
     margin-top: 10px;
 }
@@ -226,12 +234,8 @@ a:hover {
     text-decoration: underline;
 }
 
-.footer .privacy {
+.footer .links {
     margin-bottom: 10px;
-}
-
-.footer .privacy > a {
-    text-decoration: underline;
 }
 
 .footer .social-icons {

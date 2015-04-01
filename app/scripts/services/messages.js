@@ -18,14 +18,14 @@ angular.module('scoreWebsiteApp')
             navDocsDeveloperTitle: 'Developer',
 
             // header
-            headerMainTitle: 'Flow-based orchestration engine to manage deployed applications',
-            headerDescription: 'Allows you to rapidly automate your DevOps use cases using ready-made workflows.',
+            headerMainTitle: 'Orchestration as Code',
+            headerDescription: 'CloudSlang is a flow-based orchestration tool that allows you to rapidly automate your DevOps use cases using ready-made workflows.',
             headerStartNow: 'Getting started',
 
             // footer
             footerPrivacy: 'Privacy Policy',
             footerTerms: 'Terms of Use',
-            footerLicense: 'Code licensed under the ',
+            footerLicense: 'License',
             footerLicenseHref: 'Apache License, Version 2.0.',
             footerContactUs: 'Contact Us',
             footerGooglePlus: 'Google Plus',

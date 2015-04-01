@@ -5,12 +5,15 @@
     <div class="col-md-7">
         <p class="h4">{{$root.messages.detailedDownloadCliText}}</p>
     </div>
-    <div class="download col-md-7">
-        <a class="pull-left btn btn-primary btn-lg download-now-button left-side"
-           ng-href="https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.7.4/cslang-cli.zip"><img
-            src="images/download_button.png" alt="Start Now"></a>
-        <a class="pull-left btn btn-primary btn-lg download-now-button right-side"
-           ng-href="https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.7.4/cslang-cli.zip"><p class="h4">
+    <div  class="download col-md-7">
+        <a onclick="ga('send', 'event', 'button', 'click', 'download cli', 1);"
+           class="pull-left btn btn-primary btn-lg download-now-button left-side"
+           ng-href="/download">
+            <img src="images/download_button.png" alt="Start Now"/></a>
+        <a onclick="ga('send', 'event', 'button', 'click', 'download cli', 1);"
+           class="pull-left btn btn-primary btn-lg download-now-button right-side"
+           ng-href="/download">
+            <p class="h4">
             {{$root.messages.detailedDownloadLatest}}</p></a>
     </div>
     <div class="explanation col-md-12">

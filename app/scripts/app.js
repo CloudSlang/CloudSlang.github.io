@@ -3,11 +3,7 @@
 angular
     .module('scoreWebsiteApp', [
         'ngAnimate',
-        'ngCookies',
-        'ngResource',
         'ngRoute',
-        'ngSanitize',
-        'ngTouch',
         'hljs'
     ])
     .config(function ($routeProvider) {

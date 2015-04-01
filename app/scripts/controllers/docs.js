@@ -7,7 +7,7 @@ angular.module('scoreWebsiteApp')
             if ($location.hash()) {
                 var aTag = $('#' +  $location.hash());
                 if (aTag) {
-                    $('html, body').animate({scrollTop: aTag.offset().top}, 'slow');
+                    $('html, body').animate({scrollTop: aTag.offset().top}, 400, 'swing');
                 }
             }
         }, 1000);

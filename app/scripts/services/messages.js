@@ -19,7 +19,8 @@ angular.module('scoreWebsiteApp')
 
             // header
             headerMainTitle: 'Orchestration as Code',
-            headerDescription: 'CloudSlang is a flow-based orchestration tool that allows you to rapidly automate your DevOps use cases using ready-made workflows.',
+            headerDescription: 'CloudSlang is a flow-based orchestration tool for managing your deployed applications. ' +
+            'Rapidly automate your DevOps use cases using ready-made workflows.',
             headerStartNow: 'Getting started',
 
             // footer

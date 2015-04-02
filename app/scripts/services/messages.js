@@ -14,7 +14,7 @@ angular.module('scoreWebsiteApp')
 
             //docs nav bar
             navDocsScoreTitle: 'Overview',
-            navDocsSlangTitle: 'Slang',
+            navDocsSlangTitle: 'CloudSlang',
             navDocsDeveloperTitle: 'Developer',
 
             // header

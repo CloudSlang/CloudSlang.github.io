@@ -18,7 +18,7 @@ angular.module('scoreWebsiteApp')
 
         $rootScope.sections = [
             { id: 'overview', title: $rootScope.messages.navDocsScoreTitle },
-            { id: 'slang', title: $rootScope.messages.navDocsSlangTitle },
+            { id: 'cloud-slang', title: $rootScope.messages.navDocsSlangTitle },
             { id: 'developer', title: $rootScope.messages.navDocsDeveloperTitle }
         ];
         $rootScope.navSwitch = { uri: '', title: $rootScope.messages.navBackToSiteTitle };

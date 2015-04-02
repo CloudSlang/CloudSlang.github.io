@@ -6,8 +6,7 @@ angular.module('scoreWebsiteApp')
         $rootScope.sections = [
             { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
             { id: 'useCases', title: $rootScope.messages.navUseCasesTitle },
-            { id: 'about', title: $rootScope.messages.navAboutTitle },
-            { id: 'blog', title: $rootScope.messages.navBlogTitle  }
+            { id: 'about', title: $rootScope.messages.navAboutTitle }
         ];
         $rootScope.navSwitch = { uri: 'docs', title: $rootScope.messages.navDocumentationTitle };
 
@@ -108,6 +107,20 @@ angular.module('scoreWebsiteApp')
                     event.preventDefault();
                     $('html, body').animate({scrollTop: 0}, 'slow', function () {
                         $('.header .nav .current').removeClass('current');
+                    });
+                });
+            }
+        };
+    }]).directive('scrollBottom', [function() {
+        return {
+            restrict: 'A',
+            template: '',
+            link: function(scope, element) {
+                element.on('click', function(event) {
+                    event.preventDefault();
+                    $('html, body').animate({scrollTop:  $(document).height()}, 'slow', function () {
+                        $('.header .nav .current').removeClass('current');
+                        $(element).addClass('current');
                     });
                 });
             }

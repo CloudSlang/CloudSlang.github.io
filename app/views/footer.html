@@ -1,34 +1,88 @@
 <div ng-controller="FooterCtrl" class="footer">
     <div class="container">
         <div class="social-icons row row-centered">
-            <div class="col-md-1 col-xs-2 col-centered">
-                <a ng-href="https://plus.google.com/111786332101522113762" rel="publisher" target="_blank" title="{{$root.messages.footerGooglePlus}}">
-                    <i class="gplus social-icon fa fa-google-plus-square"></i>
-                </a>
+            <div class="col-md-2"></div>
+            <div class="col-md-3 text-left">
+                <div class="footer-row">Follow Us</div>
+                <div>
+                    <a ng-href="https://plus.google.com/111786332101522113762" rel="publisher" target="_blank" title="{{$root.messages.footerGooglePlus}}">
+                        <i class="gplus social-icon fa fa-google-plus"></i>
+                        <span class="icon-text h4">{{$root.messages.footerGooglePlus}}</span>
+                    </a>
+                </div>
+                <div>
+                    <a ng-href="http://www.youtube.com/channel/UCunFZ98J-2slsd3NuP2WeBw" target="_blank" title="{{$root.messages.footerYoutube}}">
+                        <i class="youtube social-icon fa fa-youtube"></i>
+                        <span class="icon-text h4">{{$root.messages.footerYoutube}}</span>
+                    </a>
+                </div>
+                <div>
+                    <a ng-href="https://twitter.com/CloudSlang" target="_blank" title="{{$root.messages.footerTwitter}}">
+                        <i class="twitter social-icon fa fa-twitter"></i>
+                        <span class="icon-text h4">{{$root.messages.footerTwitter}}</span>
+                    </a>
+                </div>
+                <div>
+                    <a ng-href="https://groups.google.com/forum/#!forum/cloudslang" target="_blank" title="{{$root.messages.footerGoogleGroups}}">
+                        <i class="github social-icon fa fa-google"></i>
+                        <span class="icon-text h4">{{$root.messages.footerGoogleGroups}}</span>
+                    </a>
+                </div>
+                <div>
+                    <a ng-href="mailto:support@cloudslang.io" target="_blank" title="{{$root.messages.footerContactUs}}">
+                        <i class="github social-icon fa fa-envelope"></i>
+                        <span class="icon-text h4">{{$root.messages.footerContactUs}}</span>
+                    </a>
+                </div>
             </div>
-            <div class="col-md-1 col-xs-2 col-centered">
-                <a ng-href="http://www.youtube.com/channel/UCunFZ98J-2slsd3NuP2WeBw" target="_blank" title="{{$root.messages.footerYoutube}}">
-                    <i class="youtube social-icon fa fa-youtube-square"></i>
-                </a>
+            <div class="col-md-3  text-left">
+                <div class="footer-row">Contribute</div>
+                <div>
+                    <a ng-href="https://github.com/CloudSlang" target="_blank" title="{{$root.messages.footerGitHub}}">
+                        <i class="github social-icon fa fa-github"></i>
+                        <span class="icon-text h4">{{$root.messages.footerGitHub}}</span>
+                    </a>
+                </div>
+                <div>
+                    <a ng-href="#/docs#contributing-code" target="_blank" title="{{$root.messages.footerContribute}}">
+                        <i class="github social-icon fa fa-code-fork"></i>
+                        <span class="icon-text h4">{{$root.messages.footerContribute}}</span>
+                    </a>
+                </div>
+                <div>
+                    <a ng-href="https://github.com/CloudSlang/cloud-slang/wiki/Project-Roadmap" target="_blank" title="{{$root.messages.footerRoadMap}}">
+                        <i class="github social-icon fa fa-road"></i>
+                        <span class="icon-text h4">{{$root.messages.footerRoadMap}}</span>
+                    </a>
+                </div>
             </div>
-            <div class="col-md-1 col-xs-2 col-centered">
-                <a ng-href="https://twitter.com/CloudSlang" target="_blank" title="{{$root.messages.footerTwitter}}">
-                    <i class="twitter social-icon fa fa-twitter-square"></i>
-                </a>
+            <div class="col-md-3 text-left">
+                <div class="footer-row">Learn More</div>
+                <div>
+                    <a ng-href="http://cloudslang-tutorials.readthedocs.org" target="_blank" title="{{$root.messages.footerTutorials}}">
+                        <i class="github social-icon fa fa-mortar-board"></i>
+                        <span class="icon-text h4">{{$root.messages.footerTutorials}}</span>
+                    </a>
+                </div>
+                <div>
+                    <a ng-href="http://blog.cloudslang.io" target="_blank" title="{{$root.messages.footerBlog}}">
+                        <i class="github social-icon fa fa-comments-o"></i>
+                        <span class="icon-text h4">{{$root.messages.footerBlog}}</span>
+                    </a>
+                </div>
+                <div>
+                    <a ng-href="#/docs" target="_blank" title="{{$root.messages.footerDocs}}">
+                        <i class="github social-icon fa fa-book"></i>
+                        <span class="icon-text h4">{{$root.messages.footerDocs}}</span>
+                    </a>
+                </div>
             </div>
-            <div class="col-md-1 col-xs-2 col-centered">
-                <a ng-href="https://github.com/CloudSlang" target="_blank" title="{{$root.messages.footerGitHub}}">
-                    <i class="github social-icon fa fa-github-square"></i>
-                </a>
-            </div>
-        </div>
-        <div class="row row-centered">
-            <div class="col-md-12 col-xs-12 copyright">
-                <p>Copyright © {{$root.year}} CloudSlang project authors.</p>
-            </div>
+
         </div>
         <div class="row row-centered">
             <div class="col-md-12 col-xs-12 links">
+                <span>© {{$root.year}} CloudSlang project.</span>
+                <i class="column-separator"></i>
                 <a ng-href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">
                     {{$root.messages.footerLicense}}
                 </a>
@@ -39,10 +93,6 @@
                 <i class="column-separator"></i>
                 <a ng-href="http://www8.hp.com/us/en/privacy/privacy.html" target="_blank">
                     {{$root.messages.footerPrivacy}}
-                </a>
-                <i class="column-separator"> </i>
-                <a ng-href="mailto:support@cloudslang.io" target="_blank">
-                    {{$root.messages.footerContactUs}}
                 </a>
             </div>
         </div>

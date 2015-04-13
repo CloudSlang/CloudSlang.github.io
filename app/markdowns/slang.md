@@ -826,7 +826,7 @@ inputs:
 
 ###system_property
 The key `system_property` is a property of an [input](#/docs#inputs) name.
-It is mapped to an string of a key from a system properties file.
+It is mapped to a string of a key from a system properties file.
 
 The value referenced in the system properties file will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed in or if the input's [overridable](#/docs#overridable) parameter is set to `false`.  
 

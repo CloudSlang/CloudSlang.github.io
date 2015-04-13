@@ -828,11 +828,11 @@ inputs:
 The key `system_property` is a property of an [input](#/docs#inputs) name.
 It is mapped to a string of a key from a system properties file.
 
-The value referenced in the system properties file will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed in or if the input's [overridable](#/docs#overridable) parameter is set to `false`.  
+The value referenced from a system properties file will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed in or if the input's [overridable](#/docs#overridable) parameter is set to `false`.  
 
 Note: If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name.  
 
-**Example - default values **
+**Example - system properties **
 
 ```yaml
 inputs:
@@ -842,6 +842,7 @@ inputs:
       system_property: examples.sysprops.port
 ```
 
+To pass a system properties file to the CLI, see [Run a Flow with System Properties](#/docs#run-a-flow-with-system-properties).
 
 ###task
 A name of a task which is a property of [workflow](#/docs#workflow) or [on_failure](#/docs#on_failure).
@@ -1450,8 +1451,15 @@ System properties files are written in flat [YAML](http://www.yaml.org), contain
 **Example - system properties file**
 
 ```yaml
-examples.sysprops.hostname: smtp.somedomain.com
-examples.sysprops.port: 587
+examples.properties.text: hello
+examples.properties.list:
+  - one
+  - two
+  - three
+examples.properties.map:
+  one: a
+  two: b
+  three: c
 ``` 
 
 System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. If the flow requires a system properties file that is not loaded automatically, use the `--spf` flag and a comma-separated list of file paths. 

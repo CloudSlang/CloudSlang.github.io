@@ -381,7 +381,7 @@ loop:
 The key `default` is a property of an [input](#/docs#inputs) name.
 It is mapped to an expression value.
 
-The expression's value will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed or if the input's [overridable](#/docs#overridable) parameter is set to `false` and there is no [system_properties](#/docs#system_properties) parameter defined.   
+The expression's value will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed or if the input's [overridable](#/docs#overridable) parameter is set to `false` and there is no [system_properties](#/docs#system_property) parameter defined.   
 
 **Example - default values **
 
@@ -629,7 +629,7 @@ It is mapped to a value that is used as the name of the [flow](#/docs#flow) or [
 
 The name of a [flow](#/docs#flow) or [operation](#/docs#operation) may be used when called from a [flow](#/docs#flow)'s [task](#/docs#task). 
 
-**Example - naming the flow _division\_flow_**
+**Example - naming the flow _division_flow_**
 
 ```yaml
 name: division_flow
@@ -842,7 +842,7 @@ inputs:
       system_property: examples.sysprops.port
 ```
 
-To pass a system properties file to the CLI, see [Run a Flow with System Properties](#/docs#run-a-flow-with-system-properties).
+To pass a system properties file to the CLI, see [Run with System Properties](#/docs#run-with-system-properties).
 
 ###task
 A name of a task which is a property of [workflow](#/docs#workflow) or [on_failure](#/docs#on_failure).
@@ -1397,13 +1397,13 @@ When a flow is run, the entire directory in which the flow resides is scanned re
 The usage of forward slashes (`/`) in all file paths is recommended even on Windows.
 
 ####Run a Flow or Operation
-To run a flow located at `c:/.../your_flow.sl`, enter the following at the `cslang>` prompt:
+To run a flow or operation located at `c:/.../your_flow.sl`, use the `--f` flag to specify the location of the flow to be run:
 ```bash
 cslang>run --f c:/.../your_flow.sl
 ```
 
-####Run a Flow with Inputs
-If the flow takes in input parameters, use the `--i` flag and a comma-separated list of key=value pairs:
+####Run with Inputs
+If the flow or operation takes in input parameters, use the `--i` flag and a comma-separated list of key=value pairs:
 ```bash
 cslang>run --f c:/.../your_flow.sl --i input1=root,input2=25
 ```
@@ -1438,13 +1438,13 @@ Input files can be loaded automatically if placed in a folder named `inputs` in 
 cslang>run --f c:/.../your_flow.sl --if c:/.../inputs.yaml --i input1=value1
 ```
 
-####Run a Flow with Dependencies 
+####Run with Dependencies 
 If the flow requires dependencies from another location, use the `--cp` flag: 
 ```bash
 cslang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml
 ```
 
-####Run a Flow with System Properties
+####Run with System Properties
 
 System properties files are written in flat [YAML](http://www.yaml.org), containing a map of names to values. System property files end with the .yaml  or .yml extensions. If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name. 
 
@@ -1462,20 +1462,20 @@ examples.properties.map:
   three: c
 ``` 
 
-System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. If the flow requires a system properties file that is not loaded automatically, use the `--spf` flag and a comma-separated list of file paths. 
+System property files can be loaded automatically if placed in a folder named `properties` in the directory from which the CLI is run. If the flow or operation requires a system properties file that is not loaded automatically, use the `--spf` flag and a comma-separated list of file paths. 
 
 ```bash
 cslang>run --f c:/.../your_flow.sl --spf c:/.../yaml
 ```
 
-####Run a Flow in Quiet Mode
+####Run in Quiet Mode
 Normally a flow's task names are printed to the screen as they are run. To disable the task names from being printed, use the `--q` flag.
 
 ```bash
 cslang>run --f c:/.../your_flow.sl --q
 ```
 
-####Run a Flow in Non-Interactive Mode
+####Run in Non-Interactive Mode
 A flow can be run without first starting up the CLI using the non-interactive mode. 
 
 From a shell prompt:

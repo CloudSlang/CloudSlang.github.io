@@ -1519,7 +1519,7 @@ To ease the CloudSlang coding process you can use our Sublime Text snippets.
 ###Download, Install and Configure Sublime Text for Windows:
 
 1. Download and install [Sublime Text](http://www.sublimetext.com/).
-2. Download the [slang-sublime package](https://github.com/orius123/slang-sublime/releases/download/0.1.0/slang-sublime-0.1.0.sublime-package). 
+2. Download the [slang-sublime package](https://github.com/orius123/slang-sublime/releases/tag/0.1.1). 
 3. Copy the downloaded package file into C:\Users\&lt;User&gt;\AppData\Roaming\Sublime Text 2\Installed Packages
 4. Restart Sublime Text.
 5. New files with the .sl extension will be recognized as CloudSlang files. For existing files you may have to change the language manually.
@@ -1530,7 +1530,7 @@ The following templates are provided:
 
 Keyword|Description
 ---|---
-slang|template for a CloudSlang file
+cloudslang|template for a CloudSlang file
 flow|template for a flow
 task|template for a task
 operation|template for an operation

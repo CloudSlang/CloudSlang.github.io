@@ -1439,7 +1439,7 @@ cslang>run --f c:/.../your_flow.sl --if c:/.../inputs.yaml --i input1=value1
 ```
 
 ####Run with Dependencies 
-If the flow requires dependencies from another location, use the `--cp` flag: 
+If the flow requires dependencies from another location, use the `--cp` flag with a comma-separated list of dependency paths: 
 ```bash
 cslang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml
 ```

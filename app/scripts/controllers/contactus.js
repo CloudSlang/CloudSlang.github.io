@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('scoreWebsiteApp')
+angular.module('cloudSlangWebsiteApp')
     .controller('ContactUsCtrl', function ($scope, $rootScope, ContactUsService) {
         $scope.submitForm = function (mailOptions) {
 

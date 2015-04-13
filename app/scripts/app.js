@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('scoreWebsiteApp', [
+    .module('cloudSlangWebsiteApp', [
         'ngAnimate',
         'ngRoute',
         'hljs'

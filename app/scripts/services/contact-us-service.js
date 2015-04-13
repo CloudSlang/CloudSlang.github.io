@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('scoreWebsiteApp')
+angular.module('cloudSlangWebsiteApp')
 .factory('ContactUsService', ['$http', function ($http) {
         var self = {};
 

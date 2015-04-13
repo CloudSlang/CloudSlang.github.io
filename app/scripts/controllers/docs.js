@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('scoreWebsiteApp')
+angular.module('cloudSlangWebsiteApp')
     .controller('DocsCtrl', function ($rootScope, MessagesService, $location, $timeout) {
 
         $timeout(function() {
@@ -17,7 +17,7 @@ angular.module('scoreWebsiteApp')
         });
 
         $rootScope.sections = [
-            { id: 'overview', title: $rootScope.messages.navDocsScoreTitle },
+            { id: 'overview', title: $rootScope.messages.navDocsOverviewTitle },
             { id: 'cloud-slang', title: $rootScope.messages.navDocsSlangTitle },
             { id: 'developer', title: $rootScope.messages.navDocsDeveloperTitle }
         ];

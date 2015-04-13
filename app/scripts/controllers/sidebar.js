@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('scoreWebsiteApp')
+angular.module('cloudSlangWebsiteApp')
     .controller('SidebarCtrl', function ($rootScope, $http) {
 
         function populateSideBar() {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('scoreWebsiteApp')
+angular.module('cloudSlangWebsiteApp')
     .controller('MainCtrl', function ($scope, $rootScope, $document, MessagesService) {
 
         $rootScope.sections = [

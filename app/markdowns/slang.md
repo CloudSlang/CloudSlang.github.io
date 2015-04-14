@@ -652,6 +652,8 @@ imports:
   ops: examples.hello_world
 ```
 
+**Note:** if the imported file resides in a folder that is different from the folder in which the importing file resides, the imported file's directory must be added using the `--cp` flag when running from the CLI (see [Run with Dependencies](#/docs#run-with-dependencies)). 
+
 ###navigate
 The key `navigate` is a property of a [task](#/docs#task) name.
 It is mapped to key:value pairs where the key is the received [result](#/docs#results) and the value is the target [task](#/docs#task) or [flow](#doc/#flow) [result](#/docs#results).

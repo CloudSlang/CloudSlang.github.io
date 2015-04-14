@@ -652,6 +652,8 @@ imports:
   ops: examples.hello_world
 ```
 
+**Note:** if the imported file resides in a folder that is different from the folder in which the importing file resides, the imported file's directory must be added using the `--cp` flag when running from the CLI (see [Run with Dependencies](#/docs#run-with-dependencies)). 
+
 ###navigate
 The key `navigate` is a property of a [task](#/docs#task) name.
 It is mapped to key:value pairs where the key is the received [result](#/docs#results) and the value is the target [task](#/docs#task) or [flow](#doc/#flow) [result](#/docs#results).
@@ -1519,7 +1521,7 @@ To ease the CloudSlang coding process you can use our Sublime Text snippets.
 ###Download, Install and Configure Sublime Text for Windows:
 
 1. Download and install [Sublime Text](http://www.sublimetext.com/).
-2. Download the [slang-sublime package](https://github.com/orius123/slang-sublime/releases/download/0.1.0/slang-sublime-0.1.0.sublime-package). 
+2. Download the [slang-sublime package](https://github.com/orius123/slang-sublime/releases/tag/0.1.1). 
 3. Copy the downloaded package file into C:\Users\&lt;User&gt;\AppData\Roaming\Sublime Text 2\Installed Packages
 4. Restart Sublime Text.
 5. New files with the .sl extension will be recognized as CloudSlang files. For existing files you may have to change the language manually.
@@ -1530,7 +1532,7 @@ The following templates are provided:
 
 Keyword|Description
 ---|---
-slang|template for a CloudSlang file
+cloudslang|template for a CloudSlang file
 flow|template for a flow
 task|template for a task
 operation|template for an operation

@@ -10,10 +10,10 @@ CloudSlang plugs into the CloudSlang Orchestration Engine (Score) by compiling i
 
 
 ##Embedded CloudSlang 
-CloudSlang content can be run from inside an existing Java application using Maven and Spring by embedding the CloudSlang Orchestration Engine and interacting with it through the [Slang API](#/docs#slang-api). 
+CloudSlang content can be run from inside an existing Java application using Maven and Spring by embedding the CloudSlang Orchestration Engine (Score) and interacting with it through the [Slang API](#/docs#slang-api). 
 
 ###Embed CloudSlang in a Java Application
-1. Add the score and CloudSlang dependencies to the project's pom.xml file in the `<dependencies>` tag.
+1. Add the Score and CloudSlang dependencies to the project's pom.xml file in the `<dependencies>` tag.
   ```xml
   <dependency>
 	  <groupId>io.cloudslang</groupId>
@@ -415,7 +415,7 @@ The control action method and navigation action methods can be set in the Execut
 + `setNavigation(ControlActionMetadata navigationMetadata)`
 
 ####Action Method Arguments
-Both the control action and navigation action are regular Java methods which can take arguments. They are invoked by reflection and their arguments are injected by the score engine, so there is no API or naming convention for them. But there are some names that are reserved for special use. 
+Both the control action and navigation action are regular Java methods which can take arguments. They are invoked by reflection and their arguments are injected by the Score engine, so there is no API or naming convention for them. But there are some names that are reserved for special use. 
 
 There are several ways Score can populate an action method's arguments:
 
@@ -452,8 +452,8 @@ The `trigger(TriggeringProperties triggeringProperties)` method starts an execut
 
 By default the first executed step will be the execution plan’s start step, and the execution context will be empty.
 
-####Cancelling Executions
-The `cancelExecution(Long executionId)` method requests to cancel (terminate) a given execution. It is passed the ID that was returned when triggering the execution that is now to be cancelled. 
+####Canceling Executions
+The `cancelExecution(Long executionId)` method requests to cancel (terminate) a given execution. It is passed the ID that was returned when triggering the execution that is now to be canceled. 
 
 Note that the execution will not necessarily be stopped immediately. 
 
@@ -651,7 +651,7 @@ The CloudSlang project consists of the following [repositories](https://github.c
 
 ![Repository Dependencies](images/diagrams/repo_dependencies.png "Repository Dependencies")
 
-+ **score** - score engine
++ **score** - CloudSlang Orchestration Engine (Score)
   + engine
   + package
   + score-api

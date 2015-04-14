@@ -424,7 +424,7 @@ module.exports = function (grunt) {
         extractheaders: {
             options: {
                 sources: [
-                    '<%= yeoman.app %>/markdowns/score.md',
+                    '<%= yeoman.app %>/markdowns/overview.md',
                     '<%= yeoman.app %>/markdowns/slang.md',
                     '<%= yeoman.app %>/markdowns/developer.md'
                 ],

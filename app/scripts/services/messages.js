@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('scoreWebsiteApp')
+angular.module('cloudSlangWebsiteApp')
     .factory('MessagesService', function ($rootScope) {
         // App labels
         $rootScope.messages = {
@@ -13,7 +13,7 @@ angular.module('scoreWebsiteApp')
             navBackToSiteTitle: 'Back To Site',
 
             //docs nav bar
-            navDocsScoreTitle: 'Overview',
+            navDocsOverviewTitle: 'Overview',
             navDocsSlangTitle: 'CloudSlang',
             navDocsDeveloperTitle: 'Developer',
 

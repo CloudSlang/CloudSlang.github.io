@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('scoreWebsiteApp')
+angular.module('cloudSlangWebsiteApp')
     .controller('GettingStartedCtrl', function ($scope) {
 });

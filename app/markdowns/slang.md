@@ -1412,7 +1412,7 @@ cslang>run --f c:/.../your_flow.sl --i input1=root,input2=25
 Commas (`,`) can be used as part of input values by escaping them with a backslash (`\`).
 
 ```bash
-cslang>run --f c:/.../your_flow.sl --i list=1,2,3
+cslang>run --f c:/.../your_flow.sl --i list=1\,2\,3
 ```
 
 To use inputs that include spaces, enclose the entire input list in quotes (`"`):
@@ -1422,6 +1422,7 @@ cslang>run --f c:/.../your_flow.sl --i "input1=Hello World, input2=x"
 
 Double quotes (`"`) can be used as part of quoted input values by escaping them with a backslash (`\`). When using a quoted input list, spaces between input parameters will be trimmed.
 
+To pass the value **"Hello" World** to a flow:
 ```bash
 cslang>run --f c:/.../your_flow.sl --i "input1=\"Hello\" World"
 ```

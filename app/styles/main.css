@@ -338,6 +338,11 @@ a:hover {
     background:#2c451c;
     z-index:1999; /* as pace has 2000 */
 }
+
+.team-members {
+    margin-bottom: 20px;
+}
+
 @media (max-width: 767px) {
     .section-wrapper.about {
         height: 400px;

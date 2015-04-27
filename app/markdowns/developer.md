@@ -647,8 +647,9 @@ For performance optimization, there are two `EXECUTION_STATES` tables, one of wh
 ##Contributing Code
 
 ###GitHub Repositories
-The CloudSlang project consists of the following [repositories](https://github.com/cloudslang) on GitHub with the dependencies depicted in the diagram.
+The CloudSlang project consists of the following [repositories](https://github.com/cloudslang) on GitHub with the dependencies depicted in the diagram below.
 
+**Dependency diagram**
 ![Repository Dependencies](images/diagrams/repo_dependencies.png "Repository Dependencies")
 
 + **score** - CloudSlang Orchestration Engine (Score)
@@ -689,7 +690,7 @@ The CloudSlang project consists of the following [repositories](https://github.c
   + score-mail
   + score-ssh
   + score-utilities 
-+ **cloud-slang-sdk** - SDK for developing Java @Actions
++ **score-content-sdk** - SDK for developing Java @Actions
   + src/main/java/com/hp/oo/sdk/content
     + annotations
     + plugin

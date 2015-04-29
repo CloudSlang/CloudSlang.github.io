@@ -175,12 +175,19 @@ The general structure of CloudSlang files is outlined here. Some of the properti
       + [publish](#/docs#publish)
 	    + [fromInputs](#/docs#fromInputs)
       + [navigate](#/docs#navigate) 
-    + [loop task](#/docs#task)
+    + [iterative task](#/docs#iterative-task)
       + [loop](#/docs#loop)
         + [for](#/docs#for)
         + [do](#/docs#do)
         + [publish](#/docs#publish)
         + [break](#/docs#break)
+      + [navigate](#/docs#navigate) 
+    + [asynchronous task](#/docs#asynchronous-task)
+      + [async_loop](#/docs#async_loop)
+        + [for](#/docs#for)
+        + [do](#/docs#do)
+        + [publish](#/docs#publish)
+      + [aggregate](#/docs#aggregate)
       + [navigate](#/docs#navigate) 
     + [on_failure](#/docs#on_failure) 
   + [outputs](#/docs#outputs)
@@ -344,7 +351,72 @@ To import a Python script in a `python_script` action:
 
 **Note:** If you have defined a `JYTHONPATH` environment variable, you will need to add the **python-lib** folder's path to its value. 
 
+###aggregate
+The key `aggregate` is a property of an [asynchronous task](#/docs#asynchronous-task) name.
+It is mapped to key:value pairs where the key is the variable name to publish to the [flow's](#/docs#flow) scope and the value is the aggregation expression.
 
+Defines the aggregation logic for an [asynchronous task](#/docs#asynchronous-task), often making us of the [branches_context](#/docs#branches_context) construct.
+
+Aggregation is performed after all branches of an [asynchronous task](#/docs#asynchronous-task) have completed.
+
+**Example - aggregates all of the published names into name_list**
+```yaml
+aggregate:
+  - name_list: map(lambda x:str(x['name']), branches_context)
+```
+
+
+###async_loop
+The key `asyc_loop` is a property of an [asynchronous task's](#/docs#asynchronous-task) name.
+It is mapped to the [asynchronous task's](#/docs#asynchronous-task) properties.
+
+For each value in the loop's list a branch is created and the `do` will run an [operation](#/docs#operation) or [subflow](#/docs#flow). When all the branches have finished, the [asynchronous task's](#/docs#asynchronous-task) [aggregation](#/docs#aggregate) and [navigation](#docs#navigate) will run. 
+
+Property|Required|Default|Value Type|Description|More Info
+---|
+`for`|yes|-|variable `in` list|loop values|[for](#/docs#for) 
+`do`|yes|-|operation or subflow call|the operation or subflow this task will run in parallel|[do](#/docs#do) [operation](#/docs#operation) [flow](#/docs#flow)
+`publish`|no|-|list of key:value pairs|operation or subflow outputs to aggregate and publish to the flow level|[publish](#/docs#publish) [aggregate](#/docs#aggregate) [outputs](#/docs#outputs)
+
+**Example: loop that breaks on a result of custom**
+```yaml
+ - print_values:
+     async_loop:
+       for: value in values
+       do:
+         ops.print_branch:
+           - ID: value
+       publish:
+         - name
+     aggregate:
+         - name_list: map(lambda x:str(x['name']), branches_context)
+     navigate:
+         SUCCESS: print_list
+         FAILURE: FAILURE
+```
+
+###branches_context
+May appear in the [aggregate](#/docs#aggregate) section of an [asynchronous task](#/docs#asynchronous-task).
+
+As branches of an [async_loop](#/docs#async_loop) complete, their published values get placed as a dictionary into the `branches_context` list. The list is therefore in the order the branches have completed. 
+
+A specific value can be accessed using the index representing its branch's place in the finishing order and the name of the variable. 
+
+**Example - retrieves the published name variable from the first branch to finish**
+
+```yaml
+aggregate:
+  - first_name: branches_context[0]['name']
+```
+
+More commonly, the `branches_context` is used to aggregate the values that have been published by all of the branches. 
+
+**Example - aggregates all of the published name values into a list**
+
+```yaml
+aggregate:
+  - name_list: map(lambda x:str(x['name']), branches_context)
+```
 
 ###break
 The key `break` is a property of a [loop](#/docs#loop).
@@ -406,7 +478,7 @@ inputs:
 ```
 
 ###do
-The key `do` is a property of a [task](#/docs#task) name or a [loop](#/docs#loop).
+The key `do` is a property of a [task](#/docs#task) name, a [loop](#/docs#loop), or an [async_loop](#/docs#async_loop).
 It is mapped to a property that references an [operation](#/docs#operation) or [flow](#/docs#flow).
 
 Calls an [operation](#/docs#operation) or [flow](#/docs#flow) and passes in relevant [input](#/docs#inputs). The [input](#/docs#inputs) list may contain [input](#/docs#inputs) properties. The [operation](#/docs#operation) or [flow](#/docs#flow) is called by its qualified name using an alias created in the [imports](#/docs#imports) parameter.
@@ -470,13 +542,15 @@ flow:
 ```
 
 ###for
-The key `for` is a property of a [loop](#/docs#loop).
+The key `for` is a property of a [loop](#/docs#loop) or an [async_loop](#/docs#async_loop).
 
-A loop can iterate through a [list](#/docs#iterating-through-a-list) or a [map](#/docs#iterating-through-a-map).
+####loop: for
+
+A for loop iterates through a [list](#/docs#iterating-through-a-list) or a [map](#/docs#iterating-through-a-map).
 
 The [iterative task](#/docs#iterative-task) will run once for each element in the list or key in the map. 
 
-####Iterating through a list
+#####Iterating through a list
 When iterating through a list, the `for` key is mapped to an iteration variable followed by `in` followed by a list, an expression that evaluates to a list, or a comma delimited string.
 
 **Example - loop that iterates through the values in a list**
@@ -512,10 +586,10 @@ When iterating through a list, the `for` key is mapped to an iteration variable 
           - text: value
 ```
 
-####Iterating through a map
+#####Iterating through a map
 When iterating through a map, the `for` key is mapped to iteration variables for the key and value followed by `in` followed by a map or an expression that evaluates to a map.
 
-**Example - loop that iterates through the values returned from an expression**
+**Example - task that iterates through the values returned from an expression**
 
 ```yaml
 - print_values:
@@ -525,6 +599,25 @@ When iterating through a map, the `for` key is mapped to iteration variables for
         ops.print2:
           - text1: k
           - text2: v
+```
+
+####async_loop: for
+
+An asynchronous for loops in parallel branches over the items in a list.
+
+The [asynchronous task](#/docs#asynchronous-task) will run one branch for each element in the list. 
+
+The `for` key is mapped to an iteration variable followed by `in` followed by a list or an expression that evaluates to a list.
+
+**Example - task that asynchronously loops through the values in a list**
+
+```yaml
+- print_values:
+    async_loop:
+      for: value in values_list
+      do:
+        ops.print_branch:
+          - ID: value
 ```
 
 ###fromInputs
@@ -605,7 +698,7 @@ Property|Required|Default|Value Type|Description|More Info
 ---|
 `for`|yes|-|variable `in` list or key, value `in` map|iteration logic|[for](#/docs#for) 
 `do`|yes|-|operation or subflow call|the operation or subflow this task will run iteratively|[do](#/docs#do) [operation](#/docs#operation) [flow](#/docs#flow)
-`publish`|no|-|list of key:value pairs|operation outputs to aggregate and publish to the flow level|[publish](#/docs#publish) [outputs](#/docs#outputs)
+`publish`|no|-|list of key:value pairs|operation or subflow outputs to aggregate and publish to the flow level|[publish](#/docs#publish) [outputs](#/docs#outputs)
 `break`|no|-|list of [results](#/docs#result)|operation or subflow [results](#/docs#result) on which to break out of the loop|[break](#/docs#break)
 
 **Example: loop that breaks on a result of custom**
@@ -658,12 +751,15 @@ imports:
 The key `navigate` is a property of a [task](#/docs#task) name.
 It is mapped to key:value pairs where the key is the received [result](#/docs#results) and the value is the target [task](#/docs#task) or [flow](#doc/#flow) [result](#/docs#results).
 
-Defines the navigation logic for a [standard task](#/docs#standard-task) or an [iterative task](#/docs#iterative-task). The flow will continue with the [task](#/docs#task) or [flow](#/docs#flow) [result](#/docs#results) whose value is mapped to the [result](#/docs#results) returned by the called [operation](#/docs#operation) or subflow. 
-
-For a [standard task](#/docs#standard-task) the navigation logic runs when the [task](#/docs#task) is completed. For an [iterative task](#/docs#iterative-task) the navigation logic runs when the last iteration of the [task](#/docs#task) is completed or after exiting the iteration due to a [break](#/docs#break).
-
+Defines the navigation logic for a [standard task](#/docs#standard-task), an [iterative task](#/docs#iterative-task) or an [asynchronous task](asynchronous-task). The flow will continue with the [task](#/docs#task) or [flow](#/docs#flow) [result](#/docs#results) whose value is mapped to the [result](#/docs#results) returned by the called [operation](#/docs#operation) or [subflow](#/docs#flow). 
 
 The default navigation is `SUCCESS` except for the [on_failure](#/docs#on_failure) [task](#/docs#task) whose default navigation is `FAILURE`. All possible [results](#/docs#results) returned by the called [operation](#/docs#operation) or subflow must be handled.
+
+For a [standard task](#/docs#standard-task) the navigation logic runs when the [task](#/docs#task) is completed. 
+
+For an [iterative task](#/docs#iterative-task) the navigation logic runs when the last iteration of the [task](#/docs#task) is completed or after exiting the iteration due to a [break](#/docs#break).
+
+For an [asynchronous task](#/docs#asynchronous-task) the navigation logic runs after the last branch has completed. If any of the branches returned a [result](#/docs#results) of `FAILURE`, the [flow](#/docs#flow) will navigate to the [task](#/docs#task) or [flow](#/docs/flow) [result](#/docs#results) mapped to `FAILURE`. Otherwise, the [flow](#/docs#flow) will navigate to the [task](#/docs#task) or [flow](#/docs/flow) [result](#/docs#results) mapped to `SUCCESS`. Note that the only [results](#/docs#results) of an [operation](#/docs#operation) or [subflow](#/docs#flow) called in an [async_loop](#/docs#async_loop) that are evaluated are `SUCCESS` and `FAILURE`. Any other results will be evaluated as `SUCCESS`.
 
 **Example - ILLEGAL result will navigate to flow's FAILURE result and SUCCESS result will navigate to task named _printer_**
 ```yaml
@@ -748,18 +844,25 @@ inputs:
 ```
 
 ###publish
-The key `publish` is a property of a [task](#/docs#task) name or a [loop](#/docs#loop).
+The key `publish` is a property of a [task](#/docs#task) name, a [loop](#/docs#loop) or an [async_loop](#/docs#async_loop).
 It is mapped to a list of key:value pairs where the key is the published variable name and the value is the name of the [output](#/docs#outputs) received from an [operation](#/docs#operation) or [flow](#/docs#flow).
 
-Binds the [output](#/docs#outputs) from an [operation](#/docs#operation) or [flow](#/docs#flow) to a variable whose scope is the current [flow](#/docs#flow) and can therefore be used by other [tasks](#/docs#task) or as the [flow's](#/docs#flow) own [output](#/docs#outputs).
+####Standard publish
+In a [standard task](#/docs#standard-task), `publish` binds the [output](#/docs#outputs) from an [operation](#/docs#operation) or [flow](#/docs#flow) to a variable whose scope is the current [flow](#/docs#flow) and can therefore be used by other [tasks](#/docs#task) or as the [flow's](#/docs#flow) own [output](#/docs#outputs).
 
-In an [iterative task](#/docs#iterative-task) the publish mechanism is run during each iteration after the [operation](#/docs#operation) or [subflow](#/docs#flow) has completed.
-
-**Example - publish the quotient output as answer**
+**Example - publish the quotient output as ans**
 ```yaml
-publish:
-  - answer: quotient
+- division1:
+    do:
+      ops.division:
+        - input1: dividend1
+        - input2: divisor1
+    publish:
+      - ans: quotient
 ```
+
+####Iterative publish
+In an [iterative task](#/docs#iterative-task) the publish mechanism is run during each iteration after the [operation](#/docs#operation) or [subflow](#/docs#flow) has completed, therefore allowing for aggregation.
 
 **Example - publishing in an iterative task to aggregate output**
 ```yaml
@@ -773,10 +876,30 @@ publish:
         - sum: fromInputs['sum'] + out
 ```
 
+####Asynchronous publish
+In an [asynchronous task](#/docs#asynchronous-task) the publish mechanism is run during each branch after the [operation](#/docs#operation) or [subflow](#/docs#flow) has completed. Published variables and their values are added as a dictionary to the [branches_context](#/docs#branches_context) list in the order they are received from finished branches, allowing for aggregation.
+
+**Example - publishing in an iterative task to aggregate output**
+```yaml
+- print_values:
+    async_loop:
+      for: value in values_list
+      do:
+        ops.print_branch:
+          - ID: value
+      publish:
+        - name
+    aggregate:
+        - name_list: map(lambda x:str(x['name']), branches_context)
+```
+
 ###results
 The key `results` is a property of a [flow](#/docs#flow) or [operation](#/docs#operation).
 
 The results of a [flow](#/docs#flow) or [operation](#/docs#operation) can be used by the calling [task](#/docs#task) for [navigation](#/docs#navigate) purposes.
+
+**Note:** the only results of an [operation](#/docs#operation) or [subflow](#/docs#flow) called in an [async_loop](#/docs#async_loop) that are evaluated are `SUCCESS` and `FAILURE`. Any other results will be evaluated as `SUCCESS`.
+
 
 ####Flow results
 In a [flow](#/docs#flow), the key `results` is mapped to a list of result names. 
@@ -832,7 +955,7 @@ It is mapped to a string of a key from a system properties file.
 
 The value referenced from a system properties file will be passed to the [flow](#/docs#flow) or [operation](#/docs#operation) if no other value for that [input](#/docs#inputs) parameter is explicitly passed in or if the input's [overridable](#/docs#overridable) parameter is set to `false`.  
 
-Note: If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name.  
+**Note:** If multiple system properties files are being used and they contain a system property with the same fully qualified name, the property in the file that is loaded last will overwrite the others with the same name.  
 
 **Example - system properties **
 
@@ -849,9 +972,15 @@ To pass a system properties file to the CLI, see [Run with System Properties](#/
 ###task
 A name of a task which is a property of [workflow](#/docs#workflow) or [on_failure](#/docs#on_failure).
 
-A task can either be a standard one or and iterative one.
+There are several types of tasks:
+
++ [standard](#/docs#standard-task) 
++ [iterative](#/docs#iterative-task)
++ [asynchronous](#/docs#asynchronous-task)
 
 ####Standard Task
+A standard task calls an [operation](#/docs#operation) or [subflow](#/docs#flow) once.
+
 The task name is mapped to the task's properties.
 
 Property|Required|Default|Value Type|Description|More Info
@@ -876,6 +1005,8 @@ Property|Required|Default|Value Type|Description|More Info
 ```
 
 ####Iterative Task
+An iterative task calls an [operation](#/docs#operation) or [subflow](#/docs#flow) iteratively, for each value in a list.
+
 The task name is mapped to the iterative task's properties.
 
 Property|Required|Default|Value Type|Description|More Info
@@ -883,7 +1014,7 @@ Property|Required|Default|Value Type|Description|More Info
 `loop`|yes|-|key|container for loop properties|[for](#/docs#for)
 `navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic from [break](#/docs#break) or the result of the last iteration of the operation or flow|[navigation](#/docs#navigate) [results](#/docs#results)
 
-**Example - task prints all the values in value_list and the navigates to a task named "another_task"**
+**Example - task prints all the values in value_list and then navigates to a task named "another_task"**
 
 ```yaml
 - print_values:
@@ -894,6 +1025,36 @@ Property|Required|Default|Value Type|Description|More Info
           - text: value
     navigate:
       SUCCESS: another_task
+      FAILURE: FAILURE
+```
+
+####Asynchronous Task
+An asynchronous task calls an [operation](#/docs#operation) or [subflow](#/docs#flow) asynchronously, in parallel branches, for each value in a list.
+
+The task name is mapped to the asynchronous task's properties.
+
+Property|Required|Default|Value Type|Description|More Info
+---|---
+`async_loop`|yes|-|key|container for async loop properties|[async_loop](#/docs#async_loop)
+`aggregate`|no|-|list of key:values|values to aggregate from async branches|[aggregate](#/docs#aggregate)
+`navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic from [break](#/docs#break) or the result of the last iteration of the operation or flow|[navigation](#/docs#navigate) [results](#/docs#results)
+
+**Example - task prints all the values in value_list asynchronously and then navigates to a task named "another_task"**
+
+```yaml
+- print_values:
+    async_loop:
+      for: value in values_list
+      do:
+        ops.print_branch:
+          - ID: value
+      publish:
+        - name
+    aggregate:
+        - name_list: map(lambda x:str(x['name']), branches_context)
+    navigate:
+        SUCCESS: another_task
+        FAILURE: FAILURE
 ```
 
 ###workflow
@@ -1101,7 +1262,7 @@ operation:
 ####Example3 - Subflow
 This example uses the flow from **Example 1** as a subflow. It takes in four numbers (or uses default ones) to call `division_flow` twice. If either division returns the `ILLEGAL` result, navigation is routed to the `on_failure` task and the flow ends with a result of `FAILURE`. If both divisions are successful, the `on_failure` task is skipped and the flow ends with a result of `SUCCESS`.
 
-Note: To run this flow, the files from **Example 1** should be placed in the same folder as this flow file or use the `--cp` flag at the command line.
+**Note:** To run this flow, the files from **Example 1** should be placed in the same folder as this flow file or use the `--cp` flag at the command line.
 
 **Flow - master_divider.sl**
 
@@ -1262,6 +1423,59 @@ operation:
     - SUCCESS
 ```
 
+####Example 5 - Asynchronous loop
+This example demonstrates the usage of an asynchronous loop including aggregation.
+
+**Flow - async_loop_aggregate.sl**
+```yaml
+namespace: examples.async
+
+imports:
+  ops: examples.async
+
+flow:
+  name: async_loop_aggregate
+  inputs:
+    - values: [1,2,3,4]
+  workflow:
+    - print_values:
+        async_loop:
+          for: value in values
+          do:
+            ops.print_branch:
+              - ID: value
+          publish:
+            - name
+            - num
+        aggregate:
+            - name_list: map(lambda x:str(x['name']), branches_context)
+            - first_name: branches_context[0]['name']
+            - last_name: branches_context[-1]['name']
+            - total: sum(map(lambda x:x['num'], branches_context))
+  outputs:
+    - name_list
+    - first_name
+    - last_name
+    - total
+```
+
+**Operation - print_branch.sl**
+```yaml
+namespace: examples.async
+
+operation:
+  name: print_branch
+  inputs:
+     - ID
+  action:
+    python_script: |
+        name = 'branch ' + str(ID)
+        print 'Hello from ' + name
+  outputs:
+    - name
+    - num: ID
+```
+
 ##CloudSlang Best Practices
 The following is a list of best practices for authoring CloudSlang files. Many of these best practices are checked when using the [CloudSlang Verifier](#/docs#cloudslang-verifier).
 
@@ -1277,7 +1491,7 @@ The following is a list of best practices for authoring CloudSlang files. Many o
 - Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
   - Optional parameters and default values are noted.
 
-Note: In future releases some of the above best practices may be required by the CloudSlang compiler. 
+**Note:** In future releases some of the above best practices may be required by the CloudSlang compiler. 
 
 **Example - commented description of operation to count occurrences of a string in another string**
 ```yaml
@@ -1546,4 +1760,4 @@ flow|template for a flow
 task|template for a task
 operation|template for an operation
   
-Note: Optional CloudSlang elements are marked as comments (begin with #).
+**Note:** Optional CloudSlang elements are marked as comments (begin with #).

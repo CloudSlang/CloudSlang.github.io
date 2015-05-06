@@ -1489,7 +1489,7 @@ The following is a list of best practices for authoring CloudSlang files. Many o
 - Identifiers (flow names, operation names, input names, etc.) are written:
   -  In snake\_case, lowercase letters with underscores (\_)	between words, in all cases other than inputs to a Java @Action.
   - In camelCase, starting with a lowercase letter and each additional word starting with an uppercase letter appended without a delimiter, for inputs to a Java @Action. 
-- Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
+- Flow and operation files begin with a commented description and list of annotated inputs, outputs and results (see [CloudSlang Comments Style Guide](#/docs#cloudslang-comments-style-guide)).
   - Optional parameters and default values are noted.
 
 ###CloudSlang Tests Best Practices
@@ -1499,24 +1499,8 @@ The following is a list of best practices for authoring CloudSlang files. Many o
 
 **Note:** In future releases some of the above best practices may be required by the CloudSlang compiler. 
 
-**Example - commented description of operation to count occurrences of a string in another string**
-```yaml
-####################################################
-# Counts the occurrences of a string in another string 
-#
-# Inputs:
-#   - string_in_which_to_search - string where to search
-#   - string_to_find - string to be found
-#   - ignore_case - optional - ignores case if set to true - Default: true
-# Outputs:
-#   - occurrences - number of times string_to_find was found
-# Results:
-#   - SUCCESS - string_to_find is found at least once
-#   - FAILURE - otherwise
-####################################################
-```
-
 ### CloudSlang Comments Style Guide
+All CloundSlang flows and operations should begin with a documentation block that describes the flow or operation, and lists the inputs, outputs and results.
 
 ####Structure
 The structure and spacing of the comments are as in the example below:
@@ -1648,7 +1632,22 @@ The CloudSlang Build Tool builds projects. A project consists of a folder that c
 
 By default the build tool will look for a folder named **content** and a folder named **test** in the project folder to use as the content and test folders respectively. If they are present in the project folder, they do not have to be passed to the build tool. 
 
-To use the CloudSlang Build Tool, run the **cslang-builder** executable from the command line.
+To use the CloudSlang Build Tool with default settings, run the **cslang-builder** executable from the command line and pass the path to the project folder.
+
+```bash
+<builder path>\cslang-builder\bin>cslang-builder.bat <project path>  
+```
+
+To use the CloudSlang Build Tool with specific settings, run the **cslang-builder** executable from the command line and pass the following arguments:
+
+Arguement|Default|Description
+---|---
+-pr|current folder|project root folder
+-cr|&lt;project root&gt;/content|content root folder
+-tr|&lt;project root&gt;/test|test root folder
+-ts|none|list of test suites to run
+
+
 
 
 ##CloudSlang CLI

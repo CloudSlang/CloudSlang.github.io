@@ -1787,7 +1787,7 @@ Running the CloudSlang Build Tool performs the following steps:
 	+ If the build fails, a list of failed test cases are displayed.	 
 
 ###Download the Build Tool
-The CloudSlang Build Tool can be downloaded from [here](https://github.com/CloudSlang/cloud-slang/releases/latest).
+The CloudSlang Build Tool can be downloaded from [here](https://github.com/CloudSlang/cloud-slang/releases/tag/cloudslang-0.7.29).
 
 ###Use the Build Tool
 The CloudSlang Build Tool builds projects. A project consists of a folder that contains the CloudSlang content and a folder containing the tests for the content. 

@@ -1037,7 +1037,7 @@ Property|Required|Default|Value Type|Description|More Info
 ---|---
 `async_loop`|yes|-|key|container for async loop properties|[async_loop](#/docs#async_loop)
 `aggregate`|no|-|list of key:values|values to aggregate from async branches|[aggregate](#/docs#aggregate)
-`navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic from [break](#/docs#break) or the result of the last iteration of the operation or flow|[navigation](#/docs#navigate) [results](#/docs#results)
+`navigate`|no|`FAILURE`: on_failure or flow finish; `SUCCESS`: next task|key:value pairs| navigation logic|[navigation](#/docs#navigate) [results](#/docs#results)
 
 **Example - task prints all the values in value_list asynchronously and then navigates to a task named "another_task"**
 

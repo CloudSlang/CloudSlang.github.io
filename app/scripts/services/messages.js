@@ -5,7 +5,7 @@ angular.module('cloudSlangWebsiteApp')
         // App labels
         $rootScope.messages = {
             // nav bar
-            navGettingStartedTitle: 'Getting Started',
+            navGettingStartedTitle: 'Get Started',
             navUseCasesTitle: 'Use Cases',
             navAboutTitle: 'About Us',
             navDocumentationTitle: 'Documentation',
@@ -21,7 +21,7 @@ angular.module('cloudSlangWebsiteApp')
             headerMainTitle: 'Automation for DevOps',
             headerDescription: 'Automate your DevOps use cases using ready-made workflows. ' +
                                 'With CloudSlang you can orchestrate popular DevOps technologies, such as Docker and CoreOS in an agentless manner.',
-            headerStartNow: 'Getting started',
+            headerStartNow: 'Get started',
 
             // footer
             footerPrivacy: 'Privacy Policy',

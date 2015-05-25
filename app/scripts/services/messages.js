@@ -18,9 +18,9 @@ angular.module('cloudSlangWebsiteApp')
             navDocsDeveloperTitle: 'Developer',
 
             // header
-            headerMainTitle: 'Orchestration as Code',
-            headerDescription: 'CloudSlang is a flow-based orchestration tool for managing your deployed applications. ' +
-            'Rapidly automate your DevOps use cases using ready-made workflows.',
+            headerMainTitle: 'Automation for DevOps',
+            headerDescription: 'Automate your DevOps use cases using ready-made workflows. ' +
+                                'With CloudSlang you can orchestrate popular DevOps technologies, such as Docker and CoreOS in an agentless manner.',
             headerStartNow: 'Getting started',
 
             // footer

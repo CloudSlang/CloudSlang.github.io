@@ -18,9 +18,9 @@ angular.module('cloudSlangWebsiteApp')
             navDocsDeveloperTitle: 'Developer',
 
             // header
-            headerMainTitle: 'Automation for DevOps',
-            headerDescription: 'Automate your DevOps use cases using ready-made workflows. ' +
-                                'With CloudSlang you can orchestrate popular DevOps technologies, such as Docker and CoreOS in an agentless manner.',
+            headerMainTitle: 'Automate your DevOps use cases using ready-made workflows',
+            headerDescription: 'With CloudSlang you can orchestrate popular DevOps technologies, such as Docker and CoreOS in an agentless manner. ' +
+                                    'You can also define custom workflows that are reusable, shareable and easy to understand.',
             headerStartNow: 'Get started',
 
             // footer

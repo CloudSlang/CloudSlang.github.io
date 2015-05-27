@@ -1476,11 +1476,69 @@ operation:
     - num: ID
 ```
 
-##CloudSlang Best Practices
-The following is a list of best practices for authoring CloudSlang files. Many of these best practices are checked when using the [CloudSlang Verifier](#/docs#cloudslang-verifier).
+##CloudSlang Tests
+CloudSlang tests are written to test CloudSlang content and are run during the build process by the [CloudSlang Build Tool](#/docs#cloudslang-build-tool).
 
--	The namespace for a file matches the suffix of the file path in which the file resides.
-    Example: The send\_mail operation is found in the **cloudslang-content/io/cloudslang/base** folder. It uses the namespace `io.cloudslang.base.mail`.
+###Wrapper Flows
+Test cases either test a flow or operation directly or use a wrapper flow that calls the flow or operation to be tested.
+
+Wrapper flows are often used to set up an environment before the test runs and to clean up the environment after the test. They are also sometimes necessary for complex tests of a flow or operation's outputs.
+
+Wrapper flows are written in CloudSlang using the **.sl** extension and use the normal flow syntax. 
+
+###Test Suites
+Test suites are groups of tests that are only run if the build declares them as active. Test suites are often used to group tests that require a certain environment that may or may not be present in order to run. When the environment is present the suite can be activated and when it is not present the tests will not run.  
+
+Tests declare which test suites they are a part of, if any, using the `testSuites` property.
+
+If no test suites are defined for a given test case, the test will always run.
+
+###Test Case Syntax
+CloudSlang test files are written in YAML with the .inputs.yaml extension and contain one or more test cases.   
+
+Each test case begins with a unique key that is the test case name. The name is mapped to the following test case properties:
+
+Property|Required|Value Type|Description
+---|---|---
+`inputs`|no|list of key:value pairs|inputs to pass to the flow or operation being tested
+`systemPropertiesFile`|no|string|path to the system properties file for the flow or operation - ${project_path} can be used for specifying a path relative to the project path (e.g. systemPropertiesFile: ${project_path}\content\base\properties.yaml)
+`description`|no|string|description of test case
+`testFlowPath`|yes|string|qualified name of the flow, operation or wrapper flow to test
+`testSuites`|no|list|list of suites this test belongs to
+`outputs`|no|list of key:value pairs|expected output values of the flow, operation or wrapper flow being tested
+`result`|no|flow or operation result|expected result of the flow, operation or wrapper flow being tested
+`throwsException`|no|boolean|whether or not to expect an exception
+
+
+**Note:** The `outputs` parameter does not need to test all of a flow or operation's outputs. 
+
+**Example - test cases that test the match_regex operation**
+```yaml
+testMatchRegexMatch:
+  inputs:
+    - regex: 'a+b'
+    - text: aaabc
+  description: Tests that match_regex.sl operation finishes with MATCH for specified regex/text
+  testFlowPath: io.cloudslang.base.strings.match_regex
+  outputs:
+    - match_text: 'aaab'
+  result: MATCH
+
+testMatchRegexMissingInputs:
+  inputs:
+    - text: HELLO WORLD
+  description: Tests that match_regex.sl operation throws an exception when a required input is missing
+  testFlowPath: io.cloudslang.base.strings.match_regex
+  outputs:
+    - match_text: ''
+  throwsException: true
+``` 
+
+##CloudSlang Best Practices
+The following is a list of best practices for authoring CloudSlang files. Many of these best practices are checked when using the [CloudSlang Build Tool](#/docs#cloudslang-build-tool).
+
+###CloudSlang Content Best Practices
+-	The namespace for a file matches the suffix of the file path in which the file resides (e.g. the send\_mail operation is found in the **cloudslang-content/io/cloudslang/base** folder, so it uses the namespace `io.cloudslang.base.mail`).
 - Namespaces should be comprised of only lowercase alphanumeric characters (a-z and 0-9), underscores (_), periods(.) and hyphens (-).
 -	A flow or operation has the same name as the file it is in.
 -	Each file has one flow or one operation. 
@@ -1488,29 +1546,18 @@ The following is a list of best practices for authoring CloudSlang files. Many o
 - Identifiers (flow names, operation names, input names, etc.) are written:
   -  In snake\_case, lowercase letters with underscores (\_)	between words, in all cases other than inputs to a Java @Action.
   - In camelCase, starting with a lowercase letter and each additional word starting with an uppercase letter appended without a delimiter, for inputs to a Java @Action. 
-- Flow and operation files begin with a commented description and list of annotated inputs, outputs and results.
+- Flow and operation files begin with a commented description and list of annotated inputs, outputs and results (see [CloudSlang Comments Style Guide](#/docs#cloudslang-comments-style-guide)).
   - Optional parameters and default values are noted.
+
+###CloudSlang Tests Best Practices
+- Tests are contained in a directory with a folder structure identical to the structure of the directory they are testing.
+- Tests for a particular CloudSlang file are written in a file with the same name, but with the **.inputs.yaml** extension (e.g. the flow **print_text.sl** is tested by tests in **print_text.inputs.yaml**). 
+- Wrapper flows reside in the same folder as the tests call them.
 
 **Note:** In future releases some of the above best practices may be required by the CloudSlang compiler. 
 
-**Example - commented description of operation to count occurrences of a string in another string**
-```yaml
-####################################################
-# Counts the occurrences of a string in another string 
-#
-# Inputs:
-#   - string_in_which_to_search - string where to search
-#   - string_to_find - string to be found
-#   - ignore_case - optional - ignores case if set to true - Default: true
-# Outputs:
-#   - occurrences - number of times string_to_find was found
-# Results:
-#   - SUCCESS - string_to_find is found at least once
-#   - FAILURE - otherwise
-####################################################
-```
-
 ### CloudSlang Comments Style Guide
+All CloundSlang flows and operations should begin with a documentation block that describes the flow or operation, and lists the inputs, outputs and results.
 
 ####Structure
 The structure and spacing of the comments are as in the example below:
@@ -1563,13 +1610,6 @@ The structure and spacing of the comments are as in the example below:
   + FAILURE - otherwise
   + error_message - error message if error occurred 
   + command - command to execute
-
-##CloudSlang Verifier
-The CloudSlang Verifier is a tool that checks the syntactic validity of CloudSlang files along with adherence to many of the [best practices](#/docs#cloudslang-best-practices). 
-
-The CloudSlang Verifier can be downloaded from [here](https://github.com/CloudSlang/cloud-slang/releases/latest).
-
-To use the CloudSlang Verifier, run `java -jar cloudslang-content-verifier.jar <directory_path>`. The Verifier will recursively search the directory for CloudSlang files by extension and verify the validity of their syntax.
 
 ##CloudSlang CLI
 There are several ways to get started with the CloudSlang CLI. 
@@ -1708,7 +1748,6 @@ From a shell prompt:
 >cslang run --f c:/.../your_flow.sl
 ```
 
-
 ####Other Commands
 Some of the available commands are:
 
@@ -1734,6 +1773,46 @@ The execution log is saved in the directory in which the CLI was started in a fi
 
 ####Help
 To get a list of available commands, enter `help` at the CLI `cslang>` prompt. For further help, enter `help` and the name of the command.
+
+##CloudSlang Build Tool
+The CloudSlang Build Tool checks the syntactic validity of CloudSlang files, their adherence to many of the [best practices](#/docs#cloudslang-best-practices) and runs their associated tests. 
+
+Running the CloudSlang Build Tool performs the following steps:
+
+1. Displays the active project, content and test paths.
+2. Displays a list of the active test suites.
+3. Compiles all CloudSlang files found in the content directory and all of its subfolders.
+	+ If there is a compilation error, it is displayed and the build terminates.
+4. Compiles all CloudSlang test flows found in the test directory and all of its subfolders.
+5. Parses all test cases files found in the test directory and all of its subfolders.
+6. Runs all test cases found in the test case files that have no test suite or have a test suite that is active.
+7. Displays the test cases that were skipped. 
+8. Reports the build's status.
+	+ If the build fails, a list of failed test cases are displayed.	 
+
+###Download the Build Tool
+The CloudSlang Build Tool can be downloaded from [here](https://github.com/CloudSlang/cloud-slang/releases/tag/cloudslang-0.7.29).
+
+###Use the Build Tool
+The CloudSlang Build Tool builds projects. A project consists of a folder that contains the CloudSlang content and a folder containing the tests for the content. 
+
+By default the build tool will look for a folder named **content** and a folder named **test** in the project folder to use as the content and test folders respectively. If they are present in the project folder, they do not have to be passed to the build tool. 
+
+To use the CloudSlang Build Tool with default settings, run the **cslang-builder** executable from the command line and pass the path to the project folder.
+
+```bash
+<builder path>\cslang-builder\bin>cslang-builder.bat <project path>  
+```
+
+To use the CloudSlang Build Tool with specific settings, run the **cslang-builder** executable from the command line and pass the following arguments:
+
+Argument|Default|Description
+---|---
+-pr|current folder|project root folder
+-cr|&lt;project root&gt;/content|content root folder
+-tr|&lt;project root&gt;/test|test root folder
+-ts|none|list of test suites to run
+
 
 ##Sublime Integration
 

@@ -1489,22 +1489,26 @@ Wrapper flows are written in CloudSlang using the **.sl** extension and use the 
 ###Test Suites
 Test suites are groups of tests that are only run if the build declares them as active. Test suites are often used to group tests that require a certain environment that may or may not be present in order to run. When the environment is present the suite can be activated and when it is not present the tests will not run.  
 
-Tests declare which test suites they are a part of, if any, using the `testSuites` property. 
+Tests declare which test suites they are a part of, if any, using the `testSuites` property.
 
-###Test Syntax
-CloudSlang test files are written in YAML with the .yaml extension and contain one or more test cases.   
+If no test suites are defined for a given test case, the test will always run.
+
+###Test Case Syntax
+CloudSlang test files are written in YAML with the .inputs.yaml extension and contain one or more test cases.   
 
 Each test case begins with a unique key that is the test case name. The name is mapped to the following test case properties:
 
 Property|Required|Value Type|Description
 ---|---|---
 `inputs`|no|list of key:value pairs|inputs to pass to the flow or operation being tested
+`systemPropertiesFile`|no|string|system properties for the flow or operation being tested
 `description`|no|string|description of test case
 `testFlowPath`|yes|string|qualified name of the flow, operation or wrapper flow to test
 `testSuites`|no|list|list of suites this test belongs to
 `outputs`|no|list of key:value pairs|expected output values of the flow, operation or wrapper flow being tested
 `result`|no|flow or operation result|expected result of the flow, operation or wrapper flow being tested
 `throwsException`|no|boolean|whether or not to expect an exception
+
 
 **Note:** The `outputs` parameter does not need to test all of a flow or operation's outputs. 
 

@@ -8,7 +8,7 @@ The CloudSlang project is composed of three main parts: the CloudSlang Orchestra
 ###CloudSlang Orchestration Engine
 The CloudSlang Orchestration Engine is packaged as a lightweight Java .jar file and can therefore be embedded into existing Java projects.
  
-Uniquely built with a pluggable-compiler approach, the engine can support additional workflow languages by adding a compiler that translates the workflow DSL into the engine’s generic workflow execution plans.
+The engine can support additional workflow languages by adding a compiler that translates the workflow DSL into the engine’s generic workflow execution plans.
  
 ###CloudSlang Language
 The CloudSlang language is a YAML-based DSL for writing workflows. Using CloudSlang you can easily define a workflow in a structured, easy-to-understand format that can be run by an embedded instance of the CloudSlang Orchestration Engine or the stand-alone CloudSlang CLI.

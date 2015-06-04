@@ -1704,7 +1704,8 @@ cslang>run --f c:/.../your_flow.sl --if c:/.../inputs.yaml --i input1=value1
 ```
 
 ####Run with Dependencies 
-Dependencies from the content folder packaged with the CLI are added to the classpath by default. If the flow requires dependencies from another location, use the `--cp` flag with a comma-separated list of dependency paths: 
+Dependencies from the content folder packaged with the CLI are added to the classpath by default. If the flow requires dependencies from another location, use the `--cp` flag with a comma-separated list of dependency paths. Note that explicitly declaring a classpath using `--cp` overrides the default classpath, and therefore if there also is a dependency in the content folder, the folder must be added to the classpath explicitly.
+
 ```bash
 cslang>run --f c:/.../your_flow.sl --i input1=root,input2=25 --cp c:/.../yaml
 ```

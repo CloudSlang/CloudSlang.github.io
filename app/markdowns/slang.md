@@ -1491,7 +1491,7 @@ Test suites are groups of tests that are only run if the build declares them as 
 
 Tests declare which test suites they are a part of, if any, using the `testSuites` property.
 
-If no test suites are defined for a given test case, the test will always run.
+If no test suites are defined for a given test case, the test will run unless `!default` is passed to the [CloudSlang Build Tool](#/docs#cloudslang-build-tool).
 
 ###Test Case Syntax
 CloudSlang test files are written in YAML with the .inputs.yaml extension and contain one or more test cases.   
@@ -1501,7 +1501,7 @@ Each test case begins with a unique key that is the test case name. The name is 
 Property|Required|Value Type|Description
 ---|---|---
 `inputs`|no|list of key:value pairs|inputs to pass to the flow or operation being tested
-`systemPropertiesFile`|no|string|path to the system properties file for the flow or operation - ${project_path} can be used for specifying a path relative to the project path (e.g. systemPropertiesFile: ${project_path}\content\base\properties.yaml)
+`systemPropertiesFile`|no|string|path to the system properties file for the flow or operation - `${project_path}` can be used for specifying a path relative to the project path (e.g. systemPropertiesFile: `${project_path}\content\base\properties.yaml`)
 `description`|no|string|description of test case
 `testFlowPath`|yes|string|qualified name of the flow, operation or wrapper flow to test
 `testSuites`|no|list|list of suites this test belongs to
@@ -1812,7 +1812,7 @@ Argument|Default|Description
 -pr|current folder|project root folder
 -cr|&lt;project root&gt;/content|content root folder
 -tr|&lt;project root&gt;/test|test root folder
--ts|none|list of test suites to run
+-ts|none|list of test suites to run - use `!default` to skip tests that are not included in a test suite 
 
 
 ##Sublime Integration

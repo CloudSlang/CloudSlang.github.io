@@ -1812,8 +1812,10 @@ Argument|Default|Description
 -pr|current folder|project root folder
 -cr|&lt;project root&gt;/content|content root folder
 -tr|&lt;project root&gt;/test|test root folder
--ts|none|list of test suites to run - use `!default` to skip tests that are not included in a test suite 
+-ts|none|list of test suites to run - use `!default` to skip tests that are not included in a test suite
+-cov|false|whether or not test coverage data should be output
 
+**Note:** Test coverage is calculated as as percentage of flows and operations for which tests exist, regardless of how much of each flow or operation is covered by the test.   
 
 ##Sublime Integration
 

@@ -36,7 +36,7 @@ It's easy to get started running CloudSlang flows, especially using the CLI and 
 3. Run the CloudSlang executable. 
 4. At the prompt enter: 
   ```bash
-  run --f ../../content/io/cloudslang/base/print/print_text.sl --i text=Hi
+  run --f ../content/io/cloudslang/base/print/print_text.sl --i text=Hi
   ```
 5. The CLI will run the ready-made `print_text` operation that will print the value passed to the variable `text` to the screen.
 

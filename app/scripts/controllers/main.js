@@ -4,9 +4,12 @@ angular.module('cloudSlangWebsiteApp')
     .controller('MainCtrl', function ($scope, $rootScope, $document, MessagesService) {
 
         $rootScope.sections = [
-            { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
             { id: 'useCases', title: $rootScope.messages.navUseCasesTitle },
-            { id: 'about', title: $rootScope.messages.navAboutTitle }
+            { id: 'suggestWorkflow', title: $rootScope.messages.navSuggestAFlow },
+            { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
+            { id: 'about', title: $rootScope.messages.navAboutTitle},
+
+
         ];
         $rootScope.navSwitch = { uri: 'docs', title: $rootScope.messages.navDocumentationTitle };
 
@@ -50,8 +53,35 @@ angular.module('cloudSlangWebsiteApp')
             }
         };
 
+        $scope.worksWith = [
+            {
+                icon: 'images/workwith/logo_open_stack.png'
+            },
+            {
+                icon: 'images/workwith/logo_consul.png'
+            },
+            {
+                icon: 'images/workwith/logo_core_os.png'
+            },
+            {
+                icon: 'images/workwith/logo_docker.png'
+            },
+            {
+                icon: 'images/workwith/logo_jenkins.png'
+            },
+            {
+                icon: 'images/workwith/logo_cadvisor.png'
+            },
+            {
+                icon: 'images/workwith/logo_marathon.png'
+            }
+        ];
+
+
+
+
         $scope.scrollToGettingStarted = function () {
-            $rootScope.animateToElement($rootScope.sections[0].id);
+            $rootScope.animateToElement($rootScope.sections[2].id);
         };
     }).directive('loadingPage', [function () {
         return {

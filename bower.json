@@ -18,8 +18,12 @@
     "typed.js": "*",
     "pace": "*",
     "components-font-awesome": "*",
-    "angular-highlightjs": "*"
+    "angular-highlightjs": "*",
+    "jquery": "*",
+    "angular-carousel": "0.3.12",
+    "angular-touch": "1.4.1"
   },
+
   "devDependencies": {
     "angular-mocks": "~1.2.0",
     "angular-scenario": "~1.2.0"

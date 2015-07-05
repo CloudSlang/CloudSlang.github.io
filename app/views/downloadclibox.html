@@ -1,4 +1,4 @@
-<div>
+<div  ng-controller="GettingStartedCtrl">
     <div class="explanation col-md-7">
         <p class="h3">{{$root.messages.detailedDownloadCliHeader}}</p>
     </div>
@@ -7,11 +7,11 @@
     </div>
     <div  class="download col-md-7">
         <a onclick="ga('send', 'event', 'button', 'click', 'download cli', 1);"
-           class="pull-left btn btn-primary btn-lg download-now-button left-side"
+           class="pull-left btn btn-primary btn-lg download-now-button left-side" data-toggle="modal" data-target="#myModal"
            ng-href="/download">
             <img src="images/download_button.png" alt="Start Now"/></a>
         <a onclick="ga('send', 'event', 'button', 'click', 'download cli', 1);"
-           class="pull-left btn btn-primary btn-lg download-now-button right-side"
+           class="pull-left btn btn-primary btn-lg download-now-button right-side" data-toggle="modal" data-target="#myModal"
            ng-href="/download">
             <p class="h4">
             {{$root.messages.detailedDownloadLatest}}</p></a>
@@ -19,22 +19,19 @@
     <div class="explanation col-md-12">
         <p class="h3">{{$root.messages.detailedSlangCliHeader}}</p>
     </div>
-    <div class="col-md-7 snippet">
+    <div class="col-md-7">
         <div class="h4">{{$root.messages.detailedSlangWriteFlowText}}</div>
-        <div hljs include="'views/codesnippets/hello_world.sl'" language="less"></div>
-    </div>
-    <div class="col-md-7 snippet">
-        <div class="h4">{{$root.messages.detailedSlangWriteOperationText}}</div>
-        <div hljs include="'views/codesnippets/print.sl'" language="less"></div>
     </div>
     <div class="explanation col-md-12 col-xs-12">
         <p class="h3">{{$root.messages.detailedTriggerFlowHeader}}</p>
     </div>
     <div class="col-md-7 col-xs-12">
         <p class="h4">{{$root.messages.detailedTriggerFlowText1}}</p>
-        <p class="h4">{{$root.messages.detailedTriggerFlowText2}}</p>
+        <p class="h4">{{$root.messages.detailedTriggerFlowText2}}</p><br>
+        <p class="h4">{{$root.messages.detailedTriggerFlowText3}}</p>
     </div>
-    <div class="col-md-7 col-xs-12">
+
+   <!--- <div class="col-md-7 col-xs-12">
         <div class="cli" ng-click="showCli('cli-trigger-flow', [$root.messages.detailedCliTriggerFlow])">
             <div class="cli-header">{{$root.messages.detailedCliHeader}}</div>
             <div class="cli-body">{{$root.messages.detailedCliPrefix}}
@@ -42,5 +39,34 @@
                 <span id="cli-trigger-flow-cursor" class="typed-cursor">|</span>
             </div>
         </div>
+    </div>-->
+    <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog popup-font-color">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <p class="modal-title h3 text-center popup-font-color"> {{ $root.messages.popUpHeader }} </h3>
+                </div>
+                <div class="modal-body">
+                    <h4> {{ $root.messages.popUpBodyTitle }}</h4>
+                        <li> {{ $root.messages.popUpBodyDesc1 }} </li>
+                        <li> {{ $root.messages.popUpBodyDesc2 }} </li>
+                        <li> {{ $root.messages.popUpBodyDesc3 }} </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
     </div>
+
+
+
 </div>

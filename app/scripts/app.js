@@ -4,7 +4,8 @@ angular
     .module('cloudSlangWebsiteApp', [
         'ngAnimate',
         'ngRoute',
-        'hljs'
+        'hljs',
+        'angular-carousel'
     ])
     .config(function ($routeProvider) {
         $routeProvider

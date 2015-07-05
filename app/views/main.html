@@ -3,44 +3,68 @@
         <div ng-include src="'views/navbar.html'"></div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-xs-12">
-                    <p class="h3 header-title">{{$root.messages.headerMainTitle}}</p>
-                    <br/>
-                    <p class="h4">{{$root.messages.headerDescription}}</p>
-                    <br/>
+                <div class="col-md-12 col-xs-12">
+                    <div class="main-image">
+                        <img class="img-responsive" src="images/main_image.gif"/>
 
-                    <div class="col-md-12">
-                        <div class="row" ng-click="scrollToGettingStarted()">
-                            <a class="pull-left btn btn-primary btn-lg start-now-button left-side"><img
-                                    src="images/start_button.png" alt="Start Now"></a>
-                            <a class="pull-left btn btn-primary btn-lg start-now-button right-side"><p class="h4">
-                                {{$root.messages.headerStartNow}}</p></a>
+                        <p class="h3 header-title">{{$root.messages.headerMainTitle}}</p>
+
+                        <div ng-click="scrollToGettingStarted()">
+                            <a class="btn btn-lg start-now-button btn-responsive">
+                                <img class="pull-left resize" src="images/button_icon.png" alt="Start Now">
+
+                                <p class="start-now-text">
+                                    {{$root.messages.headerStartNow}}</p></a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xs-12">
-                    <div youtube-embed class="videoContainer">
-                        <img src="images/site_movie_img.jpg" class="hide"/>
-                        <iframe src="//www.youtube.com/embed/HT8J_z24hvE"></iframe>
-                    </div>
-                    <div class="star">
-                        <iframe src="http://ghbtns.com/github-btn.html?user=CloudSlang&repo=cloud-slang&type=star&count=false&size=large"
-                            allowtransparency="true" frameborder="0" scrolling="0" width="200" height="30"></iframe>
+                        <div class="star">
+                            <iframe
+                                src="http://ghbtns.com/github-btn.html?user=CloudSlang&repo=cloud-slang&type=star&count=false&size=large"
+                                allowtransparency="true" frameborder="0" scrolling="0" width="200"
+                                height="30"></iframe>
+                        </div>
+
+                        <div class="col-md-12 col-xs-12 works-with-border">
+                            <div ng-include src="'views/workwithcarousle.html'">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6 col-xs-12">
+                            <div>
+                                <h3>{{$root.messages.whatIsTitle}}</h3><br>
+
+                                <p class="h4 left">{{$root.messages.whatIsDescription}}</p>
+
+                                <!---<p class="h4 left">{{$root.messages.whatIsDescription2}}</p>--->
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xs-12">
+                            <div youtube-embed class="videoContainer"><img src="images/site_movie_img.jpg"
+                                                                           class="hide">
+                                <iframe src="https://www.youtube.com/embed/CX1_It_Ygso?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <section id="{{sections[0].id}}" class="section-wrapper use-cases">
+        <div ng-include src="'views/usecases.html'"></div>
+    </section>
+    <section id="{{sections[1].id}}" class="section-wrapper suggest-flow">
+        <div ng-include src="'views/suggestworkflow.html'"></div>
+    </section>
     <section class="section-wrapper bullets">
         <div ng-include src="'views/bullets.html'"></div>
     </section>
-    <section id="{{sections[0].id}}" class="section-wrapper getting-started">
+    <section id="{{sections[2].id}}" class="section-wrapper getting-started">
         <div ng-include src="'views/gettingstarted.html'"></div>
     </section>
-    <section id="{{sections[1].id}}" class="section-wrapper use-cases">
-        <div ng-include src="'views/usecases.html'"></div>
-    </section>
-    <section id="{{sections[2].id}}" class="section-wrapper about">
+    <section id="{{sections[3].id}}" class="section-wrapper about">
         <div ng-include src="'views/about.html'"></div>
     </section>
+</div>
+
 </div>

@@ -1,46 +1,72 @@
-<div  ng-controller="GettingStartedCtrl">
+<div ng-controller="GettingStartedCtrl">
     <div class="explanation col-md-7">
         <p class="h3">{{$root.messages.detailedDownloadCliHeader}}</p>
     </div>
     <div class="col-md-7">
+        <br>
+
         <p class="h4">{{$root.messages.detailedDownloadCliText}}</p>
     </div>
-    <div  class="download col-md-7">
+    <div class="download col-md-7">
         <a onclick="ga('send', 'event', 'button', 'click', 'download cli', 1);"
-           class="pull-left btn btn-primary btn-lg download-now-button left-side" data-toggle="modal" data-target="#myModal"
+           class="pull-left btn btn-primary btn-lg download-now-button left-side" data-toggle="modal"
+           data-target="#myModal"
            ng-href="/download">
             <img src="images/download_button.png" alt="Start Now"/></a>
         <a onclick="ga('send', 'event', 'button', 'click', 'download cli', 1);"
-           class="pull-left btn btn-primary btn-lg download-now-button right-side" data-toggle="modal" data-target="#myModal"
+           class="pull-left btn btn-primary btn-lg download-now-button right-side" data-toggle="modal"
+           data-target="#myModal"
            ng-href="/download">
             <p class="h4">
-            {{$root.messages.detailedDownloadLatest}}</p></a>
+                {{$root.messages.detailedDownloadLatest}}</p></a>
     </div>
     <div class="explanation col-md-12">
         <p class="h3">{{$root.messages.detailedSlangCliHeader}}</p>
     </div>
     <div class="col-md-7">
+        <br>
+
         <div class="h4">{{$root.messages.detailedSlangWriteFlowText}}</div>
     </div>
     <div class="explanation col-md-12 col-xs-12">
         <p class="h3">{{$root.messages.detailedTriggerFlowHeader}}</p>
     </div>
     <div class="col-md-7 col-xs-12">
+        <br>
+
         <p class="h4">{{$root.messages.detailedTriggerFlowText1}}</p>
+
         <p class="h4">{{$root.messages.detailedTriggerFlowText2}}</p><br>
+
         <p class="h4">{{$root.messages.detailedTriggerFlowText3}}</p>
     </div>
 
-   <!--- <div class="col-md-7 col-xs-12">
-        <div class="cli" ng-click="showCli('cli-trigger-flow', [$root.messages.detailedCliTriggerFlow])">
-            <div class="cli-header">{{$root.messages.detailedCliHeader}}</div>
-            <div class="cli-body">{{$root.messages.detailedCliPrefix}}
-                <span id="cli-trigger-flow" class="typed"></span>
-                <span id="cli-trigger-flow-cursor" class="typed-cursor">|</span>
-            </div>
-        </div>
-    </div>-->
-    <!-- Trigger the modal with a button -->
+    <div class="explanation col-md-12 col-xs-12">
+        <p class="h3">{{$root.messages.detailedLearnMoreHeader}}</p>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <br>
+
+        <p class="h4"> {{ $root.messages.popUpBody}}
+            <a class="download-link" href="https://www.youtube.com/watch?v=CX1_It_Ygso" target="_blank">
+                {{$root.messages.videoLink }} </a> {{ $root.messages.comma}}
+            <a class="download-link" href="http://www.cloudslang.io/#/docs" target="_blank">
+                {{ $root.messages.docsLink }}</a> {{ $root.messages.popUpBody2}}
+            <a class="download-link" href="http://cloudslang-tutorials.readthedocs.org/" target="_blank">
+                {{$root.messages.tutorialLink }} </a> {{ $root.messages.dot}}
+        </p>
+    </div>
+
+    <!--- <div class="col-md-7 col-xs-12">
+         <div class="cli" ng-click="showCli('cli-trigger-flow', [$root.messages.detailedCliTriggerFlow])">
+             <div class="cli-header">{{$root.messages.detailedCliHeader}}</div>
+             <div class="cli-body">{{$root.messages.detailedCliPrefix}}
+                 <span id="cli-trigger-flow" class="typed"></span>
+                 <span id="cli-trigger-flow-cursor" class="typed-cursor">|</span>
+             </div>
+         </div>
+     </div>-->
+
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -50,14 +76,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <p class="modal-title h3 text-center popup-font-color"> {{ $root.messages.popUpHeader }} </h3>
+                    <h4 class="modal-title h4 text-center popup-font-color"><strong>{{ $root.messages.popUpHeader
+                        }}</strong> </h4>
                 </div>
                 <div class="modal-body">
-                    <h4> {{ $root.messages.popUpBodyTitle }}</h4>
-                        <li> {{ $root.messages.popUpBodyDesc1 }} </li>
-                        <li> {{ $root.messages.popUpBodyDesc2 }} </li>
-                        <li> {{ $root.messages.popUpBodyDesc3 }} </li>
-                    </ul>
+                    <p class="h4"> {{ $root.messages.emailField}}</p>
+
+                    <div class="subscribe-field">
+                        <div ng-include src="'views/subscription.html'"></div>
+                    </div>
+                    <br>
+
+                    <p class="h4">
+                        <small>{{ $root.messages.emailPrivacy}}</small>
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -66,7 +98,6 @@
 
         </div>
     </div>
-
 
 
 </div>

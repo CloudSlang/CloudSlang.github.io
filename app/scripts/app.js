@@ -5,7 +5,8 @@ angular
         'ngAnimate',
         'ngRoute',
         'hljs',
-        'angular-carousel'
+        'angular-carousel',
+        'mailchimp'
     ])
     .config(function ($routeProvider) {
         $routeProvider
@@ -20,6 +21,10 @@ angular
             .when('/blog', {
                 templateUrl: 'views/blog.html',
                 controller: 'BlogCtrl'
+            })
+            .when('/about', {
+                templateUrl: 'views/about.html',
+                controller: 'MainCtrl'
             })
             .otherwise({
                 redirectTo: '/'

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudSlangWebsiteApp')
-    .controller('GettingStartedCtrl', function ($scope) {
+    .controller('GettingStartedCtrl', function () {
 
         $('[data-toggle=modal]').on('click', function (e) {
             var $target = $($(this).data('target'));
@@ -10,7 +10,7 @@ angular.module('cloudSlangWebsiteApp')
                 if ($target.data('triggered')) {
                     $target.modal('show')
                         .data('triggered',false); // prevents multiple clicks from reopening
-                };
+                }
             }, 3000); // milliseconds
             return false;
         });

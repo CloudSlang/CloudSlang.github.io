@@ -521,6 +521,42 @@ a:hover {
     top: 225px;
 }
 
+.start-now-button-nav {
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    border-color: #0BA04A;
+    background-color: #0BA04A;
+    width: 100px;
+    height: 30px;
+}
+
+.start-now-button-nav .resize-nav {
+    width: 20px;
+    margin-top: -7px;
+    margin-left: -7px;
+    margin-right: 7px;
+}
+
+.start-now-text-nav {
+    position: relative;
+    color: #ffffff;
+    font-size: 13px;
+    margin-left: -3px;
+    top: -2px;
+}
+
+.button-nav-position {
+    top: 10px;
+
+}
+
+@media (max-width: 767px) {
+    .button-nav-position {
+        top: -5px;
+    }
+}
+
 @media (max-width: 850px) {
     .start-now-button {
         position: absolute;
@@ -829,14 +865,29 @@ a:hover {
     font-size: 10px;
 }
 
-.docs-link {
+
+.subscribe-field {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.download-link {
     text-decoration: underline;
+    color: #5D913A;
 }
 
 .go-to-page {
     color: #639542;
     margin-left: 25px;
     display: inline-block;
+}
+
+.highlight-green {
+    color: #639542;
+}
+
+.highlight-green:hover {
+    color: #777;
 }
 
 .go-to-page .button {
@@ -1068,11 +1119,18 @@ a:hover {
 }*/
 
 .img-centered {
-    position: inherit;
-    width: 90%;
+    width: 65%;
     left: auto;
     right: auto;
-    margin-top: auto;
+    margin-top: 30px;
+
+}
+
+.img-centered2 {
+    width: 70%;
+    left: auto;
+    right: auto;
+    margin-top: 27px;
 
 }
 

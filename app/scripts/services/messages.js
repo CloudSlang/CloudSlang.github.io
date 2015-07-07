@@ -10,6 +10,7 @@ angular.module('cloudSlangWebsiteApp')
             navAboutTitle: 'About Us',
             navDocumentationTitle: 'Documentation',
             navBlogTitle: 'Blog',
+            navCommunityTitle: 'Community',
             navBackToSiteTitle: 'Back To Site',
             navSuggestAFlow: 'Suggest a Flow',
 
@@ -78,7 +79,7 @@ angular.module('cloudSlangWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsByHp: "Project CloudSlang by HP",
+            aboutUsByHp: 'Project CloudSlang by HP',
             aboutUsWhoWeAreText: 'This project is being contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
 
             // use cases
@@ -100,12 +101,17 @@ angular.module('cloudSlangWebsiteApp')
             orText: 'or',
 
             // download popup
-            popUpHeader: 'Thank You for Downloading!' ,
-            popUpBodyTitle: 'Now that you\'ve got CloudSlang up and running:',
-            popUpBodyDesc1: 'Browse our ready-made content on GitHub. ',
-            popUpBodyDesc2: 'Learn to write your first flow by watching this video.',
-            popUpBodyDesc3: 'Take a more in depth look at the CloudSlang language by working through this tutorial or reading the docs.',
-
+            popUpHeader: 'Thanks for downloading the CloudSlang CLI' ,
+            popUpBody: 'For more information on getting started with CloudSlang check out the',
+            videoLink: 'introductory video',
+            comma: ', ',
+            docsLink: 'docs',
+            popUpBody2: 'or the ',
+            tutorialLink: 'tutorial',
+            dot: '.',
+            emailField: 'Keep up to date with new ready-made flows and language capabilities. Sign up for the CloudSlang newsletter.',
+            emailPrivacy:'We respect your privacy. ' +
+                            'Your email address will only be used for communication purposes. It will not be sold, shared with or disclosed to a third party.',
 
 
             // -- download and install cli
@@ -122,6 +128,7 @@ angular.module('cloudSlangWebsiteApp')
             detailedTriggerFlowText1: '3. At the prompt enter:',
             detailedTriggerFlowText2: 'run --f ../../content/io/cloudslang/base/print/print_text.sl --i text=Hi',
             detailedTriggerFlowText3: 'The CLI will run the ready-made print_text operation that will print the value passed to the variable text.',
+            detailedLearnMoreHeader: 'Learn More',
             detailedCliHeader: 'Click to see how',
             detailedCliPrefix: '$',
             detailedCliClear: 'Clear',

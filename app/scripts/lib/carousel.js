@@ -1,3 +1,5 @@
+'use strict';
+
 $(document).ready(function() {
     $('.carousel[data-type="multi"] .item').each(function(){
         var next = $(this).next();

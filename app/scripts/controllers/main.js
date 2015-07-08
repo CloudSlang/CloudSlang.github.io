@@ -4,14 +4,13 @@ angular.module('cloudSlangWebsiteApp')
     .controller('MainCtrl', function ($scope, $rootScope, $document, MessagesService) {
 
         $rootScope.sections = [
-            { id: 'useCases', title: $rootScope.messages.navUseCasesTitle },
-            { id: 'suggestWorkflow', title: $rootScope.messages.navSuggestAFlow },
-            { id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle  },
-            { id: 'about', title: $rootScope.messages.navAboutTitle},
+            {id: 'useCases', title: $rootScope.messages.navUseCasesTitle},
+            {id: 'suggestWorkflow', title: $rootScope.messages.navSuggestAFlow},
+            {id: 'gettingStarted', title: $rootScope.messages.navGettingStartedTitle},
+            {id: 'about', title: $rootScope.messages.navAboutTitle},
 
 
         ];
-        $rootScope.navSwitch = { uri: 'docs', title: $rootScope.messages.navDocumentationTitle };
 
         $rootScope.showCli = function (elemendId, commands, loop, typeSpeed) {
             $('#' + elemendId + '-cursor').empty();
@@ -23,19 +22,19 @@ angular.module('cloudSlangWebsiteApp')
             });
         };
 
-        _.forEach($('.navbar-collapse'), function(target) {
+        _.forEach($('.navbar-collapse'), function (target) {
             $(target).collapse({'toggle': false});
         });
 
         // hide menu bar on click (small resolutions)
-        $document.on('click.nav','.navbar-collapse.in',function() {
-            _.forEach($('.navbar-collapse'), function(target) {
+        $document.on('click.nav', '.navbar-collapse.in', function () {
+            _.forEach($('.navbar-collapse'), function (target) {
                 $(target).collapse('hide');
             });
         });
 
         // workaround to remove the current class from the navbar when reaching the header
-        $(window).scroll(function() {
+        $(window).scroll(function () {
             if (!$scope.navInProcess) {
                 var windscroll = $(window).scrollTop();
                 if (windscroll < 800) {
@@ -79,7 +78,6 @@ angular.module('cloudSlangWebsiteApp')
 
 
 
-
         $scope.scrollToGettingStarted = function () {
             $rootScope.animateToElement($rootScope.sections[2].id);
         };
@@ -102,11 +100,11 @@ angular.module('cloudSlangWebsiteApp')
                 optimizeYouTubeEmbeds(src);
             }
         };
-    }]).directive('onePageNav', ['$timeout', function(timer) {
+    }]).directive('onePageNav', ['$timeout', function (timer) {
         return {
             restrict: 'A',
             template: '',
-            link: function(scope, element) {
+            link: function (scope, element) {
                 var onePageNav = function () {
                     $(element).onePageNav({
                         currentClass: 'current',
@@ -116,10 +114,10 @@ angular.module('cloudSlangWebsiteApp')
                         filter: ':not(.external)',
                         easing: 'swing',
                         scrollOffset: 300,
-                        begin: function() {
+                        begin: function () {
                             scope.navInProcess = true;
                         },
-                        end: function() {
+                        end: function () {
                             scope.navInProcess = false;
                         }
                     });
@@ -128,12 +126,13 @@ angular.module('cloudSlangWebsiteApp')
                 timer(onePageNav, 0); // must be refresh after dom is finished
             }
         };
-    }]).directive('scrollTop', [function() {
+
+    }]).directive('scrollTop', [function () {
         return {
             restrict: 'A',
             template: '',
-            link: function(scope, element) {
-                element.on('click', function(event) {
+            link: function (scope, element) {
+                element.on('click', function (event) {
                     event.preventDefault();
                     $('html, body').animate({scrollTop: 0}, 'slow', function () {
                         $('.header .nav .current').removeClass('current');
@@ -141,14 +140,14 @@ angular.module('cloudSlangWebsiteApp')
                 });
             }
         };
-    }]).directive('scrollBottom', [function() {
+    }]).directive('scrollBottom', [function () {
         return {
             restrict: 'A',
             template: '',
-            link: function(scope, element) {
-                element.on('click', function(event) {
+            link: function (scope, element) {
+                element.on('click', function (event) {
                     event.preventDefault();
-                    $('html, body').animate({scrollTop:  $(document).height()}, 'slow', function () {
+                    $('html, body').animate({scrollTop: $(document).height()}, 'slow', function () {
                         $('.header .nav .current').removeClass('current');
                         $(element).addClass('current');
                     });

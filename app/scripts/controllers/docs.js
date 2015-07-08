@@ -21,5 +21,6 @@ angular.module('cloudSlangWebsiteApp')
             { id: 'cloud-slang', title: $rootScope.messages.navDocsSlangTitle },
             { id: 'developer', title: $rootScope.messages.navDocsDeveloperTitle }
         ];
-        $rootScope.navSwitch = { uri: '', title: $rootScope.messages.navBackToSiteTitle };
+        
+
     });

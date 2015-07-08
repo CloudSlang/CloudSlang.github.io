@@ -9,8 +9,8 @@
 
                         <p class="h3 header-title">{{$root.messages.headerMainTitle}}</p>
 
-                        <div ng-click="scrollToGettingStarted()">
-                            <a class="btn btn-lg start-now-button btn-responsive">
+                        <div>
+                            <a href="/#/getstarted" class="btn btn-lg start-now-button btn-responsive">
                                 <img class="pull-left resize" src="images/button_icon.png" alt="Start Now">
 
                                 <p class="start-now-text">
@@ -24,6 +24,7 @@
                         </div>
 
                         <div class="col-md-12 col-xs-12 works-with-border">
+                            <div class="works-with-text"> <p> {{$root.messages.worksWith}} </p></div>
                             <div ng-include src="'views/workwithcarousle.html'">
                             </div>
                         </div>
@@ -40,7 +41,7 @@
                         </div>
 
                         <div class="col-md-6 col-xs-12">
-                            <div youtube-embed class="videoContainer"><img src="images/site_movie_img.jpg" class="hide">
+                            <div youtube-embed class="videoContainer"><img src="images/test.png" class="hide">
                                 <iframe src="https://www.youtube.com/embed/CX1_It_Ygso?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
                             </div>
                         </div>
@@ -58,9 +59,10 @@
     <section class="section-wrapper bullets">
         <div ng-include src="'views/bullets.html'"></div>
     </section>
-    <section id="{{sections[2].id}}" class="section-wrapper getting-started">
+
+        <!---<section id="{{sections[2].id}}" class="section-wrapper getting-started">
         <div ng-include src="'views/gettingstarted.html'"></div>
-    </section>
+    </section> -->
     <!--<section id="{{sections[3].id}}" class="section-wrapper about">
         <div ng-include src="'views/about.html'"></div>
     </section>-->

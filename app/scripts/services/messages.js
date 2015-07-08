@@ -24,6 +24,7 @@ angular.module('cloudSlangWebsiteApp')
             headerDescription: 'With CloudSlang you can orchestrate popular DevOps technologies, such as Docker and CoreOS in an agentless manner. ' +
                                     'You can also define custom workflows that are reusable, shareable and easy to understand.',
             headerStartNow: 'Start Now',
+            worksWith: 'Works with:',
 
             // what is cloudslang
             whatIsTitle: 'What is CloudSlang?' ,
@@ -34,7 +35,8 @@ angular.module('cloudSlangWebsiteApp')
 
             //suggest a workflow
             suggestWorkFlowTitle: 'Suggest a Workflow',
-            suggestWorkFlowDescription: 'Do you have a DevOps use case that you\'d like to automate but it\'s not covered by our ready-made content? Let us know about it.',
+            suggestWorkFlowDescription1: 'Do you have a DevOps use case that you\'d like to automate, but it\'s not covered by our ready-made content?',
+            suggestWorkFlowDescription2: 'We’d be thrilled if you would contribute and share your own content. In the meantime though, you can click below to let the community know what you need.',
             suggestWorkFlowButton: 'Suggest a workflow' ,
 
             // footer
@@ -83,15 +85,16 @@ angular.module('cloudSlangWebsiteApp')
             aboutUsWhoWeAreText: 'This project is being contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
 
             // use cases
-            useCasesTitle: 'Use Cases',
-            useCasesITTitle: 'IT Process Automation',
+            useCasesTitle: 'Example Use Cases',
+            useCasesCoreOsTitle: 'Clear Unused Docker Images in a CoreOS Cluster',
             useCasesCloudTitle: 'Cloud Orchestration',
-            useCasesAppDeploymentTitle: 'Application Deployment',
-            useCasesDevOpsTitle: 'DevOps',
-            useCasesITDesc: 'Disaster Recovery',
+            useCasesAppDeploymentTitle: 'Deploying a Dockerized Application',
+            useCasesOpenStackTitle: 'OpenStack Health Check',
+            useCasesCoreOsDesc: 'Unused Docker images can waste a lot of precious disk space. Use this workflow to remove all the unused Docker images from your entire CoreOS cluster.',
             useCasesCloudDesc: 'OpenStack Health Check',
-            useCasesAppDeploymentDesc: 'Link Docker Container',
-            useCasesDevOpsDesc: 'CI \\ CD',
+            useCasesAppDeploymentDesc: 'This example workflow demonstrates how to easily deploy a complex app that uses linked containers. ' +
+                                            'Use it as a springboard for writing a custom flow to deploy your own application.',
+            useCasesOpenStackDesc: 'Performs a health check on an OpenStack machine by creating a server, checking that it\'s up and then deleting it.',
 
             // getting started
             downloadCliHeader: 'Download and use slang CLI tool',

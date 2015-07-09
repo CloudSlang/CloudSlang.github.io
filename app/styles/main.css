@@ -539,9 +539,13 @@ a:hover {
     margin-right: 5px;
     margin-left: 5px;
 
-
-
 }
+
+.workflow {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
 
 .start-now-button-nav .resize-nav {
     width: 20px;

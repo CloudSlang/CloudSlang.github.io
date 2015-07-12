@@ -18,11 +18,11 @@ app.use(bodyParser.urlencoded({
 });*/
 
 
-app.use(function(req, res) {
+/*app.use(function(req, res) {
     var err = new Error('Not Found');
     err.status = 404;
     res.sendFile(__dirname + '/404.html')
-});
+});*/
 
 
 app.set('port', (process.env.PORT || 5000));

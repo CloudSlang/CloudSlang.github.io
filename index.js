@@ -13,19 +13,16 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.get('/status',function(req, res){
+/*app.get('/status',function(req, res){
     res.send('/status GET OK');
-});
-
-/*app.get('/download',function(req, res){
-    res.redirect("https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.7.15/cslang-cli.zip")
 });*/
 
-/*app.use(function(req, res) {
+
+app.use(function(req, res) {
     var err = new Error('Not Found');
     err.status = 404;
     res.sendFile(__dirname + '/404.html')
-});*/
+});
 
 
 app.set('port', (process.env.PORT || 5000));

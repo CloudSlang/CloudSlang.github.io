@@ -21,7 +21,7 @@ app.get('/status',function(req, res){
 app.use(function(req, res) {
     var err = new Error('Not Found');
     err.status = 404;
-    res.sendFile(__dirname + '/public/404.html')
+    res.sendFile(__dirname + '/404.html')
 });
 
 

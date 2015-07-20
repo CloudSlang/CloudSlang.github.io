@@ -84,6 +84,12 @@ angular.module('cloudSlangWebsiteApp')
             aboutUsByHp: 'Project CloudSlang by HP',
             aboutUsWhoWeAreText: 'This project is being contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
 
+            // get started banner
+            bannerTitle: 'Get Started',
+            bannerDesc: 'Click this button and start using CloudSlang in 3 easy steps',
+            startNowBanner: 'Start Now',
+
+
             // use cases
             useCasesTitle: 'Example Use Cases',
             useCasesCoreOsTitle: 'Clear Unused Docker Images in a CoreOS Cluster',

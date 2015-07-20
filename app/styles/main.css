@@ -106,7 +106,7 @@ a:hover {
 .header {
     overflow: hidden;
     margin-top: 100px;
-    padding-bottom: 60px;
+    padding-bottom: 0px;
 }
 
 .header .star {
@@ -179,6 +179,10 @@ a:hover {
     .header .star {
         margin-left: 0;
     }
+}
+
+.videoContainer {
+    margin-bottom: 30px;
 }
 
 @media (max-width: 991px) {
@@ -334,6 +338,10 @@ a:hover {
     background-color: #0b7437;
 }
 
+.section-wrapper.banner {
+    background-color: #085428;
+}
+
 .bullets .explore {
     font-weight: 400;
     text-decoration: underline;
@@ -462,6 +470,22 @@ a:hover {
     border-radius: 0;
     background: rgba(255, 255, 255, 0.95);
 }
+
+
+.banner-button {
+    position: absolute;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    border-color: #0BA04A;
+    background-color: #0BA04A;
+    width: 230px;
+    height: 60px;
+    margin-top: 5px;
+    font-size: 24px;
+}
+
+
 
 .suggest-workflow-title {
     margin-top: -30px;
@@ -938,7 +962,7 @@ a:hover {
     width: 77px;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 45%;
     -webkit-transform: translateY(-50%) translateX(-50%);
     -ms-transform: translateY(-50%) translateX(-50%);
     transform: translateY(-50%) translateX(-50%);
@@ -946,7 +970,7 @@ a:hover {
 
 @media (max-width: 991px) {
     .youtube-img-play-button {
-        left: 40%;
+        left: 50%;
         top: 50%;
     }
 }
@@ -971,7 +995,7 @@ a:hover {
     .youtube-img-play-button {
         left: 50%;
         right: auto;
-        top: 60%;
+        top: 50%;
     }
 }
 
@@ -1015,7 +1039,7 @@ a:hover {
 
 .blog.header {
     margin-top: 71px;
-    padding-bottom: 0;
+    padding-bottom: 0px;
 }
 
 .blog .blog-frame {
@@ -1167,11 +1191,17 @@ a:hover {
 
 }
 
-/*.bullet-title {
-    font-size: 24px;
-    font-weight: normal;
-    line-height: 0.9;
-}*/
+.bullet-img {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: 70px;
+}
+
+.bullet-img-big {
+    position: relative;
+    left: 100px;
+}
 
 .carousel-image {
     height: 50px;

@@ -6,7 +6,8 @@ angular
         'ngRoute',
         'hljs',
         'angular-carousel',
-        'mailchimp'
+        'mailchimp',
+        'ui.bootstrap'
     ])
     .config(function ($routeProvider) {
         $routeProvider

@@ -24,12 +24,10 @@
                         </div>
 
                         <div class="col-md-12 col-xs-12 works-with-border">
-                            <div class="works-with-text"> <p> {{$root.messages.worksWith}} </p></div>
+                            <div class="works-with-text"><p> {{$root.messages.worksWith}} </p></div>
                             <div ng-include src="'views/workwithcarousle.html'">
                             </div>
                         </div>
-
-
                         <div class="col-md-6 col-xs-12">
                             <div>
                                 <h3>{{$root.messages.whatIsTitle}}</h3><br>
@@ -42,29 +40,35 @@
 
                         <div class="col-md-6 col-xs-12">
                             <div youtube-embed class="videoContainer"><img src="images/test.png" class="hide">
-                                <iframe src="https://www.youtube.com/embed/CX1_It_Ygso?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                                <iframe
+                                    src="https://www.youtube.com/embed/CX1_It_Ygso?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
                             </div>
                         </div>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <section id="{{sections[0].id}}" class="section-wrapper use-cases">
-        <div ng-include src="'views/usecases.html'"></div>
-    </section>
-    <section id="{{sections[1].id}}" class="section-wrapper suggest-flow">
-        <div ng-include src="'views/suggestworkflow.html'"></div>
-    </section>
-    <section class="section-wrapper bullets">
-        <div ng-include src="'views/bullets.html'"></div>
-    </section>
+        <section id="{{sections[0].id}}" class="section-wrapper use-cases">
+            <div ng-include src="'views/usecases.html'"></div>
+        </section>
+        <section id="{{sections[1].id}}" class="section-wrapper suggest-flow">
+            <div ng-include src="'views/suggestworkflow.html'"></div>
+        </section>
+        <section class="section-wrapper bullets">
+            <div ng-include src="'views/bullets.html'"></div>
+        </section>
+        <section class="section-wrapper banner">
+            <div ng-include src="'views/banner.html'"></div>
+        </section>
 
         <!---<section id="{{sections[2].id}}" class="section-wrapper getting-started">
         <div ng-include src="'views/gettingstarted.html'"></div>
     </section> -->
 
-    <!--<section id="{{sections[3].id}}" class="section-wrapper about">
-        <div ng-include src="'views/about.html'"></div>
-    </section>-->
+        <!--<section id="{{sections[3].id}}" class="section-wrapper about">
+            <div ng-include src="'views/about.html'"></div>
+        </section>-->
+
+    </div>
 </div>

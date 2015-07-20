@@ -104,13 +104,15 @@ angular.module('cloudSlangWebsiteApp')
 
             // getting started
             downloadCliHeader: 'Download and use slang CLI tool',
+            getStartedTitleDesc: 'Start Working with CloudSlang with these 3 simple steps',
             downloadCliDownloadLink: 'Download and see how',
             embedScoreHeader: 'Embed score library in your application',
             embedScoreLink: 'Press to see how',
             orText: 'or',
+            cloudSlangVersion: 'CloudSlang version x.x.x',
 
             // download popup
-            popUpHeader: 'Thanks for downloading the CloudSlang CLI' ,
+            popUpHeader: 'Keep up to date!' ,
             popUpBody: 'For more information on getting started with CloudSlang check out the',
             videoLink: 'introductory video',
             comma: ', ',
@@ -125,18 +127,19 @@ angular.module('cloudSlangWebsiteApp')
 
             // -- download and install cli
             detailedDownloadCliHeader: 'Download',
-            detailedDownloadCliText: '1. Download and unzip the CloudSlang CLI.',
+            detailedDownloadCliText: 'Download and unzip the CloudSlang CLI.',
             detailedDownloadLatest: 'Download latest version',
             detailedDownloadOldVersions: 'Download old versions',
             detailedSlangCliHeader: 'Execute CLI',
-            detailedSlangWriteFlowText: '2. Go to cslang-cli\cslang\cslang\bin\ and run the CloudSlang executable.',
+            detailedSlangWriteFlowText: 'Go to cslang-cli\cslang\cslang\bin\ and run the CloudSlang executable.',
             detailedSlangWriteOperationText: 'Write an operation and save it as \'print.sl\'.',
             detailedUseCliHeader: 'Start command-line interface',
             detailedUseCliText: 'Open your console and execute the CLI',
             detailedTriggerFlowHeader: 'Run a workflow',
-            detailedTriggerFlowText1: '3. At the prompt enter:',
-            detailedTriggerFlowText2: 'run --f ../../content/io/cloudslang/base/print/print_text.sl --i text=Hi',
-            detailedTriggerFlowText3: 'The CLI will run the ready-made print_text operation that will print the value passed to the variable text.',
+            detailedTriggerFlowText1: 'At the prompt enter:',
+            detailedTriggerFlowText2: 'run --f ../content/io/cloudslang/base',
+            detailedTriggerFlowText3: ' /print/print_text.sl --i text=Hi',
+            detailedTriggerFlowText4: 'The CLI will run the ready-made print_text operation that will print the value passed to the variable text.',
             detailedLearnMoreHeader: 'Learn More',
             detailedCliHeader: 'Click to see how',
             detailedCliPrefix: '$',

@@ -2,9 +2,57 @@
     <div ng-include src="'views/navbar.html'"></div>
 </div>
 
-<div ng-controller="MainCtrl" class="container">
-    <p class="h1 section-header getting-started">{{sections[2].title}}</p>
-    <div class="row row-centered">
-        <div ng-include src="'views/downloadclibox.html'" class="col-md-12 detailedBox"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="h3 getting-started">{{sections[2].title}}</p>
+
+            <p class="h5">{{ $root.messages.getStartedTitleDesc }} </p><br>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="circle-get-started"><h5 class="h5 get-started-number">1</h5></div>
+            <h3 class="h4 get-started-title"> {{$root.messages.detailedDownloadCliHeader}}</h3>
+
+            <p class="h5 get-started-desc">{{ $root.messages.detailedDownloadCliText }}</p>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="circle-get-started"><p class="h5 get-started-number">2</p></div>
+            <h3 class="h4 get-started-title"> {{ $root.messages.detailedSlangCliHeader }}</h3>
+
+            <p class="h5 get-started-desc">{{ $root.messages.detailedSlangWriteFlowText }}</p>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="circle-get-started"><p class="h5 get-started-number">3</p></div>
+            <h3 class="h4 get-started-title"> {{$root.messages.detailedTriggerFlowHeader}}</h3>
+
+            <p class="h5 get-started-desc">{{ $root.messages.detailedTriggerFlowText1}}</p><br>
+
+            <p class="h5 get-started-desc small-green">{{$root.messages.detailedTriggerFlowText2 +
+                $root.messages.detailedTriggerFlowText3}}</p>
+            <br>
+
+            <p class="h5 get-started-desc">{{$root.messages.detailedTriggerFlowText4 }}</p>
+
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="circle-get-started"><p class="h5 get-started-number">4</p></div>
+            <h3 class="h4 get-started-title"> {{$root.messages.detailedLearnMoreHeader}}</h3>
+
+            <p class="h5 get-started-desc">{{ $root.messages.popUpBody + " " + $root.messages.videoLink + " " +
+                $root.messages.comma + " " + $root.messages.docsLink + " " + $root.messages.popUpBody2 + " "
+                +$root.messages.tutorialLink }}</p>
+        </div>
+
+        <div class="row-centered">
+            <div class="col-md-12">
+                <div ng-include src="'views/downloadclibox.html'" class="col-md-12 detailedBox"></div>
+            </div>
+        </div>
+        <img class="pull-right getting-started-robot" src="images\gettingstarted\get_started_robot.png">
     </div>
+
 </div>
+
+
+<section class="section-wrapper get-started">
+</section>

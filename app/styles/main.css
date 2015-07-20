@@ -352,6 +352,12 @@ a:hover {
     background-color: #e6e6e6;
 }
 
+.section-wrapper.get-started {
+    background-color: #0b7437;
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+
 .use-cases .use-case {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -485,13 +491,22 @@ a:hover {
     font-size: 24px;
 }
 
+.banner-button:hover {
+    text-decoration: none;
+    color: #FFFFFF;
+    border-color: transparent;
+    background-color: #000000;
+}
+
+
 .banner-text {
         font-size: 25px;
         margin-top: 5px;
 }
 
+
 .banner-resize {
-        margin-top: 5px;
+        margin-top: 6px;
     }
 
 
@@ -585,7 +600,7 @@ a:hover {
 
 .start-now-button-nav:hover {
     border-color: transparent;
-    background-color: #000000;
+    background-color: #7CCA9D;
 }
 
 .glyphicon {
@@ -670,7 +685,7 @@ a:hover {
 
 .start-now-button:hover {
     border-color: transparent;
-    background-color: #000000;
+    background-color: #7CCA9D;
 }
 
 .start-now-button img {
@@ -681,6 +696,40 @@ a:hover {
 
 .section-wrapper.getting-started {
     background-color: #152d07;
+}
+
+.getting-started-robot {
+    position: relative;
+    margin-top: -50px;
+    right: 200px;
+}
+
+@media (max-width: 1199px) {
+
+    .getting-started-robot {
+        right: 100px;
+    }
+}
+
+@media (max-width: 991px) {
+    .getting-started-robot {
+        right: 20px;
+    }
+}
+
+@media (max-width: 680px) {
+    .getting-started-robot {
+        right: -20px;
+        width: 250px;
+
+    }
+}
+
+@media (max-width: 500px) {
+    .getting-started-robot {
+        right: -20px;
+        width: 180px;
+    }
 }
 
 .vtop {
@@ -1029,34 +1078,43 @@ a:hover {
 }
 
 .download-now-button {
-    margin-left: 15px;
-    border-radius: 0;
-    border-color: #8caa7f;
-    background-color: #6c925e;
-    padding: 10px;
+    position: relative;
+    top: -50px;
+    left: auto;
+    right: auto;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    margin-top: 100px;
+    border-color: #0BA04A;
+    background-color: #0BA04A;
+    width: 250px;
+    height: 66px;
+
 }
 
-.download-now-button.left-side {
-    background-color: #445c3a;
-    border-color: #607658;
-    margin-right: -10px;
-    width: 70px;
+@media (max-width: 350px){
+.download-now-button {
+    margin-left: -15px;
+}
 }
 
-.download-now-button.left-side:hover {
-    background-color: #6c925e;
-    border-color: transparent;
+.download-now-button:hover {
+    background-color: #7CCA9D;
+    border-color: #7CCA9D;
 }
 
-.download-now-button.right-side {
-    width: auto;
+.download-now-text {
+    color: #ffffff;
+    font-size: 28px;
+    margin-top: 3px;
 }
 
-.download-now-button.right-side:hover {
-    background-color: #445c3a;
-    border-color: transparent;
+.cloudslang-version {
+    position: relative;
+    top: -47px;
+    color: darkgrey;
 }
-
 .download-now-button img {
     width: 43px;
 }
@@ -1170,20 +1228,49 @@ a:hover {
     margin-bottom: 25px;
 }
 
-/*.circle {
-    width: 150px;
-    height: 150px;
-    padding: 10px 10px 10px 10px;
-    background-color: #0BA04A;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    border-radius: 100px;
-    background-size: 141px;
+.circle-get-started {
+    position: relative;
+    display: inline-block;
+    margin-top: 25px;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    background-color: #7CCA9D;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    background-size: 30px;
     background-repeat: no-repeat;
     background-position: 50%;
-    margin-top: 25px;
-    margin-bottom: 25px;
-}*/
+}
+
+.get-started-number {
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    left: 20px;
+    top: 7px;
+}
+.get-started-title {
+    position: relative;
+    display: inline-block;
+    top: -15px;
+    left: 5px;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.get-started-desc{
+    width: 230px;
+    margin-left: 58px;
+    margin-top: -10px;
+    line-height: 1.5;
+}
+
+.small-green {
+    font-size: small;
+    color: #7CCA9D;
+}
 
 .img-centered {
     width: 65%;
@@ -1307,6 +1394,76 @@ a:hover {
     }
 }
 
+.popup-title {
+    margin-bottom: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: black;
+
+}
+
+.popup-desc {
+    text-align: left;
+
+}
+
+.privacy {
+    text-align: left;
+    margin-top: 30px;
+    font-size: 15px;
+    width: 450px;
+
+}
+
 .popup-font-color {
     color: #000000;
+}
+
+.name-field {
+    position: relative;
+    left: -50px;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    width: 120px;
+    height: 30px;
+    padding-left: 7px;
+    margin-left: 40px;
+
+}
+
+.email-field {
+    position: relative;
+    left: -50px;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    width: 250px;
+    height: 30px;
+    padding-left: 7px;
+
+}
+
+.sign-up {
+    position: relative;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    border-color: transparent;
+    margin-left: 0px;
+    margin-bottom: 100px;
+    background-color: #0BA04A;
+    left: -45px;
+    width: 100px;
+    height: 30px;
+    color: white;
+
+}
+
+.popup-robot {
+    position: relative;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    top: -211px;
+    right: -15px;
 }

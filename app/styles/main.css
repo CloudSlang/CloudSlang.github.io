@@ -485,6 +485,34 @@ a:hover {
     font-size: 24px;
 }
 
+.banner-text {
+        font-size: 25px;
+        margin-top: 5px;
+}
+
+.banner-resize {
+        margin-top: 5px;
+    }
+
+
+@media (max-width: 991px) {
+    .banner-button {
+        width: 160px;
+        height: 45px;
+    }
+
+    .banner-text{
+        font-size: 20px;
+        margin-top: 1px;
+
+    }
+    .banner-resize
+    {
+        margin-top: -1px;
+        margin-left: -5px;
+    }
+
+}
 
 
 .suggest-workflow-title {
@@ -505,6 +533,7 @@ a:hover {
     font-size: 18px;
     color: #0ba04a;
 }
+
 
 
 .btn:focus, .btn:active:focus, .btn.active:focus,

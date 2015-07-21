@@ -60,7 +60,7 @@ angular.module('cloudSlangWebsiteApp')
             autoplaySpeed: 5000,
             speed: 1000,
             slidesToShow: 3,
-            slidesToScroll: 1,
+            slidesToScroll: 3,
             responsive: [
                 {
                     breakpoint: 991,
@@ -71,16 +71,25 @@ angular.module('cloudSlangWebsiteApp')
                 {
                     breakpoint: 655,
                     settings: {
-                        slidesToShow: 1
+                        slidesToShow: 2
                     }
                 }]
         };
 
-        $scope.scrollToGettingStarted = function () {
+         $scope.scrollToGettingStarted = function () {
             $rootScope.animateToElement($rootScope.sections[2].id);
         };
 
-    }).directive('loadingPage', [function () {
+    }).directive('slickSlider',function($timeout){
+        return {
+            restrict: 'A',
+            link: function(scope,element,attrs) {
+                $timeout(function() {
+                    $(element).slick(scope.$eval(attrs.slickSlider));
+                });
+            }
+        }
+}).directive('loadingPage', [function () {
         return {
             restrict: 'E',
             template: '<div class="loading-page"></div>',

@@ -1,13 +1,15 @@
 <div ng-controller="MainCtrl">
     <div class="col-md-12">
-         <slick class="carousel-slide" settings="slickConfig">
-            <div><img src="images\workwith\logo_open_stack.png"></div>
-            <div><img src="images\workwith\logo_jenkins.png"></div>
-            <div><img src="images\workwith\logo_docker.png"></div>
-            <div><img src="images\workwith\logo_consul.png"></div>
-            <div><img src="images\workwith\logo_core_os.png"></div>
-            <div><img src="images\workwith\logo_cadvisor.png"></div>
-            <div><img src="images\workwith\logo_marathon.png"></div>
-        </slick>
+        <div slick-slider="{dots: false, arrows: false, draggable:
+  false, slidesToShow:3, infinite:true, autoplay: true}"  class="carousel-slide">
+            <div><img class="img-responsive" src="images\workwith\logo_open_stack.png"></div>
+            <div><img class="img-responsive" src="images\workwith\logo_jenkins.png"></div>
+            <div><img class="img-responsive" src="images\workwith\logo_docker.png"></div>
+            <div><img class="img-responsive" src="images\workwith\logo_consul.png"></div>
+            <div><img class="img-responsive" src="images\workwith\logo_core_os.png"></div>
+            <div><img class="img-responsive" src="images\workwith\logo_cadvisor.png"></div>
+            <div><img class="img-responsive" src="images\workwith\logo_marathon.png"></div>
+        </div>
+
     </div>
 </div>

@@ -20,9 +20,9 @@
     "components-font-awesome": "*",
     "angular-highlightjs": "*",
     "jquery": "*",
-    "angular-carousel": "0.3.12",
     "angular-touch": "1.4.1",
-    "angular-mailchimp": "~0.0.3"
+    "angular-mailchimp": "~0.0.3",
+    "angular-slick-carousel": "~3.0.2"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",
@@ -31,12 +31,6 @@
   "appPath": "app",
   "resolutions": {
     "jquery": ">= 1.9.0",
-      "angular": "~1.2.8"
-
-
-
-
-
-
+    "angular": "~1.2.8"
   }
 }

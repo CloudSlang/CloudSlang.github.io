@@ -5,9 +5,9 @@ angular
         'ngAnimate',
         'ngRoute',
         'hljs',
-        'angular-carousel',
         'mailchimp',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'slickCarousel'
     ])
     .config(function ($routeProvider) {
         $routeProvider

@@ -52,31 +52,33 @@ angular.module('cloudSlangWebsiteApp')
             }
         };
 
-        $scope.worksWith = [
-            {
-                icon: 'images/workwith/logo_open_stack.png'
-            },
-            {
-                icon: 'images/workwith/logo_consul.png'
-            },
-            {
-                icon: 'images/workwith/logo_core_os.png'
-            },
-            {
-                icon: 'images/workwith/logo_docker.png'
-            },
-            {
-                icon: 'images/workwith/logo_jenkins.png'
-            },
-            {
-                icon: 'images/workwith/logo_cadvisor.png'
-            },
-            {
-                icon: 'images/workwith/logo_marathon.png'
-            }
-        ];
 
-
+        $('.carousel-slide').slick({
+            dots: false,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 5000,
+            speed: 1000,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 991,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 655,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }]
+        });
 
         $scope.scrollToGettingStarted = function () {
             $rootScope.animateToElement($rootScope.sections[2].id);

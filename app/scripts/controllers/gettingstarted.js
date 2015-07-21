@@ -18,4 +18,7 @@ angular.module('cloudSlangWebsiteApp')
             }, 4000); // milliseconds
             return false;
         });
+
+
+
 });

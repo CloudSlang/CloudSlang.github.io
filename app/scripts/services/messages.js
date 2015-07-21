@@ -86,7 +86,7 @@ angular.module('cloudSlangWebsiteApp')
 
             // get started banner
             bannerTitle: 'Get Started',
-            bannerDesc: 'Click this button and start using CloudSlang in 3 easy steps',
+            bannerDesc: 'Click this button and start using CloudSlang in 4 easy steps',
             startNowBanner: 'Start Now',
 
 
@@ -104,7 +104,7 @@ angular.module('cloudSlangWebsiteApp')
 
             // getting started
             downloadCliHeader: 'Download and use slang CLI tool',
-            getStartedTitleDesc: 'Start Working with CloudSlang with these 3 simple steps',
+            getStartedTitleDesc: 'Start Working with CloudSlang with these 4 simple steps',
             downloadCliDownloadLink: 'Download and see how',
             embedScoreHeader: 'Embed score library in your application',
             embedScoreLink: 'Press to see how',

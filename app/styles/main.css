@@ -1415,6 +1415,23 @@ a:hover {
 
 }
 
+@media (max-width: 460px) {
+
+    .privacy {
+        width: 350px;
+
+    }
+}
+
+@media (max-width: 409px) {
+
+    .privacy {
+        width: 245px;
+
+    }
+}
+
+
 .popup-font-color {
     color: #000000;
 }
@@ -1444,14 +1461,38 @@ a:hover {
 
 }
 
+@media (max-width: 478px) {
+    .name-field {
+        left: auto;
+        right: auto;
+        width: 100px;
+        margin-left: 0px;
+
+    }
+}
+
+@media (max-width: 478px) {
+    .email-field {
+        left: auto;
+        right: auto;
+        width: 150px;
+    }
+}
+
+@media (max-width: 328px) {
+    .email-field {
+
+        margin-top: 10px;
+    }
+}
+
 .sign-up {
     position: relative;
     -webkit-border-radius: 35px;
     -moz-border-radius: 35px;
     border-radius: 35px;
     border-color: transparent;
-    margin-left: 0px;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     background-color: #0BA04A;
     left: -45px;
     width: 100px;
@@ -1460,10 +1501,50 @@ a:hover {
 
 }
 
+
+@media (max-width: 582px) {
+    .sign-up {
+        left: auto;
+        right: auto;
+        width: 200px;
+        top: 20px;
+    }
+}
+
+
+
 .popup-robot {
     position: relative;
+    width: 150px;
     margin-top: 100px;
     margin-bottom: 100px;
-    top: -211px;
+    top: -189px;
     right: -15px;
 }
+
+@media (max-width: 603px) {
+    .popup-robot {
+        top: -167px;
+    }
+}
+
+@media (max-width: 459px) {
+    .popup-robot {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .popup-robot {
+       display: none;
+    }
+}
+
+
+
+@media screen and (min--moz-device-pixel-ratio:100) {
+    .popup-robot {
+        display: none;
+    }
+}
+

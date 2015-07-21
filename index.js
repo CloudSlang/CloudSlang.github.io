@@ -7,7 +7,7 @@ var app = express();
 
 app.use(compress());
 app.use(morgan('dev'));
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true

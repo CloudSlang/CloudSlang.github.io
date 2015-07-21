@@ -495,7 +495,7 @@ a:hover {
     text-decoration: none;
     color: #FFFFFF;
     border-color: transparent;
-    background-color: #000000;
+    background-color: #7CCA9D;
 }
 
 
@@ -1093,9 +1093,25 @@ a:hover {
 
 }
 
+@media (max-width: 991px){
+    .download-now-button {
+        top: 50px;
+        left: -170px;
+        margin-bottom: 100px;
+    }
+}
+
+@media (max-width: 767px){
+    .download-now-button {
+        left: auto;
+    }
+}
+
+
 @media (max-width: 350px){
 .download-now-button {
     margin-left: -15px;
+    left: auto;
 }
 }
 

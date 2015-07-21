@@ -1208,7 +1208,7 @@ a:hover {
 }
 
 .carousel-slide {
-    left: 75px;
+    left: 100px;
 }
 
 @media (max-width: 655px){

@@ -55,6 +55,7 @@ angular.module('cloudSlangWebsiteApp')
 
         $('.carousel-slide').slick({
             dots: false,
+            arrows: false,
             infinite: true,
             autoplay: true,
             autoplaySpeed: 5000,
@@ -83,6 +84,7 @@ angular.module('cloudSlangWebsiteApp')
         $scope.scrollToGettingStarted = function () {
             $rootScope.animateToElement($rootScope.sections[2].id);
         };
+
     }).directive('loadingPage', [function () {
         return {
             restrict: 'E',
@@ -139,6 +141,15 @@ angular.module('cloudSlangWebsiteApp')
                     $('html, body').animate({scrollTop: 0}, 'slow', function () {
                         $('.header .nav .current').removeClass('current');
                     });
+                });
+            }
+        };
+    }]).directive('slickSlider', [function ($timeout) {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                $timeout(function() {
+                    $(element).slick(scope.$eval(attrs.slickSlider));
                 });
             }
         };

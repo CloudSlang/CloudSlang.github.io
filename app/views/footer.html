@@ -17,6 +17,13 @@
                     </a>
                 </div>
                 <div>
+                    <a data-toggle="modal"
+                       data-target="#footerModal" title="{{$root.messages.footerNewsLetter}}">
+                        <i class="fa social-icon fa-newspaper-o"></i>
+                        <span class="icon-text h4">{{$root.messages.footerNewsLetter}}</span>
+                    </a>
+                </div>
+                <div>
                     <a ng-href="https://groups.google.com/forum/#!forum/cloudslang" target="_blank" title="{{$root.messages.footerGoogleGroups}}">
                         <i class="github social-icon fa fa-google"></i>
                         <span class="icon-text h4">{{$root.messages.footerGoogleGroups}}</span>
@@ -91,4 +98,37 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="footerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog popup-font-color">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="h3 popup-title popup-font-color">{{ $root.messages.popUpHeader
+                        }}</h3>
+                </div>
+                <div class="modal-body">
+                    <p class="h4 popup-desc"> {{ $root.messages.emailField}}</p>
+
+                    <div class="subscribe-field">
+                        <div ng-include src="'views/subscription.html'"></div>
+                    </div>
+                    <br>
+                    <img class=" img-responsive pull-right popup-robot"src="images\gettingstarted\popup_robot.png">
+                    <p class="h4 privacy">
+                        <small>{{ $root.messages.emailPrivacy}}</small>
+                    </p>
+                </div>
+                <!--div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div-->
+            </div>
+
+        </div>
+    </div>
+
+
 </div>

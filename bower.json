@@ -19,7 +19,7 @@
     "pace": "*",
     "components-font-awesome": "*",
     "angular-highlightjs": "*",
-    "jquery": "*",
+    "jquery": "<=2.1.4",
     "angular-touch": "1.4.1",
     "angular-mailchimp": "~0.0.3",
     "slick-carousel": "~1.5.6"
@@ -30,7 +30,7 @@
   },
   "appPath": "app",
   "resolutions": {
-    "jquery": ">= 1.9.0",
-    "angular": "~1.2.8"
+    "jquery": ">=1.8.0",
+    "angular": ">=1.2.8"
   }
 }

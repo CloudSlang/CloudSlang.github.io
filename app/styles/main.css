@@ -477,7 +477,6 @@ a:hover {
     background: rgba(255, 255, 255, 0.95);
 }
 
-
 .banner-button {
     position: absolute;
     -webkit-border-radius: 35px;
@@ -498,17 +497,14 @@ a:hover {
     background-color: #7CCA9D;
 }
 
-
 .banner-text {
-        font-size: 25px;
-        margin-top: 5px;
+    font-size: 25px;
+    margin-top: 5px;
 }
 
-
 .banner-resize {
-        margin-top: 6px;
-    }
-
+    margin-top: 6px;
+}
 
 @media (max-width: 991px) {
     .banner-button {
@@ -516,19 +512,18 @@ a:hover {
         height: 45px;
     }
 
-    .banner-text{
+    .banner-text {
         font-size: 20px;
         margin-top: 1px;
 
     }
-    .banner-resize
-    {
+
+    .banner-resize {
         margin-top: -1px;
         margin-left: -5px;
     }
 
 }
-
 
 .suggest-workflow-title {
     margin-top: -30px;
@@ -548,8 +543,6 @@ a:hover {
     font-size: 18px;
     color: #0ba04a;
 }
-
-
 
 .btn:focus, .btn:active:focus, .btn.active:focus,
 .btn.focus, .btn:active.focus, .btn.active.focus {
@@ -613,7 +606,6 @@ a:hover {
     margin-right: 5px;
     margin-left: 5px;
 }
-
 
 .start-now-button-nav .resize-nav {
     width: 20px;
@@ -681,7 +673,6 @@ a:hover {
         margin-right: 7px;
     }
 }
-
 
 .start-now-button:hover {
     border-color: transparent;
@@ -984,10 +975,28 @@ a:hover {
     font-size: 10px;
 }
 
-
 .subscribe-field {
     display: inline-block;
     margin-top: 10px;
+}
+
+.subscribe-message {
+    width: 400px;
+    text-align: left;
+}
+
+@media (max-width: 580px) {
+
+    .subscribe-message {
+        width: 300px;
+    }
+}
+
+@media (max-width: 352px) {
+
+    .subscribe-message {
+        width: auto;
+    }
 }
 
 .download-link {
@@ -1060,7 +1069,6 @@ a:hover {
     }
 }
 
-
 @media (max-width: 680px) {
     .youtube-img-play-button {
         left: 50%;
@@ -1093,7 +1101,7 @@ a:hover {
 
 }
 
-@media (max-width: 991px){
+@media (max-width: 991px) {
     .download-now-button {
         top: 50px;
         left: -170px;
@@ -1101,18 +1109,17 @@ a:hover {
     }
 }
 
-@media (max-width: 767px){
+@media (max-width: 767px) {
     .download-now-button {
         left: auto;
     }
 }
 
-
-@media (max-width: 350px){
-.download-now-button {
-    margin-left: -15px;
-    left: auto;
-}
+@media (max-width: 350px) {
+    .download-now-button {
+        margin-left: -15px;
+        left: auto;
+    }
 }
 
 .download-now-button:hover {
@@ -1131,6 +1138,7 @@ a:hover {
     top: -47px;
     color: darkgrey;
 }
+
 .download-now-button img {
     width: 43px;
 }
@@ -1211,9 +1219,9 @@ a:hover {
     left: 100px;
 }
 
-@media (max-width: 655px){
+@media (max-width: 655px) {
     .carousel-slide {
-    left: 110px;
+        left: 110px;
     }
 }
 
@@ -1221,6 +1229,13 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 
 .works-with-border {
@@ -1264,6 +1279,30 @@ a:hover {
     background-position: 50%;
 }
 
+.community-circle {
+    position: relative;
+    display: inline-block;
+    margin-top: 0px;
+    margin-right: 12px;
+    margin-left: 10px;
+    margin-bottom: 110px;
+    width: 50px;
+    height: 50px;
+    padding-top: 8px;
+    background-color: #0B7437;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.community-circle:hover {
+    background-color: #7CCA9D;
+    border-color: #7CCA9D;
+}
+
 .get-started-number {
     position: absolute;
     font-weight: bold;
@@ -1271,6 +1310,7 @@ a:hover {
     left: 20px;
     top: 7px;
 }
+
 .get-started-title {
     position: relative;
     display: inline-block;
@@ -1280,8 +1320,8 @@ a:hover {
     font-weight: bold;
 }
 
-.get-started-desc{
-    width: 230px;
+.get-started-desc {
+    width: auto;
     margin-left: 58px;
     margin-top: -10px;
     line-height: 1.5;
@@ -1289,7 +1329,33 @@ a:hover {
 
 .small-green {
     font-size: small;
+    width: auto;
     color: #7CCA9D;
+}
+
+.community-desc-title {
+    width: auto;
+    line-height: 1.2;
+    text-align: left;
+}
+
+
+.community-title {
+    position: relative;
+    display: inline-block;
+    top: -15px;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: left;
+
+}
+
+.community-desc {
+    margin-left: 70px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: left;
 }
 
 .img-centered {
@@ -1349,7 +1415,6 @@ a:hover {
 .carousel-control {
     width: 4%;
 }
-
 
 @media (max-width: 767px) {
     .carousel-inner .active.left {
@@ -1451,7 +1516,6 @@ a:hover {
     }
 }
 
-
 .popup-font-color {
     color: #000000;
 }
@@ -1521,7 +1585,6 @@ a:hover {
 
 }
 
-
 @media (max-width: 582px) {
     .sign-up {
         left: auto;
@@ -1530,8 +1593,6 @@ a:hover {
         top: 20px;
     }
 }
-
-
 
 .popup-robot {
     position: relative;
@@ -1556,13 +1617,11 @@ a:hover {
 
 @media (max-width: 420px) {
     .popup-robot {
-       display: none;
+        display: none;
     }
 }
 
-
-
-@media screen and (min--moz-device-pixel-ratio:100) {
+@media screen and (min--moz-device-pixel-ratio: 100) {
     .popup-robot {
         display: none;
     }

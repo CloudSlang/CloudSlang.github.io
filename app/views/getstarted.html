@@ -5,7 +5,7 @@
 <div class="container" ng-controller="GettingStartedCtrl">
     <div class="row">
         <div class="col-md-12">
-            <p class="h3 getting-started">{{sections[2].title}}</p>
+            <p class="h3">{{sections[2].title}}</p>
 
             <p class="h5">{{ $root.messages.getStartedTitleDesc }} </p><br>
         </div>
@@ -27,8 +27,8 @@
 
             <p class="h5 get-started-desc">{{ $root.messages.detailedTriggerFlowText1}}</p><br>
 
-            <p class="h5 get-started-desc small-green">{{$root.messages.detailedTriggerFlowText2 +
-                $root.messages.detailedTriggerFlowText3}}</p>
+            <p class="h5 get-started-desc small-green">{{$root.messages.detailedTriggerFlowText2}}</p>
+            <p class="h5 get-started-desc small-green">{{$root.messages.detailedTriggerFlowText3}}</p>
             <br>
 
             <p class="h5 get-started-desc">{{$root.messages.detailedTriggerFlowText4 }}</p>
@@ -38,9 +38,9 @@
             <div class="circle-get-started"><p class="h5 get-started-number">4</p></div>
             <h3 class="h4 get-started-title"> {{$root.messages.detailedLearnMoreHeader}}</h3>
 
-            <p class="h5 get-started-desc">{{ $root.messages.popUpBody + " " + $root.messages.videoLink + " " +
-                $root.messages.comma + " " + $root.messages.docsLink + " " + $root.messages.popUpBody2 + " "
-                +$root.messages.tutorialLink }}</p>
+            <p class="h5 get-started-desc">{{ $root.messages.popUpBody + " " }} <a class="highlight-green" href="https://www.youtube.com/watch?v=zMKagFLnQzM" target="_blank">{{$root.messages.videoLink + " "}}</a>
+                {{$root.messages.comma + " "}} <a class="highlight-green" href="/#/docs">{{$root.messages.docsLink + " "}}</a> {{ $root.messages.popUpBody2 + " "}}
+                <a class="highlight-green" href="http://cloudslang-tutorials.readthedocs.org/en/latest/" target="_blank">{{$root.messages.tutorialLink }}</a>.</p>
         </div>
 
         <div class="row-centered">

@@ -33,6 +33,23 @@ angular.module('cloudSlangWebsiteApp')
             whatIsDescription2: 'The CloudSlang project is composed of three main parts: the CloudSlang Orchestration Engine,'+
                                     ' the YAML-based CloudSlang language and the ready-made CloudSlang content.' ,
 
+
+
+            //community
+            communityTitle: 'Community',
+            communityTitleDesc1:'Get involved. The CloudSlang project is completely open source. The code, discussions and roadmap are all out in the open on GitHub. ',
+            communityTitleDesc2: 'Join us in leveraging the power of the community to create the best-in-class orchestration technology.',
+            communityCommunicate: 'Communicate',
+            communityCommunicateDesc: 'See what we\'re working on.' +
+                                            ' Or tell us what you\'re working on.',
+            communityContribute:'Contribute',
+            communityContributeDesc:'Share on of your own workflows, open as issue or fix a bug.',
+            communityLearnMore:'LearnMore',
+            communityLearnMoreDesc:'Read the docs, work your way through a tutorial or read our blog.',
+
+
+
+
             //suggest a workflow
             suggestWorkFlowTitle: 'Suggest a Workflow',
             suggestWorkFlowDescription1: 'Do you have a DevOps use case that you\'d like to automate, but it\'s not covered by our ready-made content?',
@@ -46,6 +63,7 @@ angular.module('cloudSlangWebsiteApp')
             footerLicenseHref: 'Apache License, Version 2.0.',
             footerContactUs: 'Contact Us',
             footerGooglePlus: 'Google Plus',
+            footerNewsLetter: 'Newsletter',
             footerYoutube: 'YouTube',
             footerTwitter: 'Twitter',
             footerGitHub: 'GitHub',
@@ -101,6 +119,7 @@ angular.module('cloudSlangWebsiteApp')
             useCasesAppDeploymentDesc: 'This example workflow demonstrates how to easily deploy a complex app that uses linked containers. ' +
                                             'Use it as a springboard for writing a custom flow to deploy your own application.',
             useCasesOpenStackDesc: 'Performs a health check on an OpenStack machine by creating a server, checking that it\'s up and then deleting it.',
+            useCasesSeeMore: 'See the full content catalog' ,
 
             // getting started
             downloadCliHeader: 'Download and use slang CLI tool',

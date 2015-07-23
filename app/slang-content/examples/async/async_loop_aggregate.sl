@@ -1,8 +1,5 @@
 namespace: examples.async
 
-imports:
-  ops: examples.async
-
 flow:
   name: async_loop_aggregate
   inputs:
@@ -12,7 +9,7 @@ flow:
         async_loop:
           for: value in values
           do:
-            ops.print_branch:
+            print_branch:
               - ID: value
           publish:
             - name

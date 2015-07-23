@@ -1,8 +1,5 @@
 namespace: examples.divide
 
-imports:
-  ops: examples.divide
-
 flow:
   name: division
 
@@ -13,7 +10,7 @@ flow:
   workflow:
     - divider:
         do:
-          ops.divide:
+          divide:
             - dividend: input1
             - divisor: input2
         publish:
@@ -23,7 +20,7 @@ flow:
           SUCCESS: printer
     - printer:
         do:
-          ops.print:
+          print:
             - text: input1 + "/" + input2 + " = " + str(answer)
         navigate:
           SUCCESS: SUCCESS

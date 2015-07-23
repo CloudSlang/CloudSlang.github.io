@@ -1,8 +1,5 @@
 namespace: examples.loops
 
-imports:
-  ops: examples.loops
-
 flow:
   name: loops
 
@@ -16,7 +13,7 @@ flow:
         loop:
           for: value in [1,2,3,4,5]
           do:
-            ops.fail3:
+            fail3:
               - text: value
         navigate:
           SUCCESS: fail3b
@@ -25,14 +22,14 @@ flow:
         loop:
           for: value in [1,2,3,4,5]
           do:
-            ops.fail3:
+            fail3:
               - text: value
           break: []
     - custom3:
         loop:
           for: value in "1,2,3,4,5"
           do:
-            ops.custom3:
+            custom3:
               - text: value
           break:
             - CUSTOM
@@ -41,17 +38,17 @@ flow:
           SUCCESS: skip_this
     - skip_this:
         do:
-          ops.print:
+          print:
             - text: "'This will not run.'"
     - aggregate:
         loop:
           for: value in range(1,6)
           do:
-            ops.print:
+            print:
               - text: value
           publish:
             - sum: fromInputs['sum'] + out
     - print:
         do:
-          ops.print:
+          print:
             - text: sum

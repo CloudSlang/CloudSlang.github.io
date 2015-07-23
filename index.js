@@ -7,7 +7,7 @@ var app = express();
 
 app.use(compress());
 app.use(morgan('dev'));
-app.use(express.static(__dirname + '/'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
@@ -21,7 +21,7 @@ app.get('/status',function(req, res){
 app.use(function(req, res) {
     var err = new Error('Not Found');
     err.status = 404;
-    res.sendFile(__dirname + '/404.html')
+    res.sendFile(__dirname + '/public/404.html')
 });
 
 

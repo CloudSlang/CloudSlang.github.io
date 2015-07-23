@@ -3,7 +3,7 @@
 angular.module('cloudSlangWebsiteApp')
     .controller('GettingStartedCtrl', function () {
 
-        $('[data-toggle=modal]').on('click', function (e) {
+        $('#delay').on('click', function (e) {
 
             e.preventDefault();  //stop the browser from following
             window.location.href = 'https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.7.15/cslang-cli.zip';

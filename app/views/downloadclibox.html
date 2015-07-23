@@ -1,10 +1,9 @@
 <div ng-controller="GettingStartedCtrl">
 
     <div class="download col-md-12">
-        <a onclick="ga('send', 'event', 'button', 'click', 'download cli', 1);"
+        <a id="delay" onclick="ga('send', 'event', 'button', 'click', 'download cli', 1);"
            class="btn btn-primary btn-lg download-now-button " data-toggle="modal"
-           data-target="#myModal"
-           href="#">
+           data-target="#myModal">
             <img class="pull-left" src="images/download_button.png" alt="Download Now"/>
 
             <p class="download-now-text">
@@ -36,9 +35,6 @@
                         <small>{{ $root.messages.emailPrivacy}}</small>
                     </p>
                 </div>
-                <!--div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div-->
             </div>
 
         </div>

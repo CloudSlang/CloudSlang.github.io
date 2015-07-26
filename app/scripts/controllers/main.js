@@ -52,31 +52,8 @@ angular.module('cloudSlangWebsiteApp')
             }
         };
 
-        $scope.slickConfig = {
-            dots: false,
-            arrows: false,
-            infinite: true,
-            autoplay: true,
-            autoplaySpeed: 5000,
-            speed: 1000,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            responsive: [
-                {
-                    breakpoint: 991,
-                    settings: {
-                        slidesToShow: 2
-                    }
-                },
-                {
-                    breakpoint: 655,
-                    settings: {
-                        slidesToShow: 2
-                    }
-                }]
-        };
 
-         $scope.scrollToGettingStarted = function () {
+        $scope.scrollToGettingStarted = function () {
             $rootScope.animateToElement($rootScope.sections[2].id);
         };
 

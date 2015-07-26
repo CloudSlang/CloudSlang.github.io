@@ -88,7 +88,7 @@ angular.module('cloudSlangWebsiteApp')
                     $(element).slick(scope.$eval(attrs.slickSlider));
                 });
             }
-        }
+        };
 }).directive('loadingPage', [function () {
         return {
             restrict: 'E',

@@ -1,8 +1,5 @@
 namespace: examples.divide
 
-imports:
-  ops: examples.divide
-
 flow:
   name: master_divider
 
@@ -15,7 +12,7 @@ flow:
   workflow:
     - division1:
         do:
-          ops.division:
+          division:
             - input1: dividend1
             - input2: divisor1
         publish:
@@ -26,7 +23,7 @@ flow:
 
     - division2:
         do:
-          ops.division:
+          division:
             - input1: dividend2
             - input2: divisor2
         publish:
@@ -37,5 +34,5 @@ flow:
     - on_failure:
       - failure_task:
           do:
-            ops.print:
+            print:
               - text: ans

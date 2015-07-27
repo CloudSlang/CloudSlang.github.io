@@ -1,12 +1,9 @@
 namespace: examples.hello_world
 
-imports:
-  ops: examples.hello_world
-
 flow:
   name: hello_world
   workflow:
     - sayHi:
         do:
-          ops.print:
+          print:
             - text: "'Hello, World'"

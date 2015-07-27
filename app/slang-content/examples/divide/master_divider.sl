@@ -1,8 +1,5 @@
 namespace: examples.divide
 
-imports:
-  ops: examples.divide
-
 flow:
   name: master_divider
 

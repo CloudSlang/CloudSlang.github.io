@@ -44,6 +44,19 @@ angular.module('cloudSlangWebsiteApp')
                 });
             }
         };
+    }]).directive('scrollTop', [function() {
+        return {
+            restrict: 'A',
+            template: '',
+            link: function(scope, element) {
+                element.on('click', function(event) {
+                    event.preventDefault();
+                    $('html, body').animate({scrollTop: 0}, 'slow', function () {
+                        $('.header .nav .current').removeClass('current');
+                    });
+                });
+            }
+        };
     }]).directive('youtubeEmbed', [function () {
         return {
             restrict: 'A',

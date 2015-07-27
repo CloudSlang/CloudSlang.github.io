@@ -748,7 +748,6 @@ a:hover {
 
 @media (max-width: 500px) {
     .getting-started-robot {
-        right: -20px;
         width: 180px;
     }
 }
@@ -1115,6 +1114,7 @@ a:hover {
     }
 }
 
+
 .download-now-button {
     position: relative;
     top: -50px;
@@ -1131,26 +1131,12 @@ a:hover {
 
 }
 
-@media (max-width: 991px) {
+@media (max-width: 300px) {
     .download-now-button {
-        top: 50px;
-        left: -170px;
-        margin-bottom: 100px;
+        width: 200px;
     }
 }
 
-@media (max-width: 767px) {
-    .download-now-button {
-        left: auto;
-    }
-}
-
-@media (max-width: 350px) {
-    .download-now-button {
-        margin-left: -15px;
-        left: auto;
-    }
-}
 
 .download-now-button:hover {
     background-color: #7CCA9D;
@@ -1162,6 +1148,7 @@ a:hover {
     font-size: 28px;
     margin-top: 3px;
 }
+
 
 .cloudslang-version {
     position: relative;

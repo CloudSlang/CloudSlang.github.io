@@ -1131,12 +1131,30 @@ a:hover {
 
 }
 
+.community-desc-position {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -100px;
+    margin-bottom: 10px;
+    margin-top: -25px;
+    width: 250px;
+    height: 60px;
+    line-height: 1.5;
+    text-align: left;
+
+}
+
 @media (max-width: 300px) {
     .download-now-button {
         width: 200px;
     }
 }
 
+.next-row
+{
+    margin-top: -100px;
+}
 
 .download-now-button:hover {
     background-color: #7CCA9D;
@@ -1366,14 +1384,6 @@ a:hover {
     font-weight: bold;
     text-align: left;
 
-}
-
-.community-desc {
-    margin-left: 70px;
-    margin-top: -10px;
-    margin-bottom: 20px;
-    line-height: 1.5;
-    text-align: left;
 }
 
 .img-centered {

@@ -43,8 +43,8 @@ angular.module('cloudSlangWebsiteApp')
             communityCommunicateDesc: 'See what we\'re working on.' +
                                             ' Or tell us what you\'re working on.',
             communityContribute:'Contribute',
-            communityContributeDesc:'Share on of your own workflows, open as issue or fix a bug.',
-            communityLearnMore:'LearnMore',
+            communityContributeDesc:'Share one of your own workflows, open as issue or fix a bug.',
+            communityLearnMore:'Learn More',
             communityLearnMoreDesc:'Read the docs, work your way through a tutorial or read our blog.',
 
 

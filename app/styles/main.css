@@ -624,7 +624,7 @@ a:hover {
     position: relative;
     color: #ffffff;
     font-size: 13px;
-    margin-left: -3px;
+    margin-left: -4px;
     top: -2px;
 }
 
@@ -716,7 +716,7 @@ a:hover {
 
 @media (max-width: 680px) {
     .getting-started-robot {
-        right: -20px;
+        right: -11px;
         width: 250px;
 
     }
@@ -1216,7 +1216,7 @@ a:hover {
 
 .works-with-text {
     position: relative;
-    top: 50px;
+    top: 45px;
     color: #777;
 
 }
@@ -1245,6 +1245,12 @@ a:hover {
     border-top: solid lightgray 1px;
     border-bottom: solid lightgray 1px;
 
+}
+
+@media (max-width: 400px) {
+    .works-with-border {
+        margin: 30px 0px 30px 0px;
+    }
 }
 
 .circle {
@@ -1417,6 +1423,15 @@ a:hover {
 @media (max-width: 767px) {
     .carousel-image {
         width: 150px;
+        position: relative;
+        left: auto;
+        right: auto;
+    }
+}
+
+@media (max-width: 400px) {
+    .carousel-image {
+        width: 110px;
         position: relative;
         left: auto;
         right: auto;

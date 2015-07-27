@@ -1216,14 +1216,9 @@ a:hover {
 }
 
 .carousel-slide {
-    left: 100px;
+    left: 40px;
 }
 
-@media (max-width: 655px) {
-    .carousel-slide {
-        left: 110px;
-    }
-}
 
 .center {
     margin-left: auto;
@@ -1240,7 +1235,7 @@ a:hover {
 
 .works-with-border {
     margin: 30px 0px 30px 0px;
-    padding: 0px 0px 0px 0px;
+    padding: 0px 0px 5px 0px;
     border-top: solid lightgray 1px;
     border-bottom: solid lightgray 1px;
 
@@ -1409,7 +1404,17 @@ a:hover {
     height: 50px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
 
+}
+
+@media (max-width: 767px) {
+    .carousel-image {
+        width: 150px;
+        position: relative;
+        left: auto;
+        right: auto;
+    }
 }
 
 .carousel-control {

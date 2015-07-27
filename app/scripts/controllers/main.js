@@ -12,16 +12,6 @@ angular.module('cloudSlangWebsiteApp')
 
         ];
 
-        $rootScope.showCli = function (elemendId, commands, loop, typeSpeed) {
-            $('#' + elemendId + '-cursor').empty();
-            $('#' + elemendId).typed({
-                strings: commands,
-                typeSpeed: typeSpeed || 30,
-                loop: loop || false,
-                backSpeed: -20
-            });
-        };
-
         _.forEach($('.navbar-collapse'), function (target) {
             $(target).collapse({'toggle': false});
         });
@@ -33,59 +23,18 @@ angular.module('cloudSlangWebsiteApp')
             });
         });
 
-        // workaround to remove the current class from the navbar when reaching the header
-        $(window).scroll(function () {
-            if (!$scope.navInProcess) {
-                var windscroll = $(window).scrollTop();
-                if (windscroll < 800) {
-                    $('.header .nav .current').removeClass('current');
-                }
-            }
-        });
 
-        $rootScope.animateToElement = function (elementId) {
-            var element = $('#' + elementId);
-            if (element.length) {
-                $('html, body').animate({
-                    scrollTop: element.offset().top - 50
-                }, 400, 'swing');
-            }
-        };
 
-       $scope.worksWith = function() {
-            $('.carousel[data-type="multi"] .item').each(function(){
-                var next = $(this).next();
-                if (!next.length) {
-                    next = $(this).siblings(':first');
-                }
-                next.children(':first-child').clone().appendTo($(this));
-
-                for (var i=0;i<2;i++) {
-                    next=next.next();
-                    if (!next.length) {
-                        next = $(this).siblings(':first');
-                    }
-
-                    next.children(':first-child').clone().appendTo($(this));
-                }
-
-            });
-        };
-
-        $scope.scrollToGettingStarted = function () {
-            $rootScope.animateToElement($rootScope.sections[2].id);
-        };
-
-    }).directive('slickSlider',function($timeout){
+    }).directive('slickSlider', function ($timeout) {
         return {
             restrict: 'A',
-            link: function(scope,element,attrs) {
-                $timeout(function() {
+            link: function (scope, element, attrs) {
+                $timeout(function () {
                     $(element).slick(scope.$eval(attrs.slickSlider));
                 });
             }
         };
-}).directive('loadingPage', [function () {
+    }).directive('loadingPage', [function () {
         return {
             restrict: 'E',
             template: '<div class="loading-page"></div>',

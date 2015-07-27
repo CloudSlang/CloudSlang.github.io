@@ -150,7 +150,7 @@ angular.module('cloudSlangWebsiteApp')
             detailedDownloadLatest: 'Download latest version',
             detailedDownloadOldVersions: 'Download old versions',
             detailedSlangCliHeader: 'Execute CLI',
-            detailedSlangWriteFlowText: 'Go to cslang-cli\cslang\cslang\bin\ and run the CloudSlang executable.',
+            detailedSlangWriteFlowText: 'Go to cslang-cli/cslang/cslang/bin/ and run the CloudSlang executable.',
             detailedSlangWriteOperationText: 'Write an operation and save it as \'print.sl\'.',
             detailedUseCliHeader: 'Start command-line interface',
             detailedUseCliText: 'Open your console and execute the CLI',

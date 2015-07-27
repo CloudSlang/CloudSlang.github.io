@@ -1004,6 +1004,7 @@ a:hover {
     font-size: 10px;
 }
 
+
 .subscribe-field {
     display: inline-block;
     margin-top: 10px;
@@ -1568,53 +1569,35 @@ a:hover {
 }
 
 .name-field {
-    position: relative;
-    left: -50px;
     -webkit-border-radius: 35px;
     -moz-border-radius: 35px;
     border-radius: 35px;
     width: 120px;
     height: 30px;
     padding-left: 7px;
-    margin-left: 40px;
+}
 
+@media (max-width: 469px) {
+    .name-field {
+        width: 150px;
+    }
+}
+
+@media (max-width: 469px) {
+    .email-field {
+        width: 200px;
+    }
 }
 
 .email-field {
-    position: relative;
-    left: -50px;
     -webkit-border-radius: 35px;
     -moz-border-radius: 35px;
     border-radius: 35px;
     width: 250px;
     height: 30px;
     padding-left: 7px;
+    margin-top: 10px;
 
-}
-
-@media (max-width: 478px) {
-    .name-field {
-        left: auto;
-        right: auto;
-        width: 100px;
-        margin-left: 0px;
-
-    }
-}
-
-@media (max-width: 478px) {
-    .email-field {
-        left: auto;
-        right: auto;
-        width: 150px;
-    }
-}
-
-@media (max-width: 328px) {
-    .email-field {
-
-        margin-top: 10px;
-    }
 }
 
 .sign-up {
@@ -1625,21 +1608,12 @@ a:hover {
     border-color: transparent;
     margin-bottom: 70px;
     background-color: #0BA04A;
-    left: -45px;
-    width: 100px;
+    width: 200px;
     height: 30px;
     color: white;
-
+    top: 30px;
 }
 
-@media (max-width: 582px) {
-    .sign-up {
-        left: auto;
-        right: auto;
-        width: 200px;
-        top: 20px;
-    }
-}
 
 .popup-robot {
     position: relative;

@@ -3,8 +3,6 @@
 angular.module('cloudSlangWebsiteApp')
     .controller('CarouselCtrl', function ($scope) {
 
-        $scope.init = function () {
-
             $('.carousel[data-type="multi"] .item').each(function () {
                 var next = $(this).next();
                 if (!next.length) {
@@ -22,8 +20,5 @@ angular.module('cloudSlangWebsiteApp')
                 }
 
             });
-        };
-
-        $scope.init();
 
     });

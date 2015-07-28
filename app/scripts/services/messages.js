@@ -123,12 +123,12 @@ angular.module('cloudSlangWebsiteApp')
 
             // getting started
             downloadCliHeader: 'Download and use slang CLI tool',
-            getStartedTitleDesc: 'Start Working with CloudSlang with these 4 simple steps',
+            getStartedTitleDesc: 'Start Working with CloudSlang with these 4 simple steps.',
             downloadCliDownloadLink: 'Download and see how',
             embedScoreHeader: 'Embed score library in your application',
             embedScoreLink: 'Press to see how',
             orText: 'or',
-            cloudSlangVersion: 'CloudSlang version x.x.x',
+            cloudSlangVersion: 'CloudSlang version 0.7.15',
 
             // download popup
             popUpHeader: 'Keep up to date!' ,
@@ -156,7 +156,7 @@ angular.module('cloudSlangWebsiteApp')
             detailedUseCliText: 'Open your console and execute the CLI',
             detailedTriggerFlowHeader: 'Run a workflow',
             detailedTriggerFlowText1: 'At the prompt enter:',
-            detailedTriggerFlowText2: 'run --f ../content/io/cloudslang/base',
+            detailedTriggerFlowText2: '--f ../../content/io/cloudslang/base',
             detailedTriggerFlowText3: ' /print/print_text.sl --i text=Hi',
             detailedTriggerFlowText4: 'The CLI will run the ready-made print_text operation that will print the value passed to the variable text.',
             detailedLearnMoreHeader: 'Learn More',

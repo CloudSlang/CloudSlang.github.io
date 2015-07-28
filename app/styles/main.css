@@ -149,7 +149,7 @@ a:hover {
     }
 }
 
-@media (max-width: 1360px) {
+@media (max-width: 1382px) {
     .header .forkMe {
         display: none;
     }
@@ -1042,6 +1042,12 @@ a:hover {
 
 .highlight-green {
     color: #639542;
+}
+
+.see-more {
+    font-size: 20px;
+    position: relative;
+    top: -30px;
 }
 
 .highlight-green:hover {

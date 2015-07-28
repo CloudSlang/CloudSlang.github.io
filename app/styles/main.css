@@ -2,6 +2,27 @@ body {
     font-family: 'HPFutura', Helvetica, Arial, sans-serif;
 }
 
+.mobileShow {
+    display: none;
+    position: relative;
+    top: -50px;
+    background-color: #b0c4de;
+    width: 100%;
+}
+
+/* Smartphone Portrait and Landscape */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+    .mobileShow {
+        display: inline;
+    }
+    .wide-screen {
+        display: none;
+    }
+    .mobile {
+        margin-top: -50px;
+    }
+}
+
 ::selection {
     background: #2f6019;
     color: #ffffff;
@@ -122,7 +143,7 @@ a:hover {
     border: 0;
 }
 
-.header .header-title {
+.header-title {
     position: absolute;
     line-height: 1.2;
     color: #000000;
@@ -159,16 +180,16 @@ a:hover {
     }
 }
 
-@media (max-width: 850px) {
-    .header .header-title {
+@media (max-width: 991px) {
+    .header-title .h3 {
         font-size: 24px;
-        top: 0px;
+        margin-top: -15px;
 
     }
 }
 
 @media (max-width: 524px) {
-    .header .header-title {
+    .header-title .h3 {
         font-size: 14px;
         top: -14px;
 
@@ -324,6 +345,39 @@ a:hover {
     padding-top: 60px;
     padding-bottom: 60px;
     color: #ffffff;
+    width: 100%;
+}
+
+.mobile-wrapper {
+    position: relative;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #0ba04a;
+    width: 100%;
+}
+
+.mobile-wrapper .h3 {
+    color: white;
+    font-size: x-large;
+}
+
+.mobile-button {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+}
+
+.resize-mobile {
+    width: 20px;
+    margin-top: -5px;
+    margin-left: -10px;
+}
+
+.start-now-text-mobile {
+    font-size: 15px;
+    color: white;
+    margin-top: -4px;
+
 }
 
 .section-header {
@@ -588,6 +642,17 @@ a:hover {
     top: 225px;
 }
 
+.start-now-button-mobile {
+    position: relative;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    border-color: #084B26;
+    background-color: #084B26;
+    width: 120px;
+    height: 32px;
+}
+
 .start-now-button-nav {
     -webkit-border-radius: 35px;
     -moz-border-radius: 35px;
@@ -663,7 +728,7 @@ a:hover {
     }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 991px) {
     .start-now-button {
         position: absolute;
         width: 150px;

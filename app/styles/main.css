@@ -23,6 +23,9 @@ body {
     }
 }
 
+
+
+
 ::selection {
     background: #2f6019;
     color: #ffffff;
@@ -245,10 +248,20 @@ a:hover {
 }
 
 
+
 .main-nav {
     background-color: #ffffff;
     color: #000000;
+    border: 0px;
 }
+
+/** .navbar-default .navbar-toggle .icon-bar {
+    background-color: #0ba04a;
+    width: 15px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}*/
+
 
 .main-nav a.h5 {
     margin-top: 0;
@@ -708,6 +721,8 @@ a:hover {
         width: 180px;
         height: 40px;
         top: 12px;
+        margin-bottom: 20px;
+
 
 
     }
@@ -1519,21 +1534,13 @@ a:hover {
 
 @media (max-width: 767px) {
     .carousel-image {
-        width: 150px;
+        width: 140px;
         position: relative;
         left: auto;
         right: auto;
     }
 }
 
-@media (max-width: 400px) {
-    .carousel-image {
-        width: 110px;
-        position: relative;
-        left: auto;
-        right: auto;
-    }
-}
 
 .carousel-control {
     width: 4%;

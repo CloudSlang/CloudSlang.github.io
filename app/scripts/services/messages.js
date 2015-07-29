@@ -122,19 +122,30 @@ angular.module('cloudSlangWebsiteApp')
             useCasesSeeMore: 'See the full content catalog' ,
 
             // getting started
-            downloadCliHeader: 'Download and use slang CLI tool',
             getStartedTitleDesc: 'Start Working with CloudSlang with these 4 simple steps.',
-            downloadCliDownloadLink: 'Download and see how',
-            embedScoreHeader: 'Embed score library in your application',
-            embedScoreLink: 'Press to see how',
-            orText: 'or',
             cloudSlangVersion: 'CloudSlang version 0.7.15',
+            detailedDownloadCliHeader: 'Download',
+            detailedDownloadCliText: 'Download and unzip the CloudSlang CLI.',
+            detailedDownloadCliText1: 'If you are using ',
+            detailedDownloadCliText2: ' you can simply run our',
+            detailedDownloadCliDockerImage: 'Docker image',
+            detailedSlangCliHeader: 'Execute CLI',
+            detailedSlangWriteFlowText:'Unzip cslang-cli-with-content.zip',
+            detailedSlangWriteFlowText1: 'Go to cslang/bin/cslang and run the CloudSlang executable.',
+            detailedTriggerFlowHeader: 'Run a workflow',
+            detailedTriggerFlowText1: 'At the prompt enter:',
+            detailedTriggerFlowText2: 'run --f ../../content/io/cloudslang/base',
+            detailedTriggerFlowText3: ' /print/print_text.sl --i text=Hi',
+            detailedTriggerFlowText4: 'The CLI will run the ready-made print_text operation that will print the value passed to the variable text.',
+            detailedLearnMoreHeader: 'Learn More',
+
+
+
 
             // download popup
             popUpHeader: 'Keep up to date!' ,
             popUpBody: 'For more information on getting started with CloudSlang check out the',
-            videoLink: 'introductory video',
-            comma: ', ',
+            videoLink: 'introductory video,',
             docsLink: 'docs',
             popUpBody2: 'or the ',
             tutorialLink: 'tutorial',
@@ -143,33 +154,6 @@ angular.module('cloudSlangWebsiteApp')
             emailPrivacy:'We respect your privacy. ' +
                             'Your email address will only be used for communication purposes. It will not be sold, shared with or disclosed to a third party.',
 
-
-            // -- download and install cli
-            detailedDownloadCliHeader: 'Download',
-            detailedDownloadCliText: 'Download and unzip the CloudSlang CLI.',
-            detailedDownloadLatest: 'Download latest version',
-            detailedDownloadOldVersions: 'Download old versions',
-            detailedSlangCliHeader: 'Execute CLI',
-            detailedSlangWriteFlowText: 'Go to cslang-cli/cslang/cslang/bin/ and run the CloudSlang executable.',
-            detailedSlangWriteOperationText: 'Write an operation and save it as \'print.sl\'.',
-            detailedUseCliHeader: 'Start command-line interface',
-            detailedUseCliText: 'Open your console and execute the CLI',
-            detailedTriggerFlowHeader: 'Run a workflow',
-            detailedTriggerFlowText1: 'At the prompt enter:',
-            detailedTriggerFlowText2: 'run --f ../../content/io/cloudslang/base',
-            detailedTriggerFlowText3: ' /print/print_text.sl --i text=Hi',
-            detailedTriggerFlowText4: 'The CLI will run the ready-made print_text operation that will print the value passed to the variable text.',
-            detailedLearnMoreHeader: 'Learn More',
-            detailedCliHeader: 'Click to see how',
-            detailedCliPrefix: '$',
-            detailedCliClear: 'Clear',
-            detailedCliTriggerFlow: 'cslang\n' +
-                '^100cslang>^500 run --f .../hello_world.sl\n' +
-                '^500- sayHi\n' +
-                '^250Hello, World\n' +
-                '^250Flow : hello_world finished with result : SUCCESS\n' +
-                'Execution id: 101600001, duration: 0:00:00.790\n' +
-                '^250cslang>',
 
             // -- embed score
             detailedEmbedPomHeader: 'score dependencies',

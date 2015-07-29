@@ -771,6 +771,12 @@ a:hover {
     }
 }
 
+.start-now-button .resize {
+    width: 38px;
+    margin-top: 2px;
+    margin-left: -5px;
+}
+
 @media (max-width: 991px) {
     .start-now-button {
         position: absolute;
@@ -785,9 +791,8 @@ a:hover {
     }
 
     .start-now-button .resize {
-        width: 25px;
-        margin-top: -3px;
-        margin-left: -5px;
+        width: 28px;
+        margin-top: -5px;
     }
 }
 
@@ -805,9 +810,9 @@ a:hover {
     }
 
     .start-now-button .resize {
-        width: 15px;
-        margin-top: -5px;
-        margin-left: -10px;
+        width: 16px;
+        margin-top: -6px;
+        margin-left: -12px;
         margin-right: 7px;
     }
 }
@@ -831,6 +836,15 @@ a:hover {
     position: relative;
     margin-top: -50px;
     right: 200px;
+}
+
+.docker-icon {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    margin-bottom: -17px;
+    top: -10px;
+
 }
 
 @media (max-width: 1199px) {
@@ -1472,10 +1486,10 @@ a:hover {
 }
 
 .get-started-desc {
-    width: auto;
+    width: 85%;
     margin-left: 58px;
     margin-top: -10px;
-    line-height: 1.5;
+    line-height: 1.8;
 }
 
 .small-green {

@@ -13,13 +13,25 @@
             <div class="circle-get-started"><h5 class="h5 get-started-number">1</h5></div>
             <h3 class="h4 get-started-title"> {{$root.messages.detailedDownloadCliHeader}}</h3>
 
-            <p class="h5 get-started-desc">{{ $root.messages.detailedDownloadCliText }}</p>
+            <p class="h5 get-started-desc">{{ $root.messages.detailedDownloadCliText }}</p><br>
+
+            <p class="h5 get-started-desc"> {{ $root.messages.detailedDownloadCliText1 }} <img class="docker-icon"
+                                                                                               src="images/gettingstarted/small_v-trans.png">
+                {{ $root.messages.detailedDownloadCliText2 }}
+                <a class="highlight-green"
+                   href="https://registry.hub.docker.com/u/cloudslang/cloudslang/" target="_blank">
+                    {{ $root.messages.detailedDownloadCliDockerImage }}</a>.</p>
+
+
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="circle-get-started"><p class="h5 get-started-number">2</p></div>
             <h3 class="h4 get-started-title"> {{ $root.messages.detailedSlangCliHeader }}</h3>
 
-            <p class="h5 get-started-desc">{{ $root.messages.detailedSlangWriteFlowText }}</p>
+            <p class="h5 get-started-desc">{{ $root.messages.detailedSlangWriteFlowText }}</p><br>
+
+            <p class="h5 get-started-desc">{{ $root.messages.detailedSlangWriteFlowText1 }}</p>
+
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="circle-get-started"><p class="h5 get-started-number">3</p></div>
@@ -28,6 +40,7 @@
             <p class="h5 get-started-desc">{{ $root.messages.detailedTriggerFlowText1}}</p><br>
 
             <p class="h5 get-started-desc small-green">{{$root.messages.detailedTriggerFlowText2}}</p>
+
             <p class="h5 get-started-desc small-green">{{$root.messages.detailedTriggerFlowText3}}</p>
             <br>
 
@@ -38,9 +51,13 @@
             <div class="circle-get-started"><p class="h5 get-started-number">4</p></div>
             <h3 class="h4 get-started-title"> {{$root.messages.detailedLearnMoreHeader}}</h3>
 
-            <p class="h5 get-started-desc">{{ $root.messages.popUpBody + " " }} <a class="highlight-green" href="https://www.youtube.com/watch?v=CX1_It_Ygso" target="_blank">{{$root.messages.videoLink + " "}}</a>
-                {{$root.messages.comma + " "}} <a class="highlight-green" href="/#/docs">{{$root.messages.docsLink + " "}}</a> {{ $root.messages.popUpBody2 + " "}}
-                <a class="highlight-green" href="http://cloudslang-tutorials.readthedocs.org/en/latest/" target="_blank">{{$root.messages.tutorialLink }}</a>.</p>
+            <p class="h5 get-started-desc">{{ $root.messages.popUpBody + " " }} <a class="highlight-green"
+                                                                                   href="https://www.youtube.com/watch?v=CX1_It_Ygso"
+                                                                                   target="_blank">{{$root.messages.videoLink
+                + " "}}</a><a class="highlight-green" href="/#/docs">{{$root.messages.docsLink + "
+                    "}}</a> {{ $root.messages.popUpBody2 + " "}}
+                <a class="highlight-green" href="http://cloudslang-tutorials.readthedocs.org/en/latest/"
+                   target="_blank">{{$root.messages.tutorialLink }}</a>.</p>
         </div>
 
         <div class="row-centered">

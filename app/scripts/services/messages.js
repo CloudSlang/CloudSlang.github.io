@@ -156,7 +156,7 @@ angular.module('cloudSlangWebsiteApp')
             detailedUseCliText: 'Open your console and execute the CLI',
             detailedTriggerFlowHeader: 'Run a workflow',
             detailedTriggerFlowText1: 'At the prompt enter:',
-            detailedTriggerFlowText2: '--f ../../content/io/cloudslang/base',
+            detailedTriggerFlowText2: 'run --f ../../content/io/cloudslang/base',
             detailedTriggerFlowText3: ' /print/print_text.sl --i text=Hi',
             detailedTriggerFlowText4: 'The CLI will run the ready-made print_text operation that will print the value passed to the variable text.',
             detailedLearnMoreHeader: 'Learn More',

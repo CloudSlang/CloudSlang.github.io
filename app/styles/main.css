@@ -729,28 +729,23 @@ a:hover {
 
 .logo {
     position: relative;
-    top: 15px;
-    width: 230px;
-    height: 50px;
+    top: 20px;
+    width: 290px;
+
+}
+
+@media (max-width: 991px) {
+    .logo {
+        width: 230px;
+    }
 }
 
 @media (max-width: 767px) {
     .logo {
-        top: 4px;
+        top: 15px;
     }
 }
 
-@media (max-width: 480px) {
-    .logo {
-        width: 180px;
-        height: 40px;
-        top: 12px;
-        margin-bottom: 20px;
-
-
-
-    }
-}
 
 .start-now-text-nav {
     position: relative;

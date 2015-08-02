@@ -847,6 +847,17 @@ a:hover {
 
 }
 
+.run-docker {
+    max-width: 300px;
+    margin-left: 50px;
+}
+
+.run-cli {
+    max-width: 550px;
+    margin-left: 50px;
+}
+
+
 @media (max-width: 1199px) {
 
     .getting-started-robot {
@@ -1762,4 +1773,7 @@ a:hover {
     }
 }
 
-
+.get-started-col {
+    position: relative;
+    float: left;
+}

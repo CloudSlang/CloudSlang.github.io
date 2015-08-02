@@ -5,7 +5,7 @@
             <p class="h4">{{ $root.messages.bannerDesc }} </p>
         </div>
         <div class="col-md-4 col-xs-12 col-centered">
-            <a href="#/getstarted#top">
+            <a href="#/getstarted#top" onclick="ga('send', 'event', 'button', 'click', 'start now banner', 1);">
                 <button type="button" class="btn banner-button">
                     <img class="pull-left banner-resize" src="images/button_icon.png" alt="Start Now">
                     <p class="banner-text">{{ $root.messages.startNowBanner }}</p> </button> </a>

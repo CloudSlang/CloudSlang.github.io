@@ -19,12 +19,12 @@
            </a>
         </div>
         <ul class="nav navbar-nav navbar-right navbar-collapse bs-navbar-collapse collapse">
-            <li class="h5"><a href="http://blog.cloudslang.io" target="_blank" >{{$root.messages.navBlogTitle}}</a></li>
-            <li class="h5"><a href="#/community" target="_top" >{{$root.messages.navCommunityTitle}} </a></li>
-            <li class="h5"><a href="#/docs" target="_top">{{$root.messages.navDocumentationTitle}}</a></li>
-            <li class="h5"><a href="#/about" class="h5" target="_top">{{$root.messages.navAboutTitle}}</a></li>
+            <li class="h5"><a href="http://blog.cloudslang.io" onclick="ga('send', 'event', 'button', 'click', 'nav blog', 1);" target="_blank" >{{$root.messages.navBlogTitle}}</a></li>
+            <li class="h5"><a href="#/community" onclick="ga('send', 'event', 'button', 'click', 'nav community', 1);" target="_top" >{{$root.messages.navCommunityTitle}} </a></li>
+            <li class="h5"><a href="#/docs" onclick="ga('send', 'event', 'button', 'click', 'nav docs', 1);" target="_top">{{$root.messages.navDocumentationTitle}}</a></li>
+            <li class="h5"><a href="#/about" onclick="ga('send', 'event', 'button', 'click', 'nav about', 1);" class="h5"  target="_top">{{$root.messages.navAboutTitle}}</a></li>
             <li class="button-nav-position"><p class="navbar-btn">
-                <a href="#/getstarted#top" class="btn start-now-button-nav" target="_top"><img src="images/button_icon.png" class="resize-nav"
+                <a href="#/getstarted#top" onclick="ga('send', 'event', 'button', 'click', 'start now nav', 1);" class="btn start-now-button-nav" target="_top"><img src="images/button_icon.png" class="resize-nav"
                                                                          alt="Start Now">
                     <span class="start-now-text-nav"> {{$root.messages.headerStartNow}}</span></a>
             </p>

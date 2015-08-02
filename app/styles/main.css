@@ -1664,22 +1664,30 @@ a:hover {
     text-align: left;
     margin-top: 30px;
     font-size: 15px;
-    width: 450px;
+    width: 440px;
 
 }
 
-@media (max-width: 460px) {
+@media (max-width: 590px) {
 
     .privacy {
-        width: 350px;
+        width: 390px;
 
     }
 }
 
-@media (max-width: 409px) {
+@media (max-width: 560px) {
 
     .privacy {
-        width: 245px;
+        width: 340px;
+
+    }
+}
+
+@media (max-width: 510px) {
+
+    .privacy {
+        width: 280px;
 
     }
 }
@@ -1734,37 +1742,24 @@ a:hover {
     top: 30px;
 }
 
+.modal-pos {
+    position: relative;
+}
 
 .popup-robot {
-    position: relative;
-    width: 150px;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    top: -189px;
-    right: -15px;
+    position: absolute;
+    display: inline-block;
+    bottom: 0px;
+    right: 0px;
+    width: 25%;
+    margin-left: 15px;
 }
 
-@media (max-width: 603px) {
+
+@media (max-width: 425px) {
     .popup-robot {
-        top: -167px;
+        width: 20%;
     }
 }
 
-@media (max-width: 459px) {
-    .popup-robot {
-        display: none;
-    }
-}
-
-@media (max-width: 420px) {
-    .popup-robot {
-        display: none;
-    }
-}
-
-@media screen and (min--moz-device-pixel-ratio: 100) {
-    .popup-robot {
-        display: none;
-    }
-}
 

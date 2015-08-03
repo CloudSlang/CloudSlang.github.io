@@ -734,6 +734,12 @@ a:hover {
 
 }
 
+.logo:hover {
+    opacity: 0.6;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+
+}
+
 @media (max-width: 991px) {
     .logo {
         width: 230px;

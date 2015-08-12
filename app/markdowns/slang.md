@@ -6,7 +6,7 @@ CloudSlang is a [YAML](http://www.yaml.org) (version 1.2) based language for des
 See the [New Hire tutorial](http://cloudslang-tutorials.readthedocs.org) for a comprehensive walkthrough of the CloudSlang language's features.
 
 ##YAML Overview
-Before writing CloudSlang code it helps to have a good working knowledge of YAML. The following is a brief overview of some of the YAML specification. See the full [YAML specificationn](http://www.yaml.org/spec/1.2/spec.html) for more information.
+Before writing CloudSlang code it helps to have a good working knowledge of YAML. The following is a brief overview of some of the YAML specification. See the full [YAML specification](http://www.yaml.org/spec/1.2/spec.html) for more information.
 
 ###Whitespace
 Unlike many programming, markup, and data serialization languages, whitespace is syntactically significant. Indentation is used to denote scope and is always achieved using spaces. Never use tabs.

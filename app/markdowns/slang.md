@@ -27,7 +27,7 @@ Unlike many programming, markup, and data serialization languages, whitespace is
 ```
 
 ###Lists
-Lists are denoted with a hypen (-) and a space preceding each list item. 
+Lists are denoted with a hyphen (-) and a space preceding each list item. 
 
 **Example: a CloudSlang flow's possible results are defined using a list mapped to the results key**
 ```yaml
@@ -324,7 +324,7 @@ Prerequisite: **pip** - see **pip**'s [documentation](https://pip.pypa.io/en/lat
 
 **Adding the package location to `sys.path`:**
 
-1. In the action's Pyton script, import the `sys` module.
+1. In the action's Python script, import the `sys` module.
 2. Use `sys.path.append()` to add the path to the desired module.
 3. Import the module and use it. 
     **Example - takes path as input parameter, adds it to sys.path and imports desired module **
@@ -1250,7 +1250,7 @@ operation:
       print 'Email sent to ' + recipient + ' with subject - ' + subject
 ```
 
-####Example3 - Subflow
+####Example3 - subflow
 This example uses the flow from **Example 1** as a subflow. It takes in four numbers (or uses default ones) to call `division_flow` twice. If either division returns the `ILLEGAL` result, navigation is routed to the `on_failure` task and the flow ends with a result of `FAILURE`. If both divisions are successful, the `on_failure` task is skipped and the flow ends with a result of `SUCCESS`.
 
 **Note:** To run this flow, the files from **Example 1** should be placed in the same folder as this flow file or use the `--cp` flag at the command line.
@@ -1625,7 +1625,7 @@ There are several ways to get started with the CloudSlang CLI.
 **Prerequisites :** To download the package, Node.js is required. To run the CloudSlang CLI, Java JRE version 7 or higher is required.
 
 1. At a command prompt, enter `npm install -g cslang-cli`.
-	+ If using Linux, the sudo command might be neccessary: `sudo npm install -g cslang-cli`. 
+	+ If using Linux, the sudo command might be necessary: `sudo npm install -g cslang-cli`. 
 2. Enter the `cslang` command at any command prompt.
 
 ###Use the CLI

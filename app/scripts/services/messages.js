@@ -128,6 +128,7 @@ angular.module('cloudSlangWebsiteApp')
             detailedDownloadCliText: 'Download and unzip the CloudSlang CLI.',
             detailedDownloadCliText1: 'If you are using ',
             detailedDownloadCliText2: ' you can simply run our Docker image:',
+            DockerRun: 'docker run -it cloudslang/cloudslang',
             detailedDownloadCliDockerImage: 'Docker image',
             detailedSlangCliHeader: 'Execute CLI',
             detailedSlangWriteFlowText:'Unzip cslang-cli-with-content.zip',

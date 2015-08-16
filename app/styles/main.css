@@ -22,9 +22,6 @@ body {
     }
 }
 
-
-
-
 ::selection {
     background: #2f6019;
     color: #ffffff;
@@ -421,6 +418,7 @@ a:hover {
 
 .section-wrapper.suggest-flow {
     background-color: #0ba04a;
+    padding-bottom: 80px;
 }
 
 .section-wrapper.bullets {
@@ -479,7 +477,7 @@ a:hover {
     bottom: 0;
     left: 0;
     right: 0;
-    background: #2c451c;
+    background: #2a6342;
     z-index: 1999; /* as pace has 2000 */
 }
 
@@ -581,7 +579,7 @@ a:hover {
     background-color: #0BA04A;
     width: 230px;
     height: 60px;
-    margin-top: 5px;
+    margin-top: -25px;
     font-size: 24px;
 }
 
@@ -605,6 +603,7 @@ a:hover {
     .banner-button {
         width: 160px;
         height: 45px;
+        margin-top: 0px;
     }
 
     .banner-text {
@@ -721,8 +720,8 @@ a:hover {
 }
 
 .start-now-button-nav .resize-nav {
-    width: 20px;
-    margin-top: -6px;
+    width: 19px;
+    margin-top: -7px;
     margin-left: -7px;
     margin-right: 7px;
 }
@@ -792,8 +791,10 @@ a:hover {
     }
 
     .start-now-button .resize {
-        width: 28px;
+        width: 27px;
         margin-top: -5px;
+        margin-left: -8px;
+
     }
 }
 
@@ -874,7 +875,7 @@ a:hover {
 
 @media (max-width: 680px) {
     .getting-started-robot {
-        right: -11px;
+        right: -10px;
         width: 250px;
 
     }
@@ -1164,7 +1165,7 @@ a:hover {
 }
 
 .download-link {
-    text-decoration: underline;
+    text-decoration: none;
     color: #5D913A;
 }
 

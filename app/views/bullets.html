@@ -1,23 +1,43 @@
 <div class="container">
     <div class="row row-centered">
-        <div class="col-md-3 col-xs-7 col-centered vtop">
-            <p class="h3">{{$root.messages.mainBulletsProcessBasedTitle}}</p>
-            <img class="col-centered" src="images/bullets/icon_process_based.png" alt="Process Based"/>
-            <p class="h4 left">{{$root.messages.mainBulletsProcessBasedDesc}}</p>
+        <div class="col-md-12 col-xs-12">
+            <div class="why-cloudslang-title pull-left">{{$root.messages.whyCloudSlangTitle}}</div>
         </div>
-        <div class="col-md-3 col-xs-7 col-md-offset-1 col-centered vtop">
-            <p class="h3">{{$root.messages.mainBulletsDayTwoOperationsTitle}}</p>
-            <img class="col-centered" src="images/bullets/icon_2_days.png" alt="Day 2 Operations"/>
-            <p class="h4 left">{{$root.messages.mainBulletsDayTwoOperationsDescPre}}
-                <a class="explore" ng-href="https://github.com/CloudSlang/cloud-slang-content" target="_blank">
-                    {{$root.messages.mainBulletsDayTwoOperationsDescLink}}</a>
-                {{$root.messages.mainBulletsDayTwoOperationsDescPost}}
+    </div>
+    <div class="row pull-left">
+        <div class="col-md-4 col-sm-6 col-xs-12 pull-left">
+            <div class="circle center">
+                <img class="img-centered" src="images/bullets/icon_process_based.png" alt="Process Based"/>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-6 col-xs-12 pull-left">
+            <p class="bullet-title pull-left">{{$root.messages.mainBulletsProcessBasedTitle}}</p><br>
+            <p class="h4 bullet-desc pull-left">{{$root.messages.mainBulletsProcessBasedDesc}}</p>
+        </div>
+    </div>
+
+    <div class="row pull-left">
+        <div class="col-md-4 col-sm-6 col-xs-12 pull-left">
+            <div class="circle center">
+                <img class="img-centered" src="images/bullets/icon_ready_made.png" alt="Ready Made"/>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-6 col-xs-12 pull-left">
+            <p class="bullet-title pull-left">{{$root.messages.mainBulletsReadyMadeContentTitle}}</p><br>
+            <p class="h4 bullet-desc pull-left">{{$root.messages.mainBulletReadyMadeContentDesc}}
             </p>
         </div>
-        <div class="col-md-3 col-xs-7 col-md-offset-1 col-centered vtop">
-            <p class="h3">{{$root.messages.mainBulletsAgentlessTitle}}</p>
-            <img class="col-centered" src="images/bullets/icon_agentless.png" alt="Agentless"/>
-            <p class="h4 left">{{$root.messages.mainBulletsAgentlessDesc}}
+    </div>
+
+    <div class="row pull-left">
+        <div class="col-md-4 col-sm-6 col-xs-12 pull-left">
+            <div class="circle center">
+                <img class="img-centered2" src="images/bullets/icon_agentless.png" alt="Agentless"/>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-6 col-xs-12 pull-left">
+            <p class="bullet-title pull-left">{{$root.messages.mainBulletsAgentlessTitle}}</p><br>
+            <p class="h4 bullet-desc pull-left">{{$root.messages.mainBulletsAgentlessDesc}}
             </p>
         </div>
     </div>

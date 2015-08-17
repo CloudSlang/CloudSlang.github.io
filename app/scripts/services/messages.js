@@ -10,7 +10,9 @@ angular.module('cloudSlangWebsiteApp')
             navAboutTitle: 'About Us',
             navDocumentationTitle: 'Documentation',
             navBlogTitle: 'Blog',
+            navCommunityTitle: 'Community',
             navBackToSiteTitle: 'Back To Site',
+            navSuggestAFlow: 'Suggest a Flow',
 
             //docs nav bar
             navDocsOverviewTitle: 'Overview',
@@ -21,7 +23,38 @@ angular.module('cloudSlangWebsiteApp')
             headerMainTitle: 'Automate your DevOps use cases using ready-made workflows',
             headerDescription: 'With CloudSlang you can orchestrate popular DevOps technologies, such as Docker and CoreOS in an agentless manner. ' +
                                     'You can also define custom workflows that are reusable, shareable and easy to understand.',
-            headerStartNow: 'Get started',
+            headerStartNow: 'Start Now',
+            worksWith: 'Works with:',
+
+            // what is cloudslang
+            whatIsTitle: 'What is CloudSlang?' ,
+            whatIsDescription: 'CloudSlang is an open source tool for orchestrating popular DevOps technologies, such as Docker and CoreOS in an agentless manner.\ ' +
+                                    'Use ready-made workflows or define your own custom ones. CloudSlang workflows are reusable, shareable and easy to understand.',
+            whatIsDescription2: 'The CloudSlang project is composed of three main parts: the CloudSlang Orchestration Engine,'+
+                                    ' the YAML-based CloudSlang language and the ready-made CloudSlang content.' ,
+
+
+
+            //community
+            communityTitle: 'Community',
+            communityTitleDesc1:'Get involved. The CloudSlang project is completely open source. The code, discussions and roadmap are all out in the open on GitHub. ',
+            communityTitleDesc2: 'Join us in leveraging the power of the community to create the best-in-class orchestration technology.',
+            communityCommunicate: 'Communicate',
+            communityCommunicateDesc: 'See what we\'re working on.' +
+                                            ' Or tell us what you\'re working on.',
+            communityContribute:'Contribute',
+            communityContributeDesc:'Share one of your own workflows, open as issue or fix a bug.',
+            communityLearnMore:'Learn More',
+            communityLearnMoreDesc:'Read the docs, work your way through a tutorial or read our blog.',
+
+
+
+
+            //suggest a workflow
+            suggestWorkFlowTitle: 'Suggest a Workflow',
+            suggestWorkFlowDescription1: 'Do you have a DevOps use case that you\'d like to automate, but it\'s not covered by our ready-made content?',
+            suggestWorkFlowDescription2: 'We’d be thrilled if you would contribute and share your own content. In the meantime though, you can click below to let the community know what you need.',
+            suggestWorkFlowButton: 'Suggest a workflow' ,
 
             // footer
             footerPrivacy: 'Privacy Policy',
@@ -30,6 +63,7 @@ angular.module('cloudSlangWebsiteApp')
             footerLicenseHref: 'Apache License, Version 2.0.',
             footerContactUs: 'Contact Us',
             footerGooglePlus: 'Google Plus',
+            footerNewsLetter: 'Newsletter',
             footerYoutube: 'YouTube',
             footerTwitter: 'Twitter',
             footerGitHub: 'GitHub',
@@ -41,13 +75,16 @@ angular.module('cloudSlangWebsiteApp')
             footerTutorials: 'Tutorials',
 
             // bullets
+            whyCloudSlangTitle: 'Why CloudSlang?' ,
             mainBulletsProcessBasedTitle: 'Process-Based',
-            mainBulletsDayTwoOperationsTitle: 'Day 2 Operations',
+            mainBulletsReadyMadeContentTitle: 'Ready-made Content',
             mainBulletsAgentlessTitle: 'Agentless',
-            mainBulletsProcessBasedDesc: 'CloudSlang is a simple way to describe workflows in a reusable fashion. Using YAML and Python, CloudSlang allows you to better control the workflow\'s behavior.',
-            mainBulletsDayTwoOperationsDescPre: 'Use existing CloudSlang content to manage your deployed application.',
-            mainBulletsDayTwoOperationsDescLink: 'Explore',
-            mainBulletsDayTwoOperationsDescPost: ' our Docker, OpenStack and utilities content.',
+            mainBulletsProcessBasedDesc: 'Many popular orchestration solutions are based on desired state modelling. ' +
+                                            'This approach usually forces you to relinquish control over the runtime behavior of your orchestration and is mostly used for static cases like deployment. ' +
+                                                'CloudSlang takes a process-based approach to orchestration, allowing you to define how your orchestration works and empowering you to also address dynamic cases such as health checks, remediation, and disaster recovery.',
+            mainBulletReadyMadeContentDesc: 'Although writing your own CloudSlang content is easy using our YAML-based DSL, you don’t need to write a single line of code to leverage the power of CloudSlang.' +
+                                                    ' There is a growing repository of ready-made content that integrates with many of today’s hottest technologies, such as Docker and CoreOS. ' +
+                                                            'And, the open source nature of the project means that you’ll be able to reuse and repurpose content shared by the community.',
             mainBulletsAgentlessDesc: 'Don’t bother setting up and managing agents on all your machines. CloudSlang workflows can use remote APIs to run tasks.',
             mainBulletsReadMore: 'Read More',
 
@@ -62,50 +99,61 @@ angular.module('cloudSlangWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsByHp: "Project CloudSlang by HP",
+            aboutUsByHp: 'Project CloudSlang by HP',
             aboutUsWhoWeAreText: 'This project is being contributed to the open source community by HP Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
 
+            // get started banner
+            bannerTitle: 'Get Started',
+            bannerDesc: 'Click this button and start using CloudSlang in 4 easy steps',
+            startNowBanner: 'Start Now',
+
+
             // use cases
-            useCasesTitle: 'Use Cases',
-            useCasesITTitle: 'IT Process Automation',
+            useCasesTitle: 'Example Use Cases',
+            useCasesCoreOsTitle: 'Clear Unused Docker Images in a CoreOS Cluster',
             useCasesCloudTitle: 'Cloud Orchestration',
-            useCasesAppDeploymentTitle: 'Application Deployment',
-            useCasesDevOpsTitle: 'DevOps',
-            useCasesITDesc: 'Disaster Recovery',
+            useCasesAppDeploymentTitle: 'Deploying a Dockerized Application',
+            useCasesOpenStackTitle: 'OpenStack Health Check',
+            useCasesCoreOsDesc: 'Unused Docker images can waste a lot of precious disk space. Use this workflow to remove all the unused Docker images from your entire CoreOS cluster.',
             useCasesCloudDesc: 'OpenStack Health Check',
-            useCasesAppDeploymentDesc: 'Link Docker Container',
-            useCasesDevOpsDesc: 'CI \\ CD',
+            useCasesAppDeploymentDesc: 'This example workflow demonstrates how to easily deploy a complex app that uses linked containers. ' +
+                                            'Use it as a springboard for writing a custom flow to deploy your own application.',
+            useCasesOpenStackDesc: 'Performs a health check on an OpenStack machine by creating a server, checking that it\'s up and then deleting it.',
+            useCasesSeeMore: 'See the full content catalog' ,
 
             // getting started
-            downloadCliHeader: 'Download and use slang CLI tool',
-            downloadCliDownloadLink: 'Download and see how',
-            embedScoreHeader: 'Embed score library in your application',
-            embedScoreLink: 'Press to see how',
-            orText: 'or',
-
-            // -- download and install cli
+            getStartedTitleDesc: 'Start Working with CloudSlang with these 4 simple steps.',
+            cloudSlangVersion: 'CloudSlang version 0.7.15',
             detailedDownloadCliHeader: 'Download',
-            detailedDownloadCliText: 'Download and unzip the command-line interface.',
-            detailedDownloadLatest: 'Download latest version',
-            detailedDownloadOldVersions: 'Download old versions',
-            detailedSlangCliHeader: 'Write',
-            detailedSlangWriteFlowText: 'Write a flow and save it as \'hello_world.sl\'.',
-            detailedSlangWriteOperationText: 'Write an operation and save it as \'print.sl\'.',
-            detailedUseCliHeader: 'Start command-line interface',
-            detailedUseCliText: 'Open your console and execute the CLI',
-            detailedTriggerFlowHeader: 'Run',
-            detailedTriggerFlowText1: '1. Open your console and execute the CLI. The CLI is located at <path>/cslang/bin.',
-            detailedTriggerFlowText2: '2. Run your flow from the command-line.',
-            detailedCliHeader: 'Click to see how',
-            detailedCliPrefix: '$',
-            detailedCliClear: 'Clear',
-            detailedCliTriggerFlow: 'cslang\n' +
-                '^100cslang>^500 run --f .../hello_world.sl\n' +
-                '^500- sayHi\n' +
-                '^250Hello, World\n' +
-                '^250Flow : hello_world finished with result : SUCCESS\n' +
-                'Execution id: 101600001, duration: 0:00:00.790\n' +
-                '^250cslang>',
+            detailedDownloadCliText: 'Download and unzip the CloudSlang CLI.',
+            detailedDownloadCliText1: 'If you are using ',
+            detailedDownloadCliText2: ' you can simply run our Docker image:',
+            DockerRun: 'docker run -it cloudslang/cloudslang',
+            detailedDownloadCliDockerImage: 'Docker image',
+            detailedSlangCliHeader: 'Execute CLI',
+            detailedSlangWriteFlowText:'Unzip cslang-cli-with-content.zip',
+            detailedSlangWriteFlowText1: 'Go to cslang/bin/cslang and run the CloudSlang executable.',
+            detailedTriggerFlowHeader: 'Run a workflow',
+            detailedTriggerFlowText1: 'At the prompt enter:',
+            detailedTriggerFlowText2: 'run --f ../../content/io/cloudslang/base/print/print_text.sl --i text=Hi',
+            detailedTriggerFlowText4: 'The CLI will run the ready-made print_text operation that will print the value passed to the variable text.',
+            detailedLearnMoreHeader: 'Learn More',
+
+
+
+
+            // download popup
+            popUpHeader: 'Keep up to date!' ,
+            popUpBody: 'For more information on getting started with CloudSlang check out the',
+            videoLink: 'introductory video,',
+            docsLink: 'docs',
+            popUpBody2: 'or the ',
+            tutorialLink: 'tutorial',
+            dot: '.',
+            emailField: 'Keep up to date with new ready-made flows and language capabilities. Sign up for the CloudSlang newsletter.',
+            emailPrivacy:'We respect your privacy. ' +
+                            'Your email address will only be used for communication purposes. It will not be sold, shared with or disclosed to a third party.',
+
 
             // -- embed score
             detailedEmbedPomHeader: 'score dependencies',

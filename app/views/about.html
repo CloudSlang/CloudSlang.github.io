@@ -1,17 +1,19 @@
+<div class="header">
+    <div ng-include src="'views/navbar.html'"></div>
+</div>
 <div class="container">
-    <div class="row row-centered">
+    <div class="row row-centered" style="margin-bottom: 150px;">
         <div class="col-md-12 col-xs-12 ">
             <div class="row">
-                <img class="team-logo col-md-4 col-xs-2 col-centered" src="images/team/about_icon.png"/>
+                <img class="col-md-4 col-xs-12 col-centered team-logo" src="images/team/about_icon.png"/>
 
-                <div class="section-header col-md-6 col-xs-10 col-centered left">
+                <div class="section-header col-md-8 col-xs-12 col-centered left">
                     <p class="h3">{{$root.messages.aboutUsByHp}}</p>
                     <p class="h4">{{$root.messages.aboutUsWhoWeAreText}}</p>
                 </div>
             </div>
         </div>
         <div class="col-centered">
-            <!--<div class="row team-members center-block">-->
             <div class="row team-members center-block">
                 <div class="col-md-3 col-sm-3 team-member">
                     <img height="145" width="145"
@@ -57,8 +59,6 @@
                     <p class="h4 text-center">Harar Zafrir</p>
                 </div>
             </div>
-
-            <!--</div>-->
         </div>
     </div>
 </div>

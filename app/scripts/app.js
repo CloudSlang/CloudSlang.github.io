@@ -4,7 +4,9 @@ angular
     .module('cloudSlangWebsiteApp', [
         'ngAnimate',
         'ngRoute',
-        'hljs'
+        'hljs',
+        'mailchimp',
+        'ui.bootstrap'
     ])
     .config(function ($routeProvider) {
         $routeProvider
@@ -19,6 +21,18 @@ angular
             .when('/blog', {
                 templateUrl: 'views/blog.html',
                 controller: 'BlogCtrl'
+            })
+            .when('/about', {
+                templateUrl: 'views/about.html',
+                controller: 'MainCtrl'
+            })
+            .when('/getstarted', {
+                templateUrl: 'views/getstarted.html',
+                controller: 'GettingStartedCtrl'
+            })
+            .when('/community', {
+                templateUrl: 'views/community.html',
+                controller: 'MainCtrl'
             })
             .otherwise({
                 redirectTo: '/'

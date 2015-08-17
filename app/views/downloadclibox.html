@@ -1,46 +1,44 @@
-<div>
-    <div class="explanation col-md-7">
-        <p class="h3">{{$root.messages.detailedDownloadCliHeader}}</p>
+<div ng-controller="GettingStartedCtrl">
+
+    <div class="download col-md-12 col-sm-12 col-xs-12">
+        <a id="delay" onclick="ga('send', 'event', 'button', 'click', 'download cli', 1);"
+           class="btn btn-primary btn-lg download-now-button" data-toggle="modal"
+           data-target="#myModal">
+            <img class="pull-left" src="images/download_button.png" alt="Download Now"/>
+
+            <p class="download-now-text">
+            {{$root.messages.detailedDownloadCliHeader}}</p></a>
+        <p class="cloudslang-version"><small>{{$root.messages.cloudSlangVersion}}</small></p>
     </div>
-    <div class="col-md-7">
-        <p class="h4">{{$root.messages.detailedDownloadCliText}}</p>
-    </div>
-    <div  class="download col-md-7">
-        <a onclick="ga('send', 'event', 'button', 'click', 'download cli', 1);"
-           class="pull-left btn btn-primary btn-lg download-now-button left-side"
-           ng-href="/download">
-            <img src="images/download_button.png" alt="Start Now"/></a>
-        <a onclick="ga('send', 'event', 'button', 'click', 'download cli', 1);"
-           class="pull-left btn btn-primary btn-lg download-now-button right-side"
-           ng-href="/download">
-            <p class="h4">
-            {{$root.messages.detailedDownloadLatest}}</p></a>
-    </div>
-    <div class="explanation col-md-12">
-        <p class="h3">{{$root.messages.detailedSlangCliHeader}}</p>
-    </div>
-    <div class="col-md-7 snippet">
-        <div class="h4">{{$root.messages.detailedSlangWriteFlowText}}</div>
-        <div hljs include="'views/codesnippets/hello_world.sl'" language="less"></div>
-    </div>
-    <div class="col-md-7 snippet">
-        <div class="h4">{{$root.messages.detailedSlangWriteOperationText}}</div>
-        <div hljs include="'views/codesnippets/print.sl'" language="less"></div>
-    </div>
-    <div class="explanation col-md-12 col-xs-12">
-        <p class="h3">{{$root.messages.detailedTriggerFlowHeader}}</p>
-    </div>
-    <div class="col-md-7 col-xs-12">
-        <p class="h4">{{$root.messages.detailedTriggerFlowText1}}</p>
-        <p class="h4">{{$root.messages.detailedTriggerFlowText2}}</p>
-    </div>
-    <div class="col-md-7 col-xs-12">
-        <div class="cli" ng-click="showCli('cli-trigger-flow', [$root.messages.detailedCliTriggerFlow])">
-            <div class="cli-header">{{$root.messages.detailedCliHeader}}</div>
-            <div class="cli-body">{{$root.messages.detailedCliPrefix}}
-                <span id="cli-trigger-flow" class="typed"></span>
-                <span id="cli-trigger-flow-cursor" class="typed-cursor">|</span>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog popup-font-color modal-pos">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="h3 popup-title popup-font-color">{{ $root.messages.popUpHeader
+                        }}</h3>
+                </div>
+                <div class="modal-body">
+                    <p class="h4 popup-desc"> {{ $root.messages.emailField}}</p>
+
+                    <div class="subscribe-field">
+                        <div ng-include src="'views/subscription.html'"></div>
+                    </div>
+                    <br>
+                    <img class="img-responsive pull-right popup-robot" src="images/gettingstarted/popup_robot.png">
+                    <p class="h4 privacy">
+                        <small>{{ $root.messages.emailPrivacy}}</small>
+                    </p>
+                </div>
             </div>
+
         </div>
     </div>
+
+
 </div>

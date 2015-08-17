@@ -71,6 +71,12 @@ a:hover {
     color: #cbc9cd;
 }
 
+a:active, a:focus {
+    outline: none;
+    text-decoration: none;
+    color: #909090;
+}
+
 .h1, h1 {
     font-size: 45px;
     font-weight: lighter;
@@ -246,9 +252,22 @@ a:hover {
     outline: none;
 }
 
+.navbar-default .navbar-toggle:focus {
+     background-color: transparent;
+}
+
+.navbar-default .navbar-toggle:active {
+    opacity: 0.8;
+}
+
+.navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+    opacity: 0.8;
+}
+
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #0ba04a;
-    width: 18px;
+    width: 20px;
     margin-bottom: 2px;
     margin-top: 2px;
 }

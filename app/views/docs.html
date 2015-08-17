@@ -1,26 +1,5 @@
 <div ng-controller="DocsCtrl">
-    <div class="header">
-        <div ng-include src="'views/navbar.html'"></div>
-    </div>
-    <div class="row" style="width: 100%">
-        <div class="docs-sidebar"
-             ng-include src="'views/sidebar.html'" role="complementary"></div>
-        <div class="docs-md-content">
-            <div class="row row-centered">
-                <div youtube-embed class="col-md-6 col-sm-10 col-xs-12 col-centered">
-                    <img src="images/docs_video_cover.png" class="hide"/>
-                    <iframe src="https://www.youtube.com/watch?v=CX1_It_Ygso"></iframe>
-                </div>
-            </div>
-            <section class="section-wrapper overview" id="overview">
-                <div ng-include src="'views/docs/generated/overview.html'"></div>
-            </section>
-            <section class="section-wrapper cloud-slang" id="cloud-slang">
-                <div ng-include src="'views/docs/generated/slang.html'"></div>
-            </section>
-            <section class="section-wrapper developer" id="developer">
-                <div ng-include src="'views/docs/generated/developer.html'"></div>
-            </section>
-        </div>
+    <div class="container blog loading">
+        <p class="h1">Loading documentation<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</p>
     </div>
 </div>

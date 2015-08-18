@@ -1258,7 +1258,14 @@ a:active, a:focus {
 
 .bullet-img-big {
     position: relative;
+    top: 50px;
     left: 100px;
+    width: 80%;
+}
+
+.bullet-img-small {
+    position: relative;
+    width: 80%;
 }
 
 .carousel-image {

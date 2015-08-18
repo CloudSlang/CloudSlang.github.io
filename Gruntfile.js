@@ -405,22 +405,7 @@ module.exports = function (grunt) {
                 singleRun: true
             }
         },
-
-        //markdown copy
-        marked: {
-            all: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: '<%= yeoman.app %>/markdowns',
-                        src: '**/*.md',
-                        dest: '<%= yeoman.app %>/views/docs/generated',
-                        ext: '.html'
-                    }
-                ]
-            }
-        },
-
+        
         extractheaders: {
             options: {
                 sources: [

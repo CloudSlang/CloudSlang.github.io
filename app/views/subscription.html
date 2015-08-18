@@ -2,12 +2,11 @@
     <div class="col-md-12 col-sm-12 col-xs-12 col-centered">
         <form name="MailchimpSubscriptionForm" ng-controller="MailchimpSubscriptionCtrl">
             <div ng-hide="mailchimp.result === 'success'">
-                <input class="hidden" type="hidden" ng-model="mailchimp.username" ng-init="mailchimp.username='hpln'">
+                <input class="hidden" type="hidden" ng-model="mailchimp.username" ng-init="mailchimp.username='cloudslang'">
                 <input class="hidden" type="hidden" ng-model="mailchimp.dc" ng-init="mailchimp.dc='us11'">
-                <input class="hidden" type="hidden" ng-model="mailchimp.u" ng-init="mailchimp.u='faac5eb54029eea8e52617153'">
-                <input class="hidden" type="hidden" ng-model="mailchimp.id" ng-init="mailchimp.id='3e1c20d9b7'">
+                <input class="hidden" type="hidden" ng-model="mailchimp.u" ng-init="mailchimp.u='13db731c2b5a1aaaad19c653a'">
+                <input class="hidden" type="hidden" ng-model="mailchimp.id" ng-init="mailchimp.id='2c3dbbd15b'">
                 <input class="name-field" type="text" name="fname" ng-model="mailchimp.FNAME" placeholder="Full Name">
-                <!--input type="text" name="lname" ng-model="mailchimp.LNAME" placeholder="Last name"-->
                 <input class="email-field" type="text" name="email" ng-model="mailchimp.EMAIL"
                        placeholder="Email address" required>
                 <button class="sign-up" ng-disabled="MailchimpSubscriptionForm.$invalid"

@@ -16,7 +16,7 @@ Unlike many programming, markup, and data serialization languages, whitespace is
 ```yaml
 - divider:
     do:
-      ops.divide:
+      divide:
         - dividend: input1
         - divisor: input2
     publish:
@@ -27,7 +27,7 @@ Unlike many programming, markup, and data serialization languages, whitespace is
 ```
 
 ###Lists
-Lists are denoted with a hypen (-) and a space preceding each list item. 
+Lists are denoted with a hyphen (-) and a space preceding each list item. 
 
 **Example: a CloudSlang flow's possible results are defined using a list mapped to the results key**
 ```yaml
@@ -61,7 +61,7 @@ flow:
 ```yaml
 - sayHi:
     do:
-      ops.print:
+      print:
         - text: "'Hello, World'"
 ```
 
@@ -93,15 +93,12 @@ In a new folder, create two new CloudSlang files, hello_world.sl and print.sl, a
 ```yaml
 namespace: examples.hello_world
 
-imports:
-  ops: examples.hello_world
-
 flow:
   name: hello_world
   workflow:
     - sayHi:
         do:
-          ops.print:
+          print:
             - text: "'Hello, World'"
 ```
 **print.sl**
@@ -327,7 +324,7 @@ Prerequisite: **pip** - see **pip**'s [documentation](https://pip.pypa.io/en/lat
 
 **Adding the package location to `sys.path`:**
 
-1. In the action's Pyton script, import the `sys` module.
+1. In the action's Python script, import the `sys` module.
 2. Use `sys.path.append()` to add the path to the desired module.
 3. Import the module and use it. 
     **Example - takes path as input parameter, adds it to sys.path and imports desired module **
@@ -384,7 +381,7 @@ Property|Required|Default|Value Type|Description|More Info
      async_loop:
        for: value in values
        do:
-         ops.print_branch:
+         print_branch:
            - ID: value
        publish:
          - name
@@ -430,7 +427,7 @@ If the `break` property is not defined, the loop will break on results of `FAILU
 loop:
   for: value in range(1,7)
   do:
-    ops.custom_op:
+    custom_op:
       - text: value
   break:
     - CUSTOM
@@ -444,7 +441,7 @@ navigate:
 loop:
   for: value in range(1,7)
   do:
-    ops.custom_op:
+    custom_op:
       - text: value
   break: []
 ```
@@ -486,7 +483,7 @@ Calls an [operation](#/docs#operation) or [flow](#/docs#flow) and passes in rele
 **Example - call to a divide operation with inputs**
 ```yaml
 do:
-  ops.divide:
+  divide:
     - dividend: input1
     - divisor: input2
 ```
@@ -518,7 +515,7 @@ flow:
   workflow:
     - divider:
         do:
-          ops.divide:
+          divide:
             - dividend: input1
             - divisor: input2
         publish:
@@ -528,7 +525,7 @@ flow:
           SUCCESS: printer
     - printer:
         do:
-          ops.print:
+          print:
             - text: input1 + "/" + input2 + " = " + answer
         navigate:
           SUCCESS: SUCCESS
@@ -560,7 +557,7 @@ When iterating through a list, the `for` key is mapped to an iteration variable 
     loop:
       for: value in [1,2,3]
       do:
-        ops.print:
+        print:
           - text: value
 ```
 
@@ -571,7 +568,7 @@ When iterating through a list, the `for` key is mapped to an iteration variable 
     loop:
       for: value in "1,2,3"
       do:
-        ops.print:
+        print:
           - text: value
 ```
 
@@ -582,7 +579,7 @@ When iterating through a list, the `for` key is mapped to an iteration variable 
     loop:
       for: value in range(1,4)
       do:
-        ops.print:
+        print:
           - text: value
 ```
 
@@ -596,7 +593,7 @@ When iterating through a map, the `for` key is mapped to iteration variables for
     loop:
       for: k, v in map
       do:
-        ops.print2:
+        print2:
           - text1: k
           - text2: v
 ```
@@ -616,7 +613,7 @@ The `for` key is mapped to an iteration variable followed by `in` followed by a 
     async_loop:
       for: value in values_list
       do:
-        ops.print_branch:
+        print_branch:
           - ID: value
 ```
 
@@ -707,7 +704,7 @@ Property|Required|Default|Value Type|Description|More Info
 	 loop:
 	   for: value in "1,2,3,4,5"
 	   do:
-	     ops.custom3:
+	     custom3:
 	       - text: value
 	   break:
 	     - CUSTOM
@@ -779,7 +776,7 @@ Defines the [task](#/docs#task), which when using default [navigation](#/docs#na
 - on_failure:
   - failure:
       do:
-        ops.print:
+        print:
           - text: error_msg
 ```
 
@@ -854,7 +851,7 @@ In a [standard task](#/docs#standard-task), `publish` binds the [output](#/docs#
 ```yaml
 - division1:
     do:
-      ops.division:
+      division:
         - input1: dividend1
         - input2: divisor1
     publish:
@@ -870,7 +867,7 @@ In an [iterative task](#/docs#iterative-task) the publish mechanism is run durin
     loop:
       for: value in range(1,6)
       do:
-        ops.print:
+        print:
           - text: value
       publish:
         - sum: fromInputs['sum'] + out
@@ -885,7 +882,7 @@ In an [asynchronous task](#/docs#asynchronous-task) the publish mechanism is run
     async_loop:
       for: value in values_list
       do:
-        ops.print_branch:
+        print_branch:
           - ID: value
       publish:
         - name
@@ -994,7 +991,7 @@ Property|Required|Default|Value Type|Description|More Info
 ```yaml
 - divider:
     do:
-      ops.divide:
+      divide:
         - dividend: input1
         - divisor: input2
     publish:
@@ -1021,7 +1018,7 @@ Property|Required|Default|Value Type|Description|More Info
     loop:
       for: value in value_list
       do:
-        ops.print:
+        print:
           - text: value
     navigate:
       SUCCESS: another_task
@@ -1046,7 +1043,7 @@ Property|Required|Default|Value Type|Description|More Info
     async_loop:
       for: value in values_list
       do:
-        ops.print_branch:
+        print_branch:
           - ID: value
       publish:
         - name
@@ -1075,7 +1072,7 @@ Propery|Required|Default|Value Type|Description|More Info
 workflow:
   - divider:
       do:
-        ops.divide:
+        divide:
           - dividend: input1
           - divisor: input2
       publish:
@@ -1085,7 +1082,7 @@ workflow:
         SUCCESS: printer
   - printer:
       do:
-        ops.print:
+        print:
           - text: input1 + "/" + input2 + " = " + answer
 ```
 
@@ -1105,9 +1102,6 @@ This example is a full working version from which many of the example snippets a
 ```yaml
 namespace: examples.divide
 
-imports:
-  ops: examples.divide
-
 flow:
   name: division
 
@@ -1118,7 +1112,7 @@ flow:
   workflow:
     - divider:
         do:
-          ops.divide:
+          divide:
             - dividend: input1
             - divisor: input2
         publish:
@@ -1128,7 +1122,7 @@ flow:
           SUCCESS: printer
     - printer:
         do:
-          ops.print:
+          print:
             - text: input1 + "/" + input2 + " = " + str(answer)
         navigate:
           SUCCESS: SUCCESS
@@ -1186,9 +1180,6 @@ In this example the flow takes in two inputs, one of which determines the succes
 ```yaml
 namespace: examples.defualtnav
 
-imports:
-  ops: examples.defualtnav
-
 flow:
   name: nav_flow
 
@@ -1199,19 +1190,19 @@ flow:
   workflow:
     - produce_default_navigation:
         do:
-          ops.produce_default_navigation:
+          produce_default_navigation:
             - navigation_type
 
     # default navigation - go to this task on success
     - do_something:
         do:
-          ops.something:
+          something:
 
     # default navigation - go to this task on failure
     - on_failure:
       - send_error_mail:
           do:
-            ops.send_email_mock:
+            send_email_mock:
               - recipient: email_recipient
               - subject: "'Flow failure'"
 ```
@@ -1259,7 +1250,7 @@ operation:
       print 'Email sent to ' + recipient + ' with subject - ' + subject
 ```
 
-####Example3 - Subflow
+####Example3 - subflow
 This example uses the flow from **Example 1** as a subflow. It takes in four numbers (or uses default ones) to call `division_flow` twice. If either division returns the `ILLEGAL` result, navigation is routed to the `on_failure` task and the flow ends with a result of `FAILURE`. If both divisions are successful, the `on_failure` task is skipped and the flow ends with a result of `SUCCESS`.
 
 **Note:** To run this flow, the files from **Example 1** should be placed in the same folder as this flow file or use the `--cp` flag at the command line.
@@ -1268,9 +1259,6 @@ This example uses the flow from **Example 1** as a subflow. It takes in four num
 
 ```yaml
 namespace: examples.divide
-
-imports:
-  ops: examples.divide
 
 flow:
   name: master_divider
@@ -1284,7 +1272,7 @@ flow:
   workflow:
     - division1:
         do:
-          ops.division:
+          division:
             - input1: dividend1
             - input2: divisor1
         publish:
@@ -1295,7 +1283,7 @@ flow:
 
     - division2:
         do:
-          ops.division:
+          division:
             - input1: dividend2
             - input2: divisor2
         publish:
@@ -1306,7 +1294,7 @@ flow:
     - on_failure:
       - failure_task:
           do:
-            ops.print:
+            print:
               - text: ans
 ```
 
@@ -1317,9 +1305,6 @@ This example demonstrates the different types of values that can be looped on an
 
 ```yaml
 namespace: examples.loops
-
-imports:
-  ops: examples.loops
 
 flow:
   name: loops
@@ -1334,7 +1319,7 @@ flow:
         loop:
           for: value in [1,2,3,4,5]
           do:
-            ops.fail3:
+            fail3:
               - text: value
         navigate:
           SUCCESS: fail3b
@@ -1343,14 +1328,14 @@ flow:
         loop:
           for: value in [1,2,3,4,5]
           do:
-            ops.fail3:
+            fail3:
               - text: value
           break: []
     - custom3:
         loop:
           for: value in "1,2,3,4,5"
           do:
-            ops.custom3:
+            custom3:
               - text: value
           break:
             - CUSTOM
@@ -1359,13 +1344,13 @@ flow:
           SUCCESS: skip_this
     - skip_this:
         do:
-          ops.print:
+          print:
             - text: "'This will not run.'"
     - aggregate:
         loop:
           for: value in range(1,6)
           do:
-            ops.print:
+            print:
               - text: value
           publish:
             - sum: fromInputs['sum'] + out
@@ -1430,9 +1415,6 @@ This example demonstrates the usage of an asynchronous loop including aggregatio
 ```yaml
 namespace: examples.async
 
-imports:
-  ops: examples.async
-
 flow:
   name: async_loop_aggregate
   inputs:
@@ -1442,7 +1424,7 @@ flow:
         async_loop:
           for: value in values
           do:
-            ops.print_branch:
+            print_branch:
               - ID: value
           publish:
             - name
@@ -1643,7 +1625,7 @@ There are several ways to get started with the CloudSlang CLI.
 **Prerequisites :** To download the package, Node.js is required. To run the CloudSlang CLI, Java JRE version 7 or higher is required.
 
 1. At a command prompt, enter `npm install -g cslang-cli`.
-	+ If using Linux, the sudo command might be neccessary: `sudo npm install -g cslang-cli`. 
+	+ If using Linux, the sudo command might be necessary: `sudo npm install -g cslang-cli`. 
 2. Enter the `cslang` command at any command prompt.
 
 ###Use the CLI
@@ -1792,7 +1774,7 @@ Running the CloudSlang Build Tool performs the following steps:
 	+ If the build fails, a list of failed test cases are displayed.	 
 
 ###Download the Build Tool
-The CloudSlang Build Tool can be downloaded from [here](https://github.com/CloudSlang/cloud-slang/releases/tag/cloudslang-0.7.29).
+The CloudSlang Build Tool can be downloaded from [here](https://github.com/CloudSlang/cloud-slang/releases/latest).
 
 ###Use the Build Tool
 The CloudSlang Build Tool builds projects. A project consists of a folder that contains the CloudSlang content and a folder containing the tests for the content. 

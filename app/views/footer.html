@@ -5,25 +5,32 @@
             <div class="col-md-3 text-left">
                 <div class="footer-row">Follow Us</div>
                 <div>
-                    <a ng-href="http://www.youtube.com/channel/UCunFZ98J-2slsd3NuP2WeBw" target="_blank" title="{{$root.messages.footerYoutube}}">
-                        <i class="youtube social-icon fa fa-youtube"></i>
-                        <span class="icon-text h4">{{$root.messages.footerYoutube}}</span>
-                    </a>
-                </div>
-                <div>
-                    <a ng-href="https://twitter.com/CloudSlang" target="_blank" title="{{$root.messages.footerTwitter}}">
+                    <a ng-href="https://twitter.com/CloudSlang" onclick="ga('send', 'event', 'button', 'click', 'footer twitter', 1);" target="_blank" title="{{$root.messages.footerTwitter}}">
                         <i class="twitter social-icon fa fa-twitter"></i>
                         <span class="icon-text h4">{{$root.messages.footerTwitter}}</span>
                     </a>
                 </div>
                 <div>
-                    <a ng-href="https://groups.google.com/forum/#!forum/cloudslang" target="_blank" title="{{$root.messages.footerGoogleGroups}}">
+                    <a ng-href="http://www.youtube.com/channel/UCunFZ98J-2slsd3NuP2WeBw" onclick="ga('send', 'event', 'button', 'click', 'footer youtube', 1);" target="_blank" title="{{$root.messages.footerYoutube}}">
+                        <i class="youtube social-icon fa fa-youtube"></i>
+                        <span class="icon-text h4">{{$root.messages.footerYoutube}}</span>
+                    </a>
+                </div>
+                <div>
+                    <a data-toggle="modal"
+                       data-target="#footerModal" onclick="ga('send', 'event', 'button', 'click', 'footer newsletter', 1);" title="{{$root.messages.footerNewsLetter}}">
+                        <i class="fa social-icon fa-newspaper-o"></i>
+                        <span class="icon-text h4">{{$root.messages.footerNewsLetter}}</span>
+                    </a>
+                </div>
+                <div>
+                    <a ng-href="https://groups.google.com/forum/#!forum/cloudslang" onclick="ga('send', 'event', 'button', 'click', 'footer mailing list', 1);" target="_blank" title="{{$root.messages.footerGoogleGroups}}">
                         <i class="github social-icon fa fa-google"></i>
                         <span class="icon-text h4">{{$root.messages.footerGoogleGroups}}</span>
                     </a>
                 </div>
                 <div>
-                    <a ng-href="mailto:support@cloudslang.io" target="_blank" title="{{$root.messages.footerContactUs}}">
+                    <a ng-href="mailto:support@cloudslang.io" onclick="ga('send', 'event', 'button', 'click', 'footer contacts us', 1);" title="{{$root.messages.footerContactUs}}">
                         <i class="github social-icon fa fa-envelope"></i>
                         <span class="icon-text h4">{{$root.messages.footerContactUs}}</span>
                     </a>
@@ -32,19 +39,19 @@
             <div class="col-md-3  text-left">
                 <div class="footer-row">Contribute</div>
                 <div>
-                    <a ng-href="https://github.com/CloudSlang" target="_blank" title="{{$root.messages.footerGitHub}}">
+                    <a ng-href="https://github.com/CloudSlang" onclick="ga('send', 'event', 'button', 'click', 'footer github', 1);" target="_blank" title="{{$root.messages.footerGitHub}}">
                         <i class="github social-icon fa fa-github"></i>
                         <span class="icon-text h4">{{$root.messages.footerGitHub}}</span>
                     </a>
                 </div>
                 <div>
-                    <a ng-href="#/docs#contributing-code" target="_blank" title="{{$root.messages.footerContribute}}">
+                    <a ng-href="http://cloudslang-docs.readthedocs.org/en/v0.8/developer_contribution/" onclick="ga('send', 'event', 'button', 'click', 'footer contribute', 1);" target="_blank" title="{{$root.messages.footerContribute}}">
                         <i class="github social-icon fa fa-code-fork"></i>
                         <span class="icon-text h4">{{$root.messages.footerContribute}}</span>
                     </a>
                 </div>
                 <div>
-                    <a ng-href="https://github.com/CloudSlang/cloud-slang/wiki/Project-Roadmap" target="_blank" title="{{$root.messages.footerRoadMap}}">
+                    <a ng-href="https://github.com/CloudSlang/cloud-slang/wiki/Project-Roadmap" onclick="ga('send', 'event', 'button', 'click', 'footer roadmap', 1);" target="_blank" title="{{$root.messages.footerRoadMap}}">
                         <i class="github social-icon fa fa-road"></i>
                         <span class="icon-text h4">{{$root.messages.footerRoadMap}}</span>
                     </a>
@@ -53,19 +60,19 @@
             <div class="col-md-3 text-left">
                 <div class="footer-row">Learn More</div>
                 <div>
-                    <a ng-href="http://cloudslang-tutorials.readthedocs.org" target="_blank" title="{{$root.messages.footerTutorials}}">
+                    <a ng-href="http://cloudslang-docs.readthedocs.org/en/v0.8/tutorial/01_lesson" onclick="ga('send', 'event', 'button', 'click', 'footer tutorials', 1);" target="_blank" title="{{$root.messages.footerTutorials}}">
                         <i class="github social-icon fa fa-mortar-board"></i>
                         <span class="icon-text h4">{{$root.messages.footerTutorials}}</span>
                     </a>
                 </div>
                 <div>
-                    <a ng-href="http://blog.cloudslang.io" target="_blank" title="{{$root.messages.footerBlog}}">
+                    <a ng-href="http://blog.cloudslang.io" onclick="ga('send', 'event', 'button', 'click', 'footer blog', 1);" target="_blank" title="{{$root.messages.footerBlog}}">
                         <i class="github social-icon fa fa-comments-o"></i>
                         <span class="icon-text h4">{{$root.messages.footerBlog}}</span>
                     </a>
                 </div>
                 <div>
-                    <a ng-href="#/docs" target="_blank" title="{{$root.messages.footerDocs}}">
+                    <a ng-href="http://cloudslang-docs.readthedocs.org/en/v0.8/"  onclick="ga('send', 'event', 'button', 'click', 'footer docs', 1);" target="_blank" title="{{$root.messages.footerDocs}}">
                         <i class="github social-icon fa fa-book"></i>
                         <span class="icon-text h4">{{$root.messages.footerDocs}}</span>
                     </a>
@@ -77,17 +84,45 @@
             <div class="col-md-12 col-xs-12 links">
                 <span>© {{$root.year}} CloudSlang project authors</span>
                 <i class="column-separator"></i>
-                <a ng-href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">
+                <a ng-href="http://www.apache.org/licenses/LICENSE-2.0.html" onclick="ga('send', 'event', 'button', 'click', 'footer license', 1);" target="_blank">
                     {{$root.messages.footerLicense}}
                 </a>
                 <i class="column-separator"></i>
-                <a ng-href="http://www8.hp.com/us/en/privacy/terms-of-use.html" target="_blank">
+                <a ng-href="http://www8.hp.com/us/en/privacy/terms-of-use.html" onclick="ga('send', 'event', 'button', 'click', 'footer terms of use', 1);" target="_blank">
                     {{$root.messages.footerTerms}}
                 </a>
                 <i class="column-separator"></i>
-                <a ng-href="http://www8.hp.com/us/en/privacy/privacy.html" target="_blank">
+                <a ng-href="http://www8.hp.com/us/en/privacy/privacy.html" onclick="ga('send', 'event', 'button', 'click', 'footer privacy', 1);" target="_blank">
                     {{$root.messages.footerPrivacy}}
                 </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="footerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog popup-font-color modal-pos">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="h3 popup-title popup-font-color">{{ $root.messages.popUpHeader
+                        }}</h3>
+                </div>
+                <div class="modal-body">
+                    <p class="h4 popup-desc"> {{ $root.messages.emailField}}</p>
+
+                    <div class="subscribe-field">
+                        <div ng-include src="'views/subscription.html'"></div>
+                    </div>
+                    <br>
+                    <img class=" img-responsive pull-right popup-robot" src="http://i58.tinypic.com/ib995i.jpg">
+
+                    <p class="h4 privacy">
+                        <small>{{ $root.messages.emailPrivacy}}</small>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

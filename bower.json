@@ -2,7 +2,7 @@
   "name": "score-website",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "~1.2.0",
+    "angular": "~1.2.8",
     "json3": "~3.3.1",
     "es5-shim": "~3.1.0",
     "bootstrap": "~3.2.0",
@@ -18,7 +18,10 @@
     "typed.js": "*",
     "pace": "*",
     "components-font-awesome": "*",
-    "angular-highlightjs": "*"
+    "angular-highlightjs": "*",
+    "jquery": "<=2.1.4",
+    "angular-touch": "1.4.1",
+    "angular-mailchimp": "~0.0.3"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",
@@ -26,6 +29,7 @@
   },
   "appPath": "app",
   "resolutions": {
-    "jquery": ">= 1.9.0"
+    "jquery": ">=1.8.0",
+    "angular": ">=1.2.8"
   }
 }

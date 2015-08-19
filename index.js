@@ -18,7 +18,7 @@ app.get('/status',function(req, res){
 });
 
 app.get('/download',function(req, res){
-    res.redirect("https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.8.0/cslang-cli.zip")
+    res.redirect("https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.8.0/cslang-cli-with-content.zip")
 });
 
 app.use(function(req, res) {

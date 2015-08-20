@@ -132,10 +132,10 @@ angular.module('cloudSlangWebsiteApp')
             detailedDownloadCliDockerImage: 'Docker image',
             detailedSlangCliHeader: 'Execute CLI',
             detailedSlangWriteFlowText:'Unzip cslang-cli-with-content.zip',
-            detailedSlangWriteFlowText1: 'Go to cslang/bin/cslang and run the CloudSlang executable.',
+            detailedSlangWriteFlowText1: 'Go to cslang/bin/ and run the CloudSlang executable.',
             detailedTriggerFlowHeader: 'Run a workflow',
             detailedTriggerFlowText1: 'At the prompt enter:',
-            detailedTriggerFlowText2: 'run --f ../../content/io/cloudslang/base/print/print_text.sl --i text=Hi',
+            detailedTriggerFlowText2: 'run --f ../content/io/cloudslang/base/print/print_text.sl --i text=Hi',
             detailedTriggerFlowText4: 'The CLI will run the ready-made print_text operation that will print the value passed to the variable text.',
             detailedLearnMoreHeader: 'Learn More',
 

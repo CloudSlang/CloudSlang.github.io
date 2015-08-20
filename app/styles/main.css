@@ -985,6 +985,7 @@ a:active, a:focus {
 
 .next-row {
     margin-top: -100px;
+    height: 40px;
 }
 
 .download-now-button:hover {

@@ -23,17 +23,6 @@ angular.module('cloudSlangWebsiteApp')
             });
         });
 
-
-
-    }).directive('slickSlider', function ($timeout) {
-        return {
-            restrict: 'A',
-            link: function (scope, element, attrs) {
-                $timeout(function () {
-                    $(element).slick(scope.$eval(attrs.slickSlider));
-                });
-            }
-        };
     }).directive('loadingPage', [function () {
         return {
             restrict: 'E',

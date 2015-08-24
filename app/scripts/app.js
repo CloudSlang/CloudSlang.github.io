@@ -14,10 +14,6 @@ angular
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
-            .when('/docs', {
-                templateUrl: 'views/docs.html',
-                controller: 'DocsCtrl'
-            })
             .when('/blog', {
                 templateUrl: 'views/blog.html',
                 controller: 'BlogCtrl'

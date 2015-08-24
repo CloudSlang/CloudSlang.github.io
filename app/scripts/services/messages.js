@@ -123,6 +123,7 @@ angular.module('cloudSlangWebsiteApp')
 
             // getting started
             getStartedTitleDesc: 'Start Working with CloudSlang with these 4 simple steps.',
+            getStartedPrereq: 'Prerequisite: Java JRE version 7 or higher.',
             cloudSlangVersion: 'CloudSlang version 0.8.0',
             detailedDownloadCliHeader: 'Download',
             detailedDownloadCliText: 'Download and unzip the CloudSlang CLI.',

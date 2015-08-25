@@ -14,11 +14,6 @@ angular.module('cloudSlangWebsiteApp')
             navBackToSiteTitle: 'Back To Site',
             navSuggestAFlow: 'Suggest a Flow',
 
-            //docs nav bar
-            navDocsOverviewTitle: 'Overview',
-            navDocsSlangTitle: 'CloudSlang',
-            navDocsDeveloperTitle: 'Developer',
-
             // header
             headerMainTitle: 'Automate your DevOps use cases using ready-made workflows',
             headerDescription: 'With CloudSlang you can orchestrate popular DevOps technologies, such as Docker and CoreOS in an agentless manner. ' +

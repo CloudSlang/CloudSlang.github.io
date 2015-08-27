@@ -99,7 +99,7 @@ angular.module('cloudSlangWebsiteApp')
 
             // get started banner
             bannerTitle: 'Get Started',
-            bannerDesc: 'Click this button and start using CloudSlang in 4 easy steps',
+            bannerDesc: 'Click this button and start using CloudSlang in 3 easy steps',
             startNowBanner: 'Start Now',
 
 
@@ -117,8 +117,9 @@ angular.module('cloudSlangWebsiteApp')
             useCasesSeeMore: 'See the full content catalog' ,
 
             // getting started
-            getStartedTitleDesc: 'Start Working with CloudSlang with these 4 simple steps.',
+            getStartedTitleDesc: 'Start Working with CloudSlang with these 3 simple steps.',
             getStartedPrereq: 'Prerequisite: Java JRE version 7 or higher.',
+            downloadText: 'Download',
             cloudSlangVersion: 'CloudSlang version 0.8.0',
             detailedDownloadCliHeader: 'Download & Run',
             detailedDownloadCliText: 'Download and unzip the CloudSlang CLI.',

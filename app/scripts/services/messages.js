@@ -99,7 +99,7 @@ angular.module('cloudSlangWebsiteApp')
 
             // get started banner
             bannerTitle: 'Get Started',
-            bannerDesc: 'Click this button and start using CloudSlang in 4 easy steps',
+            bannerDesc: 'Click this button and start using CloudSlang in 3 easy steps',
             startNowBanner: 'Start Now',
 
 
@@ -117,18 +117,17 @@ angular.module('cloudSlangWebsiteApp')
             useCasesSeeMore: 'See the full content catalog' ,
 
             // getting started
-            getStartedTitleDesc: 'Start Working with CloudSlang with these 4 simple steps.',
+            getStartedTitleDesc: 'Start Working with CloudSlang with these 3 simple steps.',
             getStartedPrereq: 'Prerequisite: Java JRE version 7 or higher.',
+            downloadText: 'Download',
             cloudSlangVersion: 'CloudSlang version 0.8.0',
-            detailedDownloadCliHeader: 'Download',
+            detailedDownloadCliHeader: 'Download & Run',
             detailedDownloadCliText: 'Download and unzip the CloudSlang CLI.',
-            detailedDownloadCliText1: 'If you are using ',
-            detailedDownloadCliText2: ' you can simply run our Docker image:',
+            detailedDownloadCliText1: 'Go to cslang/bin/ and run the CloudSlang executable.',
+            detailedDownloadCliText2: 'If you are using ',
+            detailedDownloadCliText3: ' you can simply run our Docker image:',
             DockerRun: 'docker run -it cloudslang/cloudslang',
             detailedDownloadCliDockerImage: 'Docker image',
-            detailedSlangCliHeader: 'Execute CLI',
-            detailedSlangWriteFlowText:'Unzip cslang-cli-with-content.zip',
-            detailedSlangWriteFlowText1: 'Go to cslang/bin/ and run the CloudSlang executable.',
             detailedTriggerFlowHeader: 'Run a workflow',
             detailedTriggerFlowText1: 'At the prompt enter:',
             detailedTriggerFlowText2: 'run --f ../content/io/cloudslang/base/print/print_text.sl --i text=Hi',

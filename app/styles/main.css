@@ -779,6 +779,11 @@ a:active, a:focus {
 
 }
 
+.linux-download {
+    max-width: 300px;
+    margin-left: 50px;
+}
+
 .run-docker {
     max-width: 300px;
     margin-left: 50px;

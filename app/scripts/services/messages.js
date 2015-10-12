@@ -123,7 +123,7 @@ angular.module('cloudSlangWebsiteApp')
             cloudSlangVersion: 'CloudSlang version 0.8.0',
             detailedDownloadCliHeader: 'Download & Run',
             detailedDownloadCliText: 'Windows: Download and unzip the CloudSlang CLI using the button below.',
-            detailedDownloadCliText1: 'Linux: Download and unpack the CloudSlang ',
+            detailedDownloadCliText1: 'Linux: Download and unpack CloudSlang.',
             detailedDownloadCliText2: 'wget https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.8.0/cslang-cli-with-content.tar.gz \ntar xzf cslang-cli-with-content.tar.gz',
             detailedDownloadCliText3: 'Go to cslang/bin/ and run the CloudSlang executable.',
             detailedDownloadCliText4: 'If you are using ',

@@ -32,7 +32,7 @@ angular
             })
             .when('/community', {
                 templateUrl: 'views/community.html',
-                controller: 'MainCtrl'
+                controller: 'CommunityCtrl'
             })
             .otherwise({
                 redirectTo: '/'

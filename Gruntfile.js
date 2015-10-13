@@ -404,32 +404,6 @@ module.exports = function (grunt) {
                 configFile: 'test/karma.conf.js',
                 singleRun: true
             }
-        },
-
-        //markdown copy
-        marked: {
-            all: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: '<%= yeoman.app %>/markdowns',
-                        src: '**/*.md',
-                        dest: '<%= yeoman.app %>/views/docs/generated',
-                        ext: '.html'
-                    }
-                ]
-            }
-        },
-
-        extractheaders: {
-            options: {
-                sources: [
-                    '<%= yeoman.app %>/markdowns/overview.md',
-                    '<%= yeoman.app %>/markdowns/slang.md',
-                    '<%= yeoman.app %>/markdowns/developer.md'
-                ],
-                dest   : '<%= yeoman.app %>/views/docs/generated/sidebar.json'
-            }
         }
     });
 
@@ -440,8 +414,6 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            'marked',
-            'extractheaders',
             'wiredep',
             'concurrent:server',
             'autoprefixer',
@@ -457,8 +429,6 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            'marked',
-            'extractheaders',
             'wiredep',
             'concurrent:server',
             'autoprefixer',
@@ -483,8 +453,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-        'marked',
-        'extractheaders',
         'wiredep',
         'useminPrepare',
         'concurrent:dist',

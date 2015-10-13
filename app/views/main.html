@@ -28,7 +28,7 @@
                         <p class="h3">{{$root.messages.headerMainTitle}}</p>
                     </div>
                     <div>
-                        <a href="/#/getstarted#top" onclick="ga('send', 'event', 'button', 'click', 'start now main', 1);" class="btn btn-lg start-now-button btn-responsive">
+                        <a href="/#/getstarted#top" analytics-on="click" analytics-event="start now main" class="btn btn-lg start-now-button btn-responsive">
                             <img class="pull-left resize" src="images/button_icon.png" alt="Start Now">
 
                             <p class="start-now-text">
@@ -51,7 +51,7 @@
 
                 <div class="col-md-6 col-xs-12">
                     <div youtube-embed class="videoContainer"><img src="images/main_video_cover.png"
-                                                                   class="hide">
+                                                                   class="hide" analytics-on="click" analytics-event="main video">
                         <iframe
                             src="https://www.youtube.com/watch?v=zMKagFLnQzM&feature=youtu.be"></iframe>
                     </div>

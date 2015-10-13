@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top main-nav" role="navigation">
     <div class="container">
         <div class="forkMe">
-            <a href="https://github.com/CloudSlang" onclick="ga('send', 'event', 'button', 'click', 'fork me', 1);" target="_blank">
+            <a href="https://github.com/CloudSlang" analytics-on="click" analytics-event="fork me" target="_blank">
                 <img alt="Fork me on GitHub"
                      src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
             </a>
@@ -19,12 +19,12 @@
            </a>
         </div>
         <ul class="nav navbar-nav navbar-right navbar-collapse bs-navbar-collapse collapse">
-            <li class="h5"><a href="http://blog.cloudslang.io" onclick="ga('send', 'event', 'button', 'click', 'nav blog', 1);" target="_blank" >{{$root.messages.navBlogTitle}}</a></li>
-            <li class="h5"><a href="#/community" onclick="ga('send', 'event', 'button', 'click', 'nav community', 1);" target="_top" >{{$root.messages.navCommunityTitle}} </a></li>
-            <li class="h5"><a href="http://cloudslang-docs.readthedocs.org/en/v0.8/" onclick="ga('send', 'event', 'button', 'click', 'nav docs', 1);" target="_blank">{{$root.messages.navDocumentationTitle}}</a></li>
-            <li class="h5"><a href="#/about" onclick="ga('send', 'event', 'button', 'click', 'nav about', 1);" class="h5"  target="_top">{{$root.messages.navAboutTitle}}</a></li>
+            <li class="h5"><a href="http://blog.cloudslang.io" analytics-on="click" analytics-event="nav blog" target="_blank" >{{$root.messages.navBlogTitle}}</a></li>
+            <li class="h5"><a href="#/community"  analytics-on="click" analytics-event="nav community" target="_top" >{{$root.messages.navCommunityTitle}} </a></li>
+            <li class="h5"><a href="http://cloudslang-docs.readthedocs.org/en/v0.8/"  analytics-on="click" analytics-event="nav docs" target="_blank">{{$root.messages.navDocumentationTitle}}</a></li>
+            <li class="h5"><a href="#/about"  analytics-on="click" analytics-event="nav about" class="h5"  target="_top">{{$root.messages.navAboutTitle}}</a></li>
             <li class="button-nav-position"><p class="navbar-btn">
-                <a href="#/getstarted#top" class="btn start-now-button-nav" role="button" onclick="ga('send', 'event', 'button', 'click', 'start now nav', 1);"><img src="images/button_icon.png" class="resize-nav"
+                <a href="#/getstarted#top" class="btn start-now-button-nav" role="button"  analytics-on="click" analytics-event="start now nav"><img src="images/button_icon.png" class="resize-nav"
                                                                          alt="Start Now">
                     <span class="start-now-text-nav"> {{$root.messages.headerStartNow}}</span></a>
             </p>

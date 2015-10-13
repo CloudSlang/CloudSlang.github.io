@@ -21,7 +21,9 @@
     "angular-highlightjs": "*",
     "jquery": "<=2.1.4",
     "angular-touch": "1.4.1",
-    "angular-mailchimp": "~0.0.3"
+    "angular-mailchimp": "~0.0.3",
+    "angulartics": "~0.20.1",
+    "angulartics-google-analytics": "~0.1.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",

@@ -6,7 +6,9 @@ angular
         'ngRoute',
         'hljs',
         'mailchimp',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'angulartics',
+        'angulartics.google.analytics'
     ])
     .config(function ($routeProvider) {
         $routeProvider

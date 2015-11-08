@@ -659,8 +659,8 @@ a:active, a:focus {
 
 .logo {
     position: relative;
-    top: 20px;
-    width: 290px;
+    top: 15px;
+    width: 220px;
 
 }
 
@@ -672,13 +672,16 @@ a:active, a:focus {
 
 @media (max-width: 991px) {
     .logo {
-        width: 230px;
+        width: 190px;
+        top: 20px;
+
     }
 }
 
 @media (max-width: 767px) {
     .logo {
-        top: 15px;
+        top: 10px;
+        width: 170px;
     }
 }
 

@@ -816,9 +816,9 @@ a:active, a:focus {
     }
 }
 
-.getting-started .download {
-    padding-top: 15px;
-    margin-left: 25px;
+.download {
+    margin-top: -30px;
+    margin-bottom: 60px;
 }
 
 @media (max-width: 991px) {
@@ -947,18 +947,40 @@ a:active, a:focus {
     }
 }
 
-.download-now-button {
-    position: relative;
-    top: -50px;
-    left: auto;
-    right: auto;
+.download-now-button-windows {
+    margin-right: -0.2em;
     -webkit-border-radius: 35px;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-top-right-radius-right-radius: 0;
     -moz-border-radius: 35px;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-topright: 0;
     border-radius: 35px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 100px;
+    border-color: #097f3b;
+    background-color: #097f3b;
+    width: 200px;
+    height: 66px;
+
+}
+
+.download-now-button-linux {
+    margin-left: -0.2em;
+    -webkit-border-radius: 35px;
+    -webkit-border-bottom-left-radius: 0;
+    -webkit-border-top-left-radius-right-radius: 0;
+    -moz-border-radius: 35px;
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-topleft: 0;
+    border-radius: 35px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
     margin-top: 100px;
     border-color: #0BA04A;
     background-color: #0BA04A;
-    width: 250px;
+    width: 200px;
     height: 66px;
 
 }
@@ -977,27 +999,137 @@ a:active, a:focus {
 
 }
 
-@media (max-width: 300px) {
-    .download-now-button {
-        width: 200px;
+@media (max-width: 519px) {
+    .download-now-button-linux {
+        width: 150px;
+    }
+    .download-now-button-windows {
+        width: 150px;
     }
 }
+
+
 
 .next-row {
     margin-top: -100px;
     height: 40px;
 }
 
-.download-now-button:hover {
+.download-now-button-windows:hover {
     background-color: #7CCA9D;
     border-color: #7CCA9D;
 }
 
-.download-now-text {
-    color: #ffffff;
-    font-size: 28px;
-    margin-top: 3px;
+.download-now-button-linux:hover {
+    background-color: #7CCA9D;
+    border-color: #7CCA9D;
 }
+
+.download-now-text-windows {
+    color: #ffffff;
+    font-size: 24px;
+    margin-top: -0.1em;
+}
+
+.download-now-text-windows-desc {
+    color: #ffffff;
+    font-size: 12px;
+    margin-top: -0.8em;
+}
+
+.download-now-text-linux {
+    color: #ffffff;
+    font-size: 24px;
+    margin-top: -0.1em;
+}
+
+.download-now-text-linux-desc {
+    color: #ffffff;
+    font-size: 12px;
+    margin-top: -0.8em;
+}
+
+.linux-download-icon {
+    margin-right: -0.5em;
+    margin-top: -0.05em;
+}
+.windows-download-icon {
+    margin-left: -0.5em;
+    margin-top: -0.05em;
+}
+
+@media (max-width: 519px) {
+    .download-now-text-windows {
+        font-size: 16px;
+        margin-top: 0.25em;
+    }
+    .download-now-text-windows-desc {
+        font-size: 10px;
+        margin-top: -0.8em;
+    }
+    .download-now-text-linux {
+        font-size: 16px;
+        margin-top: 0.25em;
+        margin-left: -0.1em;
+    }
+    .download-now-text-linux-desc {
+        font-size: 10px;
+        margin-top: -0.8em;
+    }
+    .linux-download-icon {
+        width: 37%;
+        margin-right: -0.5em;
+        margin-top: 0.05em;
+    }
+    .windows-download-icon {
+        width: 37%;
+        margin-left: -0.5em;
+        margin-top: 0.05em;
+    }
+}
+
+@media (max-width: 388px) {
+    .download-now-text-windows {
+        font-size: 12px;
+        margin-top: -0.2em;
+    }
+    .download-now-text-windows-desc {
+        font-size: 8px;
+        margin-top: -0.8em;
+    }
+    .download-now-text-linux {
+        font-size: 12px;
+        margin-left: -0.3em;
+        margin-top: -0.2em;
+    }
+    .download-now-text-linux-desc {
+        font-size: 8px;
+    }
+    .linux-download-icon {
+        width: 40%;
+        margin-right: -0.6em;
+        margin-top: -0.05em;
+        margin-left: 0.3em;
+    }
+    .windows-download-icon {
+        width: 40%;
+        margin-left: -0.6em;
+        margin-top: -0.05em;
+        margin-right: 0.3em;
+    }
+    .download-now-button-linux {
+        width: 110px;
+        height: 50px;
+    }
+    .download-now-button-windows {
+        width: 110px;
+        height: 50px;
+    }
+    .download {
+        margin-top: -50px;
+    }
+}
+
 
 .cloudslang-version {
     position: relative;

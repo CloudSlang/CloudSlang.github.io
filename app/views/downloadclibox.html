@@ -1,15 +1,24 @@
 <div ng-controller="GettingStartedCtrl">
 
     <div class="download col-md-12 col-sm-12 col-xs-12">
-        <a id="delay" analytics-on="click" analytics-event="download cli"
-           class="btn btn-primary btn-lg download-now-button" data-toggle="modal"
+        <a id="delay" analytics-on="click" analytics-event="download cli - windows"
+           class="btn btn-primary btn-lg download-now-button-windows" data-toggle="modal"
            data-target="#myModal">
-            <img class="pull-left" src="images/download_button.png" alt="Download Now"/>
+            <img class="pull-left windows-download-icon" src="images/gettingstarted/download_windows.png" alt="Download Now"/>
 
-            <p class="download-now-text">
-            {{$root.messages.downloadText}}</p></a>
-        <p class="cloudslang-version"><small>{{$root.messages.cloudSlangVersion}}</small></p>
+            <p class="download-now-text-windows">{{$root.messages.downloadText}}</p>
+            <p class="download-now-text-linux-desc">{{$root.messages.downloadTextWindows}}</p></a>
+
+        <a id="delay1" analytics-on="click" analytics-event="download cli - linux"
+           class="btn btn-primary btn-lg download-now-button-linux" data-toggle="modal"
+           data-target="#myModal">
+            <img class="pull-right linux-download-icon" src="images/gettingstarted/download_linux.png" alt="Download Now"/>
+
+            <p class="download-now-text-linux">{{$root.messages.downloadText}}</p>
+            <p class="download-now-text-linux-desc">{{$root.messages.downloadTextLinux}}</p></a>
+
     </div>
+
 
 
     <!-- Modal -->

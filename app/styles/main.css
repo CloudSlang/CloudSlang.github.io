@@ -498,8 +498,9 @@ a:active, a:focus {
     height: 145px;
 }
 
-.about .team-member {
-    /*padding: 3px;*/
+
+.team-member2 {
+    margin-left: 10px;
 }
 
 .banner-button {
@@ -1236,6 +1237,11 @@ a:active, a:focus {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+}
+
+.center-img {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .centered {

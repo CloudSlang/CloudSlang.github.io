@@ -1148,8 +1148,9 @@ a:active, a:focus {
 
 .cloudslang-version {
     position: relative;
-    top: -47px;
-    color: darkgrey;
+    color: #777777;
+    margin-top: 3px;
+    font-size: 15px;
 }
 
 .download-now-button img {

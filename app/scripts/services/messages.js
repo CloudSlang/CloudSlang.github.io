@@ -94,7 +94,7 @@ angular.module('cloudSlangWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsByHp: 'Project CloudSlang by HPE',
+            aboutUsByHp: 'Project CloudSlang by Hewlett Packard Enterprise',
             aboutUsWhoWeAreText: 'This project is being contributed to the open source community by HPE Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
 
             // get started banner

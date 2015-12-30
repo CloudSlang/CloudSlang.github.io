@@ -148,16 +148,17 @@ a:active, a:focus {
     position: absolute;
     line-height: 1.2;
     color: #000000;
-    font-size: 38px;
+    font-size: 37px;
     width: 48%;
     top: 30px;
 }
 
 .mobile-header-title {
-    font-size: 22px;
+    font-size: 20px;
     position: relative;
     margin-left: 15px;
     width: 90%;
+    top: 10px;
 
 }
 .start-now-text {
@@ -178,7 +179,6 @@ a:active, a:focus {
     }
 
     .header-title {
-        width: 45%;
         font-size: 32px;
     }
 
@@ -197,7 +197,7 @@ a:active, a:focus {
     }
 }
 
-@media (max-width: 710px) {
+@media (max-width: 750px) {
     .header-title {
         font-size: 22px;
 

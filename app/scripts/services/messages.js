@@ -15,7 +15,7 @@ angular.module('cloudSlangWebsiteApp')
             navSuggestAFlow: 'Suggest a Flow',
 
             // header
-            headerMainTitle: 'Automate your development and operations use cases using ready-made workflows',
+            headerMainTitle: 'Automate your development and operations using ready-made workflows',
             headerDescription: 'With CloudSlang you can orchestrate popular cutting edge technologies, such as Docker and CoreOS in an agentless manner. ' +
                                     'You can also define custom workflows that are reusable, shareable and easy to understand.',
             headerStartNow: 'Start Now',

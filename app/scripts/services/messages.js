@@ -15,15 +15,15 @@ angular.module('cloudSlangWebsiteApp')
             navSuggestAFlow: 'Suggest a Flow',
 
             // header
-            headerMainTitle: 'Automate your DevOps use cases using ready-made workflows',
-            headerDescription: 'With CloudSlang you can orchestrate popular DevOps technologies, such as Docker and CoreOS in an agentless manner. ' +
+            headerMainTitle: 'Automate your development and operations using ready-made workflows',
+            headerDescription: 'With CloudSlang you can orchestrate popular cutting edge technologies, such as Docker and CoreOS in an agentless manner. ' +
                                     'You can also define custom workflows that are reusable, shareable and easy to understand.',
             headerStartNow: 'Start Now',
             worksWith: 'Works with:',
 
             // what is cloudslang
             whatIsTitle: 'What is CloudSlang?' ,
-            whatIsDescription: 'CloudSlang is an open source tool for orchestrating popular DevOps technologies, such as Docker and CoreOS in an agentless manner.\ ' +
+            whatIsDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies, such as Docker and CoreOS in an agentless manner.\ ' +
                                     'Use ready-made workflows or define your own custom ones. CloudSlang workflows are reusable, shareable and easy to understand.',
             whatIsDescription2: 'The CloudSlang project is composed of three main parts: the CloudSlang Orchestration Engine,'+
                                     ' the YAML-based CloudSlang language and the ready-made CloudSlang content.' ,
@@ -47,7 +47,7 @@ angular.module('cloudSlangWebsiteApp')
 
             //suggest a workflow
             suggestWorkFlowTitle: 'Suggest a Workflow',
-            suggestWorkFlowDescription1: 'Do you have a DevOps use case that you\'d like to automate, but it\'s not covered by our ready-made content?',
+            suggestWorkFlowDescription1: 'Do you have a use case that you\'d like to automate, but it\'s not covered by our ready-made content?',
             suggestWorkFlowDescription2: 'We’d be thrilled if you would contribute and share your own content. In the meantime though, you can click below to let the community know what you need.',
             suggestWorkFlowButton: 'Suggest a workflow' ,
 

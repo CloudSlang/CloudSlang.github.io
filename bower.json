@@ -32,6 +32,7 @@
   "appPath": "app",
   "resolutions": {
     "jquery": ">=1.8.0",
-    "angular": ">=1.2.8"
+    "angular": ">=1.2.8",
+    "angulartics": "~1.0.0"
   }
 }

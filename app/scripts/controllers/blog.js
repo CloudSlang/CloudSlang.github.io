@@ -2,5 +2,5 @@
 
 angular.module('cloudSlangWebsiteApp')
     .controller('BlogCtrl', function () {
-        window.location.replace('https://medium.com/@CloudSlang');
+        window.location.replace('https://blog.cloudslang.io');
     });

@@ -6,7 +6,8 @@ angular.module('cloudSlangWebsiteApp')
         $('#delay').on('click', function (e) {
 
             e.preventDefault();  //stop the browser from following
-            window.location.href = 'https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.9.1/cslang-cli-with-content.zip';
+            window.location.href = 'https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.9.50.0/cslang-cli-with-content.zip';
+
 
             var $target = $($(this).data('target'));
             $target.data('triggered', true);
@@ -22,7 +23,7 @@ angular.module('cloudSlangWebsiteApp')
         $('#delay1').on('click', function (e) {
 
             e.preventDefault();  //stop the browser from following
-            window.location.href = 'https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.9.1/cslang-cli-with-content.tar.gzip';
+            window.location.href = 'https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-0.9.50.0/cslang-cli-with-content.tar.gzip';
 
             var $target = $($(this).data('target'));
             $target.data('triggered', true);

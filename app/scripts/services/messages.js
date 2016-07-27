@@ -109,7 +109,7 @@ angular.module('cloudSlangWebsiteApp')
             useCasesMigrateContainerTitle: 'Migrating a Live Container',
             useCasesOpenStackTitle: 'OpenStack Health Check',
             useCasesCoreOsDesc: 'Unused Docker images can waste a lot of precious disk space. Use this workflow to remove all the unused Docker images from your entire CoreOS cluster.',
-            useCasesMigrateContainerDesc: 'Redistributes containers across a datacenter based on CPU load while still preserving their state.',
+            useCasesMigrateContainerDesc: 'Sometimes there is a need to redistribute containers across a datacenter. Use this flow to migrate Docker containers based on the CPU load of their hosts while still preserving container state.',
             useCasesOpenStackDesc: 'Performs a health check on an OpenStack machine by creating a server, checking that it\'s up and then deleting it.',
             useCasesSeeMore: 'See the full content catalog' ,
 

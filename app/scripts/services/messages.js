@@ -106,13 +106,10 @@ angular.module('cloudSlangWebsiteApp')
             // use cases
             useCasesTitle: 'Example Use Cases',
             useCasesCoreOsTitle: 'Clear Unused Docker Images in a CoreOS Cluster',
-            useCasesCloudTitle: 'Cloud Orchestration',
-            useCasesAppDeploymentTitle: 'Deploying a Dockerized Application',
+            useCasesMigrateContainerTitle: 'Migrating a Live Container',
             useCasesOpenStackTitle: 'OpenStack Health Check',
             useCasesCoreOsDesc: 'Unused Docker images can waste a lot of precious disk space. Use this workflow to remove all the unused Docker images from your entire CoreOS cluster.',
-            useCasesCloudDesc: 'OpenStack Health Check',
-            useCasesAppDeploymentDesc: 'This example workflow demonstrates how to easily deploy a complex app that uses linked containers. ' +
-                                            'Use it as a springboard for writing a custom flow to deploy your own application.',
+            useCasesMigrateContainerDesc: 'Sometimes there is a need to redistribute containers across a datacenter. Use this flow to migrate Docker containers based on the CPU load of their hosts while still preserving container state.',
             useCasesOpenStackDesc: 'Performs a health check on an OpenStack machine by creating a server, checking that it\'s up and then deleting it.',
             useCasesSeeMore: 'See the full content catalog' ,
 

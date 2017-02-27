@@ -13,18 +13,24 @@ angular.module('cloudSlangWebsiteApp')
             navCommunityTitle: 'Community',
             navBackToSiteTitle: 'Back To Site',
             navSuggestAFlow: 'Suggest a Flow',
+            navNewsletter: 'Subscribe Now',
 
             // header
-            headerMainTitle: 'Automate your development and operations using ready-made workflows',
-            headerDescription: 'With CloudSlang you can orchestrate popular cutting edge technologies, such as Docker and CoreOS in an agentless manner. ' +
+            //headerMainTitle: 'Automate your development and operations using ready-made workflows',
+            headerMainTitle: 'Orchestrate Everything',
+			//headerSubTitle: 'Grow from simple to complex scenarios in just a few days by using ready-made workflows',
+			//headerSubTitleShort: 'Orchestrate today. Share tomorrow.',
+			headerDescription: 'With CloudSlang you can orchestrate popular cutting edge technologies, such as Docker and CoreOS in an agentless manner. ' +
                                     'You can also define custom workflows that are reusable, shareable and easy to understand.',
             headerStartNow: 'Start Now',
             worksWith: 'Works with:',
 
             // what is cloudslang
             whatIsTitle: 'What is CloudSlang?' ,
-            whatIsDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies, such as Docker and CoreOS in an agentless manner.\ ' +
-                                    'Use ready-made workflows or define your own custom ones. CloudSlang workflows are reusable, shareable and easy to understand.',
+            //whatIsDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies, such as Docker and CoreOS in an agentless manner.\ ' +
+            //                        'Use ready-made workflows or define your own custom ones. CloudSlang workflows are reusable, shareable and easy to understand.',
+			whatIsDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies. It can orchestrate anything you can imagine in an agentless manner.\ ' +
+                                    'You can customize ready-made workflows or use them as such. They are powerful, shareable and easy to understand. Make it smart with CloudSlang.',
             whatIsDescription2: 'The CloudSlang project is composed of three main parts: the CloudSlang Orchestration Engine,'+
                                     ' the YAML-based CloudSlang language and the ready-made CloudSlang content.' ,
 

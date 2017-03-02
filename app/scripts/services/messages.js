@@ -18,7 +18,7 @@ angular.module('cloudSlangWebsiteApp')
             // header
             //headerMainTitle: 'Automate your development and operations using ready-made workflows',
             headerMainTitle: 'Orchestrate Everything',
-			//headerSubTitle: 'Grow from simple to complex scenarios in just a few days by using ready-made workflows',
+			headerSubTitle: 'Grow from simple to complex scenarios while using ready-made workflows',
 			//headerSubTitleShort: 'Orchestrate today. Share tomorrow.',
 			headerDescription: 'With CloudSlang you can orchestrate popular cutting edge technologies, such as Docker and CoreOS in an agentless manner. ' +
                                     'You can also define custom workflows that are reusable, shareable and easy to understand.',

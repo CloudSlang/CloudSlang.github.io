@@ -665,7 +665,7 @@ a:active, a:focus {
     width: 250px;
     height: 66px;
     position: absolute;
-    top: 225px;
+    top: 270px;
 }
 
 .start-now-button-mobile {
@@ -679,6 +679,7 @@ a:active, a:focus {
     padding-bottom: auto;
     width: 190px;
     height: 50px;
+    top: 30px;
 }
 
 .start-now-button-mobile:hover {
@@ -789,7 +790,7 @@ a:active, a:focus {
         position: absolute;
         width: 150px;
         height: 40px;
-        top: 150px;
+        top: 170px;
     }
 
     .start-now-text {

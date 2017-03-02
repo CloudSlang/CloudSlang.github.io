@@ -17,11 +17,11 @@ angular.module('cloudSlangWebsiteApp')
 
             // header
             //headerMainTitle: 'Automate your development and operations using ready-made workflows',
-            headerMainTitle: 'Orchestrate Everything',
-			headerSubTitle: 'Grow from simple to complex scenarios while using ready-made workflows',
+            headerMainTitle: 'Open-source orchestration.',
+			headerSubTitle: 'Ready-made workflows.',
 			//headerSubTitleShort: 'Orchestrate today. Share tomorrow.',
-			headerDescription: 'With CloudSlang you can orchestrate popular cutting edge technologies, such as Docker and CoreOS in an agentless manner. ' +
-                                    'You can also define custom workflows that are reusable, shareable and easy to understand.',
+			headerDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies. It can orchestrate anything you can imagine in an agentless manner.\ ' +
+                                    'You can use or customize ready-made YAML based workflows. They are powerful, shareable and human readable. Modernize your IT with CloudSlang.',
             headerStartNow: 'Start Now',
             worksWith: 'Works with:',
 
@@ -30,7 +30,7 @@ angular.module('cloudSlangWebsiteApp')
             //whatIsDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies, such as Docker and CoreOS in an agentless manner.\ ' +
             //                        'Use ready-made workflows or define your own custom ones. CloudSlang workflows are reusable, shareable and easy to understand.',
 			whatIsDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies. It can orchestrate anything you can imagine in an agentless manner.\ ' +
-                                    'You can customize ready-made workflows or use them as such. They are powerful, shareable and easy to understand. Make it smart with CloudSlang.',
+                                    'You can use or customize ready-made YAML based workflows. They are powerful, shareable and human readable. Modernize your IT with CloudSlang.',
             whatIsDescription2: 'The CloudSlang project is composed of three main parts: the CloudSlang Orchestration Engine,'+
                                     ' the YAML-based CloudSlang language and the ready-made CloudSlang content.' ,
 
@@ -101,7 +101,9 @@ angular.module('cloudSlangWebsiteApp')
 
             // about us
             aboutUsByHp: 'Project CloudSlang by Hewlett Packard Enterprise',
-            aboutUsWhoWeAreText: 'This project is being contributed to the open source community by HPE Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
+            aboutUsWhoWeAreText: 'This project is being contributed to the open source community by both HPE Software engineers and individual contributors with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
+            aboutUsInHp: 'Individual Contributors (CloudSlang team members)',
+            aboutUsNotInHp: 'Individual Contributors',
 
             // get started banner
             bannerTitle: 'Get Started',

@@ -13,13 +13,13 @@ angular.module('cloudSlangWebsiteApp')
             navCommunityTitle: 'Community',
             navBackToSiteTitle: 'Back To Site',
             navSuggestAFlow: 'Suggest a Flow',
-            navNewsletter: 'Subscribe Now',
+            navNewsletter: 'Subscribe',
 
             // header
             //headerMainTitle: 'Automate your development and operations using ready-made workflows',
-            headerMainTitle: 'Open-source orchestration.',
-			headerSubTitle: 'Ready-made workflows.',
-			//headerSubTitleShort: 'Orchestrate today. Share tomorrow.',
+            headerMainTitle: 'Open-source orchestration',
+			headerSubTitle: 'Ready-made workflows',
+			//headerSubTitleShort: 'Orchestrate today, share tomorrow',
 			headerDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies. It can orchestrate anything you can imagine in an agentless manner.\ ' +
                                     'You can use or customize ready-made YAML based workflows. They are powerful, shareable and human readable. Modernize your IT with CloudSlang.',
             headerStartNow: 'Start Now',

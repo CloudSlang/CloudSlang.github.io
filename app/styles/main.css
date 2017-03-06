@@ -148,8 +148,8 @@ a:active, a:focus {
     position: absolute;
     line-height: 1.2;
     color: #000000;
-    font-size: 37px;
-    width: 48%;
+    font-size: 35px;
+    width: 50%;
     top: 30px;
 }
 
@@ -294,6 +294,10 @@ a:active, a:focus {
     }
 }
 
+.navbar {
+    border-bottom: 1px solid #c3c3c3;
+}
+
 .navbar-header {
     cursor: pointer;
 }
@@ -303,9 +307,8 @@ a:active, a:focus {
 }
 
 .main-nav {
-    background-color: #ffffff;
+    background-color: #fcfcfc;
     color: #000000;
-    border: 0px;
 }
 
 .navbar-toggle {
@@ -420,6 +423,12 @@ a:active, a:focus {
 
 .footer .social-icon.contact:hover {
     color: #616161;
+}
+
+.footer-tutorials   {
+    border: 1px solid #0ba04a;
+    background-color: #0ba04a;
+    color: #FFFFFF;
 }
 
 .section-wrapper {
@@ -735,8 +744,8 @@ a:active, a:focus {
 
 @media (max-width: 991px) {
     .logo {
-        width: 190px;
-        top: 20px;
+        width: 170px;
+        top: 10px;
 
     }
 }

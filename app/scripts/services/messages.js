@@ -7,7 +7,7 @@ angular.module('cloudSlangWebsiteApp')
             // nav bar
             navGettingStartedTitle: 'Get Started',
             navUseCasesTitle: 'Use Cases',
-            navAboutTitle: 'Contributors',
+            navAboutTitle: 'Contributor',
             navDocumentationTitle: 'Documentation',
             navBlogTitle: 'Blog',
             navCommunityTitle: 'Community',

@@ -1,0 +1,43 @@
+<div class="container" ng-controller="GettingStartedCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="h3">{{ $root.messages.getStartedToDevTitle}}</p>
+            <p class="h5">{{ $root.messages.getStartedToDevTitleDesc }} </p>
+            <p class="h5">{{ $root.messages.getStartedToDevPrereq }} </p><br>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="circle-get-started-dev"><h5 class="h5 get-started-number">1</h5></div>
+            <h3 class="h4 get-started-title"> {{$root.messages.getStartedToDevForkHeader}}</h3>
+            <p class="h5 get-started-desc">{{ $root.messages.getStartedToDevForkText }}</p>
+            <p class="h5 get-started-desc">{{ $root.messages.getStartedToDevForkText1 }}</p><br>
+            <p class="h5 get-started-desc">
+            <a href="https://github.com/CloudSlang/cloud-slang-content" class="btn btn-default get-started-dev-fork-btn" role="button" analytics-on="click" analytics-event="fork from GitHub" target="_blank">{{ $root.messages.getStartedToDevForkButton }}</a>
+            </p>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="circle-get-started-dev"><p class="h5 get-started-number">2</p></div>
+            <h3 class="h4 get-started-title"> {{$root.messages.getStartedToDevDHeader}}</h3>
+            <p class="h5 get-started-desc">{{ $root.messages.getStartedToDevDText}}</p>
+            <p class="h5 get-started-desc">{{ $root.messages.getStartedToDevDText1}}</p>
+            <br>
+            <p class="h5 get-started-desc">{{ $root.messages.getStartedToDevDText2}}</p>
+
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="circle-get-started-dev"><p class="h5 get-started-number">3</p></div>
+            <h3 class="h4 get-started-title"> {{$root.messages.getStartedToLearnHeader}}</h3>
+            <p class="h5 get-started-desc">{{ $root.messages.getStartedToLearnText}}</p>
+            <p class="h5 get-started-desc">{{ $root.messages.getStartedToLearnText1}}</p><br>
+            <p class="h5 get-started-desc">
+                <a class="btn btn-default get-started-dev-fork-btn" href="http://cloudslang-docs.readthedocs.io/en/v1.0/" target="_blank">{{$root.messages.docsLink + "
+                    "}}
+                </a>
+            </p>
+        </div>
+        <div class="row-centered">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div ng-include src="'views/getideplugins.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

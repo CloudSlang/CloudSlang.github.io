@@ -1,0 +1,21 @@
+<div ng-controller="GettingStartedCtrl">
+
+    <div class="download col-md-12 col-sm-12 col-xs-12">
+        <a id="delay" analytics-on="click" analytics-event="download ide - intellij"
+           class="btn btn-primary btn-lg download-now-button-windows" href="https://plugins.jetbrains.com/plugin/9437-cloudslang-plugin"
+           target="_blank">
+            <img class="pull-left intellij-download-icon" src="images/gettingstarted/download_intellij.png" alt="Get Now"/>
+
+            <p class="download-now-text-windows">{{$root.messages.ideDownloadTextIntelliJ}}</p>
+            <p class="download-now-text-linux-desc">{{$root.messages.ideDownloadText}}</p></a>
+
+        <a id="delay1" analytics-on="click" analytics-event="download ide - atom"
+           class="btn btn-primary btn-lg download-now-button-linux" href="https://atom.io/users/CloudSlang"
+           target="_blank">
+            <img class="pull-right atom-download-icon" src="images/gettingstarted/download_atom.png" alt="Get Now"/>
+
+            <p class="download-now-text-linux">{{$root.messages.ideDownloadTextAtom}}</p>
+            <p class="download-now-text-linux-desc">{{$root.messages.ideDownloadText}}</p></a>
+            <p class="download-ide-note"><small>{{$root.messages.ideDownloadNote}}</small></p>
+    </div>
+</div>

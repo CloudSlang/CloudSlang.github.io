@@ -504,6 +504,17 @@ a:active, a:focus {
     padding-top: 150px;
     padding-bottom: 150px;
 }
+.section-wrapper.get-started-run {
+    color: #000000;
+    background-color: #e6e6e6;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.section-wrapper.get-started-dev {
+    background-color: #085428;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
 
 .use-cases .use-case {
     padding-top: 50px;
@@ -904,8 +915,8 @@ a:active, a:focus {
 }
 
 .download {
-    margin-top: -30px;
-    margin-bottom: 60px;
+    margin-top: -5px;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 991px) {
@@ -976,6 +987,17 @@ a:active, a:focus {
 
 .highlight-green {
     color: #639542;
+}
+
+highlight-white {
+    color: #0ba04a;
+    background-color: #FFFFFF;
+
+}
+
+.highlight-white:hover {
+    color: #000000;
+    background-color: #999;
 }
 
 .full-content-catalog {
@@ -1145,6 +1167,15 @@ a:active, a:focus {
     margin-top: -0.05em;
 }
 
+.atom-download-icon {
+    margin-right: -0.1em;
+    margin-top: -0.05em;
+}
+.intellij-download-icon {
+    margin-left: -0.1em;
+    margin-top: -0.05em;
+}
+
 @media (max-width: 519px) {
     .download-now-text-windows {
         font-size: 16px;
@@ -1171,6 +1202,16 @@ a:active, a:focus {
     .windows-download-icon {
         width: 37%;
         margin-left: -0.5em;
+        margin-top: 0.05em;
+    }
+    .atom-download-icon {
+        width: 37%;
+        margin-right: -0.1em;
+        margin-top: 0.05em;
+    }
+    .intellij-download-icon {
+        width: 37%;
+        margin-left: -0.1em;
         margin-top: 0.05em;
     }
 }
@@ -1204,6 +1245,18 @@ a:active, a:focus {
         margin-top: -0.05em;
         margin-right: 0.3em;
     }
+    .atom-download-icon {
+        width: 40%;
+        margin-right: -0.6em;
+        margin-top: -0.05em;
+        margin-left: 0.3em;
+    }
+    .intellij-download-icon {
+        width: 40%;
+        margin-left: -0.4em;
+        margin-top: -0.05em;
+        margin-right: 0.3em;
+    }
     .download-now-button-linux {
         width: 110px;
         height: 50px;
@@ -1221,6 +1274,13 @@ a:active, a:focus {
 .cloudslang-version {
     position: relative;
     color: #777777;
+    margin-top: 3px;
+    font-size: 15px;
+}
+
+.download-ide-note {
+    position: relative;
+    color: #FFFFFF;
     margin-top: 3px;
     font-size: 15px;
 }
@@ -1370,6 +1430,22 @@ a:active, a:focus {
     background-position: 50%;
 }
 
+.circle-get-started-dev {
+    position: relative;
+    display: inline-block;
+    margin-top: 25px;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    background-color: #0ba04a;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
 .community-circle {
     position: relative;
     display: inline-block;
@@ -1417,6 +1493,34 @@ a:active, a:focus {
     margin-top: -10px;
     line-height: 1.8;
 }
+
+
+.get-started-dev-fork-btn {
+    border-radius: 35px;
+    border-color: #0BA04A;
+    background-color: #ffffff;
+    width: 150px;
+    height: 35px;
+    margin-top: 5px;
+    font-size: 15px;
+    color: #0ba04a;
+}
+
+/*@media (max-width: 1199px) {
+    .get-started-dev-fork-btn {
+        margin-top: 3px;
+    }
+}*/
+/*
+@media (max-width: 991px) {
+    .get-started-dev-fork-btn {
+        top: 10px;
+        width: 130px;
+        height: 25px;
+        font-size: 14px;
+    }
+}*/
+
 
 .small-green {
     font-size: small;

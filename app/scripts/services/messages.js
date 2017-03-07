@@ -107,7 +107,7 @@ angular.module('cloudSlangWebsiteApp')
 
             // get started banner
             bannerTitle: 'Get Started',
-            bannerDesc: 'Click this button and start using CloudSlang in 3 easy steps',
+            bannerDesc: 'Click this button and start using CloudSlang within minutes',
             startNowBanner: 'Start Now',
 
 
@@ -122,8 +122,11 @@ angular.module('cloudSlangWebsiteApp')
             useCasesSeeMore: 'See the full content catalog' ,
 
             // getting started
-            getStartedTitleDesc: 'Start Working with CloudSlang with these 3 simple steps.',
-            getStartedPrereq: 'Prerequisite: Java JRE version 7 or higher.',
+            /*getStartedTitleDesc: 'Start Working with CloudSlang by following the simple steps provided below.',
+             getStartedPrereq: 'Prerequisite: Java JRE version 7 or higher.',*/
+            getStartedToRunTitle: 'If you want to RUN',
+            getStartedToRunTitleDesc: 'Follow the 3 simple steps provided below.',
+            getStartedToRunPrereq: 'Prerequisite: Java JRE version 7 or higher.',
             downloadText: 'Download',
             downloadTextWindows: 'for Windows',
             downloadTextLinux: 'for Linux',
@@ -141,16 +144,33 @@ angular.module('cloudSlangWebsiteApp')
             detailedTriggerFlowText4: 'The CLI will run the ready-made print_text operation that will print the value passed to the variable text.',
             detailedLearnMoreHeader: 'Learn More',
 
-
+            getStartedToDevTitle: 'If you want to DEVELOP and CONTRIBUTE',
+            getStartedToDevTitleDesc: 'Follow the 3 simple steps provided below.',
+            getStartedToDevPrereq: 'Prerequisite: Nothing special here. You\'ll figure it out.',
+            getStartedToDevForkHeader: 'Fork & Clone',
+            getStartedToDevForkText: 'You can contribute on multiple repositories.',
+            getStartedToDevForkText1: 'But if you want to develop your own content and eventually contribute it back you should fork our content repository.',
+            getStartedToDevForkButton: 'Fork Content',
+            getStartedToDevDHeader: 'Develop workflows',
+            getStartedToDevDText: 'You can alter existing workflows or add new ones according to your needs.',
+            getStartedToDevDText1: 'You can even write java or python based operations and reference those in your CloudSlang files.',
+            getStartedToDevDText2: 'If you are working with IntelliJ IDEA or Atom you can download CloudSlang based plugins that will assist you in the development process.',
+            getStartedToLearnHeader: 'Learn & Contribute',
+            getStartedToLearnText:'Follow our documents for more information on contributing to CloudSlang and don\'t hesitate to contact us.',
+            getStartedToLearnText1:'Orchestrate today, share tomorrow.',
+            ideDownloadText: 'Plugin',
+            ideDownloadTextIntelliJ: 'IntelliJ',
+            ideDownloadTextAtom: 'Atom',
+            ideDownloadNote: 'You can download and install directly from your preferred IDE',
 
 
             // download popup
             popUpHeader: 'Keep up to date!' ,
             popUpBody: 'For more information on getting started with CloudSlang check out the',
             videoLink: 'introductory video,',
-            docsLink: 'docs',
+            docsLink: 'Documents',
             popUpBody2: 'or the ',
-            tutorialLink: 'tutorial',
+            tutorialLink: 'Tutorials',
             dot: '.',
             emailField: 'Keep up to date with new ready-made flows and language capabilities. Sign up for the CloudSlang newsletter.',
             emailPrivacy:'We respect your privacy. ' +

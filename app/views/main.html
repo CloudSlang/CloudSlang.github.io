@@ -6,6 +6,8 @@
 <div class="container-fluid mobileShow">
     <div class="mobile-wrapper">
         <p class="mobile-header-title">{{$root.messages.headerMainTitle}}</p>
+        <p class="mobile-header-title">{{$root.messages.headerSubTitle}}</p>
+        <p class="mobile-header-title"><b>Orchestrate</b> today, <b>share</b> tomorrow.</p>
         <img class="mobile-main-image" src="images/CloudSlang_mobile.png">
 
         <div class="mobile-button">
@@ -26,6 +28,8 @@
 
                     <div class="header-title">
                         <p>{{$root.messages.headerMainTitle}}</p>
+                        <p>{{$root.messages.headerSubTitle}}</p>
+                        <p><b>Orchestrate</b> today, <b>share</b> tomorrow.</p>
                     </div>
                     <div>
                         <a href="/#/getstarted#top" analytics-on="click" analytics-event="start now main" class="btn btn-lg start-now-button btn-responsive">
@@ -60,14 +64,14 @@
         </div>
     </div>
 </div>
-<section id="{{sections[0].id}}" class="section-wrapper use-cases">
-    <div ng-include src="'views/usecases.html'"></div>
-</section>
-<section id="{{sections[1].id}}" class="section-wrapper suggest-flow">
-    <div ng-include src="'views/suggestworkflow.html'"></div>
-</section>
 <section class="section-wrapper bullets">
     <div ng-include src="'views/bullets.html'"></div>
+</section>
+<section id="{{sections[1].id}}" class="section-wrapper use-cases">
+    <div ng-include src="'views/usecases.html'"></div>
+</section>
+<section id="{{sections[2].id}}" class="section-wrapper suggest-flow">
+    <div ng-include src="'views/suggestworkflow.html'"></div>
 </section>
 <section class="section-wrapper banner">
     <div ng-include src="'views/banner.html'"></div>

@@ -7,24 +7,30 @@ angular.module('cloudSlangWebsiteApp')
             // nav bar
             navGettingStartedTitle: 'Get Started',
             navUseCasesTitle: 'Use Cases',
-            navAboutTitle: 'About Us',
+            navAboutTitle: 'Contributors',
             navDocumentationTitle: 'Documentation',
             navBlogTitle: 'Blog',
             navCommunityTitle: 'Community',
             navBackToSiteTitle: 'Back To Site',
             navSuggestAFlow: 'Suggest a Flow',
+            navNewsletter: 'Subscribe',
 
             // header
-            headerMainTitle: 'Automate your development and operations using ready-made workflows',
-            headerDescription: 'With CloudSlang you can orchestrate popular cutting edge technologies, such as Docker and CoreOS in an agentless manner. ' +
-                                    'You can also define custom workflows that are reusable, shareable and easy to understand.',
+            //headerMainTitle: 'Automate your development and operations using ready-made workflows',
+            headerMainTitle: 'Open-source orchestration',
+			headerSubTitle: 'Ready-made workflows',
+			//headerSubTitleShort: 'Orchestrate today, share tomorrow',
+			headerDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies. It can orchestrate anything you can imagine in an agentless manner.\ ' +
+                                    'You can use or customize ready-made YAML based workflows. They are powerful, shareable and human readable. Modernize your IT with CloudSlang.',
             headerStartNow: 'Start Now',
             worksWith: 'Works with:',
 
             // what is cloudslang
             whatIsTitle: 'What is CloudSlang?' ,
-            whatIsDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies, such as Docker and CoreOS in an agentless manner.\ ' +
-                                    'Use ready-made workflows or define your own custom ones. CloudSlang workflows are reusable, shareable and easy to understand.',
+            //whatIsDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies, such as Docker and CoreOS in an agentless manner.\ ' +
+            //                        'Use ready-made workflows or define your own custom ones. CloudSlang workflows are reusable, shareable and easy to understand.',
+			whatIsDescription: 'CloudSlang is an open source tool for orchestrating cutting edge technologies. It can orchestrate anything you can imagine in an agentless manner.\ ' +
+                                    'You can use or customize ready-made YAML based workflows. They are powerful, shareable and human readable. Modernize your IT with CloudSlang.',
             whatIsDescription2: 'The CloudSlang project is composed of three main parts: the CloudSlang Orchestration Engine,'+
                                     ' the YAML-based CloudSlang language and the ready-made CloudSlang content.' ,
 
@@ -58,15 +64,15 @@ angular.module('cloudSlangWebsiteApp')
             footerLicenseHref: 'Apache License, Version 2.0.',
             footerContactUs: 'Contact Us',
             footerGooglePlus: 'Google Plus',
-            footerNewsLetter: 'Newsletter',
+            footerNewsLetter: 'Subscribe to our Newsletter',
             footerYoutube: 'YouTube',
             footerTwitter: 'Twitter',
             footerGitHub: 'GitHub',
-            footerContribute: 'Contributing',
-            footerRoadMap: 'Project Roadmap',
-            footerGoogleGroups: 'Mailing List',
-            footerBlog: 'Blog',
-            footerDocs: 'Docs',
+            footerContribute: 'How to Contribute',
+            footerRoadMap: 'Roadmap',
+            footerSlackChannel: 'Slack',
+            footerBlog: 'Blogs',
+            footerDocs: 'Documents',
             footerTutorials: 'Tutorials',
 
             // bullets
@@ -95,11 +101,13 @@ angular.module('cloudSlangWebsiteApp')
 
             // about us
             aboutUsByHp: 'Project CloudSlang by Hewlett Packard Enterprise',
-            aboutUsWhoWeAreText: 'This project is being contributed to the open source community by HPE Software engineers with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
+            aboutUsWhoWeAreText: 'This project is being contributed to the open source community by both HPE Software engineers and individual contributors with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
+            aboutUsInHp: 'Individual Contributors (CloudSlang team members)',
+            aboutUsNotInHp: 'Individual Contributors',
 
             // get started banner
             bannerTitle: 'Get Started',
-            bannerDesc: 'Click this button and start using CloudSlang in 3 easy steps',
+            bannerDesc: 'Click this button and start using CloudSlang within minutes',
             startNowBanner: 'Start Now',
 
 
@@ -114,8 +122,11 @@ angular.module('cloudSlangWebsiteApp')
             useCasesSeeMore: 'See the full content catalog' ,
 
             // getting started
-            getStartedTitleDesc: 'Start Working with CloudSlang with these 3 simple steps.',
-            getStartedPrereq: 'Prerequisite: Java JRE version 7 or higher.',
+            /*getStartedTitleDesc: 'Start Working with CloudSlang by following the simple steps provided below.',
+             getStartedPrereq: 'Prerequisite: Java JRE version 7 or higher.',*/
+            getStartedToRunTitle: 'If you want to RUN',
+            getStartedToRunTitleDesc: 'Follow the 3 simple steps provided below.',
+            getStartedToRunPrereq: 'Prerequisite: Java JRE version 7 or higher.',
             downloadText: 'Download',
             downloadTextWindows: 'for Windows',
             downloadTextLinux: 'for Linux',
@@ -133,16 +144,33 @@ angular.module('cloudSlangWebsiteApp')
             detailedTriggerFlowText4: 'The CLI will run the ready-made print_text operation that will print the value passed to the variable text.',
             detailedLearnMoreHeader: 'Learn More',
 
-
+            getStartedToDevTitle: 'If you want to DEVELOP and CONTRIBUTE',
+            getStartedToDevTitleDesc: 'Follow the 3 simple steps provided below.',
+            getStartedToDevPrereq: 'Prerequisite: Nothing special here. You\'ll figure it out.',
+            getStartedToDevForkHeader: 'Fork & Clone',
+            getStartedToDevForkText: 'You can contribute on multiple repositories.',
+            getStartedToDevForkText1: 'But if you want to develop your own content and eventually contribute it back you should fork our content repository.',
+            getStartedToDevForkButton: 'Fork Content',
+            getStartedToDevDHeader: 'Develop workflows',
+            getStartedToDevDText: 'You can alter existing workflows or add new ones according to your needs.',
+            getStartedToDevDText1: 'You can even write java or python based operations and reference those in your CloudSlang files.',
+            getStartedToDevDText2: 'If you are working with IntelliJ IDEA or Atom you can download CloudSlang based plugins that will assist you in the development process.',
+            getStartedToLearnHeader: 'Learn & Contribute',
+            getStartedToLearnText:'Follow our documents for more information on contributing to CloudSlang and don\'t hesitate to contact us.',
+            getStartedToLearnText1:'Orchestrate today, share tomorrow.',
+            ideDownloadText: 'Plugin',
+            ideDownloadTextIntelliJ: 'IntelliJ',
+            ideDownloadTextAtom: 'Atom',
+            ideDownloadNote: 'You can download and install directly from your preferred IDE',
 
 
             // download popup
             popUpHeader: 'Keep up to date!' ,
             popUpBody: 'For more information on getting started with CloudSlang check out the',
             videoLink: 'introductory video,',
-            docsLink: 'docs',
+            docsLink: 'Documents',
             popUpBody2: 'or the ',
-            tutorialLink: 'tutorial',
+            tutorialLink: 'Tutorials',
             dot: '.',
             emailField: 'Keep up to date with new ready-made flows and language capabilities. Sign up for the CloudSlang newsletter.',
             emailPrivacy:'We respect your privacy. ' +

@@ -1,84 +1,83 @@
 <div ng-controller="FooterCtrl" class="footer">
     <div class="container">
         <div class="social-icons row row-centered">
-            <div class="col-md-2"></div>
-            <div class="col-md-3 text-left">
-                <div class="footer-row">Follow Us</div>
-                <div>
-                    <a ng-href="https://twitter.com/CloudSlang" analytics-on="click" analytics-event="footer twitter" target="_blank" title="{{$root.messages.footerTwitter}}">
-                        <i class="twitter social-icon fa fa-twitter"></i>
-                        <span class="icon-text h4">{{$root.messages.footerTwitter}}</span>
-                    </a>
-                </div>
-                <div>
-                    <a ng-href="http://www.youtube.com/channel/UCunFZ98J-2slsd3NuP2WeBw" analytics-on="click" analytics-event="footer youtube" target="_blank" title="{{$root.messages.footerYoutube}}">
-                        <i class="youtube social-icon fa fa-youtube"></i>
-                        <span class="icon-text h4">{{$root.messages.footerYoutube}}</span>
-                    </a>
-                </div>
-                <div>
-                    <a data-toggle="modal"
-                       data-target="#footerModal" analytics-on="click" analytics-event="footer newsletter" title="{{$root.messages.footerNewsLetter}}">
-                        <i class="fa social-icon fa-newspaper-o"></i>
-                        <span class="icon-text h4">{{$root.messages.footerNewsLetter}}</span>
-                    </a>
-                </div>
-                <div>
-                    <a ng-href="https://groups.google.com/forum/#!forum/cloudslang" analytics-on="click" analytics-event="footer mailing list" target="_blank" title="{{$root.messages.footerGoogleGroups}}">
-                        <i class="github social-icon fa fa-google"></i>
-                        <span class="icon-text h4">{{$root.messages.footerGoogleGroups}}</span>
-                    </a>
-                </div>
-                <div>
-                    <a ng-href="mailto:support@cloudslang.io" analytics-on="click" analytics-event="footer contact us" title="{{$root.messages.footerContactUs}}">
-                        <i class="github social-icon fa fa-envelope"></i>
-                        <span class="icon-text h4">{{$root.messages.footerContactUs}}</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3  text-left">
-                <div class="footer-row">Contribute</div>
-                <div>
-                    <a ng-href="https://github.com/CloudSlang" analytics-on="click" analytics-event="footer github" target="_blank" title="{{$root.messages.footerGitHub}}">
-                        <i class="github social-icon fa fa-github"></i>
-                        <span class="icon-text h4">{{$root.messages.footerGitHub}}</span>
-                    </a>
-                </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2  text-center">
                 <div>
                     <a ng-href="http://cloudslang-docs.readthedocs.io/en/v1.0/developer_contribution.html" analytics-on="click" analytics-event="footer contribute" target="_blank" title="{{$root.messages.footerContribute}}">
-                        <i class="github social-icon fa fa-code-fork"></i>
                         <span class="icon-text h4">{{$root.messages.footerContribute}}</span>
                     </a>
                 </div>
-                <div>
-                    <a ng-href="https://github.com/CloudSlang/cloud-slang/wiki/Project-Roadmap" analytics-on="click" analytics-event="footer roadmap" target="_blank" title="{{$root.messages.footerRoadMap}}">
-                        <i class="github social-icon fa fa-road"></i>
-                        <span class="icon-text h4">{{$root.messages.footerRoadMap}}</span>
-                    </a>
-                </div>
             </div>
-            <div class="col-md-3 text-left">
-                <div class="footer-row">Learn More</div>
-                <div>
-                    <a ng-href="http://cloudslang-docs.readthedocs.io/en/v1.0/section_tutorial.html" analytics-on="click" analytics-event="footer tutorials" target="_blank" title="{{$root.messages.footerTutorials}}">
-                        <i class="github social-icon fa fa-mortar-board"></i>
-                        <span class="icon-text h4">{{$root.messages.footerTutorials}}</span>
-                    </a>
-                </div>
+            <div class="col-md-2  text-center">
                 <div>
                     <a ng-href="https://blog.cloudslang.io" analytics-on="click" analytics-event="footer blog" target="_blank" title="{{$root.messages.footerBlog}}">
-                        <i class="github social-icon fa fa-comments-o"></i>
                         <span class="icon-text h4">{{$root.messages.footerBlog}}</span>
                     </a>
                 </div>
+            </div>
+            <div class="col-md-2  text-center footer-tutorials">
+                <div>
+                    <a ng-href="http://cloudslang-docs.readthedocs.io/en/v1.0/section_tutorial.html" analytics-on="click" analytics-event="footer tutorials" target="_blank" title="{{$root.messages.footerTutorials}}">
+                        <span class="icon-text h4">{{$root.messages.footerTutorials}}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2  text-center">
                 <div>
                     <a ng-href="http://cloudslang-docs.readthedocs.io/en/v1.0/"  analytics-on="click" analytics-event="footer docs" target="_blank" title="{{$root.messages.footerDocs}}">
-                        <i class="github social-icon fa fa-book"></i>
                         <span class="icon-text h4">{{$root.messages.footerDocs}}</span>
                     </a>
                 </div>
             </div>
-
+            <div class="col-md-2  text-center">
+                <div>
+                    <a ng-href="https://github.com/CloudSlang/cloud-slang/wiki/Project-Roadmap" analytics-on="click" analytics-event="footer roadmap" target="_blank" title="{{$root.messages.footerRoadMap}}">
+                        <span class="icon-text h4">{{$root.messages.footerRoadMap}}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="social-icons row row-centered">
+            <div class="col-md-3 col-xs-1" ></div>
+            <div class="col-md-1 col-xs-2 text-left">
+                <div>
+                    <a ng-href="https://github.com/CloudSlang" analytics-on="click" analytics-event="footer github" target="_blank" title="{{$root.messages.footerGitHub}}">
+                        <i class="github social-icon fa fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-1 col-xs-2 text-center">
+                <div>
+                    <a ng-href="https://cloudslang.slack.com/signup" analytics-on="click" analytics-event="footer mailing list" target="_blank" title="{{$root.messages.footerSlackChannel}}">
+                        <i class="github social-icon fa fa-slack"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-1 col-xs-2 text-center">
+                <div>
+                    <a ng-href="https://twitter.com/CloudSlang" analytics-on="click" analytics-event="footer twitter" target="_blank" title="{{$root.messages.footerTwitter}}">
+                        <i class="twitter social-icon fa fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-1 col-xs-2 text-center">
+                <div>
+                    <a ng-href="http://www.youtube.com/channel/UCunFZ98J-2slsd3NuP2WeBw" analytics-on="click" analytics-event="footer youtube" target="_blank" title="{{$root.messages.footerYoutube}}">
+                        <i class="youtube social-icon fa fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-1 col-xs-2 text-center">
+                <div>
+                    <a data-toggle="modal"
+                       data-target="#footerModal" analytics-on="click" analytics-event="footer newsletter" title="{{$root.messages.footerNewsLetter}}">
+                        <i class="fa social-icon fa-newspaper-o"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
         </div>
         <div class="row row-centered">
             <div class="col-md-12 col-xs-12 links">

@@ -1,0 +1,49 @@
+<div class="container" ng-controller="GettingStartedCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="h3">{{$root.messages.getStartedToRunTitle}}</p>
+            <p class="h5">{{ $root.messages.getStartedToRunTitleDesc }} </p>
+            <p class="h5">{{ $root.messages.getStartedToRunPrereq }} </p><br>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="circle-get-started"><h5 class="h5 get-started-number">1</h5></div>
+            <h3 class="h4 get-started-title"> {{$root.messages.detailedDownloadCliHeader}}</h3>
+            <p class="h5 get-started-desc">{{ $root.messages.detailedDownloadCliText }}</p>
+            <p class="h5 get-started-desc">{{ $root.messages.detailedDownloadCliText1 }}</p><br>
+            <p class="h5 get-started-desc"> {{ $root.messages.detailedDownloadCliText2 }} <img class="docker-icon"
+                                                                                               src="images/gettingstarted/small_v-trans.png">
+                {{ $root.messages.detailedDownloadCliText3 }}</p>
+            <pre class="run-docker">{{ $root.messages.DockerRun }}</pre>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="circle-get-started"><p class="h5 get-started-number">2</p></div>
+            <h3 class="h4 get-started-title"> {{$root.messages.detailedTriggerFlowHeader}}</h3>
+            <p class="h5 get-started-desc">{{ $root.messages.detailedTriggerFlowText1}}</p>
+            <pre class="run-cli">{{$root.messages.detailedTriggerFlowText2}}</pre>
+            <br>
+            <p class="h5 get-started-desc">{{$root.messages.detailedTriggerFlowText4 }}</p>
+
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="circle-get-started"><p class="h5 get-started-number">3</p></div>
+            <h3 class="h4 get-started-title"> {{$root.messages.detailedLearnMoreHeader}}</h3>
+            <p class="h5 get-started-desc">{{ $root.messages.popUpBody + " " }}
+                <a class="highlight-green"
+                   href="https://www.youtube.com/watch?v=9nYLXx5pRBw"
+                   target="_blank">{{$root.messages.videoLink + " "}}
+                </a>
+                <a class="highlight-green" href="http://cloudslang-docs.readthedocs.io/en/v1.0/" target="_blank">{{$root.messages.docsLink + "
+                    "}}
+                </a> {{ $root.messages.popUpBody2 + " "}}
+                <a class="highlight-green" href="http://cloudslang-docs.readthedocs.io/en/v1.0/section_tutorial.html"
+                   target="_blank">{{$root.messages.tutorialLink }}
+                </a>.
+            </p>
+        </div>
+        <div class="row-centered">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div ng-include src="'views/downloadclibox.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

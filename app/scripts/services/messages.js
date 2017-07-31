@@ -130,7 +130,7 @@ angular.module('cloudSlangWebsiteApp')
             downloadText: 'Download',
             downloadTextWindows: 'for Windows',
             downloadTextLinux: 'for Linux/Mac',
-            cloudSlangVersion: 'CloudSlang version 1.0.6',
+            cloudSlangVersion: 'CloudSlang version 1.0.7',
             detailedDownloadCliHeader: 'Download & Run',
             detailedDownloadCliText: 'Download and unpack the CloudSlang CLI.',
             detailedDownloadCliText1: 'Go to cslang/bin/ and run the cslang executable file.',

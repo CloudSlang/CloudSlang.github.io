@@ -1101,7 +1101,7 @@ highlight-white {
     margin-top: 35px;
     border-color: #097f3b;
     background-color: #097f3b;
-    width: 180px;
+    width: 190px;
     height: 66px;
 
 }
@@ -1113,7 +1113,7 @@ highlight-white {
     margin-top: 35px;
     border-color: #0BA04A;
     background-color: #0BA04A;
-    width: 180px;
+    width: 190px;
     height: 66px;
 
 }
@@ -1140,11 +1140,11 @@ highlight-white {
         width: 150px;
     }
     .download-now-button-dark {
-        width: 140px;
+        width: 145px;
         height: 60px;
     }
     .download-now-button-light {
-        width: 140px;
+        width: 145px;
         height: 60px;
     }
 }

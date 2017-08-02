@@ -1,22 +1,50 @@
 <div ng-controller="GettingStartedCtrl">
 
     <div class="download col-md-12 col-sm-12 col-xs-12">
-        <a id="delay" analytics-on="click" analytics-event="download cli - windows"
-           class="btn btn-primary btn-lg download-now-button-windows" data-toggle="modal"
+        <a id="delay" title="Download for Windows" analytics-on="click" analytics-event="download cli - windows"
+           class="btn btn-primary btn-lg download-now-button-dark" data-toggle="modal"
            data-target="#myModal">
             <img class="pull-left windows-download-icon" src="images/gettingstarted/download_windows.png" alt="Download Now"/>
 
-            <p class="download-now-text-windows">{{$root.messages.downloadText}}</p>
+            <p class="download-now-text-windows">{{$root.messages.downloadTextZip}}</p>
             <p class="download-now-text-linux-desc">{{$root.messages.downloadTextWindows}}</p></a>
 
-        <a id="delay1" analytics-on="click" analytics-event="download cli - linux"
-           class="btn btn-primary btn-lg download-now-button-linux" data-toggle="modal"
-           data-target="#myModal">
-            <img class="pull-right linux-download-icon" src="images/gettingstarted/download_linux.png" alt="Download Now"/>
+        <a id="delay" title="Download for the Red Hat Family" analytics-on="click" analytics-event="download rpm"
+           class="btn btn-primary btn-lg download-now-button-light"
+           href="https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-1.0.7/cloudslang-bin-full-1.0.7-1.noarch.rpm">
+            <img class="pull-left windows-download-icon" src="images/gettingstarted/download_rhel.png" alt="Download Rpm"/>
 
-            <p class="download-now-text-linux">{{$root.messages.downloadText}}</p>
-            <p class="download-now-text-linux-desc">{{$root.messages.downloadTextLinux}}</p></a>
-            <p class="cloudslang-version"><small>{{$root.messages.cloudSlangVersion}}</small></p>
+            <p class="download-now-text-windows">{{$root.messages.downloadTextRpm}}</p>
+            <p class="download-now-text-linux-desc">{{$root.messages.downloadTextRHEL}}</p></a>
+
+        <a id="delay" title="Download for the Debian Family" analytics-on="click" analytics-event="download deb"
+           class="btn btn-primary btn-lg download-now-button-dark"
+           href="https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-1.0.7/cloudslang-bin-full-1.0.7.deb">
+            <img class="pull-left windows-download-icon" src="images/gettingstarted/download_deb.png" alt="Download Deb"/>
+
+            <p class="download-now-text-windows">{{$root.messages.downloadTextDeb}}</p>
+            <p class="download-now-text-linux-desc">{{$root.messages.downloadTextDebian}}</p></a>
+
+        <a id="delay" title="Coming soon..." analytics-on="click" analytics-event="download dmg"
+           class="btn btn-primary btn-lg download-now-button-light" href="#">
+            <img class="pull-left windows-download-icon" src="images/gettingstarted/download_mac.png" alt="Download Dmg"/>
+
+            <p class="download-now-text-windows">{{$root.messages.downloadTextDmg}}</p>
+            <p class="download-now-text-linux-desc">{{$root.messages.downloadTextMac}}</p></a>
+
+        <a id="delay1" title="Download for Linux or Mac" analytics-on="click" analytics-event="download cli - linux"
+           class="btn btn-primary btn-lg download-now-button-dark" data-toggle="modal"
+           data-target="#myModal">
+            <img class="pull-left linux-download-icon" src="images/gettingstarted/download_linux.png" alt="Download Now"/>
+
+            <p class="download-now-text-linux">{{$root.messages.downloadTextGZip}}</p>
+            <p class="download-now-text-linux-desc">{{$root.messages.downloadTextMix}}</p></a>
+
+        <a title="Click here to download md5 .zip" analytics-on="click" analytics-event="download md5"
+           class="download-md5" href="#" target="_blank" alt="Download Md5">
+            <p class="download-md5"><small>{{$root.messages.downloadTextMd5}}</small></p></a>
+
+        <p class="cloudslang-version"><small>{{$root.messages.cloudSlangVersion}}</small></p>
 
     </div>
 

@@ -1056,7 +1056,7 @@ highlight-white {
     }
 }
 
-.download-now-button-windows {
+.download-now-button-intellij {
     margin-right: -0.2em;
     -webkit-border-radius: 35px;
     -webkit-border-bottom-right-radius: 0;
@@ -1067,7 +1067,7 @@ highlight-white {
     border-radius: 35px;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
-    margin-top: 100px;
+    margin-top: 50px;
     border-color: #097f3b;
     background-color: #097f3b;
     width: 200px;
@@ -1075,7 +1075,7 @@ highlight-white {
 
 }
 
-.download-now-button-linux {
+.download-now-button-atom {
     margin-left: -0.2em;
     -webkit-border-radius: 35px;
     -webkit-border-bottom-left-radius: 0;
@@ -1086,10 +1086,34 @@ highlight-white {
     border-radius: 35px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
-    margin-top: 100px;
+    margin-top: 50px;
     border-color: #0BA04A;
     background-color: #0BA04A;
     width: 200px;
+    height: 66px;
+
+}
+
+.download-now-button-dark {
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    margin-top: 35px;
+    border-color: #097f3b;
+    background-color: #097f3b;
+    width: 190px;
+    height: 66px;
+
+}
+
+.download-now-button-light {
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    margin-top: 35px;
+    border-color: #0BA04A;
+    background-color: #0BA04A;
+    width: 190px;
     height: 66px;
 
 }
@@ -1109,11 +1133,19 @@ highlight-white {
 }
 
 @media (max-width: 519px) {
-    .download-now-button-linux {
+    .download-now-button-atom {
         width: 150px;
     }
-    .download-now-button-windows {
+    .download-now-button-intellij {
         width: 150px;
+    }
+    .download-now-button-dark {
+        width: 145px;
+        height: 60px;
+    }
+    .download-now-button-light {
+        width: 145px;
+        height: 60px;
     }
 }
 
@@ -1124,14 +1156,44 @@ highlight-white {
     height: 40px;
 }
 
-.download-now-button-windows:hover {
+.download-now-button-intellij:hover {
     background-color: #7CCA9D;
     border-color: #7CCA9D;
 }
 
-.download-now-button-linux:hover {
+.download-now-button-atom:hover {
     background-color: #7CCA9D;
     border-color: #7CCA9D;
+}
+
+.download-now-button-dark:hover {
+    background-color: #7CCA9D;
+    border-color: #7CCA9D;
+}
+
+.download-now-button-light:hover {
+    background-color: #7CCA9D;
+    border-color: #7CCA9D;
+}
+
+.download-now-button-light:focus {
+    border-color: #0BA04A;
+    background-color: #0BA04A;
+}
+
+.download-now-button-dark:focus {
+    border-color: #097f3b;
+    background-color: #097f3b;
+}
+
+.download-now-button-atom:focus {
+    border-color: #0BA04A;
+    background-color: #0BA04A;
+}
+
+.download-now-button-intellij:focus {
+    border-color: #097f3b;
+    background-color: #097f3b;
 }
 
 .download-now-text-windows {
@@ -1159,7 +1221,7 @@ highlight-white {
 }
 
 .linux-download-icon {
-    margin-right: -0.5em;
+    margin-left: -0.5em;
     margin-top: -0.05em;
 }
 .windows-download-icon {
@@ -1257,11 +1319,19 @@ highlight-white {
         margin-top: -0.05em;
         margin-right: 0.3em;
     }
-    .download-now-button-linux {
+    .download-now-button-atom {
         width: 110px;
         height: 50px;
     }
-    .download-now-button-windows {
+    .download-now-button-intellij {
+        width: 110px;
+        height: 50px;
+    }
+    .download-now-button-dark {
+        width: 110px;
+        height: 50px;
+    }
+    .download-now-button-light {
         width: 110px;
         height: 50px;
     }
@@ -1270,11 +1340,16 @@ highlight-white {
     }
 }
 
-
 .cloudslang-version {
+     position: relative;
+     color: #777777;
+     font-size: 15px;
+ }
+
+.download-md5 {
     position: relative;
     color: #777777;
-    margin-top: 3px;
+    margin-top: 15px;
     font-size: 15px;
 }
 

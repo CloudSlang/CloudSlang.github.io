@@ -137,7 +137,7 @@ angular.module('cloudSlangWebsiteApp')
             downloadTextRHEL: '.rpm',
             downloadTextDebian: '.deb',
             downloadTextMac: '.dmg',
-            downloadTextMix: 'tar..gz',
+            downloadTextMix: 'tar.gz',
             downloadTextMd5: 'Download .md5 files to check the .rpm and .deb packages',
             cloudSlangVersion: 'CloudSlang version 1.0.10',
             detailedDownloadCliHeader: 'Download & Run',

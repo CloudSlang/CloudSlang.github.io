@@ -85,7 +85,7 @@ angular.module('cloudSlangWebsiteApp')
                                                 'CloudSlang takes a process-based approach to orchestration, allowing you to define how your orchestration works and empowering you to also address dynamic cases such as health checks, remediation, and disaster recovery.',
             mainBulletReadyMadeContentDesc: 'Although writing your own CloudSlang content is easy using our YAML-based DSL, you don’t need to write a single line of code to leverage the power of CloudSlang.' +
                                                     ' There is a growing repository of ready-made content that integrates with many of today’s hottest technologies, such as Docker and CoreOS. ' +
-                                                            'And, the open source nature of the project means that you’ll be able to reuse and repurpose content shared by the community.',
+                                                            'And, the open source nature of the project means that you’ll be able to reuse and re-purpose content shared by the community.',
             mainBulletsAgentlessDesc: 'Don’t bother setting up and managing agents on all your machines. CloudSlang workflows can use remote APIs to run tasks.',
             mainBulletsReadMore: 'Read More',
 
@@ -100,8 +100,8 @@ angular.module('cloudSlangWebsiteApp')
             contactPlaceholderMessage: 'Your Message',
 
             // about us
-            aboutUsByHp: 'Project CloudSlang by Hewlett Packard Enterprise',
-            aboutUsWhoWeAreText: 'This project is being contributed to the open source community by both HPE Software engineers and individual contributors with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
+            aboutUsByHp: 'Project CloudSlang by Micro Focus',
+            aboutUsWhoWeAreText: 'This project is being contributed to the open source community by both Micro Focus engineers and individual contributors with the goal of leveraging the power of community to create the best-in-class orchestration technology.',
             aboutUsInHp: 'Individual Contributors (CloudSlang team members)',
             aboutUsNotInHp: 'Individual Contributors',
 
@@ -137,7 +137,7 @@ angular.module('cloudSlangWebsiteApp')
             downloadTextRHEL: '.rpm',
             downloadTextDebian: '.deb',
             downloadTextMac: '.dmg',
-            downloadTextMix: '.gzip',
+            downloadTextMix: 'tar.gz',
             downloadTextMd5: 'Download .md5 files to check the .rpm and .deb packages',
             cloudSlangVersion: 'CloudSlang version 1.0.10',
             detailedDownloadCliHeader: 'Download & Run',

@@ -781,9 +781,9 @@ a:active, a:focus {
 
 }
 
-.hpe-logo {
+.mfocus-logo {
     display: inline;
-    width: 170px;
+    width: 20px;
     margin-left: -30px;
 }
 
@@ -794,7 +794,7 @@ a:active, a:focus {
 }
 
 @media (max-width: 767px) {
-    .hpe-logo {
+    .mfocus-logo {
         width: 130px;
     }
 }

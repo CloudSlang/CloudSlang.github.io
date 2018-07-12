@@ -17,7 +17,7 @@
     "highlightjs": "~8.3.0",
     "typed.js": "*",
     "pace": "*",
-    "components-font-awesome": "*",
+    "components-font-awesome": "~4.6.3",
     "angular-highlightjs": "*",
     "jquery": "<=2.1.4",
     "angular-touch": "1.4.1",

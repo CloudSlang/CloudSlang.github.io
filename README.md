@@ -1,5 +1,5 @@
 # CloudSlang.github.io
-CloudSlang website [http://cloudslang.io](http://cloudslang.io)
+CloudSlang website [https://cloudslang.io](https://cloudslang.io)
 
 [![Build Status](https://travis-ci.org/CloudSlang/CloudSlang.github.io.svg)](https://travis-ci.org/CloudSlang/CloudSlang.github.io)
 

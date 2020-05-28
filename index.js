@@ -5,10 +5,8 @@ var morgan = require('morgan');
 var compress = require('compression');
 var app = express();
 
-app.use((req, res, next) => {
-    res.append('Strict-Transport-Security', 'max-age=16070400');
-    next();
-});
+app.enable('trust proxy');
+app.use(expressEnforcesSsl());
 app.use(compress());
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));

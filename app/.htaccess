@@ -343,9 +343,9 @@ AddDefaultCharset utf-8
 # server via HTTPS, regardless of what the users type in the address bar.
 # http://www.html5rocks.com/en/tutorials/security/transport-layer-security/
 
-# <IfModule mod_headers.c>
-#    Header set Strict-Transport-Security max-age=16070400;
-# </IfModule>
+<IfModule mod_headers.c>
+    Header set Strict-Transport-Security max-age=16070400;
+</IfModule>
 
 # ------------------------------------------------------------------------------
 # | Server software information                                                |

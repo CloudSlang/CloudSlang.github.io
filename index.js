@@ -3,8 +3,11 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var morgan = require('morgan');
 var compress = require('compression');
+var expressEnforcesSsl = require('express-enforces-ssl');
 var app = express();
 
+app.enable('trust proxy');
+app.use(expressEnforcesSsl());
 app.use(compress());
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));

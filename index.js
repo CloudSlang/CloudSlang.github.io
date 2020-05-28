@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var morgan = require('morgan');
 var compress = require('compression');
+var expressEnforcesSsl = require('express-enforces-ssl');
 var app = express();
 
 app.use(compress());
@@ -12,6 +13,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.enable('trust proxy');
+app.use(expressEnforcesSsl());
 
 app.get('/status',function(req, res){
     res.send('/status GET OK');

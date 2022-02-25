@@ -139,7 +139,7 @@ angular.module('cloudSlangWebsiteApp')
             downloadTextMac: '.dmg',
             downloadTextMix: 'tar.gz',
             downloadTextMd5: 'Download .md5 files to check the .rpm and .deb packages',
-            cloudSlangVersion: 'CloudSlang version 1.0.23',
+            cloudSlangVersion: 'CloudSlang version 2.0.5',
             detailedDownloadCliHeader: 'Download & Run',
             detailedDownloadCliText: 'Download and unpack the CloudSlang CLI.',
             detailedDownloadCliText1: 'Go to cslang/bin/ and run the cslang executable file.',

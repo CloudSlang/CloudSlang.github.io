@@ -24,7 +24,6 @@
     "grunt-express-server": "^0.4.19",
     "grunt-filerev": "^0.2.1",
     "grunt-google-cdn": "^0.4.0",
-    "grunt-karma": "^0.9.0",
     "grunt-newer": "^0.7.0",
     "grunt-ng-annotate": "^0.3.0",
     "grunt-open": "^0.2.3",
@@ -33,9 +32,6 @@
     "grunt-wiredep": "^1.7.0",
     "highlight.js": "^8.3.0",
     "jshint-stylish": "^0.2.0",
-    "karma": "^0.12.24",
-    "karma-jasmine": "^0.2.3",
-    "karma-phantomjs-launcher": "^0.1.4",
     "load-grunt-tasks": "^0.4.0",
     "lodash": "^3.6.0",
     "marked": "^0.3.2",
@@ -48,7 +44,6 @@
     "npm": ">=2.1.17"
   },
   "scripts": {
-    "test": "grunt test",
     "postinstall": "bower install"
   }
 }

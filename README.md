@@ -1,25 +1,49 @@
 # CloudSlang.github.io
-CloudSlang website [https://cloudslang.io](https://cloudslang.io)
 
-## Build and start server
+CloudSlang website — [https://cloudslang.io](https://cloudslang.io)
+
+A project by [OpenText](https://www.opentext.com/).
+
+## Prerequisites
+
+- **Node.js 20.x** or later
+- npm 9+
+
+## Development
+
+Install dependencies and start the Vite dev server with hot-reload:
 
 ```sh
 npm install
-npm install -g grunt-cli
-
-grunt build
-grunt serve (will start the server on port 9000)
+npm run dev
 ```
-**or**
+
+The site is served at `http://localhost:5173` by default.
+
+## Production build
+
 ```sh
-grunt serve-express (will start express node server on port 9001)
+npm run build
 ```
 
-## Deploying to Heroku
+Vite compiles the site into the `public/` directory, which is then served by the Express server.
 
-Alternatively, you can deploy your own copy of the app using this button:
+## Running the production server locally
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+```sh
+npm run build
+npm start
+```
 
+The Express server listens on `http://localhost:5000` (or the port defined by the `PORT` environment variable).
 
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | Vanilla HTML / CSS / JavaScript |
+| Build tool | [Vite](https://vitejs.dev/) |
+| Server | [Express](https://expressjs.com/) 4.x |
+| Security headers | [Helmet](https://helmetjs.github.io/) |
+| License | Apache 2.0 |
 

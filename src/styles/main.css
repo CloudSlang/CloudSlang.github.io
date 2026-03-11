@@ -130,6 +130,40 @@ strong { font-weight: 600; }
   line-height: 1.6;
 }
 
+.section-desc--sub {
+  font-size: 0.9375rem;
+  margin-top: 0.5rem;
+  max-width: 640px;
+}
+
+.section-desc--sub a {
+  color: var(--green-400);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.section-desc--sub a:hover {
+  color: var(--green-500);
+}
+
+.features-footnote {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.features-footnote a {
+  color: var(--green-400);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.features-footnote a:hover {
+  color: var(--green-500);
+}
+
 /* ── Buttons ──────────────────────────────────────────────────────────────── */
 .btn {
   display: inline-flex;

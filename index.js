@@ -1,39 +1,77 @@
-var http = require('http');
-var bodyParser = require('body-parser');
-var express = require('express');
-var morgan = require('morgan');
-var compress = require('compression');
-var expressEnforcesSsl = require('express-enforces-ssl');
-var app = express();
+'use strict';
 
-app.enable('trust proxy');
-app.use(expressEnforcesSsl());
-app.use(compress());
-app.use(morgan('dev'));
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+const express = require('express');
+const helmet = require('helmet');
+const compression = require('compression');
+const morgan = require('morgan');
+const path = require('path');
 
-app.get('/status',function(req, res){
-    res.send('/status GET OK');
+const app = express();
+
+// Trust Heroku proxy so req.ip and x-forwarded-proto are reliable
+app.set('trust proxy', 1);
+
+// Redirect HTTP to HTTPS in production (Heroku sets x-forwarded-proto)
+app.use((req, res, next) => {
+  if (
+    process.env.NODE_ENV === 'production' &&
+    req.headers['x-forwarded-proto'] !== 'https'
+  ) {
+    return res.redirect(301, 'https://' + req.headers.host + req.url);
+  }
+  next();
 });
 
-app.get('/download',function(req, res){
-    res.redirect("https://github.com/CloudSlang/cloud-slang/releases/download/cloudslang-2.0.5/cslang-cli-with-content.zip")
+// Security headers via Helmet
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+        fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+        imgSrc: ["'self'", 'data:', 'https://img.youtube.com'],
+        scriptSrc: ["'self'"],
+        frameSrc: ['https://www.youtube-nocookie.com'],
+        connectSrc: ["'self'"],
+        objectSrc: ["'none'"],
+        baseUri: ["'self'"],
+        formAction: ["'self'"],
+        upgradeInsecureRequests: [],
+      },
+    },
+    hsts: {
+      maxAge: 31536000,
+      includeSubDomains: true,
+      preload: true,
+    },
+    referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+  })
+);
+
+app.use(compression());
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
+
+// Serve pre-built static files from /public
+app.use(
+  express.static(path.join(__dirname, 'public'), {
+    maxAge: process.env.NODE_ENV === 'production' ? '1d' : 0,
+    etag: true,
+  })
+);
+
+// Health-check endpoint
+app.get('/status', (req, res) => {
+  res.send('/status GET OK');
 });
 
-app.use(function(req, res) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    res.sendFile(__dirname + '/public/404.html')
+// 404 fallback
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
-
-app.set('port', (process.env.PORT || 5000));
-
-// Start the server
-http.createServer(app).listen(app.get('port'), function() {
-    console.log('Express server listening on port: ' + app.get('port'));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`CloudSlang site listening on port ${PORT}`);
 });
+

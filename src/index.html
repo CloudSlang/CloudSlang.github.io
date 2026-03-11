@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CloudSlang is an open-source, process-based orchestration language for automating IT and DevOps workflows — agentless, YAML-based, and built for scale." />
+  <meta property="og:title" content="CloudSlang — Orchestration as Code" />
+  <meta property="og:description" content="Process-based, agentless orchestration with ready-made YAML workflows. A project by OpenText." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cloudslang.io" />
+  <title>CloudSlang — Orchestration as Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="./styles/main.css" />
+</head>
+<body>
+
+  <!-- ═══ NAVIGATION ═══════════════════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <nav class="nav-container">
+      <a href="#hero" class="nav-logo" aria-label="CloudSlang home">
+        <img src="./images/logo.png" alt="CloudSlang" class="logo-img" />
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#about"    class="nav-link">About</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#video"    class="nav-link">Video</a></li>
+        <li><a href="#usecases" class="nav-link">Use Cases</a></li>
+        <li>
+          <a href="https://github.com/CloudSlang" target="_blank" rel="noopener noreferrer" class="nav-link nav-cta">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://cloudslang-docs.readthedocs.io" target="_blank" rel="noopener noreferrer" class="nav-link nav-cta nav-cta-primary">
+            Documentation
+          </a>
+        </li>
+        <li class="nav-opentext-divider" aria-hidden="true"></li>
+        <li>
+          <a href="https://www.opentext.com/" target="_blank" rel="noopener noreferrer" class="nav-opentext">
+            A project by <strong>OpenText</strong>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ═══ HERO ═══════════════════════════════════════════════════════════ -->
+    <section id="hero" class="section hero-section">
+      <div class="hero-bg-glow" aria-hidden="true"></div>
+      <div class="container hero-content">
+
+        <div class="hero-badge reveal">Open Source &nbsp;·&nbsp; YAML-based &nbsp;·&nbsp; Agentless</div>
+
+        <h1 class="hero-title reveal">
+          <span class="text-green">Cloud</span>Slang
+        </h1>
+
+        <p class="hero-subtitle reveal">
+          An open-source tool for orchestrating cutting-edge technologies in an agentless manner.<br>
+          Built by <a href="https://www.opentext.com/" target="_blank" rel="noopener noreferrer" class="hero-opentext-link">OpenText</a> for the community.
+        </p>
+
+        <div class="hero-actions reveal">
+          <a href="https://github.com/CloudSlang" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+            View on GitHub
+          </a>
+          <a href="https://cloudslang-docs.readthedocs.io" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Read the Docs
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="hero-code reveal" aria-label="Sample CloudSlang workflow YAML">
+          <div class="hero-code-bar" aria-hidden="true">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="hero-code-filename">hello_world_flow.sl</span>
+          </div>
+          <pre><code><span class="ck">namespace</span><span class="cp">:</span> <span class="cv">io.cloudslang.examples</span>
+
+<span class="ck">flow</span><span class="cp">:</span>
+  <span class="ck">name</span><span class="cp">:</span> <span class="cv">hello_world_flow</span>
+  <span class="ck">workflow</span><span class="cp">:</span>
+    - <span class="ck">print_text</span><span class="cp">:</span>
+        <span class="ck">do</span><span class="cp">:</span>
+          <span class="cv">io.cloudslang.base.print.print_text</span><span class="cp">:</span>
+            - <span class="ca">text</span><span class="cp">:</span> <span class="cs">"Hello, CloudSlang!"</span></code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ ABOUT ══════════════════════════════════════════════════════════ -->
+    <section id="about" class="section about-section">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <h2>What is CloudSlang?</h2>
+          <p class="section-desc">Process-based orchestration for IT &amp; DevOps workflows. Define <em>how</em> your automation runs — not just the state it should reach.</p>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-text reveal">
+            <p>CloudSlang is an open-source orchestration language designed to close the gap between high-level IT intent and actual runtime execution. Unlike desired-state solutions, CloudSlang puts you in control of <strong>how</strong> your workflows run — step by step, with full visibility and flexibility.</p>
+            <p>The project is composed of three main parts:</p>
+
+            <ul class="about-list">
+              <li>
+                <span class="list-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <div><strong>CloudSlang Orchestration Engine</strong> — a powerful runtime that executes YAML-defined workflows at scale.</div>
+              </li>
+              <li>
+                <span class="list-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <div><strong>CloudSlang Language</strong> — a human-readable, YAML-based DSL for defining IT processes and automation flows.</div>
+              </li>
+              <li>
+                <span class="list-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <div><strong>Ready-Made Content Library</strong> — a growing catalog of pre-built workflows for Docker, CoreOS, OpenStack, and more.</div>
+              </li>
+            </ul>
+
+            <div class="about-actions">
+              <a href="https://cloudslang-docs.readthedocs.io" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Explore the Docs ↗</a>
+              <a href="https://github.com/CloudSlang/cs-content" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">Browse Content Library ↗</a>
+            </div>
+          </div>
+
+          <div class="about-visual reveal">
+            <div class="about-logo-wrap">
+              <img src="./images/logo.png" alt="CloudSlang logo" class="about-logo-img" />
+            </div>
+            <div class="about-stats">
+              <div class="stat-item">
+                <span class="stat-value">YAML</span>
+                <span class="stat-label">Human-readable DSL</span>
+              </div>
+              <div class="stat-divider" aria-hidden="true"></div>
+              <div class="stat-item">
+                <span class="stat-value">100+</span>
+                <span class="stat-label">Ready-made workflows</span>
+              </div>
+              <div class="stat-divider" aria-hidden="true"></div>
+              <div class="stat-item">
+                <span class="stat-value">Apache&nbsp;2.0</span>
+                <span class="stat-label">Open Source</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FEATURES ═══════════════════════════════════════════════════════ -->
+    <section id="features" class="section features-section">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <h2>Why CloudSlang?</h2>
+          <p class="section-desc">A different approach to orchestration — one that puts process control back in your hands.</p>
+        </div>
+
+        <div class="features-grid">
+
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3>Process-Based</h3>
+            <p>Many orchestration solutions use desired-state modelling — forcing you to give up runtime control. CloudSlang's process-based approach lets you define exactly <em>how</em> your orchestration executes, enabling dynamic use cases like health checks, remediation, and disaster recovery.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <h3>Ready-Made Content</h3>
+            <p>You don't need to write a single line of code to get started. CloudSlang ships with a growing library of ready-made YAML workflows integrating Docker, CoreOS, OpenStack, and more — all open source, all reusable and shareable with the community.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <h3>Agentless</h3>
+            <p>Don't bother setting up and managing agents on every machine. CloudSlang workflows use remote APIs to execute tasks across your entire infrastructure — dramatically reducing overhead and eliminating agent maintenance.</p>
+          </article>
+
+        </div>
+
+        <p class="features-footnote reveal">CloudSlang powers the orchestration engine behind <a href="https://www.opentext.com/products/automation-center" target="_blank" rel="noopener noreferrer">OpenText Automation Center</a>, built on the proven foundation of Operations Orchestration.</p>
+
+      </div>
+    </section>
+    <section id="video" class="section video-section">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <h2>See It in Action</h2>
+          <p class="section-desc">Watch how CloudSlang orchestrates complex workflows with simplicity and power.</p>
+        </div>
+
+        <div class="video-wrapper reveal">
+          <div class="video-container" id="videoContainer" data-videoid="zMKagFLnQzM">
+            <img
+              src="https://img.youtube.com/vi/zMKagFLnQzM/maxresdefault.jpg"
+              alt="CloudSlang introduction video — click to play"
+              class="video-thumb"
+              width="1280"
+              height="720"
+              loading="lazy"
+            />
+            <button class="video-play-btn" id="videoPlayBtn" aria-label="Play CloudSlang introduction video">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="44" height="44" aria-hidden="true">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ USE CASES ══════════════════════════════════════════════════════ -->
+    <section id="usecases" class="section usecases-section">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <h2>Example Use Cases</h2>
+          <p class="section-desc">Real-world automation workflows that ship with CloudSlang's open-source content library.</p>
+        </div>
+
+        <div class="usecases-grid">
+
+          <article class="usecase-card reveal">
+            <div class="usecase-num" aria-hidden="true">01</div>
+            <h3>Migrating a Live Container</h3>
+            <p>Redistribute Docker containers across a datacenter based on CPU load of their hosts — while preserving container state throughout the migration process.</p>
+            <a href="https://github.com/CloudSlang/cs-content/blob/master/content/io/cloudslang/docker/runc/examples/migrate_container.sl"
+               target="_blank" rel="noopener noreferrer" class="usecase-link">
+              View workflow on GitHub
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </article>
+
+          <article class="usecase-card reveal">
+            <div class="usecase-num" aria-hidden="true">02</div>
+            <h3>Clear Docker Images in CoreOS</h3>
+            <p>Unused Docker images waste precious disk space across your cluster. This workflow automatically identifies and removes all unused images from every node in your CoreOS cluster.</p>
+            <a href="https://github.com/CloudSlang/cs-content/blob/master/content/io/cloudslang/coreos/cluster_docker_images_maintenance.sl"
+               target="_blank" rel="noopener noreferrer" class="usecase-link">
+              View workflow on GitHub
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </article>
+
+          <article class="usecase-card reveal">
+            <div class="usecase-num" aria-hidden="true">03</div>
+            <h3>OpenStack Health Check</h3>
+            <p>Continuously verify your OpenStack environment's health by spinning up a test server, validating it responds correctly, then tearing it down — all automated end-to-end.</p>
+            <a href="https://github.com/CloudSlang/cs-content/blob/master/content/io/cloudslang/openstack/openstack_health_check.sl"
+               target="_blank" rel="noopener noreferrer" class="usecase-link">
+              View workflow on GitHub
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </article>
+
+        </div>
+
+        <div class="usecases-footer reveal">
+          <a href="https://github.com/CloudSlang/cs-content" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            Browse the full content catalog ↗
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+
+      <div class="footer-brand">
+        <img src="./images/logo.png" alt="CloudSlang" class="footer-logo" />
+        <p class="footer-tagline">Open-source process-based orchestration for the modern enterprise.</p>
+        <p class="footer-opentext">A project by <strong>OpenText</strong></p>
+      </div>
+
+      <nav class="footer-links" aria-label="Footer navigation">
+        <div class="footer-link-group">
+          <h4>Project</h4>
+          <a href="https://github.com/CloudSlang" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://cloudslang-docs.readthedocs.io" target="_blank" rel="noopener noreferrer">Documentation</a>
+          <a href="https://cloudslang-docs.readthedocs.io/en/latest/overview/section_tutorial.html" target="_blank" rel="noopener noreferrer">Tutorials</a>
+          <a href="https://github.com/CloudSlang/cs-content" target="_blank" rel="noopener noreferrer">Content Library</a>
+        </div>
+        <div class="footer-link-group">
+          <h4>Legal</h4>
+          <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener noreferrer">Apache 2.0 License</a>
+          <a href="https://github.com/CloudSlang/cloud-slang/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a>
+          <a href="https://www.opentext.com/about/legal/website-terms-of-use#privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
+          <a href="https://www.opentext.com/about/legal/website-terms-of-use" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+        </div>
+      </nav>
+
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CloudSlang contributors. Licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener noreferrer">Apache License 2.0</a>. A project by OpenText.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>

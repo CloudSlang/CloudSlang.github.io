@@ -8,6 +8,12 @@ window.addEventListener('scroll', () => {
 const navToggle = document.getElementById('navToggle');
 const navLinks  = document.getElementById('navLinks');
 
+function closeMenu() {
+  navLinks.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
 navToggle.addEventListener('click', () => {
   const isOpen = navLinks.classList.toggle('open');
   navToggle.setAttribute('aria-expanded', String(isOpen));
@@ -16,22 +22,30 @@ navToggle.addEventListener('click', () => {
 
 // Close on any nav link click
 navLinks.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  });
+  link.addEventListener('click', closeMenu);
 });
 
 // Close on Escape key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-    navLinks.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+    closeMenu();
     navToggle.focus();
   }
 });
+
+// Close on click outside the navbar
+document.addEventListener('click', (e) => {
+  if (navLinks.classList.contains('open') && !navbar.contains(e.target)) {
+    closeMenu();
+  }
+});
+
+// Clear scroll lock when resizing back to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768 && navLinks.classList.contains('open')) {
+    closeMenu();
+  }
+}, { passive: true });
 
 /* ── Active nav link on scroll (IntersectionObserver) ───────────────────── */
 const sections = document.querySelectorAll('section[id]');

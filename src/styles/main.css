@@ -229,15 +229,26 @@ strong { font-weight: 600; }
   right: 0;
   z-index: 1000;
   height: var(--nav-height);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition);
+}
+
+/* Use ::before for blur so .navbar is NOT a containing block for fixed children */
+.navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: rgba(13, 17, 23, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--transition), background var(--transition);
+  z-index: -1;
+  transition: background var(--transition);
 }
 
 .navbar.scrolled {
   border-bottom-color: var(--border-subtle);
+}
+.navbar.scrolled::before {
   background: rgba(13, 17, 23, 0.95);
 }
 
@@ -263,6 +274,11 @@ strong { font-weight: 600; }
   height: 36px;
   width: auto;
   object-fit: contain;
+  filter: drop-shadow(0 0 24px var(--green-glow-strong));
+  transition: filter var(--transition);
+}
+.nav-logo:hover .logo-img {
+  filter: drop-shadow(0 0 32px var(--green-glow-strong)) brightness(1.15);
 }
 
 .nav-links {
@@ -337,6 +353,15 @@ strong { font-weight: 600; }
 .nav-opentext strong { color: var(--text-muted); font-weight: 600; }
 .nav-opentext:hover { color: var(--text-muted); }
 .nav-opentext:hover strong { color: var(--text-secondary); }
+
+/* Inline header version — hidden on desktop, shown on mobile */
+.nav-opentext-inline {
+  display: none;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* Hamburger */
 .nav-toggle {
@@ -851,6 +876,11 @@ strong { font-weight: 600; }
   width: auto;
   object-fit: contain;
   object-position: left;
+  filter: drop-shadow(0 0 24px var(--green-glow-strong));
+  transition: filter var(--transition);
+}
+.footer-logo:hover {
+  filter: drop-shadow(0 0 32px var(--green-glow-strong)) brightness(1.15);
 }
 
 .footer-tagline {
@@ -961,8 +991,10 @@ strong { font-weight: 600; }
   :root { --section-gap: 3.5rem; }
 
   /* Navbar mobile */
-  .nav-toggle { display: flex; }
+  .nav-container { gap: 0.75rem; }
+  .nav-toggle { display: flex; flex-shrink: 0; }
   .nav-opentext-divider, .nav-opentext { display: none; }
+  .nav-opentext-inline { display: block; }
 
   .nav-links {
     position: fixed;
@@ -970,6 +1002,7 @@ strong { font-weight: 600; }
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 999;
     flex-direction: column;
     align-items: flex-start;
     gap: .25rem;

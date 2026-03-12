@@ -355,7 +355,13 @@ strong { font-weight: 600; }
 .nav-opentext:hover strong { color: var(--text-secondary); }
 
 /* Inline header version — hidden on desktop, shown on mobile */
-.nav-opentext-inline { display: none; }
+.nav-opentext-inline {
+  display: none;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* Hamburger */
 .nav-toggle {
@@ -985,7 +991,8 @@ strong { font-weight: 600; }
   :root { --section-gap: 3.5rem; }
 
   /* Navbar mobile */
-  .nav-toggle { display: flex; }
+  .nav-container { gap: 0.75rem; }
+  .nav-toggle { display: flex; flex-shrink: 0; }
   .nav-opentext-divider, .nav-opentext { display: none; }
   .nav-opentext-inline { display: block; }
 
